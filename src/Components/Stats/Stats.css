@@ -1,0 +1,6 @@
+.stats-container {
+    top: 25vh;
+    height: 20vh;
+    width: 100vw;
+    position: absolute;
+}

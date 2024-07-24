@@ -1,0 +1,19 @@
+.head {
+    position: absolute;
+    width: 10vw;
+    height: 10vh;
+    top: 0%;
+}
+
+.head img {
+    width: 100%; /* Или задать фиксированную ширину, например, 50px */
+    height: 100%; /* Высота изображения */
+    object-fit: cover;
+}
+
+.head.trumpH {
+    right: 5%;
+}
+.head.harrisH {
+    left: 5%;
+}

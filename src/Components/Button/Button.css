@@ -1,0 +1,68 @@
+:root {
+    --primary-color: #404040;
+  }
+  .btn {
+    overflow: hidden;
+  }
+  .btn.HarrisButton {
+    padding: 0.6rem 0.8rem;
+    font-size: 5vw;
+    text-align: center;
+    border: 3px solid #2f2f2f; /* Тонкая серебристая рамка */
+    outline: none;
+    border-radius: 10px;
+    width: 35vw;
+    box-shadow: 1px -3px 52px -5px rgba(225, 225, 225, 0.432);
+    cursor: pointer;
+    background-color: var(--primary-color); /* Используем переменную для цвета фона */
+    color: rgb(154, 154, 154); /* Белый текст для лучшей видимости на фоне */
+    position: absolute;
+    bottom: 15vh;
+    left: 10vw;
+    overflow: hidden;
+  }
+  .btn.TrumpButton {
+    padding: 0.6rem 0.8rem;
+    font-size: 5vw;
+    text-align: center;
+    border: 3px solid #2f2f2f; /* Тонкая серебристая рамка */
+    outline: none;
+    border-radius: 10px;
+    width: 35vw;
+    box-shadow: 1px -3px 52px -5px rgba(225, 225, 225, 0.432);
+    cursor: pointer;
+    background-color: var(--primary-color); /* Используем переменную для цвета фона */
+    color: rgb(154, 154, 154); /* Белый текст для лучшей видимости на фоне */
+    position: absolute;
+    bottom: 15vh;
+    right: 10vw;
+    overflow: hidden;
+  }
+
+  .btn-move.btn.president {
+    transition: transform 1s ease;
+    overflow: hidden;
+}
+  
+  .btn-move.HarrisButton.active {
+    transform: translateX(-60vw);
+    overflow: hidden;
+}
+
+.btn-move.TrumpButton.active {
+  transform: translateX(60vw); 
+  overflow: hidden;
+}
+
+
+  .btn.president:hover {
+    background-color: #2d2d2d;
+  }
+
+  .btn.president:active {
+    background-color: #1d1d1d;
+  }
+
+  .btn:active {
+    transform: scale(0.9);
+  }

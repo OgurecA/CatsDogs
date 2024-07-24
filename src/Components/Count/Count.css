@@ -1,0 +1,20 @@
+/* Count.css */
+.count-container {
+    margin: 20px;
+    position: absolute;
+    padding: 10px;
+    color: #f4f4f4;
+    text-align: center;
+    height: 7%;
+    width: 13%;
+    overflow: hidden;
+    font-size: 16px;
+    top: -5%;
+    align-items: center;
+}
+.count-container.TR {
+    right: 7%;
+}
+.count-container.HS {
+    left: 7%;
+}
