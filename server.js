@@ -2,15 +2,14 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-// Порт, на котором будет запущен сервер
 const PORT = process.env.PORT || 3000;
 
-// Обслуживание статических файлов из папки build
-app.use(express.static(path.join(__dirname, 'public')));
+// Подключаем статические файлы
+app.use(express.static(path.join(__dirname, 'build')));
 
-// Обработка запросов на корневой URL
+// Обработка любых маршрутов
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.listen(PORT, () => {
