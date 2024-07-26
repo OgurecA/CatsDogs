@@ -115,6 +115,7 @@ app.get('/votes', (req, res) => {
 
 app.post('/telegram/callback', (req, res) => {
   const userData = req.body;
+  console.log(`${userData}`)
   // Проверка данных и хэша
   if (verifyTelegramAuth(userData)) {
     // Если данные верифицированы, регистрируем или авторизуем пользователя в системе
