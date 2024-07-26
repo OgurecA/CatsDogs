@@ -3,10 +3,16 @@ const path = require('path');
 const app = express();
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
-const http = require('http');
+const https = require('https');
 const WebSocket = require('ws');
+const fs = require('fs');
 
-const server = http.createServer(app);
+const options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/btc24news.online/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/btc24news.online/fullchain.pem')
+};
+
+const server = https.createServer(options, app);
 const wss = new WebSocket.Server({ noServer: true });
 
 const PORT = process.env.PORT || 3000;
@@ -28,7 +34,6 @@ wss.on('connection', function connection(ws) {
 });
 
 server.on('upgrade', function upgrade(request, socket, head) {
-  // Этот код вызывается при попытке установить WebSocket соединение
   wss.handleUpgrade(request, socket, head, function done(ws) {
       wss.emit('connection', ws, request);
   });
@@ -142,6 +147,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+server.listen(PORT, () => {
+  console.log(`Server is running on https://localhost:${PORT}`);
 });
