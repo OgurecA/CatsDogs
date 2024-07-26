@@ -14,16 +14,9 @@ function App() {
     const [backgroundImage, setBackgroundImage] = useState('');
     const [contentVisible, setContentVisible] = useState('both');
 
-    const [harrisCount, setHarrisCount] = useState(0);
-    const [trumpCount, setTrumpCount] = useState(0);
-
     const [personalHarrisCount, setPersonalHarrisCount] = useState(0);
     const [personalTrumpCount, setPersonalTrumpCount] = useState(0);
 
-    const personalHarrisPercentage = harrisCount > 0 ? (personalHarrisCount / harrisCount * 100).toFixed(1) : 0;
-    const personalTrumpPercentage = trumpCount > 0 ? (personalTrumpCount / trumpCount * 100).toFixed(1) : 0;
-
-    
     const [isSelectedHarris, setIsSelectedHarris] = useState(false);
     const [isSelectedTrump, setIsSelectedTrump] = useState(false);
 
@@ -40,7 +33,8 @@ function App() {
     const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(1) : 0;
     const trumpPercentage = totalVotes > 0 ? (votes.Trump / totalVotes * 100).toFixed(1) : 0;
 
-    
+    const personalHarrisPercentage = votes.Harris > 0 ? (personalHarrisCount / votes.Harris * 100).toFixed(1) : 0;
+    const personalTrumpPercentage = votes.Trump > 0 ? (personalTrumpCount / votes.Trump * 100).toFixed(1) : 0;
     
     function handleClickHarrisB() {
         document.documentElement.style.setProperty('--harris-left', '25vw');
@@ -75,7 +69,6 @@ function App() {
 
     function incrementTrumpCount() {
         if (isSelectedTrump) {
-            setTrumpCount(trumpCount + 1);
             setPersonalTrumpCount(personalTrumpCount + 1);
             console.log(personalTrumpPercentage);
             handleVote('Trump');
@@ -83,7 +76,6 @@ function App() {
     }
     function incrementHarrisCount() {
         if (isSelectedHarris) {
-            setHarrisCount(harrisCount + 1);
             setPersonalHarrisCount(personalHarrisCount + 1);
             console.log(personalHarrisPercentage);
             handleVote('Harris');

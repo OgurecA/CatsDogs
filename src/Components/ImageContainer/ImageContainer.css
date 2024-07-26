@@ -20,14 +20,12 @@
   position: absolute;
   left: var(--harris-left, 0vw);
   bottom: var(--harris-bottom, 25vh);
-  overflow: hidden;
 }
 
 .image-container.trump-image {
   position: absolute;
   right: var(--trump-left, 0vw);
   bottom: var(--trump-bottom, 25vh);
-  overflow: hidden;
 }
 
 .image-container.selected:active {
