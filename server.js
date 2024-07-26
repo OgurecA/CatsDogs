@@ -58,7 +58,6 @@ function incrementTrumpTotalVotes() {
       if (updateErr) {
           console.error('Error updating Trump votes', updateErr.message);
       } else {
-          console.log(`Trump votes increment operation affected ${this.changes} row(s).`);
           db.get(selectQuery, (selectErr, row) => {
               if (selectErr) {
                   console.error('Error fetching Trump votes', selectErr.message);
@@ -71,12 +70,20 @@ function incrementTrumpTotalVotes() {
 }
 
 function incrementHarrisTotalVotes() {
-  const updateQuery = `UPDATE total_votes SET votes = votes + 1 WHERE candidate = 'Harris'`;
-  db.run(updateQuery, function(err) {
-      if (err) {
-          console.error('Error updating Harris votes', err.message);
+  const updateQuery = `UPDATE total_votes SET votes = votes + 1 WHERE candidate = 'Harris';`;
+  const selectQuery = `SELECT votes FROM total_votes WHERE candidate = 'Harris';`;
+
+  db.run(updateQuery, function(updateErr) {
+      if (updateErr) {
+          console.error('Error updating Harris votes', updateErr.message);
       } else {
-          console.log(`Harris votes updated: ${this.changes}`);
+          db.get(selectQuery, (selectErr, row) => {
+              if (selectErr) {
+                  console.error('Error fetching Harris votes', selectErr.message);
+              } else {
+                  console.log(`Current number of votes for Harris: ${row.votes}`);
+              }
+          });
       }
   });
 }
