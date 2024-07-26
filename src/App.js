@@ -31,11 +31,18 @@ function App() {
 
     useEffect(() => {
         const ws = new WebSocket('wss://btc24news.online/ws');
+        ws.onopen = () => console.log('WebSocket connected');
+        ws.onerror = error => console.error('WebSocket error:', error);
         ws.onmessage = event => {
+            console.log('WebSocket message:', event.data);
             const votes = JSON.parse(event.data);
             setVotes(votes);
+            console.log('Updated votes state:', votes);
         };
-        return () => ws.close();
+        return () => {
+            ws.close();
+            console.log('WebSocket disconnected');
+        };
     }, []);
     
 
