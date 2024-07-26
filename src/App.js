@@ -17,6 +17,7 @@ function App() {
     const [personalHarrisCount, setPersonalHarrisCount] = useState(0);
     const [personalTrumpCount, setPersonalTrumpCount] = useState(0);
 
+
     const [isSelectedHarris, setIsSelectedHarris] = useState(false);
     const [isSelectedTrump, setIsSelectedTrump] = useState(false);
 
@@ -35,6 +36,7 @@ function App() {
 
     const personalHarrisPercentage = votes.Harris > 0 ? (personalHarrisCount / votes.Harris * 100).toFixed(1) : 0;
     const personalTrumpPercentage = votes.Trump > 0 ? (personalTrumpCount / votes.Trump * 100).toFixed(1) : 0;
+
     
     function handleClickHarrisB() {
         document.documentElement.style.setProperty('--harris-left', '25vw');

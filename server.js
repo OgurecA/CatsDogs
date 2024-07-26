@@ -91,11 +91,13 @@ function incrementHarrisTotalVotes() {
 // Эндпоинт для увеличения голосов за Трампа
 app.post('/vote/trump', (req, res) => {
   incrementTrumpTotalVotes();
+  res.send({ message: 'Vote for Trump registered' });
 });
 
 // Эндпоинт для увеличения голосов за Харрис
 app.post('/vote/harris', (req, res) => {
   incrementHarrisTotalVotes();
+  res.send({ message: 'Vote for Harris registered' });
 });
 
 app.get('/votes', (req, res) => {
@@ -112,7 +114,6 @@ app.get('/votes', (req, res) => {
       });
   });
 });
-
 
 // Обработка любых маршрутов
 app.get('*', (req, res) => {
