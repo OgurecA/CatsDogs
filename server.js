@@ -51,19 +51,21 @@ process.on('SIGINT', () => {
 
 
 function incrementTrumpTotalVotes() {
-  const updateQuery = `UPDATE total_votes SET votes = votes + 1 WHERE candidate = 'Trump'`;
-  db.run(updateQuery, function(err) {
-      if (err) {
-          console.error('Error updating Trump votes', err.message);
+  const updateQuery = `UPDATE total_votes SET votes = votes + 1 WHERE candidate = 'Trump';`;
+  const selectQuery = `SELECT votes FROM total_votes WHERE candidate = 'Trump';`;
+
+  db.run(updateQuery, function(updateErr) {
+      if (updateErr) {
+          console.error('Error updating Trump votes', updateErr.message);
       } else {
-          if (this.changes === 0) {
-              // Если обновление не затронуло ни одной строки, значит, необходимо добавить запись
-              db.run(`INSERT INTO total_votes (candidate, votes) VALUES ('Trump', votes + 1)`, (err) => {
-                  if (err) console.error('Error adding Trump votes', err.message);
-              });
-          } else {
-              console.log(`Trump votes updated: ${this.changes}`);
-          }
+          console.log(`Trump votes increment operation affected ${this.changes} row(s).`);
+          db.get(selectQuery, (selectErr, row) => {
+              if (selectErr) {
+                  console.error('Error fetching Trump votes', selectErr.message);
+              } else {
+                  console.log(`Current number of votes for Trump: ${row.votes}`);
+              }
+          });
       }
   });
 }
