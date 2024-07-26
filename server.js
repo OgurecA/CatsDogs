@@ -4,7 +4,6 @@ const app = express();
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 
-
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
@@ -102,18 +101,17 @@ app.post('/vote/harris', (req, res) => {
 });
 
 app.get('/votes', (req, res) => {
-  console.log("Fetching votes...");
   db.all(`SELECT candidate, votes FROM total_votes`, [], (err, rows) => {
       if (err) {
-          console.error('Error fetching votes:', err.message);
           res.status(500).json({ error: err.message });
           return;
       }
-      const votes = rows.reduce((acc, row) => {
-          acc[row.candidate] = row.votes;
-          return acc;
-      }, {});
-      res.json({ votes });
+      res.json({
+          votes: rows.reduce((acc, row) => {
+              acc[row.candidate] = row.votes;
+              return acc;
+          }, {})
+      });
   });
 });
 
