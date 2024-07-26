@@ -70,23 +70,27 @@ function incrementTrumpTotalVotes() {
 }
 
 function incrementHarrisTotalVotes() {
-  const updateQuery = `UPDATE total_votes SET votes = votes + 1 WHERE candidate = 'Harris';`;
-  const selectQuery = `SELECT votes FROM total_votes WHERE candidate = 'Harris';`;
+  const updateQuery = `UPDATE total_votes SET votes = votes + 1 WHERE candidate = 'Harris'`;
 
-  db.run(updateQuery, function(updateErr) {
-      if (updateErr) {
-          console.error('Error updating Harris votes', updateErr.message);
-      } else {
-          db.get(selectQuery, (selectErr, row) => {
-              if (selectErr) {
-                  console.error('Error fetching Harris votes', selectErr.message);
-              } else {
-                  console.log(`Current number of votes for Harris: ${row.votes}`);
-              }
-          });
+  db.run(updateQuery, function(err) {
+      if (err) {
+          console.error('Error updating Harris votes', err.message);
+          return;
       }
+      // Логируем количество изменённых строк, чтобы увидеть, произошло ли изменение
+      console.log(`Harris votes updated: ${this.changes}`);
+
+      // Дополнительно проверим текущее количество голосов после обновления
+      db.get(`SELECT votes FROM total_votes WHERE candidate = 'Harris'`, (selectErr, row) => {
+          if (selectErr) {
+              console.error('Error fetching Harris votes', selectErr.message);
+              return;
+          }
+          console.log(`Current number of votes for Harris: ${row.votes}`);
+      });
   });
 }
+
 
 // Эндпоинт для увеличения голосов за Трампа
 app.post('/vote/trump', (req, res) => {
