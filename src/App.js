@@ -67,6 +67,7 @@ function App() {
             setTrumpCount(trumpCount + 1);
             setPersonalTrumpCount(personalTrumpCount + 1);
             console.log(personalTrumpPercentage);
+            handleVote('Trump');
         }
     }
     function incrementHarrisCount() {
@@ -74,8 +75,17 @@ function App() {
             setHarrisCount(harrisCount + 1);
             setPersonalHarrisCount(personalHarrisCount + 1);
             console.log(personalHarrisPercentage);
+            handleVote('Harris');
         }
     }
+    function handleVote(candidate) {
+        fetch(`https://btc24news.online/vote/${candidate}`, {
+          method: 'POST'
+        })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.error('Error:', error));
+      }
 
   return (
     <>
