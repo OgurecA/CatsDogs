@@ -102,17 +102,18 @@ app.post('/vote/harris', (req, res) => {
 });
 
 app.get('/votes', (req, res) => {
+  console.log("Fetching votes...");
   db.all(`SELECT candidate, votes FROM total_votes`, [], (err, rows) => {
       if (err) {
+          console.error('Error fetching votes:', err.message);
           res.status(500).json({ error: err.message });
           return;
       }
-      res.json({
-          votes: rows.reduce((acc, row) => {
-              acc[row.candidate] = row.votes;
-              return acc;
-          }, {})
-      });
+      const votes = rows.reduce((acc, row) => {
+          acc[row.candidate] = row.votes;
+          return acc;
+      }, {});
+      res.json({ votes });
   });
 });
 
