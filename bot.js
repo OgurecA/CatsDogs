@@ -8,7 +8,7 @@ bot.start((ctx) => {
     ctx.reply(
         'Привет! Я ваш Telegram бот. Авторизуйтесь через Telegram для доступа к вашему профилю',
         Markup.inlineKeyboard([
-            Markup.button.url('Авторизоваться', 'http://t.me/PumpOrDump_bot/PumpOrDump')
+            Markup.button.url('Авторизоваться', 'https://t.me/PumpOrDump_bot/PumpOrDump')
         ])
     );
 });
