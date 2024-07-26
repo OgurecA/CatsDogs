@@ -113,6 +113,28 @@ app.get('/votes', (req, res) => {
   });
 });
 
+app.post('/telegram/callback', (req, res) => {
+  const userData = req.body;
+  // Проверка данных и хэша
+  if (verifyTelegramAuth(userData)) {
+    // Если данные верифицированы, регистрируем или авторизуем пользователя в системе
+    console.log(`${userData}`)
+    res.redirect('/profile');
+  } else {
+    res.status(401).send('Unauthorized');
+  }
+});
+
+function verifyTelegramAuth(userData) {
+  const hash = userData.hash;
+  const checkString = Object.keys(userData).filter(key => key !== 'hash')
+    .map(key => (`${key}=${userData[key]}`)).sort().join('\n');
+  const secretKey = crypto.createHash('sha256').update(botToken).digest();
+  const hmac = crypto.createHmac('sha256', secretKey).update(checkString).digest('hex');
+  return hmac === hash;
+}
+
+
 // Обработка любых маршрутов
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
