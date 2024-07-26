@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from "./Components/Button/Button"
 import ImageContainer from './Components/ImageContainer/ImageContainer';
 import BGcontainer from './Components/BGcontainer/BGcontainer';
@@ -23,12 +23,23 @@ function App() {
     const personalHarrisPercentage = harrisCount > 0 ? (personalHarrisCount / harrisCount * 100).toFixed(1) : 0;
     const personalTrumpPercentage = trumpCount > 0 ? (personalTrumpCount / trumpCount * 100).toFixed(1) : 0;
 
-    const totalVotes = harrisCount + trumpCount;
-    const harrisPercentage = totalVotes > 0 ? (harrisCount / totalVotes * 100).toFixed(1) : 0;
-    const trumpPercentage = totalVotes > 0 ? (trumpCount / totalVotes * 100).toFixed(1) : 0;
     
     const [isSelectedHarris, setIsSelectedHarris] = useState(false);
     const [isSelectedTrump, setIsSelectedTrump] = useState(false);
+
+    const [votes, setVotes] = useState({ Trump: 0, Harris: 0 });
+
+    useEffect(() => {
+        fetch('https://btc24news.online/votes')
+            .then(response => response.json())
+            .then(data => setVotes(data.votes))
+            .catch(error => console.error('Error fetching votes:', error));
+    }, []);
+
+    const totalVotes = votes.Trump + votes.Harris;
+    const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(1) : 0;
+    const trumpPercentage = totalVotes > 0 ? (votes.Trump / totalVotes * 100).toFixed(1) : 0;
+
     
     
     function handleClickHarrisB() {

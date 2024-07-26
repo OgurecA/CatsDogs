@@ -100,6 +100,21 @@ app.post('/vote/harris', (req, res) => {
   res.send({ message: 'Vote for Harris registered' });
 });
 
+app.get('/votes', (req, res) => {
+  db.all(`SELECT candidate, votes FROM total_votes`, [], (err, rows) => {
+      if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+      }
+      res.json({
+          votes: rows.reduce((acc, row) => {
+              acc[row.candidate] = row.votes;
+              return acc;
+          }, {})
+      });
+  });
+});
+
 // Обработка любых маршрутов
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
