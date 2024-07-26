@@ -30,7 +30,7 @@ function App() {
     const [votes, setVotes] = useState({ Trump: 0, Harris: 0 });
 
     useEffect(() => {
-        fetch('https://btc24news.online/votes')
+        fetch('http://btc24news.online/votes')
             .then(response => response.json())
             .then(data => setVotes(data.votes))
             .catch(error => console.error('Error fetching votes:', error));
