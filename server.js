@@ -3,7 +3,10 @@ const path = require('path');
 const app = express();
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
+const http = require('http');
 const WebSocket = require('ws');
+
+const server = http.createServer(app);
 const wss = new WebSocket.Server({ noServer: true });
 
 const PORT = process.env.PORT || 3000;
@@ -15,8 +18,18 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 app.use(cors()); // Это позволит все запросы из любых источников
 
-app.server.on('upgrade', (request, socket, head) => {
-  wss.handleUpgrade(request, socket, head, (ws) => {
+
+wss.on('connection', function connection(ws) {
+  ws.on('message', function incoming(message) {
+      console.log('received: %s', message);
+  });
+
+  ws.send('something');
+});
+
+server.on('upgrade', function upgrade(request, socket, head) {
+  // Этот код вызывается при попытке установить WebSocket соединение
+  wss.handleUpgrade(request, socket, head, function done(ws) {
       wss.emit('connection', ws, request);
   });
 });
