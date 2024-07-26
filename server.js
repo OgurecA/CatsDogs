@@ -6,8 +6,6 @@ const cors = require('cors');
 
 const PORT = process.env.PORT || 3000;
 
-const { incrementTrumpTotalVotes, incrementHarrisTotalVotes } = require('./dbFunctions');
-
 app.use(express.json());
 
 // Подключаем статические файлы
