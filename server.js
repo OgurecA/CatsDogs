@@ -58,7 +58,7 @@ function incrementTrumpTotalVotes() {
       } else {
           if (this.changes === 0) {
               // Если обновление не затронуло ни одной строки, значит, необходимо добавить запись
-              db.run(`INSERT INTO total_votes (candidate, votes) VALUES ('Trump', 1)`, (err) => {
+              db.run(`INSERT INTO total_votes (candidate, votes) VALUES ('Trump', votes + 1)`, (err) => {
                   if (err) console.error('Error adding Trump votes', err.message);
               });
           } else {
