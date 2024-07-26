@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use(cors()); // Это позволит все запросы из любых источников
 
 
-let db = new sqlite3.Database('./election.db', sqlite3.OPEN_READWRITE, (err) => {
+let db = new sqlite3.Database('./election.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
   if (err) {
       console.error('Error opening database', err.message);
   } else {
