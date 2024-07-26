@@ -3,17 +3,7 @@ const path = require('path');
 const app = express();
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
-const https = require('https');
-const WebSocket = require('ws');
-const fs = require('fs');
 
-const options = {
-  key: fs.readFileSync('/etc/letsencrypt/live/btc24news.online/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/btc24news.online/fullchain.pem')
-};
-
-const server = https.createServer(options, app);
-const wss = new WebSocket.Server({ noServer: true });
 
 const PORT = process.env.PORT || 3000;
 
@@ -24,20 +14,6 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 app.use(cors()); // Это позволит все запросы из любых источников
 
-
-wss.on('connection', function connection(ws) {
-  ws.on('message', function incoming(message) {
-      console.log('received: %s', message);
-  });
-
-  ws.send('something');
-});
-
-server.on('upgrade', function upgrade(request, socket, head) {
-  wss.handleUpgrade(request, socket, head, function done(ws) {
-      wss.emit('connection', ws, request);
-  });
-});
 
 let db = new sqlite3.Database('./election.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
   if (err) {
@@ -116,37 +92,35 @@ function incrementHarrisTotalVotes() {
 // Эндпоинт для увеличения голосов за Трампа
 app.post('/vote/trump', (req, res) => {
   incrementTrumpTotalVotes();
-  broadcastNewVotes();
   res.send({ message: 'Vote for Trump registered' });
 });
 
 // Эндпоинт для увеличения голосов за Харрис
 app.post('/vote/harris', (req, res) => {
   incrementHarrisTotalVotes();
-  broadcastNewVotes();
   res.send({ message: 'Vote for Harris registered' });
 });
 
-function broadcastNewVotes() {
+app.get('/votes', (req, res) => {
   db.all(`SELECT candidate, votes FROM total_votes`, [], (err, rows) => {
       if (err) {
-          return console.error(err);
+          res.status(500).json({ error: err.message });
+          return;
       }
-      const data = rows.reduce((acc, row) => ({...acc, [row.candidate]: row.votes}), {});
-      wss.clients.forEach(client => {
-          if (client.readyState === WebSocket.OPEN) {
-              client.send(JSON.stringify(data));
-          }
+      res.json({
+          votes: rows.reduce((acc, row) => {
+              acc[row.candidate] = row.votes;
+              return acc;
+          }, {})
       });
   });
-}
-
+});
 
 // Обработка любых маршрутов
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-server.listen(PORT, () => {
-  console.log(`Server is running on https://localhost:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
