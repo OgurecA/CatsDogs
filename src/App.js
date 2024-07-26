@@ -30,11 +30,14 @@ function App() {
     const [votes, setVotes] = useState({ Trump: 0, Harris: 0 });
 
     useEffect(() => {
-        fetch('https://btc24news.online/votes')
-            .then(response => response.json())
-            .then(data => setVotes(data.votes))
-            .catch(error => console.error('Error fetching votes:', error));
+        const ws = new WebSocket('wss://btc24news.online/ws');
+        ws.onmessage = event => {
+            const votes = JSON.parse(event.data);
+            setVotes(votes);
+        };
+        return () => ws.close();
     }, []);
+    
 
     const totalVotes = votes.Trump + votes.Harris;
     const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(1) : 0;

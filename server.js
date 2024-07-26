@@ -3,6 +3,8 @@ const path = require('path');
 const app = express();
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({ noServer: true });
 
 const PORT = process.env.PORT || 3000;
 
@@ -13,6 +15,11 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 app.use(cors()); // Это позволит все запросы из любых источников
 
+app.server.on('upgrade', (request, socket, head) => {
+  wss.handleUpgrade(request, socket, head, (ws) => {
+      wss.emit('connection', ws, request);
+  });
+});
 
 let db = new sqlite3.Database('./election.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
   if (err) {
@@ -100,20 +107,20 @@ app.post('/vote/harris', (req, res) => {
   res.send({ message: 'Vote for Harris registered' });
 });
 
-app.get('/votes', (req, res) => {
+function broadcastNewVotes() {
   db.all(`SELECT candidate, votes FROM total_votes`, [], (err, rows) => {
       if (err) {
-          res.status(500).json({ error: err.message });
-          return;
+          return console.error(err);
       }
-      res.json({
-          votes: rows.reduce((acc, row) => {
-              acc[row.candidate] = row.votes;
-              return acc;
-          }, {})
+      const data = rows.reduce((acc, row) => ({...acc, [row.candidate]: row.votes}), {});
+      wss.clients.forEach(client => {
+          if (client.readyState === WebSocket.OPEN) {
+              client.send(JSON.stringify(data));
+          }
       });
   });
-});
+}
+
 
 // Обработка любых маршрутов
 app.get('*', (req, res) => {
