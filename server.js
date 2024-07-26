@@ -56,7 +56,14 @@ function incrementTrumpTotalVotes() {
       if (err) {
           console.error('Error updating Trump votes', err.message);
       } else {
-          console.log(`Trump votes updated: ${this.changes}`);
+          if (this.changes === 0) {
+              // Если обновление не затронуло ни одной строки, значит, необходимо добавить запись
+              db.run(`INSERT INTO total_votes (candidate, votes) VALUES ('Trump', 1)`, (err) => {
+                  if (err) console.error('Error adding Trump votes', err.message);
+              });
+          } else {
+              console.log(`Trump votes updated: ${this.changes}`);
+          }
       }
   });
 }
