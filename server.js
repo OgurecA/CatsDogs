@@ -4,12 +4,14 @@ const app = express();
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 const crypto = require('crypto');
+const bodyParser = require('body-parser');
 
 const botToken = '7491271001:AAEOiriYnXp_fFXVS_Iqvekzga6wSH0NxhU';
 
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Подключаем статические файлы
 app.use(express.static(path.join(__dirname, 'build')));
