@@ -120,17 +120,12 @@ app.get('/votes', (req, res) => {
 
 app.get('/telegram/callback', (req, res) => {
     console.log("Попытка авторизации");
-    checkSignature();
-    if (checkTelegramAuthData(req.query, botToken)) {
       const userData = req.query;
       // Здесь userData будет содержать параметры id, first_name, last_name, username, photo_url, auth_date и hash
       // Вы можете использовать эти данные для создания сессии пользователя или для других целей
       console.log(userData);
       res.redirect('/'); // Перенаправление пользователя на главную страницу после авторизации
-    } else {
-        // Аутентификация не удалась
-        res.status(401).send('Неверные данные аутентификации');
-      }
+
   });
 
   function checkTelegramAuthData(data, botToken) {
