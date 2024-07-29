@@ -19,15 +19,16 @@
   data-size="large"
   data-auth-url="https://btc24news.online/telegramauth"
   data-request-access="write"></script>
+
+  <button id="loginButton">Login with Telegram</button>
+
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // Проверяем, загружен ли виджет
-        var telegramButton = document.querySelector('iframe[title="Telegram Login Widget"]');
-        setTimeout(() => {
+    document.getElementById('loginButton').addEventListener('click', function() {
+      var telegramButton = document.querySelector('iframe[title="Telegram Login Widget"]');
+      if (telegramButton) {
         telegramButton.contentWindow.postMessage({ event: 'click' }, '*');
-      }, 1000);
+      }
     });
-    </script>
-    <div id="root"></div>
+  </script>
   </body>
 </html>
