@@ -120,6 +120,7 @@ app.get('/votes', (req, res) => {
 
 app.get('/telegram/callback', (req, res) => {
     console.log("Попытка авторизации");
+    checkSignature();
     if (checkTelegramAuthData(req.query, botToken)) {
       const userData = req.query;
       // Здесь userData будет содержать параметры id, first_name, last_name, username, photo_url, auth_date и hash
@@ -139,6 +140,28 @@ app.get('/telegram/callback', (req, res) => {
     const hash = crypto.createHmac('sha256', secret).update(checkString).digest('hex');
     return hash === data.hash;
   }
+  function checkSignature(apiSecret, data, signature) {
+    console.log("Полученные данные:", data);
+    console.log("Ожидаемая подпись:", signature);
+
+    // Подготовка данных к подписанию
+    const keys = Object.keys(data).sort();
+    const signingString = keys.map(key => `${key}=${data[key]}`).join('&');
+    console.log("Строка для подписания:", signingString);
+
+    // Создание подписи
+    const hash = crypto.createHmac('sha256', apiSecret).update(signingString).digest('hex');
+    console.log("Сгенерированная подпись:", hash);
+
+    // Сравнение подписей
+    if (hash === signature) {
+        console.log("Подписи совпадают");
+        return true;
+    } else {
+        console.log("Подписи не совпадают");
+        return false;
+    }
+}
 
 
 // Обработка любых маршрутов
