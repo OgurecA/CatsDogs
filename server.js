@@ -120,7 +120,7 @@ app.get('/votes', (req, res) => {
   });
 });
 
-app.get('/telegram/callback', (req, res) => {
+app.get('/telegramauth', (req, res) => {
     console.log("Попытка авторизации");
       const userData = req.query;
       // Здесь userData будет содержать параметры id, first_name, last_name, username, photo_url, auth_date и hash
