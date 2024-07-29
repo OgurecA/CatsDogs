@@ -3,6 +3,9 @@ const path = require('path');
 const app = express();
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
+const crypto = require('crypto');
+
+const botToken = '7491271001:AAEOiriYnXp_fFXVS_Iqvekzga6wSH0NxhU';
 
 const PORT = process.env.PORT || 3000;
 
@@ -114,6 +117,28 @@ app.get('/votes', (req, res) => {
       });
   });
 });
+
+app.get('/telegram/callback', (req, res) => {
+    if (checkTelegramAuthData(req.query, botToken)) {
+      const userData = req.query;
+      // Здесь userData будет содержать параметры id, first_name, last_name, username, photo_url, auth_date и hash
+      // Вы можете использовать эти данные для создания сессии пользователя или для других целей
+      console.log(userData);
+      res.redirect('/'); // Перенаправление пользователя на главную страницу после авторизации
+    } else {
+        // Аутентификация не удалась
+        res.status(401).send('Неверные данные аутентификации');
+      }
+  });
+
+  function checkTelegramAuthData(data, botToken) {
+    const secret = crypto.createHash('sha256').update(botToken).digest();
+    const checkString = Object.keys(data).filter(key => key !== 'hash').sort()
+      .map(key => `${key}=${data[key]}`).join('\n');
+    const hash = crypto.createHmac('sha256', secret).update(checkString).digest('hex');
+    return hash === data.hash;
+  }
+
 
 // Обработка любых маршрутов
 app.get('*', (req, res) => {
