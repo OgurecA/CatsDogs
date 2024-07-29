@@ -22,14 +22,10 @@
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       // Проверяем, загружен ли виджет
-      var checkWidgetLoaded = setInterval(function() {
         var telegramButton = document.querySelector('iframe[title="Telegram Login Widget"]');
-        if (telegramButton) {
-          clearInterval(checkWidgetLoaded);
-          // Эмулируем клик по виджету
-          telegramButton.contentWindow.postMessage({ event: 'click' }, '*');
-        }
-      }, 100); // Проверяем каждые 100 мс
+        setTimeout(() => {
+        telegramButton.contentWindow.postMessage({ event: 'click' }, '*');
+      }, 1000);
     });
     </script>
     <div id="root"></div>
