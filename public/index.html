@@ -15,21 +15,6 @@
   </head>
   <body>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var loginButton = document.getElementById('loginButton');
-        if (loginButton) {
-          loginButton.addEventListener('click', function() {
-            var telegramButton = document.querySelector('iframe[title="Telegram Login Widget"]');
-            if (telegramButton) {
-              telegramButton.contentWindow.postMessage({ event: 'click' }, '*');
-            } else {
-              console.error('Telegram button iframe not found.');
-            }
-          });
-        } else {
-          console.error('Login button not found.');
-        }
-      });
       </script>
       
   </body>
