@@ -98,11 +98,6 @@ function App() {
     <>
             <BGcontainer src={backgroundImage} />
 
-            <div>
-            <h1>Welcome to Our Application</h1>
-            <TelegramLogin />
-            </div>
-
             <AddContainer
                 ads={[
                   { src: TrumpP, link: 'https://www.youtube.com/watch?v=44pt8w67S8I' },

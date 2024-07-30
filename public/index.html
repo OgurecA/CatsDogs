@@ -15,7 +15,16 @@
   </head>
   <body>
     <script>
-      </script>
+
+document.addEventListener("DOMContentLoaded", function() {
+  if (window.Telegram.WebApp) {
+    Telegram.WebApp.init();
+    console.log(Telegram.WebApp.initData);  // Инициализационные данные, отправленные Telegram
+    console.log(Telegram.WebApp.initDataUnsafe.user);  // Данные пользователя
+  }
+});
+
+    </script>
       
   </body>
 </html>
