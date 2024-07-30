@@ -120,7 +120,14 @@ app.get('/votes', (req, res) => {
   });
 });
 
-
+app.post('/api/save_user_data', (req, res) => {
+    const { id, name, username, language_code } = req.body;
+    console.log("Received user data:", req.body);
+  
+    // Здесь ваш код для обработки данных, например, сохранение в базе данных
+  
+    res.json({ status: 'success', message: 'Data saved successfully!' });
+  });
 
 
 // Обработка любых маршрутов
