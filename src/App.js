@@ -1,10 +1,12 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import Button from "./Components/Button/Button"
 import ImageContainer from './Components/ImageContainer/ImageContainer';
 import BGcontainer from './Components/BGcontainer/BGcontainer';
 import Stats from './Components/Stats/Stats';
 import AddContainer from './Components/AddContainer/AddContainer';
+import TelegramLogin from './Components/TelegramLogin/TelegramLogin';
 
 import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit } from './Components/Pictures/Pictures';
 
@@ -96,6 +98,11 @@ function App() {
     <>
             <BGcontainer src={backgroundImage} />
 
+            <div>
+            <h1>Welcome to Our Application</h1>
+            <TelegramLogin />
+            </div>
+
             <AddContainer
                 ads={[
                   { src: TrumpP, link: 'https://www.youtube.com/watch?v=44pt8w67S8I' },
@@ -149,5 +156,6 @@ function App() {
 
   );
 }
+ReactDOM.render(<App />, document.getElementById('root'));
 
 export default App;
