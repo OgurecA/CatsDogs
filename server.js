@@ -120,14 +120,37 @@ app.get('/votes', (req, res) => {
   });
 });
 
-app.post('/api/save_user_data', (req, res) => {
-    const { id, name, username, language_code } = req.body;
-    console.log("Received user data:", req.body);
-  
-    // Здесь ваш код для обработки данных, например, сохранение в базе данных
-  
-    res.json({ status: 'success', message: 'Data saved successfully!' });
-  });
+function validateHash(params) {
+    const token = '7491271001:AAEOiriYnXp_fFXVS_Iqvekzga6wSH0NxhU'; // Токен вашего бота
+    const secret_key = crypto.createHash('sha256').update(token).digest();
+
+    const data_check_string = Object.keys(params)
+        .filter(key => key !== 'hash') // Исключите 'hash' из данных
+        .sort() // Сортировка ключей в алфавитном порядке
+        .map(key => `${key}=${params[key]}`) // Формирование строки в формате 'key=value'
+        .join('\n'); // Склейка через перенос строки
+
+    const hmac = crypto.createHmac('sha256', secret_key).update(data_check_string).digest('hex');
+
+    return hmac === params.hash; // Сравнение вычисленного хеша с полученным
+}
+
+app.get('/telegram_auth', (req, res) => {
+    const { id, first_name, last_name, username, photo_url, auth_date, hash } = req.query;
+
+    // Здесь должна быть ваша логика проверки подлинности данных, включая проверку хеша
+    console.log("Получены данные пользователя:", req.query);
+
+    // Примерная проверка подлинности (реализуйте свою логику на основе секретного ключа)
+    if (validateHash(req.query)) {
+        // Авторизация успешна, создайте сессию пользователя
+        console.log(`Привет, ${first_name}! Вы успешно авторизованы.`);
+        res.redirect('https://btc24news.online')
+    } else {
+        // Неудачная попытка авторизации
+        res.status(401).send("Ошибка авторизации.");
+    }
+});
 
 
 // Обработка любых маршрутов
