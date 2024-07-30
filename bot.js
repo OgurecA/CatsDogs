@@ -1,24 +1,33 @@
-const { Telegraf, Markup } = require('telegraf');
+const TelegramBot = require('node-telegram-bot-api');
 
-const apiId = '25827801'; // Замените на ваш api_id
-const apiHash = '0d1a57becebd4d6bb7b3863e2090c32c'; // Замените на ваш api_hash
-const bot = new Telegraf('7491271001:AAEOiriYnXp_fFXVS_Iqvekzga6wSH0NxhU'); // Замените на токен вашего Telegram бота
+// Замените 'YOUR_TELEGRAM_BOT_TOKEN' на токен вашего бота
+const token = '7491271001:AAEOiriYnXp_fFXVS_Iqvekzga6wSH0NxhU';
+const bot = new TelegramBot(token, {polling: true});
 
-bot.start((ctx) => {
-    ctx.reply(
-        'Привет! Я ваш Telegram бот. Авторизуйтесь через Telegram для доступа к вашему профилю',
-        Markup.inlineKeyboard([
-            Markup.button.url('Авторизоваться', 'https://t.me/PumpOrDump_bot/PumpOrDump')
-        ])
-    );
+bot.on('message', (msg) => {
+  const chatId = msg.chat.id;
+  const loginUrl = 'https://btc24news.online/telegram_auth'; // URL для авторизации
+
+  const opts = {
+    reply_markup: {
+      inline_keyboard: [
+        [
+          {
+            text: 'Login',
+            login_url: {
+              url: loginUrl,
+              forward_text: 'Login (forwarded)' // Опционально: текст, который будет показан, когда ссылка будет переслана
+            }
+          },
+          {
+            text: 'Open Website',
+            url: 'https://btc24news.online'
+          }
+        ]
+      ]
+    }
+  };
+
+  bot.sendMessage(chatId, 'Go to BTC24news', opts);
 });
 
-bot.launch().then(() => {
-    console.log('Бот успешно запущен');
-}).catch(error => {
-    console.error('Ошибка запуска бота:', error);
-});
-
-// Для корректного завершения работы бота по сигналам
-process.once('SIGINT', () => bot.stop('SIGINT'));
-process.once('SIGTERM', () => bot.stop('SIGTERM'));

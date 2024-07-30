@@ -120,15 +120,21 @@ app.get('/votes', (req, res) => {
   });
 });
 
-app.get('/telegramauth', (req, res) => {
-    console.log("Попытка авторизации");
-      const userData = req.query;
-      // Здесь userData будет содержать параметры id, first_name, last_name, username, photo_url, auth_date и hash
-      // Вы можете использовать эти данные для создания сессии пользователя или для других целей
-      console.log(userData);
-      res.redirect('/'); // Перенаправление пользователя на главную страницу после авторизации
+app.get('/telegram_auth', (req, res) => {
+    const { id, first_name, last_name, username, photo_url, auth_date, hash } = req.query;
 
-  });
+    // Здесь должна быть ваша логика проверки подлинности данных, включая проверку хеша
+    console.log("Получены данные пользователя:", req.query);
+
+    // Примерная проверка подлинности (реализуйте свою логику на основе секретного ключа)
+    if (validateHash(req.query)) {
+        // Авторизация успешна, создайте сессию пользователя
+        res.send(`Привет, ${first_name}! Вы успешно авторизованы.`);
+    } else {
+        // Неудачная попытка авторизации
+        res.status(401).send("Ошибка авторизации.");
+    }
+});
 
 
 // Обработка любых маршрутов
