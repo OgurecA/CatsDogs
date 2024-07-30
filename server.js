@@ -126,8 +126,30 @@ app.get('/telegram_auth', (req, res) => {
     // Здесь должна быть ваша логика проверки подлинности данных, включая проверку хеша
     console.log("Получены данные пользователя:", req.query);
 
+    // Примерная проверка подлинности (реализуйте свою логику на основе секретного ключа)
+    if (validateHash(req.query)) {
+        // Авторизация успешна, создайте сессию пользователя
+        res.send(`Привет, ${first_name}! Вы успешно авторизованы.`);
+    } else {
+        // Неудачная попытка авторизации
+        res.status(401).send("Ошибка авторизации.");
+    }
 });
 
+function validateHash(params) {
+    const token = '7491271001:AAEOiriYnXp_fFXVS_Iqvekzga6wSH0NxhU'; // Токен вашего бота
+    const secret_key = crypto.createHash('sha256').update(token).digest();
+
+    const data_check_string = Object.keys(params)
+        .filter(key => key !== 'hash') // Исключите 'hash' из данных
+        .sort() // Сортировка ключей в алфавитном порядке
+        .map(key => `${key}=${params[key]}`) // Формирование строки в формате 'key=value'
+        .join('\n'); // Склейка через перенос строки
+
+    const hmac = crypto.createHmac('sha256', secret_key).update(data_check_string).digest('hex');
+
+    return hmac === params.hash; // Сравнение вычисленного хеша с полученным
+}
 
 // Обработка любых маршрутов
 app.get('*', (req, res) => {
