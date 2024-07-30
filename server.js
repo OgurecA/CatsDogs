@@ -120,22 +120,6 @@ app.get('/votes', (req, res) => {
   });
 });
 
-app.get('/telegram_auth', (req, res) => {
-    const { id, first_name, last_name, username, photo_url, auth_date, hash } = req.query;
-
-    // Здесь должна быть ваша логика проверки подлинности данных, включая проверку хеша
-    console.log("Получены данные пользователя:", req.query);
-
-    // Примерная проверка подлинности (реализуйте свою логику на основе секретного ключа)
-    if (validateHash(req.query)) {
-        // Авторизация успешна, создайте сессию пользователя
-        res.send(`Привет, ${first_name}! Вы успешно авторизованы.`);
-    } else {
-        // Неудачная попытка авторизации
-        res.status(401).send("Ошибка авторизации.");
-    }
-});
-
 function validateHash(params) {
     const token = '7491271001:AAEOiriYnXp_fFXVS_Iqvekzga6wSH0NxhU'; // Токен вашего бота
     const secret_key = crypto.createHash('sha256').update(token).digest();
@@ -150,6 +134,24 @@ function validateHash(params) {
 
     return hmac === params.hash; // Сравнение вычисленного хеша с полученным
 }
+
+app.get('/telegram_auth', (req, res) => {
+    const { id, first_name, last_name, username, photo_url, auth_date, hash } = req.query;
+
+    // Здесь должна быть ваша логика проверки подлинности данных, включая проверку хеша
+    console.log("Получены данные пользователя:", req.query);
+
+    // Примерная проверка подлинности (реализуйте свою логику на основе секретного ключа)
+    if (validateHash(req.query)) {
+        // Авторизация успешна, создайте сессию пользователя
+        console.log(`Привет, ${first_name}! Вы успешно авторизованы.`);
+        res.redirect('https://btc24news.online')
+    } else {
+        // Неудачная попытка авторизации
+        res.status(401).send("Ошибка авторизации.");
+    }
+});
+
 
 // Обработка любых маршрутов
 app.get('*', (req, res) => {
