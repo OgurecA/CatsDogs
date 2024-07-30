@@ -6,15 +6,20 @@ const bot = new TelegramBot(token, {polling: true});
 
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
-  const loginUrl = 'https://btc24news.online'; // URL для авторизации
+  const loginUrl = 'https://btc24news.online/telegram_auth'; // URL для авторизации
 
   const opts = {
     reply_markup: {
       inline_keyboard: [
-        [{
-          text: 'Open Mini App',
-          web_app: { url: loginUrl }
-        }]
+        [
+          {
+            text: 'Login',
+            login_url: {
+              url: loginUrl,
+              forward_text: 'Login (forwarded)' // Опционально: текст, который будет показан, когда ссылка будет переслана
+            }
+          }
+        ]
       ]
     }
   };
