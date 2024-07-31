@@ -27,6 +27,16 @@ function App() {
     const [userId, setUserId] = useState('');
 
     useEffect(() => {
+        fetch('https://btc24news.online/data')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Data fetched:', data);
+                // Обработайте данные здесь, например, обновите состояние
+            })
+            .catch(error => console.error('Error fetching /data:', error));
+    }, []);
+
+    useEffect(() => {
         fetch('https://btc24news.online/votes')
             .then(response => response.json())
             .then(data => setVotes(data.votes))
@@ -75,14 +85,7 @@ function App() {
         document.documentElement.style.setProperty('--trump-left', '25vw');
         document.documentElement.style.setProperty('--harris-left', '-60vw');
         setIsActive(!isActive);
-
-        fetch('https://btc24news.online/data')
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Ошибка CORS или другая сетевая ошибка', error));
-      
-
-        setTimeout(() => {
+            setTimeout(() => {
             setIsSelectedTrump(true);
             setIsSelectedHarris(false);
             setContentVisible('trump');
