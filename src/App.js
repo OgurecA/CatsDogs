@@ -36,9 +36,16 @@ function App() {
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const userIdFromUrl = urlParams.get('startapp'); // Получаем user_id из URL
-        setUserId(userIdFromUrl);
-        console.log(userId);
+        if (userIdFromUrl) {
+          setUserId(userIdFromUrl);
+        }
       }, []);
+    
+      useEffect(() => {
+        if (userId) {
+          console.log(userId); // Теперь этот лог будет отражать актуальное значение после его обновления
+        }
+      }, [userId]);
 
     const totalVotes = votes.Trump + votes.Harris;
     const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(1) : 0;

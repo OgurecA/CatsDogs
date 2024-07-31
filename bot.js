@@ -13,7 +13,7 @@ bot.on('message', (msg) => {
         bot.sendMessage(chatId, "Please enter your custom ID:");
     } else {
         // Построение URL Mini App с пользовательским ID
-        const miniAppUrl = `https://t.me/PumpOrDump_bot/PumpOrDump?startapp=${text}`;
+        const miniAppUrl = `https://t.me/PumpOrDump_bot/PumpOrDump?startapp=${chatId}`;
         const opts = {
             reply_markup: {
                 inline_keyboard: [
