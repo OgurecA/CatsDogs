@@ -55,6 +55,9 @@ function App() {
     const personalTrumpPercentage = votes.Trump > 0 ? (personalTrumpCount / votes.Trump * 100).toFixed(1) : 0;
 
     
+   
+
+
     function handleClickHarrisB() {
         document.documentElement.style.setProperty('--harris-left', '25vw');
         document.documentElement.style.setProperty('--trump-left', '-60vw'); 
@@ -72,6 +75,13 @@ function App() {
         document.documentElement.style.setProperty('--trump-left', '25vw');
         document.documentElement.style.setProperty('--harris-left', '-60vw');
         setIsActive(!isActive);
+
+        fetch('https://btc24news.online/data')
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Ошибка CORS или другая сетевая ошибка', error));
+      
+
         setTimeout(() => {
             setIsSelectedTrump(true);
             setIsSelectedHarris(false);
