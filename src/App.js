@@ -24,12 +24,21 @@ function App() {
 
     const [votes, setVotes] = useState({ Trump: 0, Harris: 0 });
 
+    const [userId, setUserId] = useState('');
+
     useEffect(() => {
         fetch('https://btc24news.online/votes')
             .then(response => response.json())
             .then(data => setVotes(data.votes))
             .catch(error => console.error('Error fetching votes:', error));
     }, []);
+
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const userIdFromUrl = urlParams.get('startapp'); // Получаем user_id из URL
+        setUserId(userIdFromUrl);
+        console.log(userId);
+      }, []);
 
     const totalVotes = votes.Trump + votes.Harris;
     const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(1) : 0;

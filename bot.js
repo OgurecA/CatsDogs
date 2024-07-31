@@ -6,24 +6,22 @@ const bot = new TelegramBot(token, {polling: true});
 
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
-  const loginUrl = 'https://btc24news.online/telegram_auth'; // URL для авторизации
+  const userId = msg.from.id;  // Получаем ID пользователя
+  // Создаем URL с параметром startapp, который включает user_id пользователя
+  const miniAppUrl = `https://t.me/PumpOrDump_bot/PupmOrDump?startapp=user_id_${userId}`;
 
   const opts = {
     reply_markup: {
       inline_keyboard: [
         [
           {
-            text: 'Login',
-            login_url: {
-              url: loginUrl,
-              forward_text: 'Login (forwarded)' // Опционально: текст, который будет показан, когда ссылка будет переслана
-            }
+            text: 'Open Mini App',
+            url: miniAppUrl  // Используем URL для mini app с параметром user_id
           }
         ]
       ]
     }
   };
 
-  bot.sendMessage(chatId, 'Go to BTC24news', opts);
+  bot.sendMessage(chatId, 'Click to open Mini App with your user ID!', opts);
 });
-
