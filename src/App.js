@@ -6,7 +6,6 @@ import ImageContainer from './Components/ImageContainer/ImageContainer';
 import BGcontainer from './Components/BGcontainer/BGcontainer';
 import Stats from './Components/Stats/Stats';
 import AddContainer from './Components/AddContainer/AddContainer';
-import TelegramLogin from './Components/TelegramLogin/TelegramLogin';
 
 import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit } from './Components/Pictures/Pictures';
 
