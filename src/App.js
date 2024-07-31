@@ -36,27 +36,7 @@ function App() {
             .catch(error => console.error('Error fetching /data:', error));
     }, []);
 
-    useEffect(() => {
-        fetch('https://btc24news.online/votes')
-            .then(response => response.json())
-            .then(data => setVotes(data.votes))
-            .catch(error => console.error('Error fetching votes:', error));
-    }, []);
-
-    useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const userIdFromUrl = urlParams.get('startapp'); // Получаем user_id из URL
-        if (userIdFromUrl) {
-          setUserId(userIdFromUrl);
-        }
-      }, []);
     
-      useEffect(() => {
-        if (userId) {
-          console.log(userId); // Теперь этот лог будет отражать актуальное значение после его обновления
-        }
-      }, [userId]);
-
     const totalVotes = votes.Trump + votes.Harris;
     const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(1) : 0;
     const trumpPercentage = totalVotes > 0 ? (votes.Trump / totalVotes * 100).toFixed(1) : 0;
