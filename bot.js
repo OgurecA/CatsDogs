@@ -4,9 +4,11 @@ const TelegramBot = require('node-telegram-bot-api');
 const token = '7491271001:AAEOiriYnXp_fFXVS_Iqvekzga6wSH0NxhU';
 const bot = new TelegramBot(token, {polling: true});
 
-bot.on('message', (msg) => {// Получаем ID пользователя
+bot.on('message', (msg) => {
+  const chatId = msg.chat.id;
+  const userId = msg.from.id;  // Получаем ID пользователя
   // Создаем URL с параметром startapp, который включает user_id пользователя
-  const miniAppUrl = `https://t.me/PumpOrDump_bot/PupmOrDump`;
+  const miniAppUrl = `https://t.me/PumpOrDump_bot/PupmOrDump?startapp=user_id_${userId}`;
 
   const opts = {
     reply_markup: {
