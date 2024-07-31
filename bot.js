@@ -8,7 +8,7 @@ bot.on('message', (msg) => {
   const chatId = msg.chat.id;
   const userId = msg.from.id;  // Получаем ID пользователя
   // Создаем URL с параметром startapp, который включает user_id пользователя
-  const miniAppUrl = `https://t.me/PumpOrDump_bot/PupmOrDump?startapp=user_id_1234`;
+  const miniAppUrl = `https://t.me/PumpOrDump_bot/PupmOrDump`;
 
   const opts = {
     reply_markup: {
