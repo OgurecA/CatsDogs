@@ -15,28 +15,7 @@
     <title>Fair Election</title>
   </head>
   <body>
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        if (Telegram.WebApp) {
-        Telegram.WebApp.ready();
-        expandApp();
-
-        const userData = Telegram.WebApp.initDataUnsafe.user;
-        console.log("User data received:", userData);
-
-        // Пример отображения данных пользователя
-        document.getElementById('username').textContent = userData.username;
-        document.getElementById('first_name').textContent = userData.first_name;
-        document.getElementById('user_id').textContent = userData.id;
-
-        // Ваш код для дополнительной обработки данных пользователя
-  }
-  function expandApp() {
-    Telegram.WebApp.expand();
-  }
-});
-
-    </script>
+    <script></script>
       <div id="root"></div>
 
   </body>
