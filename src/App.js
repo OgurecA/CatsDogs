@@ -113,7 +113,11 @@ function App() {
             const rect = e.target.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            setClicks([...clicks, { id: Date.now(), x, y }]);
+            const imgRect = e.target.getBoundingClientRect(); // Координаты изображения на экране
+            const imgX = imgRect.left;
+            const imgY = imgRect.top;
+
+            setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
 
             setPersonalTrumpCount(personalTrumpCount + 1);
             console.log(personalTrumpPercentage);
@@ -125,7 +129,11 @@ function App() {
             const rect = e.target.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            setClicks([...clicks, { id: Date.now(), x, y }]);
+            const imgRect = e.target.getBoundingClientRect(); // Координаты изображения на экране
+            const imgX = imgRect.left;
+            const imgY = imgRect.top;
+
+            setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
             
             setPersonalHarrisCount(personalHarrisCount + 1);
             console.log(personalHarrisPercentage);
@@ -228,13 +236,13 @@ function App() {
                     key={click.id}
                     className="absolute"
                     style={{
-                        top: `${click.y - 25}px`,
-                        left: `${click.x - 25}px`,
+                        top: `${click.y - 25}px`, // Adjusting to center the small image
+                        left: `${click.x - 25}px`, // Adjusting to center the small image
                         animation: 'float 1s ease-out'
                     }}
                     onAnimationEnd={() => handleAnimationEnd(click.id)}
                 >
-                    <img src={HarrisImg} alt="Small Harris" style={{ width: '80px', height: '50px' }} />
+                    <img src={isSelectedHarris ? HarrisImg : TrumpImg} alt="Small Image" style={{ width: '50px', height: '50px' }} />
                 </div>
             ))}
         </>
