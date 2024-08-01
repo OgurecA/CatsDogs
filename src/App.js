@@ -142,7 +142,7 @@ function App() {
     }
 
     function handleAnimationEnd(id) {
-        setClicks(clicks.filter(click => click.id !== id));
+        setClicks((prevClicks) => prevClicks.filter(click => click.id !== id));
     }
 
     function handleVote(candidate) {
@@ -234,15 +234,15 @@ function App() {
             {clicks.map((click) => (
                 <div
                     key={click.id}
-                    className="absolute"
+                    className="float"
                     style={{
-                        top: `${click.y - 25}px`, // Adjusting to center the small image
-                        left: `${click.x - 25}px`, // Adjusting to center the small image
+                        top: `${click.y}px`, // Adjusting to center the small image
+                        left: `${click.x}px`, // Adjusting to center the small image
                         animation: 'float 1s ease-out'
                     }}
                     onAnimationEnd={() => handleAnimationEnd(click.id)}
                 >
-                    <img src={isSelectedHarris ? HarrisImg : TrumpImg} alt="Small Image" style={{ width: '50px', height: '50px' }} />
+                    <img src={isSelectedHarris ? HarrisImg : TrumpImg} alt="Small Image" style={{ width: '80px', height: '50px' }} />
                 </div>
             ))}
         </>

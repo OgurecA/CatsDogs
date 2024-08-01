@@ -74,11 +74,8 @@ button {
   }
 }
 
-.absolute {
-  position: absolute;
-  pointer-events: none; /* Чтобы маленькие картинки не блокировали клики */
-}
-
 .float {
   animation: float 1s ease-out;
+  position: absolute;
+  pointer-events: none;
 }
