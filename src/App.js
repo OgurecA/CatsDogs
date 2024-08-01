@@ -27,14 +27,17 @@ function App() {
 
     const [userData, setUserData] = useState(null);
 
+
+    if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
+        setUserData(WebApp.initDataUnsafe.user);
+
     useEffect(() => {
         fetch('https://btc24news.online/votes')
             .then(response => response.json())
             .then(data => setVotes(data.votes))
             .catch(error => console.error('Error fetching votes:', error));
-            if (window.WebApp?.initDataUnsafe && window.WebApp.initDataUnsafe.user) {
-                const user = window.WebApp.initDataUnsafe.user;
-                setUserData(user);
+            if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
+                setUserData(WebApp.initDataUnsafe.user);
     
                 const data = {
                     id: user.id,
