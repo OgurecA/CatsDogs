@@ -6,6 +6,7 @@ import ImageContainer from './Components/ImageContainer/ImageContainer';
 import BGcontainer from './Components/BGcontainer/BGcontainer';
 import Stats from './Components/Stats/Stats';
 import AddContainer from './Components/AddContainer/AddContainer';
+import WebApp from "@twa-dev/sdk";
 
 import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit } from './Components/Pictures/Pictures';
 
@@ -24,11 +25,18 @@ function App() {
 
     const [votes, setVotes] = useState({ Trump: 0, Harris: 0 });
 
+    const [userData, setUserData] = useState(null);
+
     useEffect(() => {
         fetch('https://btc24news.online/votes')
             .then(response => response.json())
             .then(data => setVotes(data.votes))
             .catch(error => console.error('Error fetching votes:', error));
+
+        if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
+                setUserData(WebApp.initDataUnsafe.user);
+                console.log("Data received from Telegram:", WebApp.initDataUnsafe);
+        }
     }, []);
 
     const totalVotes = votes.Trump + votes.Harris;
@@ -99,6 +107,30 @@ function App() {
   return (
     <>
             <BGcontainer src={backgroundImage} />
+
+            <main className="p-4">
+        {
+          userData ?
+          (
+            <>
+              <h1 className="text-2xl font-bold mb-4">User Data</h1>
+              <ul>
+                <li>ID: {userData.id}</li>
+                <li>First Name: {userData.first_name}</li>
+                <li>Last Name: {userData.last_name}</li>
+                <li>Username: {userData.username}</li>
+                <li>Language Code: {userData.language_code}</li>
+                <li>Is Premium: {userData.is_premium ? 'Yes' : 'No'}</li>
+              </ul>
+            </>
+          ) :
+          (
+            <>
+              <div>Loading...</div>
+            </>
+          )
+        }
+      </main>
 
             <AddContainer
                 ads={[

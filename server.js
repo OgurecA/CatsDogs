@@ -152,12 +152,9 @@ app.get('/telegram_auth', (req, res) => {
     }
 });
 
-app.get('/data', (req, res) => {
-    res.json({ message: 'Это ответ API' });
-  });
 
 // Обработка любых маршрутов
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
