@@ -93,6 +93,13 @@ function incrementHarrisTotalVotes() {
   });
 }
 
+
+app.post('/submit', (req, res) => {
+    const { id, first_name, last_name, username, language_code, is_premium } = req.body;
+    console.log({data: req.body});
+});
+
+
 // Эндпоинт для увеличения голосов за Трампа
 app.post('/vote/trump', (req, res) => {
   incrementTrumpTotalVotes();
