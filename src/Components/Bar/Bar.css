@@ -9,6 +9,7 @@
     border: 1px solid #606060; /* Серая рамка */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     top: 0%;
+    overflow: hidden;
   }
   
   .progress-bar {
