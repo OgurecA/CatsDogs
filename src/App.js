@@ -32,7 +32,7 @@ function App() {
             .then(response => response.json())
             .then(data => setVotes(data.votes))
             .catch(error => console.error('Error fetching votes:', error));
-
+        console.log("Data received from Telegram:", WebApp.initDataUnsafe);
         if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
                 setUserData(WebApp.initDataUnsafe.user);
                 console.log("Data received from Telegram:", WebApp.initDataUnsafe);
