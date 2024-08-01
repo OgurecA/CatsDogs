@@ -238,7 +238,7 @@ function App() {
                     style={{
                         top: `${click.y}px`, // Adjusting to center the small image
                         left: `${click.x}px`, // Adjusting to center the small image
-                        animation: 'float 1s ease-out'
+                        opacity: 1,
                     }}
                     onAnimationEnd={() => handleAnimationEnd(click.id)}
                 >
