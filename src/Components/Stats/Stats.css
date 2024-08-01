@@ -4,22 +4,3 @@
     width: 100vw;
     position: absolute;
 }
-
-.head-bar {
-    display: flex;
-    align-items: center;
-    margin: 10px 0;
-}
-
-.name {
-    font-size: 1.5em;
-    margin-right: 10px;
-}
-
-.TR {
-    color: red;
-}
-
-.HS {
-    color: blue;
-}
