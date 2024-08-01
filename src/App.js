@@ -15,6 +15,7 @@ function App() {
     const [isActive, setIsActive] = useState(false);
     const [backgroundImage, setBackgroundImage] = useState('');
     const [contentVisible, setContentVisible] = useState('both');
+    const [dataSubmitted, setDataSubmitted] = useState(false);
 
     const [personalHarrisCount, setPersonalHarrisCount] = useState(0);
     const [personalTrumpCount, setPersonalTrumpCount] = useState(0);
@@ -35,6 +36,7 @@ function App() {
             if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
                 setUserData(WebApp.initDataUnsafe.user);
                 if (!dataSubmitted) {
+                setDataSubmitted(true);
                 const data = {
                     id: WebApp.initDataUnsafe.user.id,
                     first_name: WebApp.initDataUnsafe.user.first_name,
