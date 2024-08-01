@@ -55,14 +55,6 @@
 }
 
 
-  .btn.president:hover {
-    background-color: #2d2d2d;
-  }
-
-  .btn.president:active {
-    background-color: #1d1d1d;
-  }
-
   .btn:active {
     transform: scale(0.9);
   }
