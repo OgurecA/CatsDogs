@@ -15,7 +15,6 @@ function App() {
     const [isActive, setIsActive] = useState(false);
     const [backgroundImage, setBackgroundImage] = useState('');
     const [contentVisible, setContentVisible] = useState('both');
-    const [dataSubmitted, setDataSubmitted] = useState(false);
 
     const [personalHarrisCount, setPersonalHarrisCount] = useState(0);
     const [personalTrumpCount, setPersonalTrumpCount] = useState(0);
@@ -29,14 +28,11 @@ function App() {
     const [userData, setUserData] = useState(null);
 
     useEffect(() => {
-        fetch('https://btc24news.online/votes')
-            .then(response => response.json())
-            .then(data => setVotes(data.votes))
-            .catch(error => console.error('Error fetching votes:', error));
+        updateBar();
+        const intervalId = setInterval(updateBar, 10000);
             if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
                 setUserData(WebApp.initDataUnsafe.user);
-                if (!dataSubmitted) {
-                setDataSubmitted(true);
+    
                 const data = {
                     id: WebApp.initDataUnsafe.user.id,
                     first_name: WebApp.initDataUnsafe.user.first_name,
@@ -56,19 +52,14 @@ function App() {
                 })
                 .then(response => response.json())
                 .then(data => {
-                    console.log('Success');
+                    console.log('Success:', data);
                 })
                 .catch((error) => {
                     console.error('Error:', error);
                 });
             }
-        }
-    }, [dataSubmitted]);
-
-        fetch('https://btc24news.online/votes')
-            .then(response => response.json())
-            .then(data => setVotes(data.votes))
-            .catch(error => console.error('Error fetching votes:', error));
+            return () => clearInterval(intervalId);
+        }, []);
 
     const totalVotes = votes.Trump + votes.Harris;
     const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(1) : 0;
@@ -76,10 +67,12 @@ function App() {
 
     const personalHarrisPercentage = votes.Harris > 0 ? (personalHarrisCount / votes.Harris * 100).toFixed(1) : 0;
     const personalTrumpPercentage = votes.Trump > 0 ? (personalTrumpCount / votes.Trump * 100).toFixed(1) : 0;
-
-    
    
-
+    function updateBar() {
+        fetch('https://btc24news.online/votes')
+            .then(response => response.json())
+            .then(data => setVotes(data.votes))
+    }
 
     function handleClickHarrisB() {
         document.documentElement.style.setProperty('--harris-left', '25vw');
