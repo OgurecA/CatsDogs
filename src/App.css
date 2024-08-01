@@ -59,3 +59,26 @@ body {
 button {
   overflow: hidden;
 }
+
+
+
+
+@keyframes float {
+  0% {
+      transform: translateY(0);
+      opacity: 1;
+  }
+  100% {
+      transform: translateY(-50px);
+      opacity: 0;
+  }
+}
+
+.absolute {
+  position: absolute;
+  pointer-events: none; /* Чтобы маленькие картинки не блокировали клики */
+}
+
+.float {
+  animation: float 1s ease-out;
+}

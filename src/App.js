@@ -110,9 +110,9 @@ function App() {
 
     function incrementTrumpCount() {
         if (isSelectedTrump) {
-            const rect = event.target.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
+            const rect = e.target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
             setClicks([...clicks, { id: Date.now(), x, y }]);
 
             setPersonalTrumpCount(personalTrumpCount + 1);
@@ -122,9 +122,9 @@ function App() {
     }
     function incrementHarrisCount() {
         if (isSelectedHarris) {
-            const rect = event.target.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
+            const rect = e.target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
             setClicks([...clicks, { id: Date.now(), x, y }]);
             
             setPersonalHarrisCount(personalHarrisCount + 1);
