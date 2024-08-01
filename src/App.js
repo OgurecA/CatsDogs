@@ -27,10 +27,6 @@ function App() {
 
     const [userData, setUserData] = useState(null);
 
-
-    if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
-        setUserData(WebApp.initDataUnsafe.user);
-
     useEffect(() => {
         fetch('https://btc24news.online/votes')
             .then(response => response.json())
