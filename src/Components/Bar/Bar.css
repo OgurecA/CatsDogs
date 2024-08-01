@@ -5,8 +5,8 @@
     background-color: transparent;
     border-color: rgb(124, 124, 124);
     height: 5px;
-    border-radius: 0.5%;
-    border: 1px solid #606060; /* Серая рамка */
+    border-radius: 3px;
+    border: 0.5% solid #606060; /* Серая рамка */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     top: 0%;
     overflow: hidden;
