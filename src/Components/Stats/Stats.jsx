@@ -2,9 +2,6 @@ import React from 'react'
 import './Stats.css';
 import Count from '../Count/Count';
 import ProgressBar from '../Bar/Bar';
-import Head from '../Head/Head';
-
-import { HarrisH, TrumpH } from '../Pictures/Pictures';
 
 function Stats({ harrisPercentage, trumpPercentage }) {
     return (

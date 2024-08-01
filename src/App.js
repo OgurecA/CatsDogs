@@ -31,7 +31,7 @@ function App() {
 
 
     useEffect(() => {
-        WebApp.setHeaderColor('#282c34');
+        WebApp.setHeaderColor('#ff9100');
         updateBar();
         const intervalId = setInterval(updateBar, 10000);
             if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
