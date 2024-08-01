@@ -228,13 +228,13 @@ function App() {
                     key={click.id}
                     className="absolute"
                     style={{
-                        top: `${click.y}px`,
-                        left: `${click.x}px`,
+                        top: `${click.y - 25}px`,
+                        left: `${click.x - 25}px`,
                         animation: 'float 1s ease-out'
                     }}
                     onAnimationEnd={() => handleAnimationEnd(click.id)}
                 >
-                    <img src={HarrisImg} alt="Small Harris" style={{ width: '50px', height: '50px' }} />
+                    <img src={HarrisImg} alt="Small Harris" style={{ width: '80px', height: '50px' }} />
                 </div>
             ))}
         </>
