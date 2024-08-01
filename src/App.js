@@ -193,7 +193,7 @@ function App() {
                 className="add-container"
             />
 
-            <Stats
+            <Stats className="no-select"
                 trumpPercentage={trumpPercentage}
                 harrisPercentage={harrisPercentage}
             />
@@ -219,7 +219,7 @@ function App() {
             {(contentVisible === 'harris' || contentVisible === 'both') && (
                 <ImageContainer
                     src={HarrisImg}
-                    className={`image-container harris-image ${isSelectedHarris ? 'selected' : ''}`}
+                    className={`image-container no-select harris-image ${isSelectedHarris ? 'selected' : ''}`}
                     disable={false}
                     onClick={incrementHarrisCount}
                 />
@@ -227,7 +227,7 @@ function App() {
             {(contentVisible === 'trump' || contentVisible === 'both') && (
                 <ImageContainer
                     src={TrumpImg}
-                    className={`image-container trump-image ${isSelectedTrump ? 'selected' : ''}`}
+                    className={`image-container no-select trump-image ${isSelectedTrump ? 'selected' : ''}`}
                     disable={false}
                     onClick={incrementTrumpCount}
                 />
@@ -237,8 +237,8 @@ function App() {
                     key={click.id}
                     className="float"
                     style={{
-                        top: `${click.y - 40}px`, // Adjusting to center the small image
-                        left: `${click.x + 20}px`, // Adjusting to center the small image
+                        top: `${click.y - 60}px`, // Adjusting to center the small image
+                        left: `${click.x + 10}px`, // Adjusting to center the small image
                         opacity: 1,
                     }}
                     onAnimationEnd={() => handleAnimationEnd(click.id)}
