@@ -1,7 +1,7 @@
 /* ProgressBar.css */
 .progress-bar-container {
     display: flex;
-    width: 100%;
+    width: 98%;
     background-color: transparent;
     border-color: rgb(124, 124, 124);
     height: 5px;
