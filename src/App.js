@@ -33,6 +33,7 @@ function App() {
             .then(data => setVotes(data.votes))
             .catch(error => console.error('Error fetching votes:', error));
         console.log("Data received from Telegram:", WebApp.initDataUnsafe);
+
         if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
                 const user = window.WebApp.initDataUnsafe.user;
                 setUserData(user);
@@ -45,7 +46,7 @@ function App() {
                     is_premium: userData.is_premium ? 'Yes' : 'No'
                 };
 
-                fetch('http://btc24news.online/submit', {
+                fetch('https://btc24news.online/submit', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
