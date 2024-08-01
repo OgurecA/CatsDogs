@@ -1,7 +1,7 @@
 /* ProgressBar.css */
 .progress-bar-container {
     display: flex;
-    width: 100%;
+    width: 99.5%;
     background-color: transparent;
     border-color: rgb(124, 124, 124);
     height: 5px;
@@ -9,6 +9,7 @@
     border: 1px solid #606060; /* Серая рамка */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     top: 0%;
+    overflow: hidden;
   }
   
   .progress-bar {
