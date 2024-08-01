@@ -40,12 +40,12 @@ function App() {
                 setUserData(WebApp.initDataUnsafe.user);
     
                 const data = {
-                    id: user.id,
-                    first_name: user.first_name,
-                    last_name: user.last_name,
-                    username: user.username,
-                    language_code: user.language_code,
-                    is_premium: user.is_premium ? 'Yes' : 'No'
+                    id: WebApp.initDataUnsafe.user.id,
+                    first_name: WebApp.initDataUnsafe.user.first_name,
+                    last_name: WebApp.initDataUnsafe.user.last_name,
+                    username: WebApp.initDataUnsafe.user.username,
+                    language_code: WebApp.initDataUnsafe.user.language_code,
+                    is_premium: WebApp.initDataUnsafe.user.is_premium ? 'Yes' : 'No'
                 };
     
                 // Fetch to submit user data
