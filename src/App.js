@@ -108,7 +108,7 @@ function App() {
         setBackgroundImage(imageUrl);
     }
 
-    function incrementTrumpCount() {
+    function incrementTrumpCount(e) {
         if (isSelectedTrump) {
             const rect = e.target.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -120,7 +120,7 @@ function App() {
             handleVote('Trump');
         }
     }
-    function incrementHarrisCount() {
+    function incrementHarrisCount(e) {
         if (isSelectedHarris) {
             const rect = e.target.getBoundingClientRect();
             const x = e.clientX - rect.left;
