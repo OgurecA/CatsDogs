@@ -34,7 +34,7 @@ function App() {
             .catch(error => console.error('Error fetching votes:', error));
             if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
                 setUserData(WebApp.initDataUnsafe.user);
-    
+                if (!dataSubmitted) {
                 const data = {
                     id: WebApp.initDataUnsafe.user.id,
                     first_name: WebApp.initDataUnsafe.user.first_name,
@@ -60,7 +60,13 @@ function App() {
                     console.error('Error:', error);
                 });
             }
-        }, []);
+        }
+    }, [dataSubmitted]);
+
+        fetch('https://btc24news.online/votes')
+            .then(response => response.json())
+            .then(data => setVotes(data.votes))
+            .catch(error => console.error('Error fetching votes:', error));
 
     const totalVotes = votes.Trump + votes.Harris;
     const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(1) : 0;
