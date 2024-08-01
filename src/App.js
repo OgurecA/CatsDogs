@@ -19,13 +19,16 @@ function App() {
     const [personalHarrisCount, setPersonalHarrisCount] = useState(0);
     const [personalTrumpCount, setPersonalTrumpCount] = useState(0);
 
-
     const [isSelectedHarris, setIsSelectedHarris] = useState(false);
     const [isSelectedTrump, setIsSelectedTrump] = useState(false);
 
     const [votes, setVotes] = useState({ Trump: 0, Harris: 0 });
 
     const [userData, setUserData] = useState(null);
+
+
+    const [clicks, setClicks] = useState([]);
+
 
     useEffect(() => {
         updateBar();
@@ -107,6 +110,11 @@ function App() {
 
     function incrementTrumpCount() {
         if (isSelectedTrump) {
+            const rect = event.target.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            setClicks([...clicks, { id: Date.now(), x, y }]);
+
             setPersonalTrumpCount(personalTrumpCount + 1);
             console.log(personalTrumpPercentage);
             handleVote('Trump');
@@ -114,11 +122,21 @@ function App() {
     }
     function incrementHarrisCount() {
         if (isSelectedHarris) {
+            const rect = event.target.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            setClicks([...clicks, { id: Date.now(), x, y }]);
+            
             setPersonalHarrisCount(personalHarrisCount + 1);
             console.log(personalHarrisPercentage);
             handleVote('Harris');
         }
     }
+
+    function handleAnimationEnd(id) {
+        setClicks(clicks.filter(click => click.id !== id));
+    }
+
     function handleVote(candidate) {
         fetch(`https://btc24news.online/vote/${candidate}`, {
           method: 'POST'
@@ -205,6 +223,20 @@ function App() {
                     onClick={incrementTrumpCount}
                 />
             )}
+            {clicks.map((click) => (
+                <div
+                    key={click.id}
+                    className="absolute"
+                    style={{
+                        top: `${click.y}px`,
+                        left: `${click.x}px`,
+                        animation: 'float 1s ease-out'
+                    }}
+                    onAnimationEnd={() => handleAnimationEnd(click.id)}
+                >
+                    <img src={HarrisImg} alt="Small Harris" style={{ width: '50px', height: '50px' }} />
+                </div>
+            ))}
         </>
 
   );
