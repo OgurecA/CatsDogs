@@ -96,7 +96,9 @@ function incrementHarrisTotalVotes() {
 
 app.post('/submit', (req, res) => {
     const { id, first_name, last_name, username, language_code, is_premium } = req.body;
-    console.log({data: req.body});
+    console.log(id, first_name, last_name, username, language_code, is_premium);
+    // Здесь можно добавить логику для обработки данных
+    res.json({ message: 'Данные успешно получены', data: req.body });
 });
 
 
