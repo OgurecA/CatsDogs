@@ -124,14 +124,14 @@ app.post('/submit', async (req, res) => {
     const processedLastName = last_name || '';
     const processedUsername = username || '';
 
-    usersdb.get(`SELECT * FROM try1 WHERE telegram_id = ?`, [id], (err, row) => {
+    db.get(`SELECT * FROM try1 WHERE telegram_id = ?`, [id], (err, row) => {
         if (err) {
             return console.error('Error fetching data', err.message);
         }
 
         if (row) {
             // Если пользователь существует, обновляем его данные
-            usersdb.run(`UPDATE try1 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ?, city = ?, country = ?, ip = ? WHERE telegram_id = ?`, 
+            db.run(`UPDATE try1 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ?, city = ?, country = ?, ip = ? WHERE telegram_id = ?`, 
                         [first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip, id], 
                         function(err) {
                 if (err) {
@@ -141,7 +141,7 @@ app.post('/submit', async (req, res) => {
             });
         } else {
             // Если пользователь не существует, вставляем новую запись
-            usersdb.run(`INSERT INTO try1 (telegram_id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count)
+            db.run(`INSERT INTO try1 (telegram_id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count)
                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0)`, 
                          [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
                          function(err) {
