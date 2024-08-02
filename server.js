@@ -104,6 +104,9 @@ app.post('/submit', (req, res) => {
         language_code,
         is_premium
     });
+    const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
+    console.log('IP Address:', ipAddress);
     // Здесь можно добавить логику для обработки данных
     res.status(200).json({ message: 'Данные успешно получены' });
 });
