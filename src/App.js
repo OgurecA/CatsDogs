@@ -211,8 +211,8 @@ function App() {
                     key={click.id}
                     className="float"
                     style={{
-                        top: `${click.y - 60}px`, // Adjusting to center the small image
-                        left: `${click.x + 10}px`, // Adjusting to center the small image
+                        top: `${click.y - 80}px`, // Adjusting to center the small image
+                        left: `${click.x - 20}px`, // Adjusting to center the small image
                         opacity: 1,
                     }}
                     onAnimationEnd={() => handleAnimationEnd(click.id)}
