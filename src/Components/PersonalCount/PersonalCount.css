@@ -6,7 +6,7 @@
 }
 
 .personal-count {
-    text-align: center;
+    text-align: left;
     position: absolute;
     bottom: 0%;
     left: 0%;
@@ -17,3 +17,8 @@
     font-size: 1.4em;
 }
 
+.personal-count p {
+    margin: 0; /* Убираем внешний отступ */
+    padding: 0; /* Убираем внутренний отступ */
+    line-height: 1.2; /* Устанавливаем меньший интервал между строками */
+}
