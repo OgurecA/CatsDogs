@@ -1,11 +1,19 @@
 /* Count.css */
+@font-face {
+    font-family: 'GTA';
+    src: url('../Fonts/GTA.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .count-container {
     position: absolute;
-    color: #22ff00;
+    color: #ffffff;
     height: 10%;
     width: 50%;
-    font-size: 20px;
+    font-size: 16px;
     top: 8%;
+    font-family: 'GTA', sans-serif;
 }
 .count-container.TR {
     right: 4%;
