@@ -30,6 +30,7 @@ function App() {
 
     const [clicks, setClicks] = useState([]);
 
+    const [checkData, setCheckData] = useState(false)
 
     useEffect(() => {
         WebApp.setHeaderColor('#282c34');
@@ -48,20 +49,23 @@ function App() {
                 };
     
                 // Fetch to submit user data
-                fetch('https://btc24news.online/submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Success:', data);
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
+                if (!checkData) {
+                    setCheckData(true);
+                    fetch('https://btc24news.online/submit', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+                }
             }
             return () => clearInterval(intervalId);
         }, []);
