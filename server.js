@@ -5,6 +5,9 @@ const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 const crypto = require('crypto');
 const bodyParser = require('body-parser');
+const fetch = require('node-fetch');
+
+const IPINFO_API_TOKEN = '08cf3071fa85c1';
 
 const botToken = '7491271001:AAEOiriYnXp_fFXVS_Iqvekzga6wSH0NxhU';
 
@@ -94,7 +97,7 @@ function incrementHarrisTotalVotes() {
 }
 
 
-app.post('/submit', (req, res) => {
+app.post('/submit', async (req, res) => {
     const { id, first_name, last_name, username, language_code, is_premium } = req.body;
     console.log('Получены данные:', {
         id,
@@ -105,6 +108,11 @@ app.post('/submit', (req, res) => {
         is_premium
     });
     const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
+    const geoResponse = await fetch(`https://ipinfo.io/${ipAddress}?token=${IPINFO_API_TOKEN}`);
+    const geoData = await geoResponse.json();
+
+    console.log('Geo Data:', geoData);
 
     console.log('IP Address:', ipAddress);
     // Здесь можно добавить логику для обработки данных
