@@ -159,6 +159,9 @@ function App() {
         incrementTrumpCount(e);
     }
 
+    const personalCount = personalHarrisCount - personalTrumpCount;
+    const favorite = personalHarrisCount > personalTrumpCount ? 'Harris' : (personalTrumpCount > personalHarrisCount ? 'Trump' : 'None');
+
     function handleAnimationEnd(id) {
         setClicks((prevClicks) => prevClicks.filter(click => click.id !== id));
     }
@@ -176,8 +179,8 @@ function App() {
     <>
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
-                        personalTrumpCount={personalTrumpCount} 
-                        personalHarrisCount={personalHarrisCount} 
+                        personalCount={personalCount} 
+                        favorite={favorite} 
                     />
             <AddContainer
                 ads={[
