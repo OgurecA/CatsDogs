@@ -5,13 +5,13 @@
     height: 10%;
     width: 50%;
     font-size: 20px;
-    top: 0%;
+    top: 5%;
 }
 .count-container.TR {
-    right: 2%;
+    right: 5%;
     text-align: right;
 }
 .count-container.HS {
-    left: 2%;
+    left: 5%;
     text-align: left;
 }
