@@ -30,7 +30,7 @@ function App() {
 
     const [clicks, setClicks] = useState([]);
 
-    const [checkData, setCheckData] = useState(false)
+    const dataSent = useRef(false);
 
     useEffect(() => {
         WebApp.setHeaderColor('#282c34');
@@ -49,12 +49,13 @@ function App() {
                 };
     
                 // Fetch to submit user data
-                if (!checkData) {
-                    setCheckData(true);
+                if (!dataSent.current) {
+                    dataSent.current = true;
                     fetch('https://btc24news.online/login', {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
+                            'Cache-Control': 'no-cache'
                         },
                         body: JSON.stringify(data)
                     })
