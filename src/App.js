@@ -6,7 +6,6 @@ import BGcontainer from './Components/BGcontainer/BGcontainer';
 import Stats from './Components/Stats/Stats';
 import AddContainer from './Components/AddContainer/AddContainer';
 import WebApp from "@twa-dev/sdk";
-import FingerprintJS from '@fingerprintjs/fingerprintjs';
 
 import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit } from './Components/Pictures/Pictures';
 
