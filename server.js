@@ -41,8 +41,8 @@ db.serialize(() => {
     // Добавление начальных данных
     db.run(`INSERT OR IGNORE INTO total_votes (candidate, votes) VALUES ('Trump', 0), ('Harris', 0)`);
   
-    db.run(`CREATE TABLE IF NOT EXISTS users (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
+    db.run(`CREATE TABLE IF NOT EXISTS try1 (
+          id INTEGER,
           first_name TEXT,
           last_name TEXT,
           username TEXT,
@@ -124,14 +124,13 @@ app.post('/submit', async (req, res) => {
     const processedLastName = last_name || '';
     const processedUsername = username || '';
 
-    db.run(`INSERT INTO users (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count)
+    db.run(`INSERT INTO try1 (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count)
                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0)`, 
                  [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
                  function(err) {
         if (err) {
             return console.error('Error inserting data', err.message);
         }
-        console.log(`A row has been inserted with rowid ${this.lastID}`);
     });
     
     res.status(200).json({ message: 'Данные успешно получены' });
