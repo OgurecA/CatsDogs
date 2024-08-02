@@ -18,3 +18,7 @@
 .count-container.HS {
     left: 7%;
 }
+.count-container .label {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
