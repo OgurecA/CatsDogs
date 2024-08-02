@@ -4,14 +4,10 @@
     width: 100vw;
     position: absolute;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .head-bar {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
     padding: 0 20px;
 }
