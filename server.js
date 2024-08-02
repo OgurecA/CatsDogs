@@ -50,7 +50,10 @@ db.serialize(() => {
           is_premium TEXT,
           city TEXT,
           country TEXT,
-          ip TEXT
+          ip TEXT,
+          personal_count INTEGER DEFAULT 0,
+          personal_harris_count INTEGER DEFAULT 0,
+          personal_trump_count INTEGER DEFAULT 0
     )`);
   });
 
@@ -121,8 +124,8 @@ app.post('/submit', async (req, res) => {
     const processedLastName = last_name || '';
     const processedUsername = username || '';
 
-    db.run(`INSERT INTO try (id, first_name, last_name, username, language_code, is_premium, city, country, ip)
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, 
+    db.run(`INSERT INTO try (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count)
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0)`, 
                  [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
                  function(err) {
         if (err) {
