@@ -11,11 +11,11 @@
 }
 .count-container.TR {
     right: 1%;
-    align-items: right;
+    text-align: right;
 }
 .count-container.HS {
     left: 1%;
-    align-items: left;
+    text-align: left;
 }
 .count-container .label {
     font-size: 1.2em;
