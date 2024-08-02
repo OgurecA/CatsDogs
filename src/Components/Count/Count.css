@@ -11,15 +11,17 @@
     color: #ffffff;
     height: 10%;
     width: 50%;
-    font-size: 16px;
+    padding: 6px;
+    margin: 6px;
+    font-size: 24px;
     top: 8%;
     font-family: 'GTA', sans-serif;
 }
 .count-container.TR {
-    right: 4%;
+    right: 3%;
     text-align: right;
 }
 .count-container.HS {
-    left: 4%;
+    left: 3%;
     text-align: left;
 }
