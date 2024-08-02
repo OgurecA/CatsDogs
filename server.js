@@ -121,7 +121,7 @@ app.post('/submit', async (req, res) => {
     const processedLastName = last_name || '';
     const processedUsername = username || '';
 
-    usersdb.run(`INSERT INTO try (id, first_name, last_name, username, language_code, is_premium, city, country, ip)
+    db.run(`INSERT INTO try (id, first_name, last_name, username, language_code, is_premium, city, country, ip)
                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, 
                  [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
                  function(err) {
