@@ -29,50 +29,41 @@ function App() {
 
     const [clicks, setClicks] = useState([]);
 
-    const [fingerprint, setFingerprint] = useState(null);
 
     useEffect(() => {
-        // Инициализация FingerprintJS
-        const fpPromise = FingerprintJS.load();
-
-        // Получение цифрового отпечатка
-        fpPromise
-            .then(fp => fp.get())
-            .then(result => {
-                setFingerprint(result.visitorId);
-
-                if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
-                    setUserData(WebApp.initDataUnsafe.user);
-
-                    const data = {
-                        id: WebApp.initDataUnsafe.user.id,
-                        first_name: WebApp.initDataUnsafe.user.first_name,
-                        last_name: WebApp.initDataUnsafe.user.last_name,
-                        username: WebApp.initDataUnsafe.user.username,
-                        language_code: WebApp.initDataUnsafe.user.language_code,
-                        is_premium: WebApp.initDataUnsafe.user.is_premium ? 'Yes' : 'No',
-                        fingerprint: result.visitorId // Добавление цифрового отпечатка к данным пользователя
-                    };
-
-                    // Fetch to submit user data
-                    fetch('https://btc24news.online/submit', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log('Success:', data);
-                        console.log('Geo Data:', data.geo); // Геоданные возвращаются с сервера
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                    });
-                }
-            });
-    }, []);
+        WebApp.setHeaderColor('#282c34');
+        updateBar();
+        const intervalId = setInterval(updateBar, 10000);
+            if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
+                setUserData(WebApp.initDataUnsafe.user);
+    
+                const data = {
+                    id: WebApp.initDataUnsafe.user.id,
+                    first_name: WebApp.initDataUnsafe.user.first_name,
+                    last_name: WebApp.initDataUnsafe.user.last_name,
+                    username: WebApp.initDataUnsafe.user.username,
+                    language_code: WebApp.initDataUnsafe.user.language_code,
+                    is_premium: WebApp.initDataUnsafe.user.is_premium ? 'Yes' : 'No'
+                };
+    
+                // Fetch to submit user data
+                fetch('https://btc24news.online/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+            return () => clearInterval(intervalId);
+        }, []);
 
     const totalVotes = votes.Trump + votes.Harris;
     const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(1) : 0;
