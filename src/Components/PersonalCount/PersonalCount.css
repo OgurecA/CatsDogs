@@ -8,18 +8,16 @@
 .personal-count {
     text-align: left;
     position: absolute;
-    bottom: 0%;
-    left: 0%;
-    width: 100%;
-    height: 20%;
+    bottom: 10%;
+    left: 3%;
+    width: 97%;
+    height: 10%;
     color: rgb(255, 255, 255);
     font-family: 'GTA', sans-serif;
     font-size: 1.4em;
 }
 
 .personal-count p {
-    top: 0%;
-    left: 3%;
     margin: 0; /* Убираем внешний отступ */
     padding: 0; /* Убираем внутренний отступ */
     line-height: 0.8; /* Устанавливаем меньший интервал между строками */
