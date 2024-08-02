@@ -2,7 +2,7 @@
 .add-container {
     top: 0vh;
     left: 0vw;
-    height: 20vh;
+    height: 15vh;
     width: 100vw;
     position: absolute;
     padding: 0;
@@ -14,7 +14,7 @@
   
   .add-container img {
     width: 100vw;
-    height: 20vh;
+    height: 15vh;
     transition: transform 2s ease-in-out;
   }
   
