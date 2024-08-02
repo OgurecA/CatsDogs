@@ -41,7 +41,7 @@ db.serialize(() => {
     // Добавление начальных данных
     db.run(`INSERT OR IGNORE INTO total_votes (candidate, votes) VALUES ('Trump', 0), ('Harris', 0)`);
   
-    db.run(`CREATE TABLE IF NOT EXISTS try (
+    db.run(`CREATE TABLE IF NOT EXISTS users (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           first_name TEXT,
           last_name TEXT,
@@ -124,7 +124,7 @@ app.post('/submit', async (req, res) => {
     const processedLastName = last_name || '';
     const processedUsername = username || '';
 
-    db.run(`INSERT INTO try (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count)
+    db.run(`INSERT INTO users (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count)
                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0)`, 
                  [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
                  function(err) {
