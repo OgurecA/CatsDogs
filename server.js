@@ -182,21 +182,6 @@ app.get('/votes', (req, res) => {
   });
 });
 
-function validateHash(params) {
-    const token = '7491271001:AAEOiriYnXp_fFXVS_Iqvekzga6wSH0NxhU'; // Токен вашего бота
-    const secret_key = crypto.createHash('sha256').update(token).digest();
-
-    const data_check_string = Object.keys(params)
-        .filter(key => key !== 'hash') // Исключите 'hash' из данных
-        .sort() // Сортировка ключей в алфавитном порядке
-        .map(key => `${key}=${params[key]}`) // Формирование строки в формате 'key=value'
-        .join('\n'); // Склейка через перенос строки
-
-    const hmac = crypto.createHmac('sha256', secret_key).update(data_check_string).digest('hex');
-
-    return hmac === params.hash; // Сравнение вычисленного хеша с полученным
-}
-
 
 // Обработка любых маршрутов
 app.get('*', (req, res) => {

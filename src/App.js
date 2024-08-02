@@ -29,7 +29,6 @@ function App() {
     const [choice, setChoice] = useState(false);
 
     const [clicks, setClicks] = useState([]);
-    
 
 
     useEffect(() => {
@@ -73,7 +72,8 @@ function App() {
 
     const personalHarrisPercentage = votes.Harris > 0 ? (personalHarrisCount / votes.Harris * 100).toFixed(1) : 0;
     const personalTrumpPercentage = votes.Trump > 0 ? (personalTrumpCount / votes.Trump * 100).toFixed(1) : 0;
-   
+
+
     function updateBar() {
         fetch('https://btc24news.online/votes')
             .then(response => response.json())
