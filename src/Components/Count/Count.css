@@ -4,19 +4,17 @@
     position: absolute;
     padding: 10px;
     color: #f4f4f4;
-    text-align: center;
     height: 7%;
     width: 13%;
     font-size: 16px;
     top: -5%;
-    align-items: center;
 }
 .count-container.TR {
-    right: 7%;
+    right: 1%;
     align-items: right;
 }
 .count-container.HS {
-    left: 7%;
+    left: 1%;
     align-items: left;
 }
 .count-container .label {
