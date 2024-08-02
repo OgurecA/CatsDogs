@@ -26,6 +26,7 @@ function App() {
 
     const [userData, setUserData] = useState(null);
 
+    const [choice, setChoice] = useState(false);
 
     const [clicks, setClicks] = useState([]);
 
@@ -142,6 +143,21 @@ function App() {
         }
     }
 
+    function handleHarrisClick(e) {
+        if(!choice) {
+            setChoice(true)
+            handleClickHarrisB();
+        }
+        incrementHarrisCount(e);
+    }
+    function handleTrumpClick(e) {
+        if(!choice) {
+            setChoice(true)
+            handleClickTrumpB();
+        }
+        incrementTrumpCount(e);
+    }
+
     function handleAnimationEnd(id) {
         setClicks((prevClicks) => prevClicks.filter(click => click.id !== id));
     }
@@ -159,30 +175,6 @@ function App() {
     <>
             <BGcontainer src={backgroundImage} />
 
-            <main className="p-4">
-        {
-          userData ?
-          (
-            <>
-              <h1 className="text-2xl font-bold mb-4">User Data</h1>
-              <ul>
-                <li>ID: {userData.id}</li>
-                <li>First Name: {userData.first_name}</li>
-                <li>Last Name: {userData.last_name}</li>
-                <li>Username: {userData.username}</li>
-                <li>Language Code: {userData.language_code}</li>
-                <li>Is Premium: {userData.is_premium ? 'Yes' : 'No'}</li>
-              </ul>
-            </>
-          ) :
-          (
-            <>
-              <div>Loading...</div>
-            </>
-          )
-        }
-      </main>
-
             <AddContainer
                 ads={[
                   { src: TrumpP, link: 'https://www.youtube.com/watch?v=44pt8w67S8I' },
@@ -198,30 +190,12 @@ function App() {
                 harrisPercentage={harrisPercentage}
             />
 
-            {contentVisible === 'both' && (
-                <>
-                    <Button
-                        title={'Choose Harris'}
-                        disable={false}
-                        className={`HarrisButton ${isSelectedHarris ? 'selected' : ''}`}
-                        isActive={isActive}
-                        onClick={handleClickHarrisB}
-                    />
-                    <Button
-                        title={'Choose Trump'}
-                        disable={false}
-                        className={`TrumpButton ${isSelectedTrump ? 'selected' : ''}`}
-                        isActive={isActive}
-                        onClick={handleClickTrumpB}
-                    />
-                </>
-            )}
             {(contentVisible === 'harris' || contentVisible === 'both') && (
                 <ImageContainer
                     src={HarrisImg}
                     className={`image-container no-select harris-image ${isSelectedHarris ? 'selected' : ''}`}
                     disable={false}
-                    onClick={incrementHarrisCount}
+                    onClick={handleHarrisClick}
                 />
             )}
             {(contentVisible === 'trump' || contentVisible === 'both') && (
@@ -229,7 +203,7 @@ function App() {
                     src={TrumpImg}
                     className={`image-container no-select trump-image ${isSelectedTrump ? 'selected' : ''}`}
                     disable={false}
-                    onClick={incrementTrumpCount}
+                    onClick={handleTrumpClick}
                 />
             )}
             {clicks.map((click) => (
