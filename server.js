@@ -104,7 +104,7 @@ function incrementHarrisTotalVotes() {
 }
 
 
-app.post('/submit', async (req, res) => {
+app.post('/login', async (req) => {
     const { id, first_name, last_name, username, language_code, is_premium } = req.body;
     const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     console.log('Получены данные:', {

