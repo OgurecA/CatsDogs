@@ -4,3 +4,15 @@
     width: 100vw;
     position: absolute;
 }
+.TR {
+    right: 1%;
+    text-align: right;
+}
+.HS {
+    left: 1%;
+    text-align: left;
+}
+.label {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
