@@ -11,7 +11,7 @@ function Stats({ harrisPercentage, trumpPercentage }) {
           <Count count={trumpPercentage} className="TR" label={"Donald Trump"} />
         </div>
         <div className="head-bar">
-          <Count count={harrisPercentage} className="HS" label={"Kamilla Harris"} />
+          <Count count={harrisPercentage} className="HS" label={"Kamala Harris"} />
         </div>
       </div>
     );
