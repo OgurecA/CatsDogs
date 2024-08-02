@@ -124,16 +124,34 @@ app.post('/submit', async (req, res) => {
     const processedLastName = last_name || '';
     const processedUsername = username || '';
 
-    db.run(`INSERT INTO try1 (telegram_id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count)
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0)`, 
-                 [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
-                 function(err) {
+    usersdb.get(`SELECT * FROM try1 WHERE telegram_id = ?`, [id], (err, row) => {
         if (err) {
-            return console.error('Error inserting data', err.message);
+            return console.error('Error fetching data', err.message);
+        }
+
+        if (row) {
+            // Если пользователь существует, обновляем его данные
+            usersdb.run(`UPDATE try1 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ?, city = ?, country = ?, ip = ? WHERE telegram_id = ?`, 
+                        [first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip, id], 
+                        function(err) {
+                if (err) {
+                    return console.error('Error updating data', err.message);
+                }
+                console.log(`User with telegram_id ${id} updated`);
+            });
+        } else {
+            // Если пользователь не существует, вставляем новую запись
+            usersdb.run(`INSERT INTO try1 (telegram_id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count)
+                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0)`, 
+                         [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
+                         function(err) {
+                if (err) {
+                    return console.error('Error inserting data', err.message);
+                }
+                console.log(`A new user with telegram_id ${id} has been inserted`);
+            });
         }
     });
-    
-    res.status(200).json({ message: 'Данные успешно получены' });
 });
 
 
