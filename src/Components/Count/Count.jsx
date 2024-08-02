@@ -6,7 +6,7 @@ function Count({ count, className, label }) {
     return (
         <div className={`count-container ${className}`}>
             <div className="label">{label}</div>
-                {count}%
+            {    count}%
         </div>
     );
 }
