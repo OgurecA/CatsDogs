@@ -8,10 +8,10 @@ function Stats({ harrisPercentage, trumpPercentage }) {
       <div className="stats-container">
         <ProgressBar harrisPercentage={harrisPercentage} trumpPercentage={trumpPercentage} />
         <div className="head-bar right-align">
-          <Count count={trumpPercentage} className="TR" label={"Trump"} />
+          <Count count={trumpPercentage} className="TR" label={"Donald Trump"} />
         </div>
-        <div className="head-bar  left-align">
-          <Count count={harrisPercentage} className="HS" label={"Harris"} />
+        <div className="head-bar left-align">
+          <Count count={harrisPercentage} className="HS" label={"Kamilla Harris"} />
         </div>
       </div>
     );

@@ -3,16 +3,31 @@
     height: 20vh;
     width: 100vw;
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+
+.head-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.right-align {
+    justify-content: flex-end;
+}
+
+.left-align {
+    justify-content: flex-start;
+}
+
 .TR {
-    right: 1%;
     text-align: right;
 }
+
 .HS {
-    left: 1%;
     text-align: left;
-}
-.label {
-    font-size: 1.2em;
-    margin-bottom: 5px;
 }
