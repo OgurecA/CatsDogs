@@ -99,6 +99,7 @@ function incrementHarrisTotalVotes() {
 
 app.post('/submit', async (req, res) => {
     const { id, first_name, last_name, username, language_code, is_premium } = req.body;
+    const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     console.log('Получены данные:', {
         id,
         first_name,
@@ -107,15 +108,12 @@ app.post('/submit', async (req, res) => {
         language_code,
         is_premium
     });
-    const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
     const geoResponse = await fetch(`https://ipinfo.io/${ipAddress}?token=${IPINFO_API_TOKEN}`);
     const geoData = await geoResponse.json();
-
-    console.log('Geo Data:', geoData);
-
-    console.log('IP Address:', ipAddress);
-    // Здесь можно добавить логику для обработки данных
+    const { city, country, ip } = geoData;
+    console.log('Geo Data:', { city, country, ip });
+    
     res.status(200).json({ message: 'Данные успешно получены' });
 });
 
