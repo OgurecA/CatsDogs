@@ -14,8 +14,6 @@
     height: 15%;
     color: rgb(255, 255, 255);
     font-family: 'GTA', sans-serif;
+    font-size: 1.4em;
 }
 
-.personal-count p {
-    font-size: 1.2em;
-}
