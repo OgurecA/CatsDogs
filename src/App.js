@@ -5,6 +5,7 @@ import ImageContainer from './Components/ImageContainer/ImageContainer';
 import BGcontainer from './Components/BGcontainer/BGcontainer';
 import Stats from './Components/Stats/Stats';
 import AddContainer from './Components/AddContainer/AddContainer';
+import PersonalCount from './Components/PersonalCount/PersonalCount';
 import WebApp from "@twa-dev/sdk";
 
 import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit } from './Components/Pictures/Pictures';
