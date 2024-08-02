@@ -1,13 +1,19 @@
+/* Count.css */
 .count-container {
     margin: 20px;
+    position: absolute;
     padding: 10px;
     color: #f4f4f4;
+    height: 7%;
+    width: 13%;
     font-size: 16px;
-    display: flex;
+    top: -5%;
 }
-
-.label {
-    font-size: 1.2em;
-    margin-bottom: 5px;
+.count-container.TR {
+    right: 7%;
+    text-align: right;
 }
-
+.count-container.HS {
+    left: 7%;
+    text-align: left;
+}

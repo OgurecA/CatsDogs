@@ -3,27 +3,4 @@
     height: 20vh;
     width: 100vw;
     position: absolute;
-    display: flex;
-}
-
-.head-bar {
-    display: flex;
-    width: 100%;
-    padding: 0 20px;
-}
-
-.right-align {
-    justify-content: flex-end;
-}
-
-.left-align {
-    justify-content: flex-start;
-}
-
-.TR {
-    text-align: right;
-}
-
-.HS {
-    text-align: left;
 }
