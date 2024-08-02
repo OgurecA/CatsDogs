@@ -5,8 +5,8 @@ function PersonalCount({ favorite, personalCount }) {
 
     return (
         <div className="personal-count">
-            <p>Your Votes: {Math.abs(personalCount)}
-            Favorite: {favorite}</p>
+            <p>Your Votes: {Math.abs(personalCount)}</p>
+            <p>Favorite: {favorite}</p>
         </div>
     );
 }
