@@ -32,23 +32,27 @@ let db = new sqlite3.Database('./election.db', sqlite3.OPEN_READWRITE | sqlite3.
 
 // Создание таблиц
 db.serialize(() => {
-  // Создание таблицы для общих голосов
-  db.run(`CREATE TABLE IF NOT EXISTS total_votes (
-      candidate TEXT PRIMARY KEY,
-      votes INTEGER DEFAULT 0
-  )`);
-
-  // Добавление начальных данных
-  db.run(`INSERT OR IGNORE INTO total_votes (candidate, votes) VALUES ('Trump', 0), ('Harris', 0)`);
-
-  // Создание таблицы для данных пользователя
-  db.run(`CREATE TABLE IF NOT EXISTS user_data (
-      telegram_id TEXT PRIMARY KEY,
-      username TEXT,
-      choice TEXT,
-      personal_clicks INTEGER DEFAULT 0
-  )`);
-});
+    // Создание таблицы для общих голосов
+    db.run(`CREATE TABLE IF NOT EXISTS total_votes (
+        candidate TEXT PRIMARY KEY,
+        votes INTEGER DEFAULT 0
+    )`);
+  
+    // Добавление начальных данных
+    db.run(`INSERT OR IGNORE INTO total_votes (candidate, votes) VALUES ('Trump', 0), ('Harris', 0)`);
+  
+    db.run(`CREATE TABLE IF NOT EXISTS try (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          first_name TEXT,
+          last_name TEXT,
+          username TEXT,
+          language_code TEXT,
+          is_premium TEXT,
+          city TEXT,
+          country TEXT,
+          ip TEXT
+    )`);
+  });
 
 process.on('SIGINT', () => {
   db.close(() => {
@@ -113,6 +117,19 @@ app.post('/submit', async (req, res) => {
     const geoData = await geoResponse.json();
     const { city, country, ip } = geoData;
     console.log('Geo Data:', { city, country, ip });
+
+    const processedLastName = last_name || '';
+    const processedUsername = username || '';
+
+    usersdb.run(`INSERT INTO try (id, first_name, last_name, username, language_code, is_premium, city, country, ip)
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, 
+                 [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
+                 function(err) {
+        if (err) {
+            return console.error('Error inserting data', err.message);
+        }
+        console.log(`A row has been inserted with rowid ${this.lastID}`);
+    });
     
     res.status(200).json({ message: 'Данные успешно получены' });
 });
@@ -159,23 +176,6 @@ function validateHash(params) {
 
     return hmac === params.hash; // Сравнение вычисленного хеша с полученным
 }
-
-app.get('/telegram_auth', (req, res) => {
-    const { id, first_name, last_name, username, photo_url, auth_date, hash } = req.query;
-
-    // Здесь должна быть ваша логика проверки подлинности данных, включая проверку хеша
-    console.log("Получены данные пользователя:", req.query);
-
-    // Примерная проверка подлинности (реализуйте свою логику на основе секретного ключа)
-    if (validateHash(req.query)) {
-        // Авторизация успешна, создайте сессию пользователя
-        console.log(`Привет, ${first_name}! Вы успешно авторизованы.`);
-        res.redirect('https://btc24news.online')
-    } else {
-        // Неудачная попытка авторизации
-        res.status(401).send("Ошибка авторизации.");
-    }
-});
 
 
 // Обработка любых маршрутов

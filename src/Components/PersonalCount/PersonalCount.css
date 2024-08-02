@@ -1,0 +1,18 @@
+.personal-count {
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.personal-count h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.personal-count p {
+    font-size: 1.2em;
+    font-weight: bold;
+}
