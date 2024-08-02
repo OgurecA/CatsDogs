@@ -174,7 +174,10 @@ function App() {
   return (
     <>
             <BGcontainer src={backgroundImage} />
-
+            <PersonalCount 
+                        personalTrumpCount={personalTrumpCount} 
+                        personalHarrisCount={personalHarrisCount} 
+                    />
             <AddContainer
                 ads={[
                   { src: TrumpP, link: 'https://www.youtube.com/watch?v=44pt8w67S8I' },
