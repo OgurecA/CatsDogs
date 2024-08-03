@@ -171,6 +171,20 @@ app.post('/update-counts', (req, res) => {
     });
 });
 
+app.get('/get-counts', (req, res) => {
+    const { id } = req.params;
+    usersdb.get(`SELECT personal_harris_count, personal_trump_count FROM try2 WHERE id = ?`, [id], (err, row) => {
+        if (err) {
+            return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
+        }
+        if (row) {
+            res.status(200).json(row);
+        } else {
+            res.status(404).json({ message: 'Пользователь не найден' });
+        }
+    });
+});
+
 // Эндпоинт для увеличения голосов за Трампа
 app.post('/vote/trump', (req, res) => {
   incrementTrumpTotalVotes();
