@@ -61,7 +61,7 @@ function App() {
                     })
                     .then(response => response.json())
                         .then(() => {
-                            fetch(`https://btc24news.online/get-counts?id=${WebApp.initDataUnsafe.user.id}`)
+                            fetch(`https://btc24news.online/get-counts`)
                                 .then(response => response.json())
                                 .then(data => {
                                     setPersonalHarrisCount(data.personal_harris_count);
