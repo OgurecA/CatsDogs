@@ -59,11 +59,11 @@ function App() {
                         },
                         body: JSON.stringify(data)
                     })
-                    fetch(`https://btc24news.online/get-counts`)
+                    fetch(`https://btc24news.online/get-counts?id=${WebApp.initDataUnsafe.user.id}`)
                     .then(response => response.json())
                     .then(data => {
-                        setPersonalHarrisCount(data.personal_harris_count);
-                        setPersonalTrumpCount(data.personal_trump_count);
+                        setPersonalHarrisCount(data.personal_harris_count ?? 0);
+                        setPersonalTrumpCount(data.personal_trump_count ?? 0);
                     })
                     .catch((error) => {
                         console.error('Error:', error);
