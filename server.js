@@ -172,7 +172,7 @@ app.post('/update-counts', (req, res) => {
 });
 
 app.get('/get-counts', (req, res) => {
-    const { id } = req.params;
+    const { id } = req.body;
     usersdb.get(`SELECT personal_harris_count, personal_trump_count FROM try2 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });

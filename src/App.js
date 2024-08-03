@@ -59,18 +59,15 @@ function App() {
                         },
                         body: JSON.stringify(data)
                     })
+                    fetch(`https://btc24news.online/get-counts`)
                     .then(response => response.json())
-                        .then(() => {
-                            fetch(`https://btc24news.online/get-counts`)
-                                .then(response => response.json())
-                                .then(data => {
-                                    setPersonalHarrisCount(data.personal_harris_count);
-                                    setPersonalTrumpCount(data.personal_trump_count);
-                                })
-                                .catch((error) => {
-                                    console.error('Error:', error);
-                                });
-                        });
+                    .then(data => {
+                        setPersonalHarrisCount(data.personal_harris_count);
+                        setPersonalTrumpCount(data.personal_trump_count);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
                 }
             }
             return () => clearInterval(intervalId);
