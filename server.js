@@ -139,7 +139,7 @@ app.post('/login', async (req) => {
             // Если пользователь не существует, вставляем новую запись
             db.run(`INSERT INTO try2 (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count, favorite)
                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, 'none')`, 
-                         [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip, favorite], 
+                         [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
                          function(err) {
                 if (err) {
                     return console.error('Error inserting data', err.message);
