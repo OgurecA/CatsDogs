@@ -41,8 +41,8 @@ db.serialize(() => {
     // Добавление начальных данных
     db.run(`INSERT OR IGNORE INTO total_votes (candidate, votes) VALUES ('Trump', 0), ('Harris', 0)`);
   
-    db.run(`CREATE TABLE IF NOT EXISTS try1 (
-          telegram_id INTEGER,
+    db.run(`CREATE TABLE IF NOT EXISTS try2 (
+          id INTEGER,
           first_name TEXT,
           last_name TEXT,
           username TEXT,
@@ -53,16 +53,12 @@ db.serialize(() => {
           ip TEXT,
           personal_count INTEGER DEFAULT 0,
           personal_harris_count INTEGER DEFAULT 0,
-          personal_trump_count INTEGER DEFAULT 0
+          personal_trump_count INTEGER DEFAULT 0,
+          favorite TEXT DEFAULT 'none'
     )`);
   });
 
-process.on('SIGINT', () => {
-  db.close(() => {
-      console.log('База данных закрыта из-за завершения работы сервера');
-      process.exit(0);
-  });
-});
+
 
 
 function incrementTrumpTotalVotes() {
@@ -124,14 +120,14 @@ app.post('/login', async (req) => {
     const processedLastName = last_name || '';
     const processedUsername = username || '';
 
-    db.get(`SELECT * FROM try1 WHERE telegram_id = ?`, [id], (err, row) => {
+    db.get(`SELECT * FROM try2 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return console.error('Error fetching data', err.message);
         }
 
         if (row) {
             // Если пользователь существует, обновляем его данные
-            db.run(`UPDATE try1 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ?, city = ?, country = ?, ip = ? WHERE telegram_id = ?`, 
+            db.run(`UPDATE try2 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ?, city = ?, country = ?, ip = ? WHERE id = ?`, 
                         [first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip, id], 
                         function(err) {
                 if (err) {
@@ -141,9 +137,9 @@ app.post('/login', async (req) => {
             });
         } else {
             // Если пользователь не существует, вставляем новую запись
-            db.run(`INSERT INTO try1 (telegram_id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count)
-                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0)`, 
-                         [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
+            db.run(`INSERT INTO try2 (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count, favorite)
+                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, 'none')`, 
+                         [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip, favorite], 
                          function(err) {
                 if (err) {
                     return console.error('Error inserting data', err.message);
@@ -154,6 +150,26 @@ app.post('/login', async (req) => {
     });
 });
 
+app.post('/update-counts', (req, res) => {
+    const { id, personal_count, personal_harris_count, personal_trump_count, favorite } = req.body;
+    console.log('Получены данные для обновления:', {
+        id,
+        personal_count,
+        personal_harris_count,
+        personal_trump_count,
+        favorite
+    });
+
+    db.run(`UPDATE try2 SET personal_count = ?, personal_harris_count = ?, personal_trump_count = ?, favorite = ? WHERE id = ?`, 
+                [personal_count, personal_harris_count, personal_trump_count, favorite, id], 
+                function(err) {
+        if (err) {
+            return console.error('Error updating counts', err.message);
+        }
+        console.log(`User with telegram_id ${id} counts updated`);
+        res.status(200).json({ message: 'Counts successfully updated' });
+    });
+});
 
 // Эндпоинт для увеличения голосов за Трампа
 app.post('/vote/trump', (req, res) => {
@@ -187,6 +203,13 @@ app.get('/votes', (req, res) => {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
+
+process.on('SIGINT', () => {
+    db.close(() => {
+        console.log('База данных закрыта из-за завершения работы сервера');
+        process.exit(0);
+    });
+  });
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

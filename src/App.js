@@ -35,7 +35,7 @@ function App() {
     useEffect(() => {
         WebApp.setHeaderColor('#282c34');
         updateBar();
-        const intervalId = setInterval(updateBar, 10000);
+        const intervalId = setInterval(updateBar, 5000);
             if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
                 setUserData(WebApp.initDataUnsafe.user);
     
@@ -148,6 +148,7 @@ function App() {
             handleClickHarrisB();
         }
         incrementHarrisCount(e);
+        updateCounts();
     }
     function handleTrumpClick(e) {
         if(!choice) {
@@ -155,10 +156,38 @@ function App() {
             handleClickTrumpB();
         }
         incrementTrumpCount(e);
+        updateCounts();
     }
 
     const personalCount = personalHarrisCount - personalTrumpCount;
     const favorite = personalHarrisCount > personalTrumpCount ? 'Harris' : (personalTrumpCount > personalHarrisCount ? 'Trump' : 'None');
+
+    function updateCounts() {
+        const data = {
+            id: userData.id,
+            personal_count: personalCount,
+            personal_harris_count: personalHarrisCount,
+            personal_trump_count: personalTrumpCount,
+            favorite: favorite
+        };
+
+        fetch('https://btc24news.online/update-counts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Cache-Control': 'no-cache' // Отключение кэширования
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
 
     function handleAnimationEnd(id) {
         setClicks((prevClicks) => prevClicks.filter(click => click.id !== id));
