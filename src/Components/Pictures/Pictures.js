@@ -1,7 +1,7 @@
 import HarrisImg from "../Photoes/OwlCoin.png";
 import TrumpImg from "../Photoes/SnakeCoin.png";
 import HarrisBG from "../Photoes/Suit.jpg";
-import TrumpBG from "../Photoes/Wine.jpg";
+import TrumpBG from "../Photoes/Text.jpg";
 import TrumpH from "../Photoes/TrumpH.png";
 import HarrisH from "../Photoes/HarrisH.png";
 import TrumpP from "../Photoes/harris pres.png";
