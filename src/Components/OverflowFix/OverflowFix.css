@@ -5,6 +5,35 @@
     height: 100%;
 }
 .image-container {
+    width: 50vw;
+    height: 35vh;
+    overflow: visible;
+    transition: left 1.2s ease, right 1.2s ease, transform 0.02s;
+    background: none;
+    border: none;
+  }
+
+.image-container img {
+    left: 0%;
+    bottom: 0%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: visible;
+  }
+.image-container.harris-image {
     position: absolute;
-    /* Добавьте дополнительные стили для позиционирования и внешнего вида контейнеров изображений */
-}
+    left: var(--harris-left, 0vw);
+    bottom: var(--harris-bottom, 25vh);
+  }
+
+  .image-container.trump-image {
+    position: absolute;
+    right: var(--trump-left, 0vw);
+    bottom: var(--trump-bottom, 25vh);
+  }
+  
+  .image-container.selected:active {
+    transition: transform 0.02s;
+    transform: scale(0.95); /* Применяется только если выбор сделан */
+  }
