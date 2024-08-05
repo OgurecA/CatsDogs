@@ -14,37 +14,9 @@
     <link rel="manifest" href="/manifest.json" />
     <title>Fair Election</title>
 
-    <style>
-      /* Стили для экрана загрузки */
-      #loading-screen {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: #3a3a3a; /* Или любой другой цвет */
-          z-index: 9999; /* Высокий приоритет для показа поверх всех элементов */
-      }
-
-      #loading-screen img {
-          width: 100%; /* Размер изображения загрузки */
-          height: 100%; /* Размер изображения загрузки */
-      }
-  </style>
   </head>
   <body>
-    <div id="loading-screen">
-        <img src="../src/Components/Photoes/Loading.png" alt="Loading..." />
-    </div>
     <div id="root"></div>
-    <script>
-        // Скрытие экрана загрузки после полной загрузки страницы
-        window.onload = function() {
-            document.getElementById('loading-screen').style.display = 'none';
-        };
-    </script>
+
 </body>
 </html>
