@@ -69,9 +69,9 @@ function App() {
                         setPersonalTrumpCount(data.personal_trump_count ?? 0);
                         setPlayersFavorite(data.favorite);
 
-                        if (playersFavorite === 'Owl') {
+                        if (data.favorite === 'Owl') {
                             handleClickHarrisB();
-                        } else if (playersFavorite === 'Snake') {
+                        } else if (data.favorite === 'Snake') {
                             handleClickTrumpB();
                         }
                     })
