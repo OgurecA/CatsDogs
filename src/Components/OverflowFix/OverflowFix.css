@@ -18,7 +18,7 @@
 .image-container img {
     left: 0%;
     bottom: 0%;
-    width: 40vw;
+    width: auto;
     height: auto;
     overflow: visible;
     position: absolute;
