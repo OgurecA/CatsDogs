@@ -51,6 +51,7 @@ function App() {
     
           // Save the fingerprint data to state.
           setFingerprintData(result);
+          console.log(fingerprintData);
     
           // Send the fingerprint data to the server.
           fetch('https://yourserver.com/api/save-fingerprint', {
