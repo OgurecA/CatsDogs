@@ -33,6 +33,7 @@ function App() {
 
     const dataSent = useRef(false);
 
+    const [runTime, setRunTime] = useState(1200)
 
     useEffect(() => {
         WebApp.setHeaderColor('#282c34');
@@ -78,8 +79,10 @@ function App() {
 
         useEffect(() => {
             if (playersFavorite === 'Owl') {
+                setRunTime(10);
                 handleClickHarrisB();
             } else if (playersFavorite === 'Snake') {
+                setRunTime(10);
                 handleClickTrumpB();
             }
         }, [playersFavorite]);
@@ -105,7 +108,7 @@ function App() {
         setTimeout(() => {
             setIsSelectedHarris(true);
             setIsSelectedTrump(false);
-        }, 1200);
+        }, runTime);
         changeBackgroundImage(HarrisBG);
         console.log("Harris was elected");
     }
@@ -117,7 +120,7 @@ function App() {
             setTimeout(() => {
             setIsSelectedTrump(true);
             setIsSelectedHarris(false);
-        }, 1200);
+        }, runTime);
         changeBackgroundImage(TrumpBG);
         console.log("Trump was elected");
     }
