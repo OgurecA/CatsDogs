@@ -30,7 +30,10 @@ function App() {
 
     const [clicks, setClicks] = useState([]);
 
+    const [playersFavorite, setPlayersFavorite] = useState(null)
+
     const dataSent = useRef(false);
+
 
     useEffect(() => {
         WebApp.setHeaderColor('#282c34');
@@ -64,10 +67,11 @@ function App() {
                     .then(data => {
                         setPersonalHarrisCount(data.personal_harris_count ?? 0);
                         setPersonalTrumpCount(data.personal_trump_count ?? 0);
+                        setPlayersFavorite(data.favorite);
 
-                        if (data.favorite === 'Owl') {
+                        if (playersFavorite === 'Owl') {
                             handleClickHarrisB();
-                        } else if (data.favorite === 'Snake') {
+                        } else if (playersFavorite === 'Snake') {
                             handleClickTrumpB();
                         }
                     })
