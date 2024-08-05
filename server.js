@@ -192,7 +192,7 @@ app.get('/get-counts', (req, res) => {
 
 app.post('/api/save-fingerprint', (req, res) => {
     const fingerprintData = req.body;
-    console.log('Fingerprint data received:', fingerprintData);
+    console.log('Fingerprint data received:', JSON.stringify(fingerprintData, null, 2));
   
     // Здесь вы можете сохранить данные в базу данных или выполнить другую обработку
     // Например, для MongoDB:
