@@ -10,7 +10,7 @@
     width: var(--image-width, 20vw);
     height: var(--image-height, 20vw);
     overflow: visible;
-    transition: left 1.2s ease, right 1.2s ease, bottom 1.2s ease, width 1.2s ease, height 1.2s ease, transform 0.02s;
+    transition: left 1.2s ease, right 1.2s ease, bottom 1.2s ease, width 1.2s ease, height 1.2s ease;
     background: none;
     border: none;
   }
