@@ -14,6 +14,7 @@ const botToken = '7491271001:AAEOiriYnXp_fFXVS_Iqvekzga6wSH0NxhU';
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Подключаем статические файлы

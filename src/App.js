@@ -42,23 +42,24 @@ function App() {
     useEffect(() => {
         WebApp.setHeaderColor('#282c34');
         updateBar();
+    
         async function fetchFingerprint() {
-            // Initialize FingerprintJS and get the visitor identifier.
-            const fpPromise = FingerprintJS.load();
-            const fp = await fpPromise;
-            const result = await fp.get();
-      
-            // Save the fingerprint data to state.
-            setFingerprintData(result);
-      
-            // Send the fingerprint data to the server.
-            fetch('https://yourserver.com/api/save-fingerprint', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(result)
-            })
+          // Initialize FingerprintJS and get the visitor identifier.
+          const fpPromise = FingerprintJS.load();
+          const fp = await fpPromise;
+          const result = await fp.get();
+    
+          // Save the fingerprint data to state.
+          setFingerprintData(result);
+    
+          // Send the fingerprint data to the server.
+          fetch('https://yourserver.com/api/save-fingerprint', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(result)
+          })
             .then(response => response.json())
             .then(data => {
               console.log('Success:', data);
@@ -66,55 +67,57 @@ function App() {
             .catch((error) => {
               console.error('Error:', error);
             });
-          }
-      
-          fetchFingerprint();
+        }
+    
+        fetchFingerprint();
         const intervalId = setInterval(updateBar, 5000);
-            if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
-                setUserData(WebApp.initDataUnsafe.user);
     
-                const data = {
-                    id: WebApp.initDataUnsafe.user.id,
-                    first_name: WebApp.initDataUnsafe.user.first_name,
-                    last_name: WebApp.initDataUnsafe.user.last_name,
-                    username: WebApp.initDataUnsafe.user.username,
-                    language_code: WebApp.initDataUnsafe.user.language_code,
-                    is_premium: WebApp.initDataUnsafe.user.is_premium ? 'Yes' : 'No'
-                };
+        if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
+          setUserData(WebApp.initDataUnsafe.user);
     
-                // Fetch to submit user data
-                if (!dataSent.current) {
-                    dataSent.current = true;
-                    fetch('https://btc24news.online/login', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Cache-Control': 'no-cache'
-                        },
-                        body: JSON.stringify(data)
-                    })
-                    fetch(`https://btc24news.online/get-counts?id=${WebApp.initDataUnsafe.user.id}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        setPersonalHarrisCount(data.personal_harris_count ?? 0);
-                        setPersonalTrumpCount(data.personal_trump_count ?? 0);
-                        setPlayersFavorite(data.favorite);
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                    });
-                }
-            }
-            return () => clearInterval(intervalId);
-        }, []);
-
-        useEffect(() => {
-            if (playersFavorite === 'Owl') {
-                handleClickHarrisB();
-            } else if (playersFavorite === 'Snake') {
-                handleClickTrumpB();
-            }
-        }, [playersFavorite]);
+          const data = {
+            id: WebApp.initDataUnsafe.user.id,
+            first_name: WebApp.initDataUnsafe.user.first_name,
+            last_name: WebApp.initDataUnsafe.user.last_name,
+            username: WebApp.initDataUnsafe.user.username,
+            language_code: WebApp.initDataUnsafe.user.language_code,
+            is_premium: WebApp.initDataUnsafe.user.is_premium ? 'Yes' : 'No'
+          };
+    
+          // Fetch to submit user data
+          if (!dataSent.current) {
+            dataSent.current = true;
+            fetch('https://btc24news.online/login', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Cache-Control': 'no-cache'
+              },
+              body: JSON.stringify(data)
+            })
+              .then(() => fetch(`https://btc24news.online/get-counts?id=${WebApp.initDataUnsafe.user.id}`))
+              .then(response => response.json())
+              .then(data => {
+                setPersonalHarrisCount(data.personal_harris_count ?? 0);
+                setPersonalTrumpCount(data.personal_trump_count ?? 0);
+                setPlayersFavorite(data.favorite);
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          }
+        }
+    
+        return () => clearInterval(intervalId);
+      }, []);
+    
+      useEffect(() => {
+        if (playersFavorite === 'Owl') {
+          handleClickHarrisB();
+        } else if (playersFavorite === 'Snake') {
+          handleClickTrumpB();
+        }
+      }, [playersFavorite]);
 
     const totalVotes = votes.Trump + votes.Harris;
     const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(1) : 0;
