@@ -20,8 +20,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Подключаем статические файлы
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.use(cors()); // Это позволит все запросы из любых источников
-
+const corsOptions = {
+    origin: 'https://btc24news.online', // Укажите ваш источник
+    optionsSuccessStatus: 200
+  };
+  
+  app.use(cors(corsOptions));
 
 let db = new sqlite3.Database('./election.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
   if (err) {
