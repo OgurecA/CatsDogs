@@ -14,7 +14,6 @@ import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit } from '
 function App() {
     const [isActive, setIsActive] = useState(false);
     const [backgroundImage, setBackgroundImage] = useState('');
-    const [contentVisible, setContentVisible] = useState('both');
 
     const [personalHarrisCount, setPersonalHarrisCount] = useState(0);
     const [personalTrumpCount, setPersonalTrumpCount] = useState(0);
@@ -79,7 +78,7 @@ function App() {
 
         useEffect(() => {
             if (playersFavorite === 'Owl') {
-                setTimeout(handleClickHarrisB, 10000);
+                handleClickHarrisB();
             } else if (playersFavorite === 'Snake') {
                 handleClickTrumpB();
             }
