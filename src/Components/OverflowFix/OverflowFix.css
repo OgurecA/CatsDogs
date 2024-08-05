@@ -7,7 +7,7 @@
     height: 100vh;
 }
 .image-container {
-    width: 20vw;
+    width: var(--image-width, 20vw);
     height: auto;
     overflow: visible;
     transition: left 1.2s ease, right 1.2s ease, bottom 1.2s ease, width 1.2s ease, height 1.2s ease, transform 0.02s;
@@ -37,14 +37,13 @@
     bottom: var(--trump-bottom, 30vh);
   }
   
-  .image-container.selected {
-    width: 70vw; /* Фиксированная высота при выборе */
-    height: auto;
+
+  .image-container.selected.harris-image {
+    --image-width: 70vw; /* Новая ширина при выборе */
 }
 
-.image-container.selected img {
-    width: 100%; /* Увеличение изображения вместе с контейнером */
-    height: 100%; /* Увеличение изображения вместе с контейнером */
+.image-container.selected.trump-image {
+    --image-width: 70vw; /* Новая ширина при выборе */
 }
 
   .image-container.selected:active {
