@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import ImageContainer from './Components/ImageContainer/ImageContainer';
+import OverflowFix from './Components/OverflowFix/OverflowFix';
 import BGcontainer from './Components/BGcontainer/BGcontainer';
 import Stats from './Components/Stats/Stats';
 import AddContainer from './Components/AddContainer/AddContainer';
