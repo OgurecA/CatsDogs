@@ -185,6 +185,23 @@ app.get('/get-counts', (req, res) => {
     });
 });
 
+app.post('/api/save-fingerprint', (req, res) => {
+    const fingerprintData = req.body;
+    console.log('Fingerprint data received:', fingerprintData);
+  
+    // Здесь вы можете сохранить данные в базу данных или выполнить другую обработку
+    // Например, для MongoDB:
+    // MongoClient.connect(url, function(err, client) {
+    //   const db = client.db('yourdatabase');
+    //   db.collection('fingerprints').insertOne(fingerprintData, function(err, res) {
+    //     console.log("Document inserted");
+    //     client.close();
+    //   });
+    // });
+  
+    res.status(200).json({ message: 'Fingerprint data saved successfully' });
+  });
+
 // Эндпоинт для увеличения голосов за Трампа
 app.post('/vote/trump', (req, res) => {
   incrementTrumpTotalVotes();

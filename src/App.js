@@ -8,6 +8,8 @@ import Stats from './Components/Stats/Stats';
 import AddContainer from './Components/AddContainer/AddContainer';
 import PersonalCount from './Components/PersonalCount/PersonalCount';
 import WebApp from "@twa-dev/sdk";
+import FingerprintJS from '@fingerprintjs/fingerprintjs';
+
 
 import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit } from './Components/Pictures/Pictures';
 
@@ -32,12 +34,41 @@ function App() {
 
     const [playersFavorite, setPlayersFavorite] = useState(null)
 
+    const [fingerprintData, setFingerprintData] = useState(null);
+
     const dataSent = useRef(false);
 
 
     useEffect(() => {
         WebApp.setHeaderColor('#282c34');
         updateBar();
+        async function fetchFingerprint() {
+            // Initialize FingerprintJS and get the visitor identifier.
+            const fpPromise = FingerprintJS.load();
+            const fp = await fpPromise;
+            const result = await fp.get();
+      
+            // Save the fingerprint data to state.
+            setFingerprintData(result);
+      
+            // Send the fingerprint data to the server.
+            fetch('https://yourserver.com/api/save-fingerprint', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(result)
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log('Success:', data);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+          }
+      
+          fetchFingerprint();
         const intervalId = setInterval(updateBar, 5000);
             if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
                 setUserData(WebApp.initDataUnsafe.user);
