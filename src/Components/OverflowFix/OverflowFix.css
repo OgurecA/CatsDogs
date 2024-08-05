@@ -41,11 +41,21 @@
   .image-container.selected.harris-image {
     --image-width: 70vw; /* Новая ширина при выборе */
     --image-height: 70vw;
+    left: 15vw;
+    bottom: 30vh;
 }
 
 .image-container.selected.trump-image {
     --image-width: 70vw; /* Новая ширина при выборе */
     --image-height: 70vw;
+    right: 15vw;
+    bottom: 30vh;
+}
+.image-container.unselected.trump-image {
+    right: -50vw;
+}
+.image-container.unselected.harris-image {
+    left: -50vw;
 }
 
   .image-container.selected:active {

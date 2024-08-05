@@ -100,8 +100,10 @@ function App() {
     }
 
     function handleClickHarrisB() {
-        document.documentElement.style.setProperty('--harris-left', '15vw');
-        document.documentElement.style.setProperty('--trump-left', '-100vw'); 
+        document.querySelector('.trump-image').classList.add('unselected');
+        document.querySelector('.trump-image').classList.remove('selected');
+        document.querySelector('.harris-image').classList.remove('unselected');
+        document.querySelector('.harris-image').classList.add('selected');
         setIsActive(!isActive);
         setTimeout(() => {
             setIsSelectedHarris(true);
@@ -112,8 +114,10 @@ function App() {
     }
     
     function handleClickTrumpB() {
-        document.documentElement.style.setProperty('--trump-left', '15vw');
-        document.documentElement.style.setProperty('--harris-left', '-100vw');
+        document.querySelector('.trump-image').classList.add('selected');
+        document.querySelector('.trump-image').classList.remove('unselected');
+        document.querySelector('.harris-image').classList.remove('selected');
+        document.querySelector('.harris-image').classList.add('unselected');
         setIsActive(!isActive);
             setTimeout(() => {
             setIsSelectedTrump(true);
