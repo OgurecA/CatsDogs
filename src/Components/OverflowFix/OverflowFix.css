@@ -59,6 +59,5 @@
 }
 
   .image-container.selected:active {
-    transition: transform 0.02s;
     transform: scale(0.95); /* Применяется только если выбор сделан */
   }
