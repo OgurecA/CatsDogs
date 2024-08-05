@@ -100,7 +100,7 @@ function App() {
     }
 
     function handleClickHarrisB() {
-        document.documentElement.style.setProperty('--harris-left', '30vw');
+        document.documentElement.style.setProperty('--harris-left', '20vw');
         document.documentElement.style.setProperty('--trump-left', '-60vw'); 
         setIsActive(!isActive);
         setTimeout(() => {
@@ -112,7 +112,7 @@ function App() {
     }
     
     function handleClickTrumpB() {
-        document.documentElement.style.setProperty('--trump-left', '30vw');
+        document.documentElement.style.setProperty('--trump-left', '20vw');
         document.documentElement.style.setProperty('--harris-left', '-60vw');
         setIsActive(!isActive);
             setTimeout(() => {

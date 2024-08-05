@@ -7,7 +7,7 @@
     height: 100vh;
 }
 .image-container {
-    width: 40vw;
+    width: 60vw;
     height: auto;
     overflow: visible;
     transition: left 1.2s ease, right 1.2s ease, transform 0.02s;
@@ -27,14 +27,14 @@
     overflow: visible;
     position: absolute;
     left: var(--harris-left, 0vw);
-    bottom: var(--harris-bottom, 25vh);
+    bottom: var(--harris-bottom, 30vh);
   }
 
   .image-container.trump-image {
     overflow: visible;
     position: absolute;
     right: var(--trump-left, 0vw);
-    bottom: var(--trump-bottom, 25vh);
+    bottom: var(--trump-bottom, 30vh);
   }
   
   .image-container.selected:active {
