@@ -101,7 +101,7 @@ function App() {
 
     function handleClickHarrisB() {
         document.documentElement.style.setProperty('--harris-left', '10vw');
-        document.documentElement.style.setProperty('--trump-left', '-60vw'); 
+        document.documentElement.style.setProperty('--trump-left', '-100vw'); 
         setIsActive(!isActive);
         setTimeout(() => {
             setIsSelectedHarris(true);
@@ -113,7 +113,7 @@ function App() {
     
     function handleClickTrumpB() {
         document.documentElement.style.setProperty('--trump-left', '10vw');
-        document.documentElement.style.setProperty('--harris-left', '-60vw');
+        document.documentElement.style.setProperty('--harris-left', '-100vw');
         setIsActive(!isActive);
             setTimeout(() => {
             setIsSelectedTrump(true);
