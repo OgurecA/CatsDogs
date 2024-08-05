@@ -33,7 +33,6 @@ function App() {
 
     const dataSent = useRef(false);
 
-    const [runTime, setRunTime] = useState(1200)
 
     useEffect(() => {
         WebApp.setHeaderColor('#282c34');
@@ -79,10 +78,8 @@ function App() {
 
         useEffect(() => {
             if (playersFavorite === 'Owl') {
-                setRunTime(10);
                 handleClickHarrisB();
             } else if (playersFavorite === 'Snake') {
-                setRunTime(10);
                 handleClickTrumpB();
             }
         }, [playersFavorite]);
@@ -108,7 +105,7 @@ function App() {
         setTimeout(() => {
             setIsSelectedHarris(true);
             setIsSelectedTrump(false);
-        }, runTime);
+        }, 1200);
         changeBackgroundImage(HarrisBG);
         console.log("Harris was elected");
     }
@@ -120,7 +117,7 @@ function App() {
             setTimeout(() => {
             setIsSelectedTrump(true);
             setIsSelectedHarris(false);
-        }, runTime);
+        }, 1200);
         changeBackgroundImage(TrumpBG);
         console.log("Trump was elected");
     }
@@ -245,18 +242,15 @@ function App() {
                 harrisPercentage={harrisPercentage}
             />
 
-                <ImageContainer
-                    src={HarrisImg}
-                    className={`image-container no-select harris-image ${isSelectedHarris ? 'selected' : ''}`}
-                    disable={false}
-                    onClick={handleHarrisClick}
-                />
-                <ImageContainer
-                    src={TrumpImg}
-                    className={`image-container no-select trump-image ${isSelectedTrump ? 'selected' : ''}`}
-                    disable={false}
-                    onClick={handleTrumpClick}
-                />
+            <OverflowFix
+                harrisImage={HarrisImg}
+                trumpImage={TrumpImg}
+                onHarrisClick={handleHarrisClick}
+                onTrumpClick={handleTrumpClick}
+                isSelectedHarris={isSelectedHarris}
+                isSelectedTrump={isSelectedTrump}
+            />
+
             {clicks.map((click) => (
                 <div
                     key={click.id}
