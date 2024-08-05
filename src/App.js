@@ -79,7 +79,7 @@ function App() {
 
         useEffect(() => {
             if (playersFavorite === 'Owl') {
-                handleClickHarrisB();
+                setTimeout(handleClickHarrisB, 10000);
             } else if (playersFavorite === 'Snake') {
                 handleClickTrumpB();
             }
