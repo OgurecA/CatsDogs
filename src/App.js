@@ -68,17 +68,16 @@ function App() {
                         setPersonalHarrisCount(data.personal_harris_count ?? 0);
                         setPersonalTrumpCount(data.personal_trump_count ?? 0);
                         setPlayersFavorite(data.favorite);
-
-                        if (data.favorite === 'Owl') {
-                            handleClickHarrisB();
-                        } else if (data.favorite === 'Snake') {
-                            handleClickTrumpB();
-                        }
                     })
                     .catch((error) => {
                         console.error('Error:', error);
                     });
                 }
+            }
+            if (playersFavorite === 'Owl') {
+                handleClickHarrisB();
+            } else if (playersFavorite === 'Snake') {
+                handleClickTrumpB();
             }
             return () => clearInterval(intervalId);
         }, []);
