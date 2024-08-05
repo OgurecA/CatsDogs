@@ -7,8 +7,8 @@
     height: 100vh;
 }
 .image-container {
-    width: var(--image-width, 20vw);
-    height: var(--image-height, 20vw);
+    width: var(--image-width, 35vw);
+    height: var(--image-height, 35vw);
     overflow: visible;
     transition: left 1.2s ease, right 1.2s ease, bottom 1.2s ease, width 1.2s ease, height 1.2s ease;
     background: none;
@@ -26,15 +26,15 @@
 .image-container.harris-image {
     overflow: visible;
     position: absolute;
-    left: var(--harris-left, 0vw);
-    bottom: var(--harris-bottom, 30vh);
+    left: var(--harris-left, 10vw);
+    bottom: var(--harris-bottom, 40vh);
   }
 
   .image-container.trump-image {
     overflow: visible;
     position: absolute;
-    right: var(--trump-left, 0vw);
-    bottom: var(--trump-bottom, 30vh);
+    right: var(--trump-left, 10vw);
+    bottom: var(--trump-bottom, 40vh);
   }
   
 
