@@ -74,13 +74,16 @@ function App() {
                     });
                 }
             }
-            if (playersFavorite === 'Owl') {
-                handleClickHarrisB();
-            } else if (playersFavorite === 'Snake') {
-                handleClickTrumpB();
-            }
             return () => clearInterval(intervalId);
         }, []);
+
+        useEffect(() => {
+            if (playersFavorite === 'Harris') {
+                handleClickHarrisB();
+            } else if (playersFavorite === 'Trump') {
+                handleClickTrumpB();
+            }
+        }, [playersFavorite]);
 
     const totalVotes = votes.Trump + votes.Harris;
     const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(1) : 0;
