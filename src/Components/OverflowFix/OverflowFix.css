@@ -2,7 +2,7 @@
     position: absolute;
     left: 0%;
     top: 0%;
-    overflow: visible;
+    overflow: hidden;
     width: 100vw;
     height: 100vh;
 }
@@ -22,14 +22,17 @@
     height: 100%;
     object-fit: cover;
     overflow: visible;
+    position: absolute;
   }
 .image-container.harris-image {
+    overflow: visible;
     position: absolute;
     left: var(--harris-left, 0vw);
     bottom: var(--harris-bottom, 25vh);
   }
 
   .image-container.trump-image {
+    overflow: visible;
     position: absolute;
     right: var(--trump-left, 0vw);
     bottom: var(--trump-bottom, 25vh);

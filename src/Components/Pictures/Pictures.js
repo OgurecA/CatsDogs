@@ -4,8 +4,8 @@ import HarrisBG from "../Photoes/Suit.jpg";
 import TrumpBG from "../Photoes/Text.jpg";
 import TrumpH from "../Photoes/TrumpH.png";
 import HarrisH from "../Photoes/HarrisH.png";
-import TrumpP from "../Photoes/harris pres.png";
-import HarrisP from "../Photoes/trump pres.jpeg";
+import TrumpP from "../Photoes/Cats.jpg";
+import HarrisP from "../Photoes/Rama.jpg";
 import bybit from "../Photoes/bybit.jpg";
 
 
