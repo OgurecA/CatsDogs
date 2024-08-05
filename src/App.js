@@ -104,7 +104,6 @@ function App() {
         document.documentElement.style.setProperty('--trump-left', '-60vw'); 
         setIsActive(!isActive);
         setTimeout(() => {
-            setContentVisible('harris');
             setIsSelectedHarris(true);
             setIsSelectedTrump(false);
         }, 1200);
@@ -119,7 +118,6 @@ function App() {
             setTimeout(() => {
             setIsSelectedTrump(true);
             setIsSelectedHarris(false);
-            setContentVisible('trump');
         }, 1200);
         changeBackgroundImage(TrumpBG);
         console.log("Trump was elected");
@@ -245,22 +243,18 @@ function App() {
                 harrisPercentage={harrisPercentage}
             />
 
-            {(contentVisible === 'harris' || contentVisible === 'both') && (
                 <ImageContainer
                     src={HarrisImg}
                     className={`image-container no-select harris-image ${isSelectedHarris ? 'selected' : ''}`}
                     disable={false}
                     onClick={handleHarrisClick}
                 />
-            )}
-            {(contentVisible === 'trump' || contentVisible === 'both') && (
                 <ImageContainer
                     src={TrumpImg}
                     className={`image-container no-select trump-image ${isSelectedTrump ? 'selected' : ''}`}
                     disable={false}
                     onClick={handleTrumpClick}
                 />
-            )}
             {clicks.map((click) => (
                 <div
                     key={click.id}
