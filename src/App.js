@@ -78,9 +78,9 @@ function App() {
         }, []);
 
         useEffect(() => {
-            if (playersFavorite === 'Harris') {
+            if (playersFavorite === 'Owl') {
                 handleClickHarrisB();
-            } else if (playersFavorite === 'Trump') {
+            } else if (playersFavorite === 'Snake') {
                 handleClickTrumpB();
             }
         }, [playersFavorite]);
