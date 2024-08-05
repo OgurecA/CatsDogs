@@ -73,7 +73,7 @@ function incrementTrumpTotalVotes() {
               if (selectErr) {
                   console.error('Error fetching Trump votes', selectErr.message);
               } else {
-                  console.log(`Current number of votes for Trump: ${row.votes}`);
+                  console.log(`Current number of votes for Snake: ${row.votes}`);
               }
           });
       }
@@ -92,7 +92,7 @@ function incrementHarrisTotalVotes() {
               if (selectErr) {
                   console.error('Error fetching Harris votes', selectErr.message);
               } else {
-                  console.log(`Current number of votes for Harris: ${row.votes}`);
+                  console.log(`Current number of votes for Owl: ${row.votes}`);
               }
           });
       }
@@ -188,13 +188,13 @@ app.get('/get-counts', (req, res) => {
 // Эндпоинт для увеличения голосов за Трампа
 app.post('/vote/trump', (req, res) => {
   incrementTrumpTotalVotes();
-  res.send({ message: 'Vote for Trump registered' });
+  res.send({ message: 'Vote for Snake registered' });
 });
 
 // Эндпоинт для увеличения голосов за Харрис
 app.post('/vote/harris', (req, res) => {
   incrementHarrisTotalVotes();
-  res.send({ message: 'Vote for Harris registered' });
+  res.send({ message: 'Vote for Owl registered' });
 });
 
 app.get('/votes', (req, res) => {

@@ -169,7 +169,7 @@ function App() {
     }
 
     const personalCount = personalHarrisCount - personalTrumpCount;
-    const favorite = personalHarrisCount > personalTrumpCount ? 'Harris' : (personalTrumpCount > personalHarrisCount ? 'Trump' : 'None');
+    const favorite = personalHarrisCount > personalTrumpCount ? 'Owl' : (personalTrumpCount > personalHarrisCount ? 'Snake' : 'None');
 
     function updateCounts() {
         const data = {
@@ -260,7 +260,7 @@ function App() {
                     }}
                     onAnimationEnd={() => handleAnimationEnd(click.id)}
                 >
-                    <img src={isSelectedHarris ? HarrisImg : TrumpImg} alt="Small Image" style={{ width: '80px', height: '50px' }} />
+                    <img src={isSelectedHarris ? HarrisImg : TrumpImg} alt="Small Image" style={{ width: '50px', height: '50px' }} />
                 </div>
             ))}
         </>
