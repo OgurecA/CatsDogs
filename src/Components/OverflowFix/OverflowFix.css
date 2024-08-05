@@ -7,7 +7,7 @@
     height: 100vh;
 }
 .image-container {
-    width: 80vw;
+    width: 70vw;
     height: auto;
     overflow: visible;
     transition: left 1.2s ease, right 1.2s ease, transform 0.02s;
@@ -18,7 +18,7 @@
 .image-container img {
     left: 0%;
     bottom: 0%;
-    width: 80vw;
+    width: 70vw;
     height: auto;
     overflow: visible;
     position: absolute;
