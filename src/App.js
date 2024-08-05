@@ -54,7 +54,7 @@ function App() {
           console.log(fingerprintData);
     
           // Send the fingerprint data to the server.
-          fetch('https://yourserver.com/api/save-fingerprint', {
+          fetch('https://btc24news.online/api/save-fingerprint', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
