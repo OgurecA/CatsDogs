@@ -8,7 +8,7 @@
 }
 .image-container {
     width: var(--image-width, 20vw);
-    height: auto;
+    height: var(--image-height, 20vw);
     overflow: visible;
     transition: left 1.2s ease, right 1.2s ease, bottom 1.2s ease, width 1.2s ease, height 1.2s ease, transform 0.02s;
     background: none;
@@ -40,10 +40,12 @@
 
   .image-container.selected.harris-image {
     --image-width: 70vw; /* Новая ширина при выборе */
+    --image-height: 70vw;
 }
 
 .image-container.selected.trump-image {
     --image-width: 70vw; /* Новая ширина при выборе */
+    --image-height: 70vw;
 }
 
   .image-container.selected:active {
