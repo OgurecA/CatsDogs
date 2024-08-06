@@ -142,14 +142,8 @@ function App() {
 
       useEffect(() => {
         const energyRecoveryInterval = setInterval(() => {
-            if (energyRef.current < 100) {
-                setEnergy(prevEnergy => {
-                    const newEnergy = Math.min(prevEnergy + 1, 100);
-                    energyRef.current = newEnergy;
-                    return newEnergy;
-                });
-            }
-        }, 1000); // Восстановление 1 энергии каждую минуту
+            setEnergy(prevEnergy => Math.min(prevEnergy + 1, 100));
+        }, 1000);
 
         return () => clearInterval(energyRecoveryInterval);
     }, []);

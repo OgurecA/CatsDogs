@@ -5,8 +5,8 @@ function Energy({ energy }) {
 
     return (
         <div className="energy">
-            <p>Energy:</p>
-            <p>{energy}</p>
+            <p>{energy}/100</p>
+            <p>Energy</p>
         </div>
     );
 }
