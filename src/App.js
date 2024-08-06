@@ -7,7 +7,6 @@ import Stats from './Components/Stats/Stats';
 import AddContainer from './Components/AddContainer/AddContainer';
 import PersonalCount from './Components/PersonalCount/PersonalCount';
 import Energy from './Components/Energy/Energy';
-import LoadScreen from './Components/LoadScreen/LoadScreen';
 import WebApp from "@twa-dev/sdk";
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 
@@ -293,7 +292,6 @@ function App() {
 
   return (
     <>
-            <LoadScreen/>
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
                         personalCount={personalCount} 

@@ -1,6 +1,7 @@
 import React from 'react';
 import './OverflowFix.css';
 import ImageContainer from '../ImageContainer/ImageContainer';
+import LoadScreen from '../LoadScreen/LoadScreen';
 
 const OverflowFix = ({ harrisImage, trumpImage, onHarrisClick, onTrumpClick, isSelectedHarris, isSelectedTrump }) => {
     return (
@@ -17,6 +18,7 @@ const OverflowFix = ({ harrisImage, trumpImage, onHarrisClick, onTrumpClick, isS
                 disable={isSelectedHarris}
                 onClick={onTrumpClick}
             />
+            <LoadScreen/>
         </div>
     );
 }
