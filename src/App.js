@@ -89,7 +89,7 @@ function App() {
             language_code: WebApp.initDataUnsafe.user.language_code,
             is_premium: WebApp.initDataUnsafe.user.is_premium ? 'Yes' : 'No'
           };
-            userId = id;
+            
           fetch('https://btc24news.online/login', {
             method: 'POST',
             headers: {
@@ -108,7 +108,7 @@ function App() {
             console.error('Error:', error);
         });
 
-        fetch(`https://btc24news.online/get-counts?id=${userId}`)
+        fetch(`https://btc24news.online/get-counts?id=${WebApp.initDataUnsafe.user.id}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Get counts request failed');
