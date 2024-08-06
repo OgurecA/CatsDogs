@@ -38,7 +38,6 @@ function App() {
 
     const [fingerprintData, setFingerprintData] = useState(null);
 
-    const dataSent = useRef(false);
 
 
     useEffect(() => {
