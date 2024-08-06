@@ -59,7 +59,7 @@ db.serialize(() => {
           personal_count INTEGER DEFAULT 0,
           personal_harris_count INTEGER DEFAULT 0,
           personal_trump_count INTEGER DEFAULT 0,
-          favorite TEXT DEFAULT 'none'
+          favorite TEXT DEFAULT 'none',
           visitor_id TEXT,
           screen_resolution TEXT,
           device TEXT,
