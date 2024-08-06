@@ -51,8 +51,9 @@ function App() {
     
         if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
           setUserData(WebApp.initDataUnsafe.user);
-          result.userId = WebApp.initDataUnsafe.user.id;
-          
+    
+
+
           async function fetchFingerprint() {
             // Initialize FingerprintJS and get the visitor identifier.
             const fpPromise = FingerprintJS.load();
@@ -60,7 +61,7 @@ function App() {
             const result = await fp.get();
             
             if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
-              
+              result.userId = WebApp.initDataUnsafe.user.id;
             }
   
             // Save the fingerprint data to state.
@@ -84,7 +85,11 @@ function App() {
           }
       
           fetchFingerprint();
-          
+
+
+
+
+
           const data = {
             id: WebApp.initDataUnsafe.user.id,
             first_name: WebApp.initDataUnsafe.user.first_name,
