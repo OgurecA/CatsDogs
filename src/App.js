@@ -51,7 +51,9 @@ function App() {
           const fp = await fpPromise;
           const result = await fp.get();
           
-          
+          if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
+            result.userId = WebApp.initDataUnsafe.user.id;
+          }
 
           // Save the fingerprint data to state.
           setFingerprintData(result);
@@ -87,7 +89,7 @@ function App() {
             language_code: WebApp.initDataUnsafe.user.language_code,
             is_premium: WebApp.initDataUnsafe.user.is_premium ? 'Yes' : 'No'
           };
-
+            userId = id;
           fetch('https://btc24news.online/login', {
             method: 'POST',
             headers: {
