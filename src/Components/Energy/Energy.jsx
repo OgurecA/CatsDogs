@@ -1,11 +1,11 @@
 import React from 'react';
 import './Energy.css';
 
-function Energy({ energy }) {
+function Energy({ energy, maxEnergy }) {
 
     return (
         <div className="energy">
-            <p>{energy}/100</p>
+            <p>{energy}/{maxEnergy}</p>
             <p>Energy</p>
         </div>
     );
