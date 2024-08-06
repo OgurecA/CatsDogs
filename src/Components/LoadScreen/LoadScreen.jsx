@@ -17,7 +17,7 @@ function LoadScreen() {
   }
 
   return (
-    <div className="load-screen">LoadScreen</div>
+    <div className="load-screen ${visible ? 'visible' : 'hidden'}">LoadScreen</div>
   );
 }
 
