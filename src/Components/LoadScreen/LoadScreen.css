@@ -13,8 +13,17 @@
     z-index: 1000; /* Обеспечивает, что элемент будет над другими элементами */
   }
 
+  @keyframes slideOut {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-100%);
+    }
+  }
+
   .load-screen.hidden {
-    opacity: 0; /* Прозрачный, чтобы визуально исчезнуть */
     pointer-events: none; /* Отключение событий указателя */
     z-index: -999;
+    animation: slideOut 0.5s forwards;
   }
