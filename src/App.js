@@ -12,6 +12,7 @@ import FingerprintJS from '@fingerprintjs/fingerprintjs';
 
 
 import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit } from './Components/Pictures/Pictures';
+import Energy from './Components/Energy/Energy';
 
 
 function App() {
@@ -278,6 +279,9 @@ function App() {
             <PersonalCount 
                         personalCount={personalCount} 
                         favorite={favorite} 
+                    />
+            <Energy
+                        energy={energy}
                     />
             <AddContainer
                 ads={[
