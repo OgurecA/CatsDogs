@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'GTA';
+    src: url('../Fonts/GTA.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.energy {
+    text-align: right;
+    position: absolute;
+    bottom: 10%;
+    right: 3%;
+    width: 97%;
+    height: 10%;
+    color: rgb(255, 255, 255);
+    font-family: 'GTA', sans-serif;
+    font-size: 24px;
+}
+
+.energy p {
+    margin: 0; /* Убираем внешний отступ */
+    padding: 0; /* Убираем внутренний отступ */
+    line-height: 0.8; /* Устанавливаем меньший интервал между строками */
+}

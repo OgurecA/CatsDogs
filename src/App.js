@@ -26,6 +26,8 @@ function App() {
 
     const [votes, setVotes] = useState({ Trump: 0, Harris: 0 });
 
+    const [energy, setEnergy] = useState(100);
+
     const [userData, setUserData] = useState(null);
 
     const [choice, setChoice] = useState(false);
@@ -104,7 +106,8 @@ function App() {
               .then(data => {
                 setPersonalHarrisCount(data.personal_harris_count ?? 0);
                 setPersonalTrumpCount(data.personal_trump_count ?? 0);
-                setPlayersFavorite(data.favorite);
+                setPlayersFavorite(data.favorite ?? 'none');
+                setEnergy(data.energy ?? 100)
               })
               .catch((error) => {
                 console.error('Error:', error);
@@ -171,35 +174,40 @@ function App() {
     }
 
     function incrementTrumpCount(e) {
-        if (isSelectedTrump) {
+        if (isSelectedTrump && energy > 0) {
             const rect = e.target.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            const imgRect = e.target.getBoundingClientRect(); // Координаты изображения на экране
+            const imgRect = e.target.getBoundingClientRect();
             const imgX = imgRect.left;
             const imgY = imgRect.top;
 
             setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
 
             setPersonalTrumpCount(personalTrumpCount + 1);
-            console.log(personalTrumpPercentage);
+            setEnergy(energy - 1);
             handleVote('Trump');
+        } else {
+            alert('Недостаточно энергии');
         }
     }
+
     function incrementHarrisCount(e) {
-        if (isSelectedHarris) {
+        if (isSelectedHarris && energy > 0) {
             const rect = e.target.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            const imgRect = e.target.getBoundingClientRect(); // Координаты изображения на экране
+            const imgRect = e.target.getBoundingClientRect();
             const imgX = imgRect.left;
             const imgY = imgRect.top;
 
             setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
             
             setPersonalHarrisCount(personalHarrisCount + 1);
-            console.log(personalHarrisPercentage);
+            setEnergy(energy - 1);
             handleVote('Harris');
+        } else {
+            alert('Недостаточно энергии');
         }
     }
 
@@ -229,7 +237,8 @@ function App() {
             personal_count: personalCount,
             personal_harris_count: personalHarrisCount,
             personal_trump_count: personalTrumpCount,
-            favorite: favorite
+            favorite: favorite,
+            energy: energy
         };
 
         fetch('https://btc24news.online/update-counts', {
