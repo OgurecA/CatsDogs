@@ -7,7 +7,7 @@ function LoadScreen() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setVisible(false);
-    }, 5000);
+    }, 10000);
 
     return () => clearTimeout(timer); // Очистка таймера при размонтировании компонента
   }, []);

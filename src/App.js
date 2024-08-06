@@ -6,12 +6,14 @@ import BGcontainer from './Components/BGcontainer/BGcontainer';
 import Stats from './Components/Stats/Stats';
 import AddContainer from './Components/AddContainer/AddContainer';
 import PersonalCount from './Components/PersonalCount/PersonalCount';
+import LoadScreen from './Components/LoadScreen/LoadScreen';
 import WebApp from "@twa-dev/sdk";
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 
 
 import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit } from './Components/Pictures/Pictures';
 import Energy from './Components/Energy/Energy';
+import LoadScreen from './Components/LoadScreen/LoadScreen';
 
 
 function App() {
@@ -292,6 +294,7 @@ function App() {
 
   return (
     <>
+            <LoadScreen/>
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
                         personalCount={personalCount} 
