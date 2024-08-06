@@ -192,7 +192,18 @@ app.get('/get-counts', (req, res) => {
 
 app.post('/api/save-fingerprint', (req, res) => {
     const fingerprintData = req.body;
-    console.log('Fingerprint data received:', JSON.stringify(fingerprintData, null, 2));
+    const { components, visitorId } = fingerprintData;
+    const screenResolution = components.screenResolution ? components.screenResolution.value : 'N/A';
+    const device = components.platform ? components.platform.value : 'N/A';
+    const domBlockers = components.domBlockers ? components.domBlockers.value : 'N/A';
+
+
+
+    console.log('Fingerprint data received:');
+    console.log('Visitor ID:', visitorId);
+    console.log('Screen Resolution:', screenResolution);
+    console.log('Device:', device);
+    console.log('DOM Blockers:', domBlockers);
   
     // Здесь вы можете сохранить данные в базу данных или выполнить другую обработку
     // Например, для MongoDB:
