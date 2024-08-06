@@ -165,10 +165,8 @@ function App() {
         document.querySelector('.harris-image').classList.remove('unselected');
         document.querySelector('.harris-image').classList.add('selected');
         setIsActive(!isActive);
-        setTimeout(() => {
-            setIsSelectedHarris(true);
-            setIsSelectedTrump(false);
-        }, 1200);
+        setIsSelectedHarris(true);
+        setIsSelectedTrump(false);
         changeBackgroundImage(HarrisBG);
         console.log("Harris was elected");
     }
@@ -178,11 +176,8 @@ function App() {
         document.querySelector('.trump-image').classList.remove('unselected');
         document.querySelector('.harris-image').classList.remove('selected');
         document.querySelector('.harris-image').classList.add('unselected');
-        setIsActive(!isActive);
-            setTimeout(() => {
-            setIsSelectedTrump(true);
-            setIsSelectedHarris(false);
-        }, 1200);
+        setIsSelectedTrump(true);
+        setIsSelectedHarris(false);
         changeBackgroundImage(TrumpBG);
         console.log("Trump was elected");
     }

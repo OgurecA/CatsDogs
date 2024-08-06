@@ -8,13 +8,13 @@ const OverflowFix = ({ harrisImage, trumpImage, onHarrisClick, onTrumpClick, isS
             <ImageContainer
                 src={harrisImage}
                 className={`image-container no-select harris-image ${isSelectedHarris ? 'selected' : ''}`}
-                disable={false}
+                disable={isSelectedTrump}
                 onClick={onHarrisClick}
             />
             <ImageContainer
                 src={trumpImage}
                 className={`image-container no-select trump-image ${isSelectedTrump ? 'selected' : ''}`}
-                disable={false}
+                disable={isSelectedHarris}
                 onClick={onTrumpClick}
             />
         </div>

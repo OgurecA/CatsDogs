@@ -52,10 +52,10 @@
     bottom: 30vh;
 }
 .image-container.unselected.trump-image {
-    right: -50vw;
+    right: 10vw;
 }
 .image-container.unselected.harris-image {
-    left: -50vw;
+    left: 10vw;
 }
 
   .image-container.selected:active {
