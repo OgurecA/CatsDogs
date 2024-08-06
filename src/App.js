@@ -184,7 +184,7 @@ function App() {
     }
 
     function incrementTrumpCount(e) {
-        if (isSelectedTrump) {
+        if (isSelectedTrump && energy > 0) {
             const rect = e.target.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
@@ -197,11 +197,13 @@ function App() {
             setPersonalTrumpCount(personalTrumpCount + 1);
             setEnergy(energy - 1);
             handleVote('Trump');
+        } else {
+            alert('Недостаточно энергии');
         }
     }
 
     function incrementHarrisCount(e) {
-        if (isSelectedHarris) {
+        if (isSelectedHarris && energy > 0) {
             const rect = e.target.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
@@ -213,6 +215,8 @@ function App() {
             
             setPersonalHarrisCount(personalHarrisCount + 1);
             handleVote('Harris');
+        } else {
+            alert('Недостаточно энергии');
         }
     }
 
