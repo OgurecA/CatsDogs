@@ -38,6 +38,7 @@ function App() {
 
     const [fingerprintData, setFingerprintData] = useState(null);
 
+    const energyRef = useRef(energy);
 
 
     useEffect(() => {
@@ -138,6 +139,20 @@ function App() {
           handleClickTrumpB();
         }
       }, [playersFavorite]);
+
+      useEffect(() => {
+        const energyRecoveryInterval = setInterval(() => {
+            if (energyRef.current < 100) {
+                setEnergy(prevEnergy => {
+                    const newEnergy = Math.min(prevEnergy + 1, 100);
+                    energyRef.current = newEnergy;
+                    return newEnergy;
+                });
+            }
+        }, 1000); // Восстановление 1 энергии каждую минуту
+
+        return () => clearInterval(energyRecoveryInterval);
+    }, []);
 
     const totalVotes = votes.Trump + votes.Harris;
     const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(1) : 0;
