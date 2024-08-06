@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './LoadScreen.css';
 
-function LoadScreen() {
+function LoadScreen( src ) {
   useEffect(() => {
     const timer = setTimeout(() => {
       const loadScreen = document.querySelector('.load-screen');
@@ -15,7 +15,9 @@ function LoadScreen() {
 
   return (
     <div className="load-screen">
-      <div className="load-screen-content">LoadScreen</div>
+      <div className="load-screen-content">
+        <img src={src} alt="Loading" className="loading-image" />
+      </div>
     </div>
   );
 }

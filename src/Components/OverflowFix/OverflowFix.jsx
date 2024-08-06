@@ -18,7 +18,7 @@ const OverflowFix = ({ harrisImage, trumpImage, onHarrisClick, onTrumpClick, isS
                 disable={isSelectedHarris}
                 onClick={onTrumpClick}
             />
-            <LoadScreen/>
+            <LoadScreen src={harrisImage}/>
         </div>
     );
 }

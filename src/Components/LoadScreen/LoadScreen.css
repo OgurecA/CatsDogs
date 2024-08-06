@@ -26,3 +26,10 @@
     pointer-events: none; /* Отключение событий указателя */
     animation: slideOut 0.5s forwards;
   }
+
+  .loading-image {
+    width: 80vw; /* Установите размер изображения по вашему усмотрению */
+    height: 80vw;
+    left: 10vw;
+    bottom: 40vh;
+  }
