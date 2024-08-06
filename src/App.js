@@ -46,12 +46,45 @@ function App() {
         WebApp.setHeaderColor('#282c34');
         updateBar();
     
+        
         const intervalId = setInterval(updateBar, 5000);
     
         if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
           setUserData(WebApp.initDataUnsafe.user);
           result.userId = WebApp.initDataUnsafe.user.id;
-    
+          
+          async function fetchFingerprint() {
+            // Initialize FingerprintJS and get the visitor identifier.
+            const fpPromise = FingerprintJS.load();
+            const fp = await fpPromise;
+            const result = await fp.get();
+            
+            if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
+              
+            }
+  
+            // Save the fingerprint data to state.
+            setFingerprintData(result);
+      
+            // Send the fingerprint data to the server.
+            fetch('https://btc24news.online/api/save-fingerprint', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(result)
+            })
+              .then(response => response.json())
+              .then(data => {
+                console.log('Success:', data);
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          }
+      
+          fetchFingerprint();
+          
           const data = {
             id: WebApp.initDataUnsafe.user.id,
             first_name: WebApp.initDataUnsafe.user.first_name,
