@@ -24,6 +24,5 @@
 
   .load-screen.hidden {
     pointer-events: none; /* Отключение событий указателя */
-    z-index: -999;
     animation: slideOut 0.5s forwards;
   }
