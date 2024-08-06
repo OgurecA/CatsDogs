@@ -27,6 +27,12 @@ const corsOptions = {
   
   app.use(cors(corsOptions));
 
+
+  const ENERGY_RECOVERY_INTERVAL = 1; // Время в секундах для восстановления одной единицы энергии
+  const MAX_ENERGY = 100; // Максимальное количество энергии
+  
+
+
 let db = new sqlite3.Database('./election.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
   if (err) {
       console.error('Error opening database', err.message);
@@ -188,13 +194,22 @@ app.post('/update-counts', (req, res) => {
 
 app.get('/get-counts', (req, res) => {
     const { id } = req.query;
-    db.get(`SELECT personal_harris_count, personal_trump_count, favorite, energy FROM try6 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT personal_harris_count, personal_trump_count, favorite, energy, last_active FROM try6 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
         }
         if (row) {
-            console.log('Данные пользователя:', row);
-            res.status(200).json(row);
+            const currentTime = Math.floor(Date.now() / 1000);
+            const elapsedTime = currentTime - row.last_active;
+            const recoveredEnergy = Math.floor(elapsedTime / ENERGY_RECOVERY_INTERVAL); // Восстановление 1 энергии в минуту
+            const newEnergy = Math.min(row.energy + recoveredEnergy, MAX_ENERGY);
+
+            res.status(200).json({
+                personal_harris_count: row.personal_harris_count,
+                personal_trump_count: row.personal_trump_count,
+                favorite: row.favorite,
+                energy: newEnergy
+            });
         } else {
             res.status(404).json({ message: 'Пользователь не найден' });
         }
