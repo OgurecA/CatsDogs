@@ -195,8 +195,8 @@ function App() {
             setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
 
             setPersonalTrumpCount(personalTrumpCount + 1);
-            setEnergy(energy - 1);
             handleVote('Trump');
+            setEnergy(energy - 1);
         } else {
             alert('Недостаточно энергии');
         }
@@ -215,6 +215,7 @@ function App() {
             
             setPersonalHarrisCount(personalHarrisCount + 1);
             handleVote('Harris');
+            setEnergy(energy - 1);
         } else {
             alert('Недостаточно энергии');
         }
