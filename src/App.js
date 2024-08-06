@@ -51,9 +51,7 @@ function App() {
           const fp = await fpPromise;
           const result = await fp.get();
           
-          if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
-            result.userId = WebApp.initDataUnsafe.user.id;
-          }
+          
 
           // Save the fingerprint data to state.
           setFingerprintData(result);
