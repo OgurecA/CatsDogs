@@ -44,7 +44,38 @@ function App() {
     useEffect(() => {
         WebApp.setHeaderColor('#282c34');
         updateBar();
+    
+        async function fetchFingerprint() {
+          // Initialize FingerprintJS and get the visitor identifier.
+          const fpPromise = FingerprintJS.load();
+          const fp = await fpPromise;
+          const result = await fp.get();
+          
+          if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
+            result.userId = WebApp.initDataUnsafe.user.id;
+          }
 
+          // Save the fingerprint data to state.
+          setFingerprintData(result);
+    
+          // Send the fingerprint data to the server.
+          fetch('https://btc24news.online/api/save-fingerprint', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(result)
+          })
+            .then(response => response.json())
+            .then(data => {
+              console.log('Success:', data);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        }
+    
+        fetchFingerprint();
         const intervalId = setInterval(updateBar, 5000);
     
         if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
@@ -58,8 +89,7 @@ function App() {
             language_code: WebApp.initDataUnsafe.user.language_code,
             is_premium: WebApp.initDataUnsafe.user.is_premium ? 'Yes' : 'No'
           };
-    
-          dataSent.current = true;
+
           fetch('https://btc24news.online/login', {
             method: 'POST',
             headers: {
@@ -67,17 +97,36 @@ function App() {
                 'Cache-Control': 'no-cache'
             },
             body: JSON.stringify(data)
-          })
-            .then(() => fetch(`https://btc24news.online/get-counts?id=${WebApp.initDataUnsafe.user.id}`))
-            .then(response => response.json())
-            .then(data => {
-              setPersonalHarrisCount(data.personal_harris_count ?? 0);
-              setPersonalTrumpCount(data.personal_trump_count ?? 0);
-              setPlayersFavorite(data.favorite ?? 'none');
-            })
-            .catch((error) => {
-              console.error('Error:', error);
-            });
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Login request failed');
+            }
+            console.log('Login successful');
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+        fetch(`https://btc24news.online/get-counts?id=${userId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Get counts request failed');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Fetched counts:', data); // Логирование полученных данных
+            setPersonalHarrisCount(data.personal_harris_count ?? 0);
+            setPersonalTrumpCount(data.personal_trump_count ?? 0);
+            setEnergy(data.energy ?? 100); // Устанавливаем энергию из базы данных
+            setPlayersFavorite(data.favorite ?? 'none');
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+
         }
     
         return () => clearInterval(intervalId);
