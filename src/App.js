@@ -91,29 +91,26 @@ function App() {
             is_premium: WebApp.initDataUnsafe.user.is_premium ? 'Yes' : 'No'
           };
     
-          // Fetch to submit user data
-          if (!dataSent.current) {
-            dataSent.current = true;
-            fetch('https://btc24news.online/login', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Cache-Control': 'no-cache'
-              },
-              body: JSON.stringify(data)
+          dataSent.current = true;
+          fetch('https://btc24news.online/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Cache-Control': 'no-cache'
+            },
+            body: JSON.stringify(data)
+          })
+            .then(() => fetch(`https://btc24news.online/get-counts?id=${WebApp.initDataUnsafe.user.id}`))
+            .then(response => response.json())
+            .then(data => {
+              setPersonalHarrisCount(data.personal_harris_count ?? 0);
+              setPersonalTrumpCount(data.personal_trump_count ?? 0);
+              setPlayersFavorite(data.favorite);
+              setEnergy(data.energy)
             })
-              .then(() => fetch(`https://btc24news.online/get-counts?id=${WebApp.initDataUnsafe.user.id}`))
-              .then(response => response.json())
-              .then(data => {
-                setPersonalHarrisCount(data.personal_harris_count ?? 0);
-                setPersonalTrumpCount(data.personal_trump_count ?? 0);
-                setPlayersFavorite(data.favorite ?? 'none');
-                setEnergy(data.energy ?? 100)
-              })
-              .catch((error) => {
-                console.error('Error:', error);
-              });
-          }
+            .catch((error) => {
+              console.error('Error:', error);
+            });
         }
     
         return () => clearInterval(intervalId);

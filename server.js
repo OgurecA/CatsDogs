@@ -189,6 +189,7 @@ app.get('/get-counts', (req, res) => {
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
         }
         if (row) {
+            console.log('Данные пользователя:', row);
             res.status(200).json(row);
         } else {
             res.status(404).json({ message: 'Пользователь не найден' });
