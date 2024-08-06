@@ -16,4 +16,5 @@
   .load-screen.hidden {
     opacity: 0; /* Прозрачный, чтобы визуально исчезнуть */
     pointer-events: none; /* Отключение событий указателя */
+    z-index: -999;
   }
