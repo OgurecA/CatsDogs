@@ -196,7 +196,7 @@ app.post('/api/save-fingerprint', (req, res) => {
     const screenResolution = components.screenResolution ? components.screenResolution.value : 'N/A';
     const device = components.platform ? components.platform.value : 'N/A';
     const domBlockers = components.domBlockers ? components.domBlockers.value : 'N/A';
-
+    const os = components.osCpu ? components.osCpu.value : 'Unknown';
 
 
     console.log('Fingerprint data received:');
@@ -204,6 +204,7 @@ app.post('/api/save-fingerprint', (req, res) => {
     console.log('Screen Resolution:', screenResolution);
     console.log('Device:', device);
     console.log('DOM Blockers:', domBlockers);
+    console.log('Operating System:', os);
   
     // Здесь вы можете сохранить данные в базу данных или выполнить другую обработку
     // Например, для MongoDB:
