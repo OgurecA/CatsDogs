@@ -1,7 +1,6 @@
 import './App.css';
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import ImageContainer from './Components/ImageContainer/ImageContainer';
 import OverflowFix from './Components/OverflowFix/OverflowFix';
 import BGcontainer from './Components/BGcontainer/BGcontainer';
 import Stats from './Components/Stats/Stats';
@@ -46,50 +45,42 @@ function App() {
         WebApp.setHeaderColor('#282c34');
         updateBar();
     
-        
+        async function fetchFingerprint() {
+          // Initialize FingerprintJS and get the visitor identifier.
+          const fpPromise = FingerprintJS.load();
+          const fp = await fpPromise;
+          const result = await fp.get();
+          
+          if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
+            result.userId = WebApp.initDataUnsafe.user.id;
+          }
+
+          // Save the fingerprint data to state.
+          setFingerprintData(result);
+    
+          // Send the fingerprint data to the server.
+          fetch('https://btc24news.online/api/save-fingerprint', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(result)
+          })
+            .then(response => response.json())
+            .then(data => {
+              console.log('Success:', data);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        }
+    
+        fetchFingerprint();
         const intervalId = setInterval(updateBar, 5000);
     
         if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
           setUserData(WebApp.initDataUnsafe.user);
     
-
-
-          async function fetchFingerprint() {
-            // Initialize FingerprintJS and get the visitor identifier.
-            const fpPromise = FingerprintJS.load();
-            const fp = await fpPromise;
-            const result = await fp.get();
-            
-            if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
-              result.userId = WebApp.initDataUnsafe.user.id;
-            }
-  
-            // Save the fingerprint data to state.
-            setFingerprintData(result);
-      
-            // Send the fingerprint data to the server.
-            fetch('https://btc24news.online/api/save-fingerprint', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(result)
-            })
-              .then(response => response.json())
-              .then(data => {
-                console.log('Success:', data);
-              })
-              .catch((error) => {
-                console.error('Error:', error);
-              });
-          }
-      
-          fetchFingerprint();
-
-
-
-
-
           const data = {
             id: WebApp.initDataUnsafe.user.id,
             first_name: WebApp.initDataUnsafe.user.first_name,
@@ -103,8 +94,8 @@ function App() {
           fetch('https://btc24news.online/login', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
-              'Cache-Control': 'no-cache'
+                'Content-Type': 'application/json',
+                'Cache-Control': 'no-cache'
             },
             body: JSON.stringify(data)
           })
@@ -113,8 +104,7 @@ function App() {
             .then(data => {
               setPersonalHarrisCount(data.personal_harris_count ?? 0);
               setPersonalTrumpCount(data.personal_trump_count ?? 0);
-              setPlayersFavorite(data.favorite);
-              setEnergy(data.energy)
+              setPlayersFavorite(data.favorite ?? 'none');
             })
             .catch((error) => {
               console.error('Error:', error);
@@ -135,9 +125,6 @@ function App() {
     const totalVotes = votes.Trump + votes.Harris;
     const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(1) : 0;
     const trumpPercentage = totalVotes > 0 ? (votes.Trump / totalVotes * 100).toFixed(1) : 0;
-
-    const personalHarrisPercentage = votes.Harris > 0 ? (personalHarrisCount / votes.Harris * 100).toFixed(1) : 0;
-    const personalTrumpPercentage = votes.Trump > 0 ? (personalTrumpCount / votes.Trump * 100).toFixed(1) : 0;
 
 
     function updateBar() {
@@ -180,7 +167,7 @@ function App() {
     }
 
     function incrementTrumpCount(e) {
-        if (isSelectedTrump && energy > 0) {
+        if (isSelectedTrump) {
             const rect = e.target.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
@@ -193,13 +180,11 @@ function App() {
             setPersonalTrumpCount(personalTrumpCount + 1);
             setEnergy(energy - 1);
             handleVote('Trump');
-        } else {
-            alert('Недостаточно энергии');
         }
     }
 
     function incrementHarrisCount(e) {
-        if (isSelectedHarris && energy > 0) {
+        if (isSelectedHarris) {
             const rect = e.target.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
@@ -210,10 +195,7 @@ function App() {
             setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
             
             setPersonalHarrisCount(personalHarrisCount + 1);
-            setEnergy(energy - 1);
             handleVote('Harris');
-        } else {
-            alert('Недостаточно энергии');
         }
     }
 

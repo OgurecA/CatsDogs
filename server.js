@@ -184,12 +184,11 @@ app.post('/update-counts', (req, res) => {
 
 app.get('/get-counts', (req, res) => {
     const { id } = req.query;
-    db.get(`SELECT personal_harris_count, personal_trump_count, favorite, energy FROM try6 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT personal_harris_count, personal_trump_count, favorite FROM try6 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
         }
         if (row) {
-            console.log('Данные пользователя:', row);
             res.status(200).json(row);
         } else {
             res.status(404).json({ message: 'Пользователь не найден' });
