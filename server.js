@@ -46,7 +46,7 @@ db.serialize(() => {
     // Добавление начальных данных
     db.run(`INSERT OR IGNORE INTO total_votes (candidate, votes) VALUES ('Trump', 0), ('Harris', 0)`);
   
-    db.run(`CREATE TABLE IF NOT EXISTS try2 (
+    db.run(`CREATE TABLE IF NOT EXISTS try3 (
           id INTEGER,
           first_name TEXT,
           last_name TEXT,
@@ -60,6 +60,10 @@ db.serialize(() => {
           personal_harris_count INTEGER DEFAULT 0,
           personal_trump_count INTEGER DEFAULT 0,
           favorite TEXT DEFAULT 'none'
+          visitor_id TEXT,
+          screen_resolution TEXT,
+          device TEXT,
+          raw_data TEXT
     )`);
   });
 
@@ -125,14 +129,14 @@ app.post('/login', async (req) => {
     const processedLastName = last_name || '';
     const processedUsername = username || '';
 
-    db.get(`SELECT * FROM try2 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT * FROM try3 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return console.error('Error fetching data', err.message);
         }
 
         if (row) {
             // Если пользователь существует, обновляем его данные
-            db.run(`UPDATE try2 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ?, city = ?, country = ?, ip = ? WHERE id = ?`, 
+            db.run(`UPDATE try3 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ?, city = ?, country = ?, ip = ? WHERE id = ?`, 
                         [first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip, id], 
                         function(err) {
                 if (err) {
@@ -142,7 +146,7 @@ app.post('/login', async (req) => {
             });
         } else {
             // Если пользователь не существует, вставляем новую запись
-            db.run(`INSERT INTO try2 (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count, favorite)
+            db.run(`INSERT INTO try3 (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count, favorite)
                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, 'none')`, 
                          [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
                          function(err) {
@@ -165,7 +169,7 @@ app.post('/update-counts', (req, res) => {
         favorite
     });
 
-    db.run(`UPDATE try2 SET personal_count = ?, personal_harris_count = ?, personal_trump_count = ?, favorite = ? WHERE id = ?`, 
+    db.run(`UPDATE try3 SET personal_count = ?, personal_harris_count = ?, personal_trump_count = ?, favorite = ? WHERE id = ?`, 
                 [personal_count, personal_harris_count, personal_trump_count, favorite, id], 
                 function(err) {
         if (err) {
@@ -178,7 +182,7 @@ app.post('/update-counts', (req, res) => {
 
 app.get('/get-counts', (req, res) => {
     const { id } = req.query;
-    db.get(`SELECT personal_harris_count, personal_trump_count, favorite FROM try2 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT personal_harris_count, personal_trump_count, favorite FROM try3 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
         }
@@ -192,31 +196,32 @@ app.get('/get-counts', (req, res) => {
 
 app.post('/api/save-fingerprint', (req, res) => {
     const fingerprintData = req.body;
-    const { components, visitorId } = fingerprintData;
+    const { components, visitorId, userId } = fingerprintData;
     const screenResolution = components.screenResolution ? components.screenResolution.value : 'N/A';
     const device = components.platform ? components.platform.value : 'N/A';
-    const domBlockers = components.domBlockers ? components.domBlockers.value : 'N/A';
-    const os = components.osCpu ? components.osCpu.value : 'Unknown';
+    const rawData = JSON.stringify(fingerprintData, null, 2);
+    id = userId
 
+    if (!components || !visitorId || !userId) {
+        return res.status(400).json({ error: 'Недостаточно данных для сохранения отпечатка' });
+    }
 
     console.log('Fingerprint data received:');
     console.log('Visitor ID:', visitorId);
     console.log('Screen Resolution:', screenResolution);
     console.log('Device:', device);
-    console.log('DOM Blockers:', domBlockers);
-    console.log('Operating System:', os);
   
-    // Здесь вы можете сохранить данные в базу данных или выполнить другую обработку
-    // Например, для MongoDB:
-    // MongoClient.connect(url, function(err, client) {
-    //   const db = client.db('yourdatabase');
-    //   db.collection('fingerprints').insertOne(fingerprintData, function(err, res) {
-    //     console.log("Document inserted");
-    //     client.close();
-    //   });
-    // });
-  
-    res.status(200).json({ message: 'Fingerprint data saved successfully' });
+    db.run(`UPDATE try3 SET visitor_id = ?, screen_resolution = ?, device = ?, raw_data = ? WHERE id = ?`,
+        [visitorId, screenResolution, device, rawData, userId],
+        function(err) {
+          if (err) {
+            console.error('Error updating data', err.message);
+            return res.status(500).json({ error: 'Ошибка при обновлении данных' });
+          }
+          console.log(`Fingerprint data for visitor ${visitorId} updated`);
+          res.status(200).json({ message: 'Fingerprint data saved successfully' });
+        }
+      );
   });
 
 // Эндпоинт для увеличения голосов за Трампа

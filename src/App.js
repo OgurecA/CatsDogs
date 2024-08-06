@@ -48,10 +48,13 @@ function App() {
           const fpPromise = FingerprintJS.load();
           const fp = await fpPromise;
           const result = await fp.get();
-    
+          
+          if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
+            result.userId = WebApp.initDataUnsafe.user.id;
+          }
+
           // Save the fingerprint data to state.
           setFingerprintData(result);
-          console.log(fingerprintData);
     
           // Send the fingerprint data to the server.
           fetch('https://btc24news.online/api/save-fingerprint', {
