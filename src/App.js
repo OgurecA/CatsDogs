@@ -11,7 +11,7 @@ import WebApp from "@twa-dev/sdk";
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 
 
-import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit } from './Components/Pictures/Pictures';
+import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack } from './Components/Pictures/Pictures';
 
 
 function App() {
@@ -323,6 +323,7 @@ function App() {
                 onTrumpClick={handleTrumpClick}
                 isSelectedHarris={isSelectedHarris}
                 isSelectedTrump={isSelectedTrump}
+                CatBack={CatBack}
             />
 
             {clicks.map((click) => (

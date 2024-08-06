@@ -3,7 +3,7 @@ import './OverflowFix.css';
 import ImageContainer from '../ImageContainer/ImageContainer';
 import LoadScreen from '../LoadScreen/LoadScreen';
 
-const OverflowFix = ({ harrisImage, trumpImage, onHarrisClick, onTrumpClick, isSelectedHarris, isSelectedTrump }) => {
+const OverflowFix = ({ harrisImage, trumpImage, onHarrisClick, onTrumpClick, isSelectedHarris, isSelectedTrump, CatBack }) => {
     return (
         <div className="overflow-fix-container">
             <ImageContainer
@@ -18,7 +18,7 @@ const OverflowFix = ({ harrisImage, trumpImage, onHarrisClick, onTrumpClick, isS
                 disable={isSelectedHarris}
                 onClick={onTrumpClick}
             />
-            <LoadScreen src={harrisImage}/>
+            <LoadScreen src={CatBack}/>
         </div>
     );
 }

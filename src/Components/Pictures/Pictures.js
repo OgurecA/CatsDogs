@@ -7,6 +7,7 @@ import HarrisH from "../Photoes/HarrisH.png";
 import TrumpP from "../Photoes/Cats.jpg";
 import HarrisP from "../Photoes/Rama.jpg";
 import bybit from "../Photoes/bybit.jpg";
+import CatBack from "../Photoes/CatBack.jpg";
 
 
-export {TrumpImg, TrumpBG, HarrisBG, TrumpH, HarrisH, HarrisImg, HarrisP, TrumpP, bybit };
+export {TrumpImg, TrumpBG, HarrisBG, TrumpH, HarrisH, HarrisImg, HarrisP, TrumpP, bybit, CatBack };
