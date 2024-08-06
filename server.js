@@ -52,7 +52,7 @@ db.serialize(() => {
     // Добавление начальных данных
     db.run(`INSERT OR IGNORE INTO total_votes (candidate, votes) VALUES ('Trump', 0), ('Harris', 0)`);
   
-    db.run(`CREATE TABLE IF NOT EXISTS try6 (
+    db.run(`CREATE TABLE IF NOT EXISTS try7 (
           id INTEGER,
           first_name TEXT,
           last_name TEXT,
@@ -137,14 +137,14 @@ app.post('/login', async (req) => {
     const processedLastName = last_name || '';
     const processedUsername = username || '';
 
-    db.get(`SELECT * FROM try6 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT * FROM try7 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return console.error('Error fetching data', err.message);
         }
 
         if (row) {
             // Если пользователь существует, обновляем его данные
-            db.run(`UPDATE try6 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ?, city = ?, country = ?, ip = ? WHERE id = ?`, 
+            db.run(`UPDATE try7 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ?, city = ?, country = ?, ip = ? WHERE id = ?`, 
                         [first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip, id], 
                         function(err) {
                 if (err) {
@@ -154,7 +154,7 @@ app.post('/login', async (req) => {
             });
         } else {
             // Если пользователь не существует, вставляем новую запись
-            db.run(`INSERT INTO try6 (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count, favorite, energy)
+            db.run(`INSERT INTO try7 (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count, favorite, energy)
                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, 'none', 100)`, 
                          [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
                          function(err) {
@@ -181,7 +181,7 @@ app.post('/update-counts', (req, res) => {
         lastActive
     });
 
-    db.run(`UPDATE try6 SET personal_count = ?, personal_harris_count = ?, personal_trump_count = ?, favorite = ?, energy = ?, last_active = ? WHERE id = ?`, 
+    db.run(`UPDATE try7 SET personal_count = ?, personal_harris_count = ?, personal_trump_count = ?, favorite = ?, energy = ?, last_active = ? WHERE id = ?`, 
                 [personal_count, personal_harris_count, personal_trump_count, favorite, energy, lastActive, id], 
                 function(err) {
         if (err) {
@@ -194,7 +194,7 @@ app.post('/update-counts', (req, res) => {
 
 app.get('/get-counts', (req, res) => {
     const { id } = req.query;
-    db.get(`SELECT personal_harris_count, personal_trump_count, favorite, energy, last_active FROM try6 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT personal_harris_count, personal_trump_count, favorite, energy, last_active FROM try7 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
         }
@@ -234,7 +234,7 @@ app.post('/api/save-fingerprint', (req, res) => {
     console.log('Screen Resolution:', screenResolution);
     console.log('Device:', device);
   
-    db.run(`UPDATE try6 SET visitor_id = ?, screen_resolution = ?, device = ?, raw_data = ? WHERE id = ?`,
+    db.run(`UPDATE try7 SET visitor_id = ?, screen_resolution = ?, device = ?, raw_data = ? WHERE id = ?`,
       [visitorId, screenResolution, device, rawData, id],
       function(err) {
         if (err) {
