@@ -61,6 +61,7 @@ db.serialize(() => {
           personal_trump_count INTEGER DEFAULT 0,
           favorite TEXT DEFAULT 'none',
           energy INTEGER DEFAULT 100,
+          last_active INTEGER,
           visitor_id TEXT,
           screen_resolution TEXT,
           device TEXT,
@@ -162,17 +163,20 @@ app.post('/login', async (req) => {
 
 app.post('/update-counts', (req, res) => {
     const { id, personal_count, personal_harris_count, personal_trump_count, favorite, energy } = req.body;
+    const lastActive = Math.floor(Date.now() / 1000);
+
     console.log('Получены данные для обновления:', {
         id,
         personal_count,
         personal_harris_count,
         personal_trump_count,
         favorite,
-        energy
+        energy,
+        lastActive
     });
 
-    db.run(`UPDATE try6 SET personal_count = ?, personal_harris_count = ?, personal_trump_count = ?, favorite = ?, energy = ? WHERE id = ?`, 
-                [personal_count, personal_harris_count, personal_trump_count, favorite, energy, id], 
+    db.run(`UPDATE try6 SET personal_count = ?, personal_harris_count = ?, personal_trump_count = ?, favorite = ?, energy = ?, last_active = ? WHERE id = ?`, 
+                [personal_count, personal_harris_count, personal_trump_count, favorite, energy, lastActive, id], 
                 function(err) {
         if (err) {
             return console.error('Error updating counts', err.message);

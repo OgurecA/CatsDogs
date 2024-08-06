@@ -27,6 +27,7 @@ function App() {
     const [votes, setVotes] = useState({ Trump: 0, Harris: 0 });
 
     const [energy, setEnergy] = useState(100);
+    const [maxEnergy, setMaxEnergy] = useState(100)
 
     const [userData, setUserData] = useState(null);
 
@@ -38,7 +39,6 @@ function App() {
 
     const [fingerprintData, setFingerprintData] = useState(null);
 
-    const energyRef = useRef(energy);
 
 
     useEffect(() => {
@@ -193,42 +193,46 @@ function App() {
     }
 
     function incrementTrumpCount(e) {
-        if (isSelectedTrump && energy > 0) {
-            const rect = e.target.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const imgRect = e.target.getBoundingClientRect();
-            const imgX = imgRect.left;
-            const imgY = imgRect.top;
+        if (isSelectedTrump) {
+            if (energy > 0) {
+                const rect = e.target.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const imgRect = e.target.getBoundingClientRect();
+                const imgX = imgRect.left;
+                const imgY = imgRect.top;
 
-            setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
+                setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
 
-            setPersonalTrumpCount(personalTrumpCount + 1);
-            handleVote('Trump');
-            setEnergy(energy - 1);
-        } else {
-            alert('Недостаточно энергии');
-        }
+                setPersonalTrumpCount(personalTrumpCount + 1);
+                handleVote('Trump');
+                setEnergy(energy - 1);
+            } else {
+                alert('Недостаточно энергии');
+            }
+        } 
     }
 
     function incrementHarrisCount(e) {
-        if (isSelectedHarris && energy > 0) {
-            const rect = e.target.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const imgRect = e.target.getBoundingClientRect();
-            const imgX = imgRect.left;
-            const imgY = imgRect.top;
+        if (isSelectedHarris) {
+            if (energy > 0) {
+                const rect = e.target.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const imgRect = e.target.getBoundingClientRect();
+                const imgX = imgRect.left;
+                const imgY = imgRect.top;
 
-            setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
+                setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
             
-            setPersonalHarrisCount(personalHarrisCount + 1);
-            handleVote('Harris');
-            setEnergy(energy - 1);
-        } else {
-            alert('Недостаточно энергии');
+                setPersonalHarrisCount(personalHarrisCount + 1);
+                handleVote('Harris');
+                setEnergy(energy - 1);
+            } else {
+                alert('Недостаточно энергии');
         }
-    }
+    } 
+}
 
     function handleHarrisClick(e) {
         if(!choice) {
@@ -300,6 +304,7 @@ function App() {
                     />
             <Energy
                         energy={energy}
+                        maxEnergy={maxEnergy}
                     />
             <AddContainer
                 ads={[
