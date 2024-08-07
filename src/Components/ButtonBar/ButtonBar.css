@@ -11,6 +11,7 @@
     padding: 10px 0;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.15);
     border-radius: 15px 15px 0 0; /* Скругляем верхние углы полосы */
+    z-index: 10;
 }
 
 .button-bar-button {
@@ -28,6 +29,7 @@
     justify-content: center;
     align-items: center; /* Центрирование текста внутри кнопок */
     transition: background-color 0.3s ease; /* Плавный переход цвета фона */
+    z-index: 11;
 }
 
 .button-bar-button:hover {
