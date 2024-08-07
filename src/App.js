@@ -301,7 +301,6 @@ function App() {
                     <PageSocial />
                 </Route>
                 <Route path="/">
-                    <ShopBottomSheet />
                     <ButtonBar  />
                     <BGcontainer src={backgroundImage} />
                     <PersonalCount 
