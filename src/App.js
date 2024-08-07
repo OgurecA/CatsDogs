@@ -41,6 +41,18 @@ function App() {
 
 
 
+    const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+
+    const handleOpenBottomSheet = () => {
+        setIsBottomSheetOpen(true);
+    };
+
+    const handleCloseBottomSheet = () => {
+        setIsBottomSheetOpen(false);
+    };
+
+
+
     useEffect(() => {
         WebApp.setHeaderColor('#282c34');
         updateBar();
@@ -292,6 +304,13 @@ function App() {
 
   return (
     <>
+
+            <button className="open-shop-button" onClick={handleOpenBottomSheet}>
+                Открыть магазин
+            </button>
+            <BottomSheet isOpen={isBottomSheetOpen} onClose={handleCloseBottomSheet} />
+
+
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
                         personalCount={personalCount} 
