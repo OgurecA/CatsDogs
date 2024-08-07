@@ -16,7 +16,7 @@
 
 .button-bar-button {
     width: 25vw; /* Устанавливаем ширину кнопок */
-    height: calc(100% - 20px); /* Высота кнопки с учетом отступов */
+    height: calc(100% - 8px); /* Высота кнопки с учетом отступов */
     margin: 0 10px; /* Отступы между кнопками */
     color: white;
     background-color: aquamarine;

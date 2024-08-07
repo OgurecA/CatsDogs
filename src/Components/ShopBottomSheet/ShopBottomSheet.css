@@ -23,9 +23,6 @@
     cursor: pointer;
 }
 
-.bottom-sheet-content button:hover {
-    background-color: #636363;
-}
 .react-spring-bottom-sheet {
     background-color: #282828;
 }
