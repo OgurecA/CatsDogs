@@ -301,8 +301,8 @@ function App() {
                     <PageSocial />
                 </Route>
                 <Route path="/">
-                    <ShopBottomSheet isOpen={isBottomSheetOpen} onClose={handleCloseBottomSheet} />
-                    <ButtonBar onOpenShop={handleOpenBottomSheet} />
+                    <ShopBottomSheet />
+                    <ButtonBar  />
                     <BGcontainer src={backgroundImage} />
                     <PersonalCount 
                         personalCount={personalCount} 
