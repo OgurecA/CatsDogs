@@ -15,9 +15,7 @@ function LoadScreen({ src }) {
 
   return (
     <div className="load-screen">
-      <div className="load-screen-content">
         <img src={src} alt="Loading" className="loading-image" />
-      </div>
     </div>
   );
 }

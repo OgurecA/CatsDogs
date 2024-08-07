@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import './LoadScreenContainer.css'
 import LoadScreen from '../LoadScreen/LoadScreen';
+import { CatBack } from '../Pictures/Pictures';
 
-function LoadScreenContainer({ CatBack }) {
+function LoadScreenContainer() {
     useEffect(() => {
         const timer = setTimeout(() => {
           const loadScreenContainer = document.querySelector('.load-screen-container');
