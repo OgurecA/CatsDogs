@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import OverflowFix from './Components/OverflowFix/OverflowFix';
 import BGcontainer from './Components/BGcontainer/BGcontainer';
@@ -296,7 +296,7 @@ function App() {
 
       return (
         <Router>
-            <Switch>
+            <Routes>
                 <Route path="/social">
                     <PageSocial />
                 </Route>
@@ -348,7 +348,7 @@ function App() {
                         </div>
                     ))}
                 </Route>
-            </Switch>
+            </Routes>
         </Router>
     );
 }
