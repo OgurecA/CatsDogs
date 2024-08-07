@@ -116,6 +116,9 @@ img:active, button:active, .image-container:active {
   color: white;
   border: none;
   bottom: 0%;
+  left: 0%;
+  width: 12%;
+  height: 12%;
   border-radius: 4px;
   cursor: pointer;
 }
