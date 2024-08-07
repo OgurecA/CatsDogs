@@ -9,7 +9,7 @@ import PersonalCount from './Components/PersonalCount/PersonalCount';
 import Energy from './Components/Energy/Energy';
 import WebApp from "@twa-dev/sdk";
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
-import LoadScreen from './Components/LoadScreen/LoadScreen';
+import LoadScreenContainer from './Components/LoadScreenContainer/LoadScreenContainer';
 
 import ButtonBar from './Components/ButtonBar/ButtonBar';
 import PageSocial from './Components/PageSocial/PageSocial';
@@ -305,7 +305,7 @@ function App() {
 
   return (
     <>
-            <LoadScreen/>
+            <LoadScreenContainer src={CatBack} />
             <ButtonBar onShowSocialPage={handleShowSocialPage} />
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} onClose={handleHideSocialPage} />
             <BGcontainer src={backgroundImage} />
@@ -339,7 +339,6 @@ function App() {
                 onTrumpClick={handleTrumpClick}
                 isSelectedHarris={isSelectedHarris}
                 isSelectedTrump={isSelectedTrump}
-                CatBack={CatBack}
             />
 
             {clicks.map((click) => (
