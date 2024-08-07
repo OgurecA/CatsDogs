@@ -2,8 +2,7 @@ import React from 'react';
 import './OverflowFix.css';
 import ImageContainer from '../ImageContainer/ImageContainer';
 
-
-const OverflowFix = ({ harrisImage, trumpImage, onHarrisClick, onTrumpClick, isSelectedHarris, isSelectedTrump }) => {
+const OverflowFix = ({ harrisImage, trumpImage, onHarrisClick, onTrumpClick, isSelectedHarris, isSelectedTrump}) => {
     return (
         <div className="overflow-fix-container">
             <ImageContainer

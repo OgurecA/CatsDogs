@@ -1,4 +1,5 @@
 import React from 'react'
+import './LoadScreenContainer.css'
 import LoadScreen from '../LoadScreen/LoadScreen';
 
 function LoadScreenContainer({ CatBack }) {
@@ -9,4 +10,4 @@ function LoadScreenContainer({ CatBack }) {
   )
 }
 
-export default LoadScreenContainer
+export default LoadScreenContainer;
