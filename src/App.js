@@ -306,6 +306,10 @@ function App() {
 
   return (
     <>
+
+            <ShopSheet isOpen={isBottomSheetOpen} onClose={handleCloseBottomSheet} />
+
+
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
                         personalCount={personalCount} 
