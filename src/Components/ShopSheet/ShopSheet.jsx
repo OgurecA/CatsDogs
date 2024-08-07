@@ -1,7 +1,7 @@
 // src/Components/BottomSheet/BottomSheet.jsx
 import React from 'react';
 import { SwipeableBottomSheet } from 'react-swipeable-bottom-sheet';
-import './BottomSheet.css'; // Создайте файл для стилей
+import './ShopSheet.css'; // Создайте файл для стилей
 
 const ShopSheet = ({ isOpen, onClose }) => {
     return (
