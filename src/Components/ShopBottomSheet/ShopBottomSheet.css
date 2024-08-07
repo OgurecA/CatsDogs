@@ -2,7 +2,7 @@
 .bottom-sheet-content {
     padding: 20px;
     background-color: rgb(43, 43, 43);
-    height: 95vh; /* Высота окна 70% */
+    height: 70vh; /* Высота окна 70% */
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
     z-index: 9;
 }
@@ -23,6 +23,11 @@
     cursor: pointer;
 }
 
-.react-spring-bottom-sheet {
-    background-color: #282828;
+/* Изменение цвета полоски наверху всплывающего окна */
+.rsbs-handle {
+    background-color: #282828; /* Новый цвет полоски */
+    border-radius: 4px; /* Скругление углов полоски */
+    height: 6px; /* Высота полоски */
+    width: 50px; /* Ширина полоски */
+    margin: 0 auto; /* Центрирование полоски */
 }
