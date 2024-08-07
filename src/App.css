@@ -108,19 +108,3 @@ img:active, button:active, .image-container:active {
     box-shadow: none;
 }
 
-
-
-.open-shop-button {
-  padding: 10px 20px;
-  background-color: #626262;
-  color: white;
-  border: none;
-  bottom: 0%;
-  left: 0%;
-  position: absolute;
-  width: 12%;
-  height: 12%;
-  border-radius: 4px;
-  cursor: pointer;
-  z-index: 5;
-}
