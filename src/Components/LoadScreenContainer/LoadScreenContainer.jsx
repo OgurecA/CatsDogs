@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import './LoadScreenContainer.css'
 import LoadScreen from '../LoadScreen/LoadScreen';
 
