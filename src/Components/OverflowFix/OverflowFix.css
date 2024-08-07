@@ -5,6 +5,7 @@
     overflow: hidden;
     width: 100vw;
     height: 100vh;
+    z-index: 1;
 }
 .image-container {
     width: var(--image-width, 35vw);
