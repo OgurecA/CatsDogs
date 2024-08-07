@@ -3,23 +3,31 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+    height: 10vh; /* Устанавливаем высоту полосы */
     background-color: #282828;
     display: flex;
     justify-content: space-around;
+    align-items: center; /* Центрирование кнопок по вертикали */
     padding: 10px 0;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.15);
-    z-index: 10;
+    border-radius: 15px 15px 0 0; /* Скругляем верхние углы полосы */
 }
 
 .button-bar-button {
-    flex: 1;
-    padding: 10px;
+    width: 25vw; /* Устанавливаем ширину кнопок */
+    height: calc(100% - 20px); /* Высота кнопки с учетом отступов */
+    margin: 0 10px; /* Отступы между кнопками */
     color: white;
     background-color: aquamarine;
     border: none;
+    border-radius: 10px; /* Скругляем углы кнопок */
     cursor: pointer;
     text-align: center;
-    z-index: 11;
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Центрирование текста внутри кнопок */
+    transition: background-color 0.3s ease; /* Плавный переход цвета фона */
 }
 
 .button-bar-button:hover {
