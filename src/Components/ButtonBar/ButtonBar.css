@@ -8,6 +8,7 @@
     justify-content: space-around;
     padding: 10px 0;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.15);
+    z-index: 10;
 }
 
 .button-bar-button {
@@ -18,7 +19,7 @@
     border: none;
     cursor: pointer;
     text-align: center;
-    z-index: 4;
+    z-index: 11;
 }
 
 .button-bar-button:hover {
