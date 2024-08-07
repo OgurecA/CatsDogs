@@ -2,8 +2,9 @@
 .bottom-sheet-content {
     padding: 20px;
     background-color: rgb(43, 43, 43);
-    height: 75vh; /* Высота окна 70% */
+    height: 95vh; /* Высота окна 70% */
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 9;
 }
 
 .bottom-sheet-content h2 {
@@ -24,4 +25,7 @@
 
 .bottom-sheet-content button:hover {
     background-color: #636363;
+}
+.react-spring-bottom-sheet {
+    background-color: #282828;
 }
