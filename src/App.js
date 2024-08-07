@@ -1,6 +1,5 @@
 import './App.css';
 import React, { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import OverflowFix from './Components/OverflowFix/OverflowFix';
 import BGcontainer from './Components/BGcontainer/BGcontainer';
@@ -42,7 +41,16 @@ function App() {
     const [playersFavorite, setPlayersFavorite] = useState(null)
 
     const [fingerprintData, setFingerprintData] = useState(null);
+    
+    const [isSocialPageVisible, setIsSocialPageVisible] = useState(false);
 
+    const handleShowSocialPage = () => {
+        setIsSocialPageVisible(true);
+    };
+
+    const handleHideSocialPage = () => {
+        setIsSocialPageVisible(false);
+    };
 
 
     useEffect(() => {
@@ -294,62 +302,61 @@ function App() {
         .catch(error => console.error('Error:', error));
       }
 
-      return (
-        <Router>
-            <Routes>
-                <Route path="/social">
-                    <PageSocial />
-                </Route>
-                <Route path="/">
-                    <ButtonBar  />
-                    <BGcontainer src={backgroundImage} />
-                    <PersonalCount 
+  return (
+    <>
+            <ButtonBar onShowSocialPage={handleShowSocialPage} />
+            <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} onClose={handleHideSocialPage} />
+            <BGcontainer src={backgroundImage} />
+            <PersonalCount 
                         personalCount={personalCount} 
                         favorite={favorite} 
                     />
-                    <Energy
+            <Energy
                         energy={energy}
                         maxEnergy={maxEnergy}
                     />
-                    <AddContainer
-                        ads={[
-                          { src: TrumpP, link: 'https://www.youtube.com/watch?v=44pt8w67S8I' },
-                          { src: HarrisP, link: 'https://www.youtube.com/watch?v=KYhv9h8gAuM' },
-                          { src: bybit, link: 'https://www.bybit.com/en/sign-up?affiliate_id=GBWZXLN&group_id=143394&group_type=1&ref_code=GBWZXLN&gad_source=1&gclid=CjwKCAjwqf20BhBwEiwAt7dtdSGtqp0Q1eYrFcZGDAS5Zjo3iXFMyCcBln_mJ03yS3FYsuiTaoKsdhoC82wQAvD_BwE' },
-                        ]}
-                        className="add-container"
-                    />
-                    <Stats className="no-select"
-                        trumpPercentage={trumpPercentage}
-                        harrisPercentage={harrisPercentage}
-                    />
-                    <OverflowFix
-                        harrisImage={HarrisImg}
-                        trumpImage={TrumpImg}
-                        onHarrisClick={handleHarrisClick}
-                        onTrumpClick={handleTrumpClick}
-                        isSelectedHarris={isSelectedHarris}
-                        isSelectedTrump={isSelectedTrump}
-                        CatBack={CatBack}
-                    />
-                    {clicks.map((click) => (
-                        <div
-                            key={click.id}
-                            className="float"
-                            style={{
-                                top: `${click.y - 70}px`, // Adjusting to center the small image
-                                left: `${click.x - 20}px`, // Adjusting to center the small image
-                                opacity: 1,
-                            }}
-                            onAnimationEnd={() => handleAnimationEnd(click.id)}
-                        >
-                            <img src={isSelectedHarris ? HarrisImg : TrumpImg} alt="Small Image" style={{ width: '50px', height: '50px' }} />
-                        </div>
-                    ))}
-                </Route>
-            </Routes>
-        </Router>
-    );
+            <AddContainer
+                ads={[
+                  { src: TrumpP, link: 'https://www.youtube.com/watch?v=44pt8w67S8I' },
+                  { src: HarrisP, link: 'https://www.youtube.com/watch?v=KYhv9h8gAuM' },
+                  { src: bybit, link: 'https://www.bybit.com/en/sign-up?affiliate_id=GBWZXLN&group_id=143394&group_type=1&ref_code=GBWZXLN&gad_source=1&gclid=CjwKCAjwqf20BhBwEiwAt7dtdSGtqp0Q1eYrFcZGDAS5Zjo3iXFMyCcBln_mJ03yS3FYsuiTaoKsdhoC82wQAvD_BwE' },
+                  
+                ]}
+                className="add-container"
+            />
+
+            <Stats className="no-select"
+                trumpPercentage={trumpPercentage}
+                harrisPercentage={harrisPercentage}
+            />
+
+            <OverflowFix
+                harrisImage={HarrisImg}
+                trumpImage={TrumpImg}
+                onHarrisClick={handleHarrisClick}
+                onTrumpClick={handleTrumpClick}
+                isSelectedHarris={isSelectedHarris}
+                isSelectedTrump={isSelectedTrump}
+                CatBack={CatBack}
+            />
+
+            {clicks.map((click) => (
+                <div
+                    key={click.id}
+                    className="float"
+                    style={{
+                        top: `${click.y - 70}px`, // Adjusting to center the small image
+                        left: `${click.x - 20}px`, // Adjusting to center the small image
+                        opacity: 1,
+                    }}
+                    onAnimationEnd={() => handleAnimationEnd(click.id)}
+                >
+                    <img src={isSelectedHarris ? HarrisImg : TrumpImg} alt="Small Image" style={{ width: '50px', height: '50px' }} />
+                </div>
+            ))}
+        </>
+
+  );
 }
 ReactDOM.render(<App />, document.getElementById('root'));
 
