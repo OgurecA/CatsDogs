@@ -308,7 +308,9 @@ function App() {
     <>
 
             <ShopBottomSheet isOpen={isBottomSheetOpen} onClose={handleCloseBottomSheet} />
-
+            <button className="open-shop-button" onClick={handleOpenBottomSheet}>
+                Открыть магазин
+            </button>
 
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
