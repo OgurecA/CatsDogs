@@ -117,6 +117,7 @@ img:active, button:active, .image-container:active {
   border: none;
   bottom: 0%;
   left: 0%;
+  position: absolute;
   width: 12%;
   height: 12%;
   border-radius: 4px;
