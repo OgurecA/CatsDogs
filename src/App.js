@@ -10,7 +10,7 @@ import Energy from './Components/Energy/Energy';
 import WebApp from "@twa-dev/sdk";
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 
-import ShopSheet from './Components/ShopSheet/ShopSheet';
+import ShopBottomSheet from './Components/ShopBottomSheet/ShopBottomSheet';
 
 
 import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack } from './Components/Pictures/Pictures';
@@ -307,7 +307,7 @@ function App() {
   return (
     <>
 
-            <ShopSheet isOpen={isBottomSheetOpen} onClose={handleCloseBottomSheet} />
+            <ShopBottomSheet isOpen={isBottomSheetOpen} onClose={handleCloseBottomSheet} />
 
 
             <BGcontainer src={backgroundImage} />

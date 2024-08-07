@@ -1,14 +1,13 @@
-// src/Components/BottomSheet/BottomSheet.jsx
 import React from 'react';
-import { SwipeableBottomSheet } from 'react-swipeable-bottom-sheet';
-import './ShopSheet.css'; // Создайте файл для стилей
+import { BottomSheet } from 'react-spring-bottom-sheet';
+import 'react-spring-bottom-sheet/dist/style.css';
+import './ShopBottomSheet.css'; // Создайте файл для стилей
 
-const ShopSheet = ({ isOpen, onClose }) => {
+const ShopBottomSheet = ({ isOpen, onClose }) => {
     return (
-        <SwipeableBottomSheet
+        <BottomSheet
             open={isOpen}
-            onChange={onClose}
-            overflowHeight={70}
+            onDismiss={onClose}
         >
             <div className="bottom-sheet-content">
                 <h2>Магазин Звезд</h2>
@@ -17,8 +16,8 @@ const ShopSheet = ({ isOpen, onClose }) => {
                 <button onClick={() => alert('Куплено 50 звезд!')}>Купить 50 звезд</button>
                 <button onClick={() => alert('Куплено 100 звезд!')}>Купить 100 звезд</button>
             </div>
-        </SwipeableBottomSheet>
+        </BottomSheet>
     );
 };
 
-export default ShopSheet;
+export default ShopBottomSheet;
