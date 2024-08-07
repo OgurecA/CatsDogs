@@ -11,6 +11,7 @@ import WebApp from "@twa-dev/sdk";
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 
 import ShopBottomSheet from './Components/ShopBottomSheet/ShopBottomSheet';
+import ButtonBar from './Components/ButtonBar/ButtonBar';
 
 
 import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack } from './Components/Pictures/Pictures';
@@ -308,9 +309,7 @@ function App() {
     <>
 
             <ShopBottomSheet isOpen={isBottomSheetOpen} onClose={handleCloseBottomSheet} />
-            <button className="open-shop-button" onClick={handleOpenBottomSheet}>
-                Открыть магазин
-            </button>
+            <ButtonBar onOpenShop={handleOpenBottomSheet} />
 
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
