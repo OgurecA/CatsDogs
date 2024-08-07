@@ -45,12 +45,14 @@ function App() {
     
     const [isSocialPageVisible, setIsSocialPageVisible] = useState(false);
 
-    const handleShowSocialPage = () => {
-        setIsSocialPageVisible(true);
-    };
+    
 
-    const handleHideSocialPage = () => {
-        setIsSocialPageVisible(false);
+    const handleSocialPage = () => {
+        if (isSocialPageVisible) {
+            setIsSocialPageVisible(false);
+          } else {
+            setIsSocialPageVisible(true);
+          }
     };
 
 
@@ -305,9 +307,9 @@ function App() {
 
   return (
     <>
-            <LoadScreenContainer src={CatBack} />
-            <ButtonBar onShowSocialPage={handleShowSocialPage} />
-            <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} onClose={handleHideSocialPage} />
+            <LoadScreenContainer />
+            <ButtonBar onShowSocialPage={handleSocialPage} />
+            <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} />
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
                         personalCount={personalCount} 

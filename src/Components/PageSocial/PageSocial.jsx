@@ -4,7 +4,6 @@ import './PageSocial.css';
 const PageSocial = ({ className, onClose }) => {
     return (
         <div className={`page-social ${className}`}>
-            <button className="close-button" onClick={onClose}>Закрыть</button>
             <div className="social-item">
                 Социальная сеть 1 <button>Перейти</button>
             </div>
