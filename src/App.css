@@ -122,4 +122,5 @@ img:active, button:active, .image-container:active {
   height: 12%;
   border-radius: 4px;
   cursor: pointer;
+  z-index: 5;
 }
