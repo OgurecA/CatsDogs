@@ -1,4 +1,14 @@
 /* src/Components/ShopBottomSheet/ShopBottomSheet.css */
+:root {
+    --rsbs-backdrop-bg: rgba(0, 0, 0, 0.6); /* Фон затемнения */
+    --rsbs-bg: #fff; /* Фон самого листа */
+    --rsbs-handle-bg: #282828; /* Новый цвет полоски */
+    --rsbs-max-w: auto; /* Максимальная ширина */
+    --rsbs-ml: env(safe-area-inset-left); /* Внутренний отступ слева для безопасной зоны */
+    --rsbs-mr: env(safe-area-inset-right); /* Внутренний отступ справа для безопасной зоны */
+    --rsbs-overlay-rounded: 16px; /* Скругление углов */
+  }
+  
 .bottom-sheet-content {
     padding: 20px;
     background-color: rgb(43, 43, 43);
