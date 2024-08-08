@@ -2,29 +2,27 @@ import React from 'react';
 import './PageSocial.css';
 
 const PageSocial = ({ className }) => {
-    const handleButtonClick = (url) => {
-        window.location.href = url;
-    };
+    
     return (
         <div className={`page-social ${className}`}>
-            <button className="social-item" onClick={() => handleButtonClick('tg://resolve?domain=telegram')}>
+            <a className="social-item" href="tg://resolve?domain=telegram" target="_blank" rel="noopener noreferrer">
                 Telegram
-            </button>
-            <button className="social-item" onClick={() => handleButtonClick('medium://medium.com')}>
+            </a>
+            <a className="social-item" href="medium://medium.com" target="_blank" rel="noopener noreferrer">
                 Medium
-            </button>
-            <button className="social-item" onClick={() => handleButtonClick('vnd.youtube://www.youtube.com')}>
+            </a>
+            <a className="social-item" href="vnd.youtube://www.youtube.com" target="_blank" rel="noopener noreferrer">
                 Youtube
-            </button>
-            <button className="social-item" onClick={() => handleButtonClick('web3://web3.com')}>
+            </a>
+            <a className="social-item" href="web3://web3.com" target="_blank" rel="noopener noreferrer">
                 Web3
-            </button>
-            <button className="social-item" onClick={() => handleButtonClick('tiktok://tiktok.com')}>
+            </a>
+            <a className="social-item" href="tiktok://tiktok.com" target="_blank" rel="noopener noreferrer">
                 TikTok
-            </button>
-            <button className="social-item" onClick={() => handleButtonClick('twitter://twitter.com')}>
+            </a>
+            <a className="social-item" href="twitter://twitter.com" target="_blank" rel="noopener noreferrer">
                 X
-            </button>
+            </a>
         </div>
     );
 };
