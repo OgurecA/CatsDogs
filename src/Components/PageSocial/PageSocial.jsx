@@ -16,6 +16,12 @@ const PageSocial = ({ className }) => {
             <div className="social-item">
                 Социальная сеть 4 <button>Перейти</button>
             </div>
+            <div className="social-item">
+                Социальная сеть 5 <button>Перейти</button>
+            </div>
+            <div className="social-item">
+                Социальная сеть 6 <button>Перейти</button>
+            </div>
         </div>
     );
 };
