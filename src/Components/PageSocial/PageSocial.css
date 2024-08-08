@@ -34,7 +34,7 @@
     height: 8vh; /* Устанавливаем высоту контейнеров */
     margin: 4px 0;
     padding: 10px; /* Увеличиваем внутренние отступы */
-    background-color: rgba(77, 77, 77, 0.5);
+    background-color: rgba(77, 77, 77, 0.6);
     border: 2px solid #484848;
     color: aliceblue;
     border-radius: 10px;
@@ -42,6 +42,8 @@
     z-index: 3;
     font-size: 1.5em; /* Увеличиваем размер текста */
     font-weight: bold;
+    backdrop-filter: blur(10px); /* Эффект размытия фона */
+    -webkit-backdrop-filter: blur(10px);
 }
 
 
