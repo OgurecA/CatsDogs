@@ -1,5 +1,5 @@
 import React from 'react';
-import './Exchange.css';
+import './PageExchange.css';
 
 const PageExchange = ({ className }) => {
     return (
