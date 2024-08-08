@@ -28,9 +28,8 @@
 .social-item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    width: 90%; /* Увеличиваем ширину контейнеров */
-    height: 10vh; /* Устанавливаем высоту контейнеров */
+    width: 70%; /* Увеличиваем ширину контейнеров */
+    height: 6vh; /* Устанавливаем высоту контейнеров */
     margin: 10px 0;
     padding: 20px; /* Увеличиваем внутренние отступы */
     background-color: #ffffff;
@@ -53,11 +52,9 @@
     cursor: pointer;
     z-index: 3;
     font-size: 1.2em; /* Увеличиваем размер текста на кнопках */
+    text-align: center;
 }
 
-.social-item button:hover {
-    background-color: #0056b3;
-}
 
 .page-social.hidden {
     opacity: 0;
