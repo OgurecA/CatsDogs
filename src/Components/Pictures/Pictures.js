@@ -7,7 +7,7 @@ import HarrisH from "../Photoes/HarrisH.png";
 import TrumpP from "../Photoes/Cats.jpg";
 import HarrisP from "../Photoes/Rama.jpg";
 import bybit from "../Photoes/bybit.jpg";
-import CatBack from "../Photoes/CatBack.jpg";
+import CatBack from "../Photoes/Skull.jpg";
 import Tiger from "../Photoes/Tiger.png";
 import Snake from "../Photoes/Snake.png";
 import Croc from "../Photoes/Croc.png";
