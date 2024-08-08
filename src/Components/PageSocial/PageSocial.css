@@ -27,7 +27,7 @@
 
 .social-item {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     text-align: center;
     width: 90vw; /* Увеличиваем ширину контейнеров */
@@ -39,14 +39,9 @@
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 3;
-    font-size: 1em; /* Увеличиваем размер текста */
+    font-size: 1.5em; /* Увеличиваем размер текста */
 }
 
-.social-item span {
-    font-size: 1em; /* Увеличиваем размер текста в span */
-    text-align: center;
-    width: 100%;
-}
 
 .social-item button {
     padding: 10px 20px;
@@ -59,7 +54,6 @@
     font-size: 1em; /* Увеличиваем размер текста на кнопках */
     text-align: center;
 }
-
 
 .page-social.hidden {
     opacity: 0;
