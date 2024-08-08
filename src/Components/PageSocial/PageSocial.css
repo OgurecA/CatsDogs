@@ -3,7 +3,7 @@
     display: flex; /* Добавлено для центровки дочерних элементов */
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 100vh;
     width: 100vw;
     background-color: #e20000;
@@ -12,6 +12,7 @@
     background-size: cover; /* Изображение будет покрывать всю область */
     background-position: center; /* Центрировать изображение */
     background-repeat: no-repeat;
+    padding-top: 10vh;
 }
 
 .page-social::before {
@@ -29,7 +30,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 80vw; /* Увеличиваем ширину контейнеров */
+    width: 85vw; /* Увеличиваем ширину контейнеров */
     height: 4vh; /* Устанавливаем высоту контейнеров */
     margin: 6px 0;
     padding: 10px; /* Увеличиваем внутренние отступы */
