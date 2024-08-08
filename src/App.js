@@ -56,28 +56,52 @@ function App() {
     const handleSocialPage = () => {
         if (isSocialPageVisible) {
             setIsSocialPageVisible(false);
+            setIsShopPageVisible(false);
+            setIsInventoryPageVisible(false);
+            setIsExchangePageVisible(false);
           } else {
             setIsSocialPageVisible(true);
+            setIsShopPageVisible(false);
+            setIsInventoryPageVisible(false);
+            setIsExchangePageVisible(false);
           }
     };
     const handleShopPage = () => {
         if (isShopPageVisible) {
+            setIsSocialPageVisible(false);
             setIsShopPageVisible(false);
+            setIsInventoryPageVisible(false);
+            setIsExchangePageVisible(false);
           } else {
+            setIsSocialPageVisible(false);
             setIsShopPageVisible(true);
+            setIsInventoryPageVisible(false);
+            setIsExchangePageVisible(false);
           }
     };
     const handleInventoryPage = () => {
         if (isInventoryPageVisible) {
+            setIsSocialPageVisible(false);
+            setIsShopPageVisible(false);
             setIsInventoryPageVisible(false);
+            setIsExchangePageVisible(false);
           } else {
             setIsInventoryPageVisible(true);
+            setIsSocialPageVisible(false);
+            setIsShopPageVisible(false);
+            setIsExchangePageVisible(false);
           }
     };
     const handleExchangePage = () => {
         if (isExchangePageVisible) {
+            setIsSocialPageVisible(false);
+            setIsShopPageVisible(false);
+            setIsInventoryPageVisible(false);
             setIsExchangePageVisible(false);
           } else {
+            setIsSocialPageVisible(false);
+            setIsShopPageVisible(false);
+            setIsInventoryPageVisible(false);
             setIsExchangePageVisible(true);
           }
     };
