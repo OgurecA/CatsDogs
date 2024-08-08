@@ -28,30 +28,31 @@
 .social-item {
     display: flex;
     justify-content: space-between;
-    width: 70%; /* Увеличиваем ширину контейнеров */
-    height: 6vh; /* Устанавливаем высоту контейнеров */
+    width: 80vw; /* Увеличиваем ширину контейнеров */
+    height: 4vh; /* Устанавливаем высоту контейнеров */
     margin: 10px 0;
     padding: 20px; /* Увеличиваем внутренние отступы */
-    background-color: #ffffff;
+    background-color: #545454;
+    color: aliceblue;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 3;
-    font-size: 1.5em; /* Увеличиваем размер текста */
+    font-size: 1em; /* Увеличиваем размер текста */
 }
 
 .social-item span {
-    font-size: 1.5em; /* Увеличиваем размер текста в span */
+    font-size: 1em; /* Увеличиваем размер текста в span */
 }
 
 .social-item button {
     padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #00356e;
+    color: #b1b1b1;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     z-index: 3;
-    font-size: 1.2em; /* Увеличиваем размер текста на кнопках */
+    font-size: 1em; /* Увеличиваем размер текста на кнопках */
     text-align: center;
 }
 
