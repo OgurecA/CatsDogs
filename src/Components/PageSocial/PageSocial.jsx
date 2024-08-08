@@ -2,7 +2,17 @@ import React from 'react';
 import './PageSocial.css';
 
 const PageSocial = ({ className }) => {
-    
+    const handleButtonClick = (appUrl, webUrl) => {
+        // Сначала попытаемся открыть приложение
+        const newWindow = window.open(appUrl, '_blank');
+        
+        // Через 1 секунду перенаправляем на веб-версию, если приложение не открылось
+        setTimeout(() => {
+            if (newWindow && newWindow.closed) {
+                window.location.href = webUrl;
+            }
+        }, 1000);
+    };
     return (
         <div className={`page-social ${className}`}>
             <a className="social-item" href="tg://resolve?domain=telegram" target="_blank" rel="noopener noreferrer">
