@@ -13,6 +13,9 @@ import LoadScreenContainer from './Components/LoadScreenContainer/LoadScreenCont
 
 import ButtonBar from './Components/ButtonBar/ButtonBar';
 import PageSocial from './Components/PageSocial/PageSocial';
+import PageShop from './Components/PageShop/PageShop';
+import PageInventory from './Components/PageInventory/PageInventory';
+import PageExchange from './Components/PageExchange/PageExchange';
 
 
 import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack } from './Components/Pictures/Pictures';
@@ -334,6 +337,9 @@ function App() {
             <LoadScreenContainer />
             <ButtonBar onShowSocialPage={handleSocialPage} onShowExchangePage={handleExchangePage} onShowInventoryPage={handleInventoryPage} onOpenShop={handleShopPage}/>
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} />
+            <PageInventory className={isSocialPageVisible ? 'page-inventory' : 'page-inventory hidden'} />
+            <PageExchange className={isSocialPageVisible ? 'page-exchange' : 'page-exchange hidden'} />
+            <PageShop className={isSocialPageVisible ? 'page-shop' : 'page-shop hidden'} />
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
                         personalCount={personalCount} 
