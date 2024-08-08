@@ -46,12 +46,18 @@
     -webkit-backdrop-filter: blur(1px);
     transition: all 0.1s ease;
     text-decoration: none; /* Убираем подчеркивание ссылок */
+    outline: none;
 }
 .social-item:active {
     transform: translateY(1px); /* Сдвиг кнопки при нажатии */
     text-decoration: none; /* Убираем подчеркивание ссылок */
+    outline: none;
   }
-
+  .social-item:hover,
+  .social-item:focus {
+    text-decoration: none; /* Убираем подчеркивание ссылок */
+    outline: none;
+  }
 
 .social-item button {
     padding: 10px 20px;
