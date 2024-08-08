@@ -4,24 +4,27 @@ import './PageSocial.css';
 const PageSocial = ({ className }) => {
     return (
         <div className={`page-social ${className}`}>
-            <div className="social-item">
+            <button className="social-item">
                 Telegram
-            </div>
-            <div className="social-item">
+            </button>
+            <button className="social-item">
                 Medium
-            </div>
-            <div className="social-item">
+            </button>
+            <button className="social-item">
                 Youtube
-            </div>
-            <div className="social-item">
+            </button>
+            <button className="social-item">
                 Web3
-            </div>
-            <div className="social-item">
+            </button>
+            <button className="social-item">
                 TikTok
-            </div>
-            <div className="social-item">
+            </button>
+            <button className="social-item">
+                X
+            </button>
+            <button className="social-item">
                 Instagram
-            </div>
+            </button>
         </div>
     );
 };
