@@ -28,10 +28,11 @@
 .social-item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 80vw; /* Увеличиваем ширину контейнеров */
     height: 4vh; /* Устанавливаем высоту контейнеров */
-    margin: 10px 0;
-    padding: 20px; /* Увеличиваем внутренние отступы */
+    margin: 6px 0;
+    padding: 10px; /* Увеличиваем внутренние отступы */
     background-color: #545454;
     color: aliceblue;
     border-radius: 10px;
