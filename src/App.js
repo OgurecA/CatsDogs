@@ -44,6 +44,9 @@ function App() {
     const [fingerprintData, setFingerprintData] = useState(null);
     
     const [isSocialPageVisible, setIsSocialPageVisible] = useState(false);
+    const [isShopPageVisible, setIsShopPageVisible] = useState(false);
+    const [isInventoryPageVisible, setIsInventoryPageVisible] = useState(false);
+    const [isExchangePageVisible, setIsExchangePageVisible] = useState(false);
 
     
 
@@ -52,6 +55,27 @@ function App() {
             setIsSocialPageVisible(false);
           } else {
             setIsSocialPageVisible(true);
+          }
+    };
+    const handleShopPage = () => {
+        if (isShopPageVisible) {
+            setIsShopPageVisible(false);
+          } else {
+            setIsShopPageVisible(true);
+          }
+    };
+    const handleInventoryPage = () => {
+        if (isInventoryPageVisible) {
+            setIsInventoryPageVisible(false);
+          } else {
+            setIsInventoryPageVisible(true);
+          }
+    };
+    const handleExchangePage = () => {
+        if (isExchangePageVisible) {
+            setIsExchangePageVisible(false);
+          } else {
+            setIsExchangePageVisible(true);
           }
     };
 
@@ -308,7 +332,7 @@ function App() {
   return (
     <>
             <LoadScreenContainer />
-            <ButtonBar onShowSocialPage={handleSocialPage} />
+            <ButtonBar onShowSocialPage={handleSocialPage} onShowExchangePage={handleExchangePage} onShowInventoryPage={handleInventoryPage} onOpenShop={handleShopPage}/>
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} />
             <BGcontainer src={backgroundImage} />
             <PersonalCount 

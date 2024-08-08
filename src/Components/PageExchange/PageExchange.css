@@ -1,0 +1,45 @@
+.page-exchange {
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #e20000;
+    z-index: 100;
+}
+
+.exchange-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.exchange-item span {
+    font-size: 1.2em;
+}
+
+.exchange-item button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.exchange-item button:hover {
+    background-color: #0056b3;
+}
+
+.page-exchange.hidden {
+    opacity: 0;
+    pointer-events: none;
+    z-index: -10;
+}

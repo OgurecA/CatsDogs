@@ -1,23 +1,23 @@
 import React from 'react';
-import './PageSocial.css';
+import './PageShop.css';
 
-const PageSocial = ({ className }) => {
+const PageShop = ({ className }) => {
     return (
-        <div className={`page-social ${className}`}>
-            <div className="social-item">
+        <div className={`page-shop ${className}`}>
+            <div className="shop-item">
                 Социальная сеть 1 <button>Перейти</button>
             </div>
-            <div className="social-item">
+            <div className="shop-item">
                 Социальная сеть 2 <button>Перейти</button>
             </div>
-            <div className="social-item">
+            <div className="shop-item">
                 Социальная сеть 3 <button>Перейти</button>
             </div>
-            <div className="social-item">
+            <div className="shop-item">
                 Социальная сеть 4 <button>Перейти</button>
             </div>
         </div>
     );
 };
 
-export default PageSocial;
+export default PageShop;
