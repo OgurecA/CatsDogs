@@ -14,7 +14,7 @@ const PageSocial = ({ className }) => {
                 Youtube
             </button>
             <button className="social-item">
-                Web3
+                Web
             </button>
             <button className="social-item">
                 TikTok
