@@ -2,11 +2,6 @@ import React from 'react';
 import './PageSocial.css';
 
 const PageSocial = ({ className }) => {
-    const [checkedLink, setCheckedLink] = useState(null);
-
-    const handleButtonClick = (index) => {
-        setCheckedLink(index);
-    };
     return (
         <div className={`page-social ${className}`}>
             <a className="social-item" href="tg://resolve?domain=telegram" target="_blank" rel="noopener noreferrer">
