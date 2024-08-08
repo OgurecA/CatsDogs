@@ -21,6 +21,7 @@
     color: white;
     background-color: rgb(151, 151, 151);
     border: none;
+    position: relative;
     border-radius: 10px; /* Скругляем углы кнопок */
     cursor: pointer;
     text-align: center;
