@@ -7,26 +7,23 @@ const PageSocial = ({ className }) => {
     };
     return (
         <div className={`page-social ${className}`}>
-            <button className="social-item" onClick={() => handleButtonClick('https://example.com')}>
+            <button className="social-item" onClick={() => handleButtonClick('tg://resolve?domain=telegram')}>
                 Telegram
             </button>
-            <button className="social-item" onClick={() => handleButtonClick('https://example.com')}>
+            <button className="social-item" onClick={() => handleButtonClick('medium://medium.com')}>
                 Medium
             </button>
-            <button className="social-item" onClick={() => handleButtonClick('https://youtube.com')}>
+            <button className="social-item" onClick={() => handleButtonClick('vnd.youtube://www.youtube.com')}>
                 Youtube
             </button>
-            <button className="social-item" onClick={() => handleButtonClick('https://youtube.com')}>
-                Web
+            <button className="social-item" onClick={() => handleButtonClick('web3://web3.com')}>
+                Web3
             </button>
-            <button className="social-item" onClick={() => handleButtonClick('https://example.com')}>
+            <button className="social-item" onClick={() => handleButtonClick('tiktok://tiktok.com')}>
                 TikTok
             </button>
-            <button className="social-item" onClick={() => handleButtonClick('https://example.com')}>
+            <button className="social-item" onClick={() => handleButtonClick('twitter://twitter.com')}>
                 X
-            </button>
-            <button className="social-item" onClick={() => handleButtonClick('https://example.com')}>
-                Instagram
             </button>
         </div>
     );
