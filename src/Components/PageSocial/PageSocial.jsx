@@ -13,10 +13,10 @@ const PageSocial = ({ className }) => {
             <button className="social-item" onClick={() => handleButtonClick('https://example.com')}>
                 Medium
             </button>
-            <button className="social-item" onClick={() => handleButtonClick('https://example.com')}>
+            <button className="social-item" onClick={() => handleButtonClick('https://youtube.com')}>
                 Youtube
             </button>
-            <button className="social-item" onClick={() => handleButtonClick('https://example.com')}>
+            <button className="social-item" onClick={() => handleButtonClick('https://youtube.com')}>
                 Web
             </button>
             <button className="social-item" onClick={() => handleButtonClick('https://example.com')}>
