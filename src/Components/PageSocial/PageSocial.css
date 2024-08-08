@@ -12,7 +12,6 @@
     background-size: cover; /* Изображение будет покрывать всю область */
     background-position: center; /* Центрировать изображение */
     background-repeat: no-repeat;
-    padding-top: 10vh;
 }
 
 .page-social::before {
