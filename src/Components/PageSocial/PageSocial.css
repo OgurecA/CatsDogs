@@ -1,5 +1,6 @@
 .page-social {
     position: absolute;
+    display: flex; /* Добавлено для центровки дочерних элементов */
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -12,6 +13,7 @@
     background-position: center; /* Центрировать изображение */
     background-repeat: no-repeat;
 }
+
 .page-social::before {
     content: "";
     position: absolute;
@@ -22,21 +24,24 @@
     background: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный слой для затемнения */
     z-index: 1;
 }
+
 .social-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 80%;
+    width: 90%; /* Увеличиваем ширину контейнеров */
+    height: 10vh; /* Устанавливаем высоту контейнеров */
     margin: 10px 0;
-    padding: 10px;
+    padding: 20px; /* Увеличиваем внутренние отступы */
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 3;
+    font-size: 1.5em; /* Увеличиваем размер текста */
 }
 
 .social-item span {
-    font-size: 1.2em;
+    font-size: 1.5em; /* Увеличиваем размер текста в span */
 }
 
 .social-item button {
@@ -47,6 +52,7 @@
     border-radius: 5px;
     cursor: pointer;
     z-index: 3;
+    font-size: 1.2em; /* Увеличиваем размер текста на кнопках */
 }
 
 .social-item button:hover {
