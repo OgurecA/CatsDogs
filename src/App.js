@@ -337,9 +337,9 @@ function App() {
             <LoadScreenContainer />
             <ButtonBar onShowSocialPage={handleSocialPage} onShowExchangePage={handleExchangePage} onShowInventoryPage={handleInventoryPage} onOpenShop={handleShopPage}/>
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} />
-            <PageInventory className={isSocialPageVisible ? 'page-inventory' : 'page-inventory hidden'} />
-            <PageExchange className={isSocialPageVisible ? 'page-exchange' : 'page-exchange hidden'} />
-            <PageShop className={isSocialPageVisible ? 'page-shop' : 'page-shop hidden'} />
+            <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} />
+            <PageExchange className={isExchangePageVisible ? 'page-exchange' : 'page-exchange hidden'} />
+            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} />
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
                         personalCount={personalCount} 

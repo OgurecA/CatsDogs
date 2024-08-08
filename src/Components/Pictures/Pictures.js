@@ -1,4 +1,4 @@
-import HarrisImg from "../Photoes/Gorilla.png";
+import HarrisImg from "../Photoes/Tiger.png";
 import TrumpImg from "../Photoes/Snake.png";
 import HarrisBG from "../Photoes/FishBack.jpg";
 import TrumpBG from "../Photoes/Text.jpg";
