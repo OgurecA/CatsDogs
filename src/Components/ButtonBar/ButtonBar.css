@@ -9,7 +9,6 @@
     justify-content: space-around;
     align-items: center; /* Центрирование кнопок по вертикали */
     padding: 10px 0;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.15);
     border-radius: 15px 15px 0 0; /* Скругляем верхние углы полосы */
     z-index: 150;
 }
@@ -19,8 +18,9 @@
     height: 96%; /* Высота кнопки с учетом отступов */
     margin: 0 1vw; /* Отступы между кнопками */
     color: white;
-    background-color: rgb(151, 151, 151);
-    border: none;
+    background: linear-gradient(to bottom, #f0f0f0, #dcdcdc);
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
     position: relative;
     border-radius: 10px; /* Скругляем углы кнопок */
     cursor: pointer;
@@ -29,6 +29,13 @@
     justify-content: center;
     align-items: center;
     z-index: 16;
+    transition: all 0.3s ease;
+}
+
+.button-bar-button:active {
+  background: linear-gradient(to bottom, #dcdcdc, #f0f0f0); /* Градиент при нажатии */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Возвращаем начальную тень */
+  transform: translateY(2px); /* Сдвиг кнопки при нажатии */
 }
 
 .button-bar-button.chosen {
@@ -36,6 +43,13 @@
     background-color: #850000; /* пример выделения */
     color: transparent; /* Скрытие текста */
   }
+
+  .button-bar-button.chosen:active {
+    background: linear-gradient(to bottom, #710000, #960000); /* Градиент при нажатии */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Возвращаем начальную тень */
+    transform: translateY(2px); /* Сдвиг кнопки при нажатии */
+  }
+
   .button-bar-button.chosen::after {
     content: "";
     position: absolute;
