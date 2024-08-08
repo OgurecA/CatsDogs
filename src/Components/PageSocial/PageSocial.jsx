@@ -5,22 +5,22 @@ const PageSocial = ({ className }) => {
     return (
         <div className={`page-social ${className}`}>
             <div className="social-item">
-                Социальная сеть 1 <button>Перейти</button>
+                Telegram
             </div>
             <div className="social-item">
-                Социальная сеть 2 <button>Перейти</button>
+                Medium
             </div>
             <div className="social-item">
-                Социальная сеть 3 <button>Перейти</button>
+                Youtube
             </div>
             <div className="social-item">
-                Социальная сеть 4 <button>Перейти</button>
+                Web3
             </div>
             <div className="social-item">
-                Социальная сеть 5 <button>Перейти</button>
+                TikTok
             </div>
             <div className="social-item">
-                Социальная сеть 6 <button>Перейти</button>
+                Instagram
             </div>
         </div>
     );
