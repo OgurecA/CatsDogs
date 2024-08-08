@@ -11,7 +11,7 @@ const PageSocial = ({ className }) => {
             <a className="social-item" href="medium://medium.com" target="_blank" rel="noopener noreferrer">
                 Medium
             </a>
-            <a className="social-item" href="vnd.youtube://www.youtube.com" target="_blank" rel="noopener noreferrer">
+            <a className="social-item" onClick={() => handleButtonClick('vnd.youtube://www.youtube.com', 'https://youtube.com')} href="#">
                 Youtube
             </a>
             <a className="social-item" href="web3://web3.com" target="_blank" rel="noopener noreferrer">
@@ -22,6 +22,9 @@ const PageSocial = ({ className }) => {
             </a>
             <a className="social-item" href="twitter://twitter.com" target="_blank" rel="noopener noreferrer">
                 X
+            </a>
+            <a className="social-item" href="instagram://instagram.com" target="_blank" rel="noopener noreferrer">
+                Instagram
             </a>
         </div>
     );
