@@ -44,6 +44,8 @@
 
 .social-item span {
     font-size: 1em; /* Увеличиваем размер текста в span */
+    text-align: center;
+    width: 100%;
 }
 
 .social-item button {
