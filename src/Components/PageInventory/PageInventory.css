@@ -7,6 +7,20 @@
     width: 100vw;
     background-color: #00c0e2;
     z-index: 100;
+    background-image: url('../Photoes/JGBack2.jpg'); /* Укажите путь к вашему изображению */
+    background-size: cover; /* Изображение будет покрывать всю область */
+    background-position: center; /* Центрировать изображение */
+    background-repeat: no-repeat;
+}
+.page-inventory::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный слой для затемнения */
+    z-index: 1;
 }
 
 .inventory-item {
@@ -19,6 +33,7 @@
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 3;
 }
 
 .inventory-item span {
@@ -32,6 +47,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    z-index: 3;
 }
 
 .inventory-item button:hover {
