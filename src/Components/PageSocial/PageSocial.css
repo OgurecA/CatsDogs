@@ -31,7 +31,7 @@
     align-items: center;
     text-align: center;
     width: 90vw; /* Увеличиваем ширину контейнеров */
-    height: 8vh; /* Устанавливаем высоту контейнеров */
+    height: 7vh; /* Устанавливаем высоту контейнеров */
     margin: 4px 0;
     padding: 10px; /* Увеличиваем внутренние отступы */
     background-color: rgba(77, 77, 77, 0.2);
@@ -58,6 +58,10 @@
     text-decoration: none; /* Убираем подчеркивание ссылок */
     outline: none;
   }
+
+  .social-item.checked {
+    border: 2px solid #006e04;
+}
 
 .social-item button {
     padding: 10px 20px;
