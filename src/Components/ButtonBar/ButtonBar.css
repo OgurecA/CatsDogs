@@ -32,6 +32,18 @@
 
 .button-bar-button.chosen {
     /* Стили для выбранной кнопки */
-    background-color: #c60000; /* пример выделения */
-    color: white;
+    background-color: #850000; /* пример выделения */
+    color: transparent; /* Скрытие текста */
+  }
+  .button-bar-button.chosen::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%; /* Установите размеры изображения */
+    height: 50%; /* Установите размеры изображения */
+    background-image: url('../Photoes/Cross.png'); /* Путь к вашему изображению */
+    background-size: cover;
+    background-repeat: no-repeat;
   }
