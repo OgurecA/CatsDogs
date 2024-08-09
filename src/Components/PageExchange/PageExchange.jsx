@@ -5,12 +5,17 @@ const PageExchange = ({ className }) => {
     const [checkingLinks, setCheckingLinks] = useState([]);
     const [checkedLinks, setCheckedLinks] = useState([]);
 
+    // Загрузка состояния из LocalStorage при загрузке страницы
+    useEffect(() => {
+        const savedCheckedLinks = JSON.parse(localStorage.getItem('checkedLinks')) || [];
+        setCheckedLinks(savedCheckedLinks);
+    }, []);
+
+    // Функция для обработки клика по кнопке
     const handleLinkClick = (index, event) => {
         event.preventDefault();
 
-        // Открываем ссылку сразу
-        window.open(event.target.href, '_blank');
-
+        // Проверяем, есть ли уже класс checked
         if (checkedLinks.includes(index)) {
             return; // Если класс checked уже есть, выходим из функции
         }
@@ -20,13 +25,17 @@ const PageExchange = ({ className }) => {
             setCheckingLinks(prevCheckingLinks => [...prevCheckingLinks, index]);
         }
 
-        // Через 10 секунд удаляем класс checking и добавляем класс checked
+        // Через 15 секунд удаляем класс checking и добавляем класс checked
         setTimeout(() => {
             setCheckingLinks(prevCheckingLinks => prevCheckingLinks.filter(i => i !== index));
             if (!checkedLinks.includes(index)) {
-                setCheckedLinks(prevCheckedLinks => [...prevCheckedLinks, index]);
+                const newCheckedLinks = [...checkedLinks, index];
+                setCheckedLinks(newCheckedLinks);
+
+                // Сохраняем состояние в LocalStorage
+                localStorage.setItem('checkedLinks', JSON.stringify(newCheckedLinks));
             }
-        }, 10000); // 10000 миллисекунд = 10 секунд
+        }, 5000); // 15000 миллисекунд = 15 секунд
     };
 
 
