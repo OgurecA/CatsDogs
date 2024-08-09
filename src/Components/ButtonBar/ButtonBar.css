@@ -18,7 +18,7 @@
     height: 96%; /* Высота кнопки с учетом отступов */
     margin: 0 1vw; /* Отступы между кнопками */
     color: white;
-    background: linear-gradient(to bottom, #f0f0f0, #dcdcdc);
+    background: linear-gradient(to bottom, #b0b0b0, #979797);
     border: 1px solid #ccc;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
     position: relative;
@@ -33,7 +33,7 @@
 }
 
 .button-bar-button:active {
-  background: linear-gradient(to bottom, #dcdcdc, #f0f0f0); /* Градиент при нажатии */
+  background: linear-gradient(to bottom, #b0b0b0, #979797); /* Градиент при нажатии */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Возвращаем начальную тень */
   transform: translateY(1px); /* Сдвиг кнопки при нажатии */
 }
@@ -53,9 +53,14 @@
   .button-bar-button.chosen::after {
     content: "";
     position: absolute;
+    top: 50%; /* Центрируем по вертикали */
+    left: 50%; /* Центрируем по горизонтали */
     width: 50%; /* Установите размеры изображения */
     height: 50%; /* Установите размеры изображения */
     background-image: url('../Photoes/Cross.png'); /* Путь к вашему изображению */
     background-size: cover;
     background-repeat: no-repeat;
+    transform: translate(-50%, -50%); /* Сдвигаем на половину ширины и высоты для точного центрирования */
+    pointer-events: none; /* Избегаем влияния на клики и другие события */
+    z-index: 2;
   }

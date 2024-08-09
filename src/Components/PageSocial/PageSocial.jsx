@@ -26,7 +26,7 @@ const PageSocial = ({ className }) => {
             if (!checkedLinks.includes(index)) {
                 setCheckedLinks(prevCheckedLinks => [...prevCheckedLinks, index]);
             }
-        }, 15000); // 10000 миллисекунд = 10 секунд
+        }, 10000); // 10000 миллисекунд = 10 секунд
     };
 
 
