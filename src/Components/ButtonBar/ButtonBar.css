@@ -53,8 +53,6 @@
   .button-bar-button.chosen::after {
     content: "";
     position: absolute;
-    top: 25%;
-    left: 25%;
     width: 50%; /* Установите размеры изображения */
     height: 50%; /* Установите размеры изображения */
     background-image: url('../Photoes/Cross.png'); /* Путь к вашему изображению */

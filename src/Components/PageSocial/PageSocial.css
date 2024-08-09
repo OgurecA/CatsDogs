@@ -61,26 +61,23 @@
 
   
   .social-item.checking {
-    border: 2px solid #858500; /* Желтая рамка при проверке */
-    animation: neon-blink 1.5s infinite alternate;
-    animation: pulse 1.5s infinite;
+    border: 2px solid #bffff6; /* Желтая рамка при проверке */
+    animation: soft-pulse 2s infinite ease-in-out;
 }
 
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 5px #d7d700, 0 0 10px #d7d700;
+@keyframes soft-pulse {
+    0%, 100% {
+        box-shadow: 0 0 5px #bffff6;
     }
     50% {
-        box-shadow: 0 0 15px #d7d700, 0 0 30px #d7d700;
-    }
-    100% {
-        box-shadow: 0 0 5px #d7d700, 0 0 10px #d7d700;
+        box-shadow: 0 0 10px #bffff6;
     }
 }
   .social-item.checked {
-    border: 2px solid #006e04;
-    box-shadow: 0 0 5px #1f8d27, 0 0 10px #1f8d27; 
+    border: 2px solid #bffff6;
+    box-shadow: 0 0 5px #bffff6;
 }
+
 
 .social-item button {
     padding: 10px 20px;
