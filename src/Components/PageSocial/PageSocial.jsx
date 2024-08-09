@@ -11,18 +11,24 @@ const PageSocial = ({ className }) => {
         // Открываем ссылку сразу
         window.open(event.target.href, '_blank');
 
-        // Добавляем класс checking
-        if (!checkingLinks.includes(index)) {
-            setCheckingLinks(prevCheckingLinks => [...prevCheckingLinks, index]);
-        }
+        // Сначала добавляем класс checking
+        setCheckingLinks(prevCheckingLinks => {
+            if (!prevCheckingLinks.includes(index)) {
+                return [...prevCheckingLinks, index];
+            }
+            return prevCheckingLinks;
+        });
 
-        // Через 10 секунд удаляем класс checking и добавляем класс checked
+        // Используем setTimeout для задержки перед удалением класса checking и добавлением класса checked
         setTimeout(() => {
             setCheckingLinks(prevCheckingLinks => prevCheckingLinks.filter(i => i !== index));
-            if (!checkedLinks.includes(index)) {
-                setCheckedLinks(prevCheckedLinks => [...prevCheckedLinks, index]);
-            }
-        }, 10000); // 10000 миллисекунд = 10 секунд
+            setCheckedLinks(prevCheckedLinks => {
+                if (!prevCheckedLinks.includes(index)) {
+                    return [...prevCheckedLinks, index];
+                }
+                return prevCheckedLinks;
+            });
+        }, 5000); // 10000 миллисекунд = 10 секунд
     };
 
 
