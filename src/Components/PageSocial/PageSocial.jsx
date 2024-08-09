@@ -37,7 +37,7 @@ const PageSocial = ({ className }) => {
             </a>
             <a
                 className={`social-item ${checkedLinks.includes(2) ? 'checked' : ''}`}
-                href="vnd.youtube://www.youtube.com"
+                href="https://youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(2, e)}
@@ -64,7 +64,7 @@ const PageSocial = ({ className }) => {
             </a>
             <a
                 className={`social-item ${checkedLinks.includes(5) ? 'checked' : ''}`}
-                href="twitter://twitter.com"
+                href="twitter://x.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(5, e)}
