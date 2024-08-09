@@ -28,7 +28,7 @@ const PageSocial = ({ className }) => {
             </a>
             <a
                 className={`social-item ${checkedLinks.includes(1) ? 'checked' : ''}`}
-                href="medium://medium.com"
+                href="https://medium.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(1, e)}
@@ -46,7 +46,7 @@ const PageSocial = ({ className }) => {
             </a>
             <a
                 className={`social-item ${checkedLinks.includes(3) ? 'checked' : ''}`}
-                href="web3://web3.com"
+                href="https://web3.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(3, e)}
@@ -55,7 +55,7 @@ const PageSocial = ({ className }) => {
             </a>
             <a
                 className={`social-item ${checkedLinks.includes(4) ? 'checked' : ''}`}
-                href="tiktok://tiktok.com"
+                href="https://tiktok.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(4, e)}
@@ -64,7 +64,7 @@ const PageSocial = ({ className }) => {
             </a>
             <a
                 className={`social-item ${checkedLinks.includes(5) ? 'checked' : ''}`}
-                href="twitter://x.com"
+                href="https://x.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(5, e)}
@@ -73,7 +73,7 @@ const PageSocial = ({ className }) => {
             </a>
             <a
                 className={`social-item ${checkedLinks.includes(6) ? 'checked' : ''}`}
-                href="instagram://instagram.com"
+                href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(6, e)}
