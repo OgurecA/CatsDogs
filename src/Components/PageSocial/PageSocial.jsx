@@ -7,12 +7,15 @@ const PageSocial = ({ className }) => {
     const handleLinkClick = (index, event) => {
         event.preventDefault();
 
-        if (!checkedLinks.includes(index)) {
-            setCheckedLinks(prevCheckedLinks => [...prevCheckedLinks, index]);
-        }
+        // Спрашиваем пользователя, хочет ли он перейти по ссылке
+        const userConfirmed = window.confirm("Вы действительно хотите перейти по ссылке?");
 
-        // После обработки клика, открыть ссылку в новом окне
-        window.open(event.target.href, '_blank');
+        if (userConfirmed) {
+            if (!checkedLinks.includes(index)) {
+                setCheckedLinks(prevCheckedLinks => [...prevCheckedLinks, index]);
+            }
+            window.open(event.target.href, '_blank');
+        }
     };
 
     return (
