@@ -1,7 +1,7 @@
 // src/pages/Inventory/Inventory.js
 
 import React from 'react';
-import Card from '../../components/Card/Card';
+import Card from './Card/Card';
 import './PageInventory.css';
 
 const PageInventory = () => {
