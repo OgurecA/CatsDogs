@@ -14,7 +14,7 @@ const PageSocial = ({ className }) => {
         event.preventDefault();
 
         // Открываем ссылку сразу
-        window.open(event.target.href, '_blank');
+        window.location.href = event.target.href;
 
         if (checkedLinks.includes(index)) {
             return; // Если класс checked уже есть, выходим из функции
