@@ -1,7 +1,6 @@
-// src/pages/Inventory/Inventory.js
+// src/pages/Inventory/PageInventory.js
 
 import React from 'react';
-import Card from './Card/Card';
 import './PageInventory.css';
 
 const PageInventory = () => {
@@ -16,15 +15,38 @@ const PageInventory = () => {
             title: 'Item 2',
             description: 'This is a description of item 2. Another useful item.',
         },
-        // Добавьте другие элементы
+        {
+            image: '/images/item3.png',
+            title: 'Item 3',
+            description: 'This is a description of item 3. Another useful item.',
+        },
+        {
+            image: '/images/item4.png',
+            title: 'Item 4',
+            description: 'This is a description of item 4. Another useful item.',
+        },
+        {
+            image: '/images/item5.png',
+            title: 'Item 5',
+            description: 'This is a description of item 5. Another useful item.',
+        }
     ];
 
     const handleUseItem = (itemTitle) => {
         alert(`You used ${itemTitle}`);
     };
 
+    const Card = ({ image, title, description, onUse }) => (
+        <div className="card">
+            <img src={image} alt={title} className="card-image" />
+            <h3 className="card-title">{title}</h3>
+            <p className="card-description">{description}</p>
+            <button className="card-button" onClick={onUse}>Использовать</button>
+        </div>
+    );
+
     return (
-        <div className="inventory">
+        <div className="page-inventory">
             {items.map((item, index) => (
                 <Card
                     key={index}

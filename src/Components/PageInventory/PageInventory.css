@@ -1,61 +1,76 @@
+/* src/pages/Inventory/PageInventory.css */
+
 .page-inventory {
-    position: absolute;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100vw;
-    background-color: #00c0e2;
-    z-index: 100;
-    background-image: url('../Photoes/JGBack2.jpg'); /* Укажите путь к вашему изображению */
-    background-size: cover; /* Изображение будет покрывать всю область */
-    background-position: center; /* Центрировать изображение */
-    background-repeat: no-repeat;
-}
-.page-inventory::before {
-    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный слой для затемнения */
-    z-index: 1;
-}
-
-.inventory-item {
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.9);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 80%;
-    margin: 10px 0;
-    padding: 10px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 3;
-}
-
-.inventory-item span {
-    font-size: 1.2em;
-}
-
-.inventory-item button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 3;
-}
-
-.inventory-item button:hover {
-    background-color: #0056b3;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    transition: opacity 0.3s ease;
 }
 
 .page-inventory.hidden {
     opacity: 0;
     pointer-events: none;
-    z-index: -10;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%; /* Ширина карточки занимает примерно треть строки */
+    max-width: 250px; /* Максимальная ширина карточки */
+    margin: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+}
+
+.card-description {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.card-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+    background-color: #0056b3;
 }
