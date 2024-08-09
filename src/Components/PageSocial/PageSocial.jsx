@@ -28,13 +28,11 @@ const PageSocial = ({ className }) => {
         // Через 10 секунд удаляем класс checking и добавляем класс checked
         setTimeout(() => {
             setCheckingLinks(prevCheckingLinks => prevCheckingLinks.filter(i => i !== index));
-            if (!checkedLinks.includes(index)) {
-                const newCheckedLinks = [...checkedLinks, index];
-                setCheckedLinks(newCheckedLinks);
-
-                // Сохраняем состояние в LocalStorage
+            setCheckedLinks(prevCheckedLinks => {
+                const newCheckedLinks = [...prevCheckedLinks, index];
                 localStorage.setItem('checkedLinks', JSON.stringify(newCheckedLinks));
-            }
+                return newCheckedLinks;
+            });
         }, 5000); // 10000 миллисекунд = 10 секунд
     };
 
