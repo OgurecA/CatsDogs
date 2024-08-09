@@ -59,33 +59,27 @@
     outline: none;
   }
 
-
-.social-item.checking::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    border-radius: 50%;
-    border: 5px solid transparent;
-    border-top-color: #ffff00;
-    border-bottom-color: #ffff00;
-    animation: spin 1s linear infinite;
-    z-index: 1; /* Псевдоэлемент над границей кнопки */
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
+  
   .social-item.checking {
     border: 2px solid #858500; /* Желтая рамка при проверке */
+    animation: neon-blink 1s infinite alternate;
 }
+
+@keyframes neon-blink {
+    0% {
+        box-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00, 0 0 30px #ffff00, 0 0 40px #ffff00;
+        opacity: 1;
+    }
+    50% {
+        box-shadow: 0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 15px #ffff00, 0 0 20px #ffff00;
+        opacity: 0.7;
+    }
+    100% {
+        box-shadow: 0 0 15px #ffff00, 0 0 30px #ffff00, 0 0 45px #ffff00, 0 0 60px #ffff00;
+        opacity: 1;
+    }
+}
+
   .social-item.checked {
     border: 2px solid #006e04;
 }
