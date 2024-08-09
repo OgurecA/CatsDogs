@@ -7,13 +7,17 @@ const PageSocial = ({ className }) => {
     const handleLinkClick = (index, event) => {
         event.preventDefault();
 
-        if (!checkedLinks.includes(index)) {
-            setCheckedLinks(prevCheckedLinks => [...prevCheckedLinks, index]);
-        }
-
-        // После обработки клика, открыть ссылку в новом окне
+        // Открываем ссылку сразу
         window.open(event.target.href, '_blank');
+
+        // Через 10 секунд добавляем класс checked
+        setTimeout(() => {
+            if (!checkedLinks.includes(index)) {
+                setCheckedLinks(prevCheckedLinks => [...prevCheckedLinks, index]);
+            }
+        }, 10000); // 10000 миллисекунд = 10 секунд
     };
+
 
     return (
         <div className={`page-social ${className}`}>
