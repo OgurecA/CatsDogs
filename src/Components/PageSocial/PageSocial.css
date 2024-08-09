@@ -59,6 +59,30 @@
     outline: none;
   }
 
+
+.social-item.checking::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    border-radius: 50%;
+    border: 5px solid transparent;
+    border-top-color: #ffff00;
+    border-bottom-color: #ffff00;
+    animation: spin 1s linear infinite;
+    z-index: 1; /* Псевдоэлемент над границей кнопки */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
   .social-item.checking {
     border: 2px solid #858500; /* Желтая рамка при проверке */
 }
