@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './PageSocial.css';
 
 const PageSocial = ({ className }) => {
+    const [checkingLinks, setCheckingLinks] = useState([]);
     const [checkedLinks, setCheckedLinks] = useState([]);
 
     const handleLinkClick = (index, event) => {
@@ -10,8 +11,14 @@ const PageSocial = ({ className }) => {
         // Открываем ссылку сразу
         window.open(event.target.href, '_blank');
 
-        // Через 10 секунд добавляем класс checked
+        // Добавляем класс checking
+        if (!checkingLinks.includes(index)) {
+            setCheckingLinks(prevCheckingLinks => [...prevCheckingLinks, index]);
+        }
+
+        // Через 10 секунд удаляем класс checking и добавляем класс checked
         setTimeout(() => {
+            setCheckingLinks(prevCheckingLinks => prevCheckingLinks.filter(i => i !== index));
             if (!checkedLinks.includes(index)) {
                 setCheckedLinks(prevCheckedLinks => [...prevCheckedLinks, index]);
             }
