@@ -11,23 +11,17 @@ const PageSocial = ({ className }) => {
         // Открываем ссылку сразу
         window.open(event.target.href, '_blank');
 
-        // Сначала добавляем класс checking
-        setCheckingLinks(prevCheckingLinks => {
-            if (!prevCheckingLinks.includes(index)) {
-                return [...prevCheckingLinks, index];
-            }
-            return prevCheckingLinks;
-        });
+        // Добавляем класс checking
+        if (!checkingLinks.includes(index)) {
+            setCheckingLinks(prevCheckingLinks => [...prevCheckingLinks, index]);
+        }
 
-        // Используем setTimeout для задержки перед удалением класса checking и добавлением класса checked
+        // Через 10 секунд удаляем класс checking и добавляем класс checked
         setTimeout(() => {
             setCheckingLinks(prevCheckingLinks => prevCheckingLinks.filter(i => i !== index));
-            setCheckedLinks(prevCheckedLinks => {
-                if (!prevCheckedLinks.includes(index)) {
-                    return [...prevCheckedLinks, index];
-                }
-                return prevCheckedLinks;
-            });
+            if (!checkedLinks.includes(index)) {
+                setCheckedLinks(prevCheckedLinks => [...prevCheckedLinks, index]);
+            }
         }, 5000); // 10000 миллисекунд = 10 секунд
     };
 
@@ -35,7 +29,7 @@ const PageSocial = ({ className }) => {
     return (
         <div className={`page-social ${className}`}>
             <a
-                className={`social-item ${checkedLinks.includes(0) ? 'checked' : ''}`}
+                className={`social-item ${checkingLinks.includes(0) ? 'checking' : ''} ${checkedLinks.includes(0) ? 'checked' : ''}`}
                 href="tg://resolve?domain=telegram"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -44,7 +38,7 @@ const PageSocial = ({ className }) => {
                 Telegram
             </a>
             <a
-                className={`social-item ${checkedLinks.includes(1) ? 'checked' : ''}`}
+                className={`social-item ${checkingLinks.includes(1) ? 'checking' : ''} ${checkedLinks.includes(1) ? 'checked' : ''}`}
                 href="https://medium.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -53,7 +47,7 @@ const PageSocial = ({ className }) => {
                 Medium
             </a>
             <a
-                className={`social-item ${checkedLinks.includes(2) ? 'checked' : ''}`}
+                className={`social-item ${checkingLinks.includes(2) ? 'checking' : ''} ${checkedLinks.includes(2) ? 'checked' : ''}`}
                 href="https://www.youtube.com/watch?v=H8t5uq-DRJk&list=RDEogFdxEzNcQ&index=12"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -62,7 +56,7 @@ const PageSocial = ({ className }) => {
                 Youtube
             </a>
             <a
-                className={`social-item ${checkedLinks.includes(3) ? 'checked' : ''}`}
+                className={`social-item ${checkingLinks.includes(3) ? 'checking' : ''} ${checkedLinks.includes(3) ? 'checked' : ''}`}
                 href="https://web3.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -71,7 +65,7 @@ const PageSocial = ({ className }) => {
                 Web
             </a>
             <a
-                className={`social-item ${checkedLinks.includes(4) ? 'checked' : ''}`}
+                className={`social-item ${checkingLinks.includes(4) ? 'checking' : ''} ${checkedLinks.includes(4) ? 'checked' : ''}`}
                 href="https://tiktok.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -80,7 +74,7 @@ const PageSocial = ({ className }) => {
                 TikTok
             </a>
             <a
-                className={`social-item ${checkedLinks.includes(5) ? 'checked' : ''}`}
+                className={`social-item ${checkingLinks.includes(5) ? 'checking' : ''} ${checkedLinks.includes(5) ? 'checked' : ''}`}
                 href="https://x.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -89,7 +83,7 @@ const PageSocial = ({ className }) => {
                 X
             </a>
             <a
-                className={`social-item ${checkedLinks.includes(6) ? 'checked' : ''}`}
+                className={`social-item ${checkingLinks.includes(6) ? 'checking' : ''} ${checkedLinks.includes(6) ? 'checked' : ''}`}
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
