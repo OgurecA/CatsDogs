@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import './ButtonBar.css';
+import './PageSocial.css';
 
 const PageSocial = ({ className }) => {
     const [checkedLinks, setCheckedLinks] = useState([]);
 
-    const handleButtonClick = (index) => {
+    const handleLinkClick = (index, event) => {
+        event.preventDefault();
         setCheckedLinks(prevCheckedLinks => {
             if (prevCheckedLinks.includes(index)) {
                 return prevCheckedLinks.filter(i => i !== index);
@@ -12,6 +13,9 @@ const PageSocial = ({ className }) => {
                 return [...prevCheckedLinks, index];
             }
         });
+
+        // После обработки клика, открыть ссылку в новом окне
+        window.open(event.target.href, '_blank');
     };
 
     return (
@@ -21,10 +25,7 @@ const PageSocial = ({ className }) => {
                 href="tg://resolve?domain=telegram"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => {
-                    e.preventDefault();
-                    handleButtonClick(0);
-                }}
+                onClick={(e) => handleLinkClick(0, e)}
             >
                 Telegram
             </a>
@@ -33,10 +34,7 @@ const PageSocial = ({ className }) => {
                 href="medium://medium.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => {
-                    e.preventDefault();
-                    handleButtonClick(1);
-                }}
+                onClick={(e) => handleLinkClick(1, e)}
             >
                 Medium
             </a>
@@ -45,10 +43,7 @@ const PageSocial = ({ className }) => {
                 href="vnd.youtube://www.youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => {
-                    e.preventDefault();
-                    handleButtonClick(2);
-                }}
+                onClick={(e) => handleLinkClick(2, e)}
             >
                 Youtube
             </a>
@@ -57,10 +52,7 @@ const PageSocial = ({ className }) => {
                 href="web3://web3.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => {
-                    e.preventDefault();
-                    handleButtonClick(3);
-                }}
+                onClick={(e) => handleLinkClick(3, e)}
             >
                 Web3
             </a>
@@ -69,10 +61,7 @@ const PageSocial = ({ className }) => {
                 href="tiktok://tiktok.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => {
-                    e.preventDefault();
-                    handleButtonClick(4);
-                }}
+                onClick={(e) => handleLinkClick(4, e)}
             >
                 TikTok
             </a>
@@ -81,10 +70,7 @@ const PageSocial = ({ className }) => {
                 href="twitter://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => {
-                    e.preventDefault();
-                    handleButtonClick(5);
-                }}
+                onClick={(e) => handleLinkClick(5, e)}
             >
                 X
             </a>
@@ -93,10 +79,7 @@ const PageSocial = ({ className }) => {
                 href="instagram://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => {
-                    e.preventDefault();
-                    handleButtonClick(6);
-                }}
+                onClick={(e) => handleLinkClick(6, e)}
             >
                 Instagram
             </a>
