@@ -62,20 +62,19 @@
   
   .social-item.checking {
     border: 2px solid #bffff6; /* Желтая рамка при проверке */
-    animation: soft-pulse 2s infinite ease-in-out;
+    animation: soft-pulse 1s infinite ease-in-out;
 }
 
 @keyframes soft-pulse {
     0%, 100% {
-        box-shadow: 0 0 5px #bffff6;
+        box-shadow: 0 0 5px #cffff9;
     }
     50% {
-        box-shadow: 0 0 10px #bffff6;
+        box-shadow: 0 0 10px #cffff9;
     }
 }
   .social-item.checked {
-    border: 2px solid #bffff6;
-    box-shadow: 0 0 5px #bffff6;
+    border: 2px solid #f3fffd;
 }
 
 
