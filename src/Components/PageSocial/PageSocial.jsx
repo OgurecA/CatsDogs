@@ -22,7 +22,7 @@ const PageSocial = ({ className }) => {
             if (!checkedLinks.includes(index)) {
                 setCheckedLinks(prevCheckedLinks => [...prevCheckedLinks, index]);
             }
-        }, 5000); // 10000 миллисекунд = 10 секунд
+        }, 15000); // 10000 миллисекунд = 10 секунд
     };
 
 
