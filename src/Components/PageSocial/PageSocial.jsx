@@ -5,6 +5,11 @@ const PageSocial = ({ className }) => {
     const [checkingLinks, setCheckingLinks] = useState([]);
     const [checkedLinks, setCheckedLinks] = useState([]);
 
+    useEffect(() => {
+        const savedCheckedLinks = JSON.parse(localStorage.getItem('checkedLinks')) || [];
+        setCheckedLinks(savedCheckedLinks);
+    }, []);
+
     const handleLinkClick = (index, event) => {
         event.preventDefault();
 
@@ -24,9 +29,13 @@ const PageSocial = ({ className }) => {
         setTimeout(() => {
             setCheckingLinks(prevCheckingLinks => prevCheckingLinks.filter(i => i !== index));
             if (!checkedLinks.includes(index)) {
-                setCheckedLinks(prevCheckedLinks => [...prevCheckedLinks, index]);
+                const newCheckedLinks = [...checkedLinks, index];
+                setCheckedLinks(newCheckedLinks);
+
+                // Сохраняем состояние в LocalStorage
+                localStorage.setItem('checkedLinks', JSON.stringify(newCheckedLinks));
             }
-        }, 10000); // 10000 миллисекунд = 10 секунд
+        }, 5000); // 10000 миллисекунд = 10 секунд
     };
 
 
