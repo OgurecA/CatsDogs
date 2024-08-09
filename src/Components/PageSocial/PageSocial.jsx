@@ -6,13 +6,10 @@ const PageSocial = ({ className }) => {
 
     const handleLinkClick = (index, event) => {
         event.preventDefault();
-        setCheckedLinks(prevCheckedLinks => {
-            if (prevCheckedLinks.includes(index)) {
-                return prevCheckedLinks.filter(i => i !== index);
-            } else {
-                return [...prevCheckedLinks, index];
-            }
-        });
+
+        if (!checkedLinks.includes(index)) {
+            setCheckedLinks(prevCheckedLinks => [...prevCheckedLinks, index]);
+        }
 
         // После обработки клика, открыть ссылку в новом окне
         window.open(event.target.href, '_blank');
@@ -54,7 +51,7 @@ const PageSocial = ({ className }) => {
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(3, e)}
             >
-                Web3
+                Web
             </a>
             <a
                 className={`social-item ${checkedLinks.includes(4) ? 'checked' : ''}`}
