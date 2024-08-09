@@ -7,15 +7,12 @@ const PageSocial = ({ className }) => {
     const handleLinkClick = (index, event) => {
         event.preventDefault();
 
-        // Спрашиваем пользователя, хочет ли он перейти по ссылке
-        const userConfirmed = window.confirm("Вы действительно хотите перейти по ссылке?");
-
-        if (userConfirmed) {
-            if (!checkedLinks.includes(index)) {
-                setCheckedLinks(prevCheckedLinks => [...prevCheckedLinks, index]);
-            }
-            window.open(event.target.href, '_blank');
+        if (!checkedLinks.includes(index)) {
+            setCheckedLinks(prevCheckedLinks => [...prevCheckedLinks, index]);
         }
+
+        // После обработки клика, открыть ссылку в новом окне
+        window.open(event.target.href, '_blank');
     };
 
     return (
@@ -40,7 +37,7 @@ const PageSocial = ({ className }) => {
             </a>
             <a
                 className={`social-item ${checkedLinks.includes(2) ? 'checked' : ''}`}
-                href="https://youtube.com"
+                href="https://www.youtube.com/watch?v=H8t5uq-DRJk&list=RDEogFdxEzNcQ&index=12"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(2, e)}
