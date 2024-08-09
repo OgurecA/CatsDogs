@@ -1,6 +1,6 @@
 /* src/pages/Inventory/PageInventory.css */
 
-.page-social {
+.page-inventory {
     position: absolute;
     display: flex; /* Добавлено для центровки дочерних элементов */
     flex-direction: column;
@@ -15,7 +15,7 @@
     background-position: center; /* Центрировать изображение */
     background-repeat: no-repeat;
 }
-.page-social::before {
+.page-inventory::before {
     content: "";
     position: absolute;
     top: 0;
