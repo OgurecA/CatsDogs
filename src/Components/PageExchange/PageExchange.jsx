@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './PageExchange.css';
+import './PageSocial.css';
 
-const PageExchange = ({ className }) => {
+const PageSocial = ({ className }) => {
     const [checkingLinks, setCheckingLinks] = useState([]);
     const [checkedLinks, setCheckedLinks] = useState([]);
 
@@ -25,7 +25,7 @@ const PageExchange = ({ className }) => {
             setCheckingLinks(prevCheckingLinks => [...prevCheckingLinks, index]);
         }
 
-        // Через 15 секунд удаляем класс checking и добавляем класс checked
+        // Через 5 секунд удаляем класс checking и добавляем класс checked
         setTimeout(() => {
             setCheckingLinks(prevCheckingLinks => prevCheckingLinks.filter(i => i !== index));
             if (!checkedLinks.includes(index)) {
@@ -35,77 +35,76 @@ const PageExchange = ({ className }) => {
                 // Сохраняем состояние в LocalStorage
                 localStorage.setItem('checkedLinks', JSON.stringify(newCheckedLinks));
             }
-        }, 5000); // 15000 миллисекунд = 15 секунд
+        }, 5000); // 5000 миллисекунд = 5 секунд
     };
 
-
     return (
-        <div className={`page-exchange ${className}`}>
+        <div className={`page-social ${className}`}>
             <a
-                className={`exchange-item ${checkingLinks.includes(0) ? 'checking' : ''} ${checkedLinks.includes(0) ? 'checked' : ''}`}
+                className={`social-item ${checkingLinks.includes(0) ? 'checking' : ''} ${checkedLinks.includes(0) ? 'checked' : ''}`}
                 href="tg://resolve?domain=telegram"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(0, e)}
             >
-                OKX
+                Telegram
             </a>
             <a
-                className={`exchange-item ${checkingLinks.includes(1) ? 'checking' : ''} ${checkedLinks.includes(1) ? 'checked' : ''}`}
+                className={`social-item ${checkingLinks.includes(1) ? 'checking' : ''} ${checkedLinks.includes(1) ? 'checked' : ''}`}
                 href="https://medium.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(1, e)}
             >
-                Binance
+                Medium
             </a>
             <a
-                className={`exchange-item ${checkingLinks.includes(2) ? 'checking' : ''} ${checkedLinks.includes(2) ? 'checked' : ''}`}
-                href="https://www.youtube.com/watch?v=H8t5uq-DRJk&list=RDEogFdxEzNcQ&index=12"
+                className={`social-item ${checkingLinks.includes(2) ? 'checking' : ''} ${checkedLinks.includes(2) ? 'checked' : ''}`}
+                href="https://www.youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(2, e)}
             >
-                Coinbase
+                Youtube
             </a>
             <a
-                className={`exchange-item ${checkingLinks.includes(3) ? 'checking' : ''} ${checkedLinks.includes(3) ? 'checked' : ''}`}
+                className={`social-item ${checkingLinks.includes(3) ? 'checking' : ''} ${checkedLinks.includes(3) ? 'checked' : ''}`}
                 href="https://web3.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(3, e)}
             >
-                Kraken
+                Web3
             </a>
             <a
-                className={`exchange-item ${checkingLinks.includes(4) ? 'checking' : ''} ${checkedLinks.includes(4) ? 'checked' : ''}`}
+                className={`social-item ${checkingLinks.includes(4) ? 'checking' : ''} ${checkedLinks.includes(4) ? 'checked' : ''}`}
                 href="https://tiktok.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(4, e)}
             >
-                Bitfinex
+                TikTok
             </a>
             <a
-                className={`exchange-item ${checkingLinks.includes(5) ? 'checking' : ''} ${checkedLinks.includes(5) ? 'checked' : ''}`}
-                href="https://x.com"
+                className={`social-item ${checkingLinks.includes(5) ? 'checking' : ''} ${checkedLinks.includes(5) ? 'checked' : ''}`}
+                href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(5, e)}
             >
-                Huobi
+                X
             </a>
             <a
-                className={`exchange-item ${checkingLinks.includes(6) ? 'checking' : ''} ${checkedLinks.includes(6) ? 'checked' : ''}`}
+                className={`social-item ${checkingLinks.includes(6) ? 'checking' : ''} ${checkedLinks.includes(6) ? 'checked' : ''}`}
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(6, e)}
             >
-                MexC
+                Instagram
             </a>
         </div>
     );
 };
 
-export default PageExchange;
+export default PageSocial;
