@@ -36,7 +36,7 @@ const PageInventory = () => {
         alert(`You used ${itemTitle}`);
     };
 
-    const Card = ({ image, title, description, onUse }) => (
+    const Cart = ({ image, title, description, onUse }) => (
         <div className="card">
             <img src={image} alt={title} className="card-image" />
             <h3 className="card-title">{title}</h3>
@@ -48,7 +48,7 @@ const PageInventory = () => {
     return (
         <div className="page-inventory">
             {items.map((item, index) => (
-                <Card
+                <Cart
                     key={index}
                     image={item.image}
                     title={item.title}

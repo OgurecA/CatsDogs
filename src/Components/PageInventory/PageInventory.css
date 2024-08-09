@@ -1,5 +1,3 @@
-/* src/pages/Inventory/PageInventory.css */
-
 .page-inventory {
     position: absolute;
     display: flex; /* Добавлено для центровки дочерних элементов */
@@ -15,6 +13,7 @@
     background-position: center; /* Центрировать изображение */
     background-repeat: no-repeat;
 }
+
 .page-inventory::before {
     content: "";
     position: absolute;
@@ -25,63 +24,10 @@
     background: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный слой для затемнения */
     z-index: 1;
 }
+
+
 .page-inventory.hidden {
     opacity: 0;
-    z-index: -10;
     pointer-events: none;
-}
-
-.card {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 30%; /* Ширина карточки занимает примерно треть строки */
-    max-width: 250px; /* Максимальная ширина карточки */
-    margin: 10px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.card-image {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.card-title {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    color: #333;
-    text-align: center;
-}
-
-.card-description {
-    font-size: 0.9em;
-    color: #666;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.card-button {
-    padding: 10px 20px;
-    font-size: 1em;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.card-button:hover {
-    background-color: #0056b3;
+    z-index: -10;
 }
