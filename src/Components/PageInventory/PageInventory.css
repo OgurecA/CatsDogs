@@ -1,19 +1,17 @@
 .page-inventory {
     position: absolute;
-    display: flex; /* Добавлено для центровки дочерних элементов */
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     height: 100vh;
     width: 100vw;
-    background-color: #e20000;
+    background-color: #00c0e2;
     z-index: 100;
-    background-image: url('../Photoes/RaptorBack.jpg'); /* Укажите путь к вашему изображению */
+    background-image: url('../Photoes/JGBack2.jpg'); /* Укажите путь к вашему изображению */
     background-size: cover; /* Изображение будет покрывать всю область */
     background-position: center; /* Центрировать изображение */
     background-repeat: no-repeat;
 }
-
 .page-inventory::before {
     content: "";
     position: absolute;
@@ -25,6 +23,36 @@
     z-index: 1;
 }
 
+.inventory-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+}
+
+.inventory-item span {
+    font-size: 1.2em;
+}
+
+.inventory-item button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.inventory-item button:hover {
+    background-color: #0056b3;
+}
 
 .page-inventory.hidden {
     opacity: 0;
