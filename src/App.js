@@ -70,7 +70,8 @@ function App() {
     const [isExchangePageVisible, setIsExchangePageVisible] = useState(false);
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
-    const [displayedImage, setDisplayedImage] = useState(null);
+    const [displayedImageA, setDisplayedImageA] = useState(HarrisImg);
+    const [displayedImageB, setDisplayedImageB] = useState(TrumpBG);
 
     // Восстанавливаем данные из локального хранилища при загрузке приложения
     useEffect(() => {
@@ -78,7 +79,8 @@ function App() {
         const savedImage = localStorage.getItem('selectedCardImage');
         if (savedIndex !== null && savedImage !== null) {
             setSelectedCardIndex(Number(savedIndex));
-            setDisplayedImage(savedImage);
+            setDisplayedImageA(savedImage);
+            setDisplayedImageB(savedImage);
         }
     }, []);
 
@@ -106,7 +108,8 @@ function App() {
                 image = null;
         }
 
-        setDisplayedImage(image);
+        setDisplayedImageA(image);
+        setDisplayedImageB(image);
         localStorage.setItem('selectedCardIndex', index);
         localStorage.setItem('selectedCardImage', image);
     };
@@ -293,7 +296,7 @@ function App() {
         setIsSelectedHarris(true);
         setIsSelectedTrump(false);
         changeBackgroundImage(HarrisBG);
-        setDisplayedImage(Snake);
+        setDisplayedImageA(Snake);
         setSelectedCardIndex(0);
         console.log("Harris was elected");
     }
@@ -306,7 +309,7 @@ function App() {
         setIsSelectedTrump(true);
         setIsSelectedHarris(false);
         changeBackgroundImage(TrumpBG);
-        setDisplayedImage(Snake);
+        setDisplayedImageB(Snake);
         setSelectedCardIndex(0);
         console.log("Trump was elected");
     }
@@ -455,8 +458,8 @@ function App() {
             />
 
             <OverflowFix
-                harrisImage={displayedImage}
-                trumpImage={displayedImage}
+                harrisImage={displayedImageA}
+                trumpImage={displayedImageB}
                 onHarrisClick={handleHarrisClick}
                 onTrumpClick={handleTrumpClick}
                 isSelectedHarris={isSelectedHarris}
