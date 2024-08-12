@@ -1,9 +1,9 @@
 .page-inventory {
     position: absolute;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 колонки равной ширины */
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки одинаковой ширины */
     gap: 0.5vw; /* Уменьшенное расстояние между карточками */
-    justify-content: flex-start;
+    justify-content: center; /* Центрирование карточек внутри контейнера */
     align-content: start; /* Выровняем строки карточек ближе к верху */
     padding: 1vh 0; /* Уменьшенный верхний и нижний отступ внутри контейнера */
     height: 100vh;
@@ -14,6 +14,7 @@
     background-size: cover; /* Изображение будет покрывать всю область */
     background-position: center; /* Центрировать изображение */
     background-repeat: no-repeat;
+    box-sizing: border-box; /* Включаем box-sizing для правильного расчета размеров */
 }
 
 .page-inventory.hidden {
@@ -25,14 +26,15 @@
 .card {
     border: 1px solid #3a3a3a;
     border-radius: 10px;
-    width: 30vw;
+    width: calc(100% - 1vw); /* Учитываем gap, чтобы карточки не выходили за края */
+    max-width: 30vw; /* Ограничение максимальной ширины */
     height: 20vh;
     background-color: rgba(102, 102, 102, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0;
-    margin: auto;
+    margin: 0 auto; /* Центрирование карточек в колонке */
 }
 
 .card-image {
@@ -44,7 +46,7 @@
 
 .card-title {
     font-size: 1em;
-    color: #333;
+    color: #9c9c9c;
     text-align: center;
     margin-bottom: -10px;
 }
