@@ -43,8 +43,6 @@ function App() {
 
     const [playersFavorite, setPlayersFavorite] = useState(null)
 
-    const [favorite, setFavorite] = useState("none")
-
     const [fingerprintData, setFingerprintData] = useState(null);
     
     const [isSocialPageVisible, setIsSocialPageVisible] = useState(false);
@@ -53,8 +51,8 @@ function App() {
     const [isExchangePageVisible, setIsExchangePageVisible] = useState(false);
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
-    const [displayedImageA, setDisplayedImageA] = useState(null);
-    const [displayedImageB, setDisplayedImageB] = useState(null);
+    const [displayedImageA, setDisplayedImageA] = useState(HarrisImg);
+    const [displayedImageB, setDisplayedImageB] = useState(TrumpImg);
 
     // Восстанавливаем данные из локального хранилища при загрузке приложения
     useEffect(() => {
@@ -88,7 +86,7 @@ function App() {
                 image = Tiger;
                 break;
             default:
-                image = Snake;
+                image = null;
         }
 
         setDisplayedImageB(image);
@@ -278,9 +276,7 @@ function App() {
         setIsSelectedTrump(false);
         changeBackgroundImage(HarrisBG);
         setDisplayedImageA(Snake);
-        setFavorite("Team A");
         console.log("Harris was elected");
-        updateCounts();
     }
     
     function handleClickTrumpB() {
@@ -292,9 +288,7 @@ function App() {
         setIsSelectedHarris(false);
         changeBackgroundImage(TrumpBG);
         setDisplayedImageB(Snake);
-        setFavorite("Team B");
         console.log("Trump was elected");
-        updateCounts();
     }
 
     function changeBackgroundImage(imageUrl) {
@@ -348,7 +342,6 @@ function App() {
         if(!choice) {
             setChoice(true)
             handleClickHarrisB();
-            incrementTrumpCount(e);
         }
         incrementHarrisCount(e);
         updateCounts();
@@ -357,13 +350,13 @@ function App() {
         if(!choice) {
             setChoice(true)
             handleClickTrumpB();
-            incrementTrumpCount(e);
         }
         incrementTrumpCount(e);
         updateCounts();
     }
 
     const personalCount = personalHarrisCount - personalTrumpCount;
+    const favorite = isSelectedHarris ? 'Team A' : (isSelectedTrump ? 'Team B' : 'None');
 
     function updateCounts() {
         const data = {
