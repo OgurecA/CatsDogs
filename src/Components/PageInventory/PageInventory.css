@@ -39,12 +39,10 @@
     width: 90%;
     height: auto;
     border-radius: 10px;
-    margin-bottom: 5px;
 }
 
 .card-title {
     font-size: 1em;
-    margin-bottom: 5px;
     color: #333;
     text-align: center;
 }
@@ -52,7 +50,6 @@
 .card-description {
     font-size: 0.7em;
     color: #666;
-    margin-bottom: 5px;
     text-align: center;
 }
 
