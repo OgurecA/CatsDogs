@@ -6,23 +6,21 @@ const PageInventory = ({ className }) => {
     const items = [
         {
             title: 'Snake',
-            description: 'DMG +1',
-            image: Snake,
+            image: Snake
         },
         {
             title: 'Gorilla',
-            description: 'DMG +2.',
-            image: Gorilla,
+            image: Gorilla
         },
         {
             title: 'Croc',
             description: 'CON +10',
-            image: Croc,
+            image: Croc
         },
         {
             title: 'Elephant',
             description: 'INT +5',
-            image: Elephant,
+            image: Elephant
         }
     ];
 
@@ -36,8 +34,6 @@ const PageInventory = ({ className }) => {
                 <div className={`card`} key={index}>
                     <img src={item.image} alt={item.title} className="card-image" />
                     <h3 className="card-title">{item.title}</h3>
-                    <p className="card-description">{item.description}</p>
-                    <button className="card-button" onClick={() => handleUseItem(item.title)}>Использовать</button>
                 </div>
             ))}
         </div>
