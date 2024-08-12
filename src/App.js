@@ -280,6 +280,7 @@ function App() {
         setDisplayedImageA(Snake);
         setFavorite("Team A");
         console.log("Harris was elected");
+        updateCounts();
     }
     
     function handleClickTrumpB() {
@@ -293,6 +294,7 @@ function App() {
         setDisplayedImageB(Snake);
         setFavorite("Team B");
         console.log("Trump was elected");
+        updateCounts();
     }
 
     function changeBackgroundImage(imageUrl) {
@@ -346,7 +348,6 @@ function App() {
         if(!choice) {
             setChoice(true)
             handleClickHarrisB();
-            updateCounts();
             incrementTrumpCount(e);
         }
         incrementHarrisCount(e);
@@ -356,7 +357,6 @@ function App() {
         if(!choice) {
             setChoice(true)
             handleClickTrumpB();
-            updateCounts();
             incrementTrumpCount(e);
         }
         incrementTrumpCount(e);
