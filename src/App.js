@@ -343,6 +343,7 @@ function App() {
             setChoice(true)
             handleClickHarrisB();
             updateCounts();
+            incrementTrumpCount(e);
         }
         incrementHarrisCount(e);
         updateCounts();
@@ -352,6 +353,7 @@ function App() {
             setChoice(true)
             handleClickTrumpB();
             updateCounts();
+            incrementTrumpCount(e);
         }
         incrementTrumpCount(e);
         updateCounts();
