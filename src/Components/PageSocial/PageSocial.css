@@ -73,8 +73,13 @@
         box-shadow: 0 0 13px #cffff9;
     }
 }
-  .social-item.checked {
-    border: 2px solid #f3fffd;
+
+.social-item {
+    border-image-slice: 1; /* Включаем всю область изображения для рамки */
+    border-width: 1px;
+    border-image-repeat: round;
+    border-image-source: url('../Photoes/SteelTexture.jpg');
+    border-image-outset: 0;
 }
 
 

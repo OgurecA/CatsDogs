@@ -73,8 +73,12 @@
         box-shadow: 0 0 13px #cffff9;
     }
 }
-  .exchange-item.checked {
-    border: 2px solid #f3fffd;
+.exchange-item {
+    border-image-slice: 1; /* Включаем всю область изображения для рамки */
+    border-width: 1px;
+    border-image-repeat: round;
+    border-image-source: url('../Photoes/SteelTexture.jpg');
+    border-image-outset: 0;
 }
 
 
