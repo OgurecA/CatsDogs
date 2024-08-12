@@ -284,7 +284,7 @@ function App() {
             console.log("Energy recovered:", energyRecovered);
 
             const newEnergy = Math.min(parseInt(savedEnergy, 10) + energyRecovered, 100);
-            setEnergy(newEnergy);
+            setEnergy(Math.min(parseInt(savedEnergy, 10) + energyRecovered, 100));
 
             console.log("New energy after recovery:", newEnergy);
         } else {
