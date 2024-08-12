@@ -21,6 +21,42 @@ const PageInventory = ({ className }) => {
             title: 'Elephant',
             description: 'INT +5',
             image: Elephant
+        },
+        {
+            title: 'Snake',
+            image: Snake
+        },
+        {
+            title: 'Gorilla',
+            image: Gorilla
+        },
+        {
+            title: 'Croc',
+            description: 'CON +10',
+            image: Croc
+        },
+        {
+            title: 'Elephant',
+            description: 'INT +5',
+            image: Elephant
+        },
+        {
+            title: 'Snake',
+            image: Snake
+        },
+        {
+            title: 'Gorilla',
+            image: Gorilla
+        },
+        {
+            title: 'Croc',
+            description: 'CON +10',
+            image: Croc
+        },
+        {
+            title: 'Elephant',
+            description: 'INT +5',
+            image: Elephant
         }
     ];
 
