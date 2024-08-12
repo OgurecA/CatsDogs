@@ -2,72 +2,58 @@ import React, { useState } from 'react';
 import './PageInventory.css';
 
 const PageInventory = ({ className }) => {
+    const items = [
+        {
+            title: 'OKX',
+            description: 'This is a description of OKX. It is a popular exchange.',
+            image: '/images/okx.png',
+        },
+        {
+            title: 'Binance',
+            description: 'This is a description of Binance. Another popular exchange.',
+            image: '/images/binance.png',
+        },
+        {
+            title: 'Coinbase',
+            description: 'This is a description of Coinbase. Another useful exchange.',
+            image: '/images/coinbase.png',
+        },
+        {
+            title: 'Kraken',
+            description: 'This is a description of Kraken. A widely used exchange.',
+            image: '/images/kraken.png',
+        },
+        {
+            title: 'Bitfinex',
+            description: 'This is a description of Bitfinex. A well-known exchange.',
+            image: '/images/bitfinex.png',
+        },
+        {
+            title: 'Huobi',
+            description: 'This is a description of Huobi. A prominent exchange.',
+            image: '/images/huobi.png',
+        },
+        {
+            title: 'MexC',
+            description: 'This is a description of MexC. A rapidly growing exchange.',
+            image: '/images/mexc.png',
+        },
+    ];
+
+    const handleUseItem = (itemTitle) => {
+        alert(`You selected ${itemTitle}`);
+    };
 
     return (
         <div className={`page-inventory ${className}`}>
-            <a
-                className={`exchange-item ${checkingLinks.includes(0) ? 'checking' : ''} ${checkedLinks.includes(0) ? 'checked' : ''}`}
-                href="tg://resolve?domain=telegram"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => handleLinkClick(0, e)}
-            >
-                OKX
-            </a>
-            <a
-                className={`exchange-item ${checkingLinks.includes(1) ? 'checking' : ''} ${checkedLinks.includes(1) ? 'checked' : ''}`}
-                href="https://medium.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => handleLinkClick(1, e)}
-            >
-                Binance
-            </a>
-            <a
-                className={`exchange-item ${checkingLinks.includes(2) ? 'checking' : ''} ${checkedLinks.includes(2) ? 'checked' : ''}`}
-                href="https://www.youtube.com/watch?v=H8t5uq-DRJk&list=RDEogFdxEzNcQ&index=12"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => handleLinkClick(2, e)}
-            >
-                Coinbase
-            </a>
-            <a
-                className={`exchange-item ${checkingLinks.includes(3) ? 'checking' : ''} ${checkedLinks.includes(3) ? 'checked' : ''}`}
-                href="https://web3.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => handleLinkClick(3, e)}
-            >
-                Kraken
-            </a>
-            <a
-                className={`exchange-item ${checkingLinks.includes(4) ? 'checking' : ''} ${checkedLinks.includes(4) ? 'checked' : ''}`}
-                href="https://tiktok.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => handleLinkClick(4, e)}
-            >
-                Bitfinex
-            </a>
-            <a
-                className={`exchange-item ${checkingLinks.includes(5) ? 'checking' : ''} ${checkedLinks.includes(5) ? 'checked' : ''}`}
-                href="https://x.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => handleLinkClick(5, e)}
-            >
-                Huobi
-            </a>
-            <a
-                className={`inventory-item ${checkingLinks.includes(6) ? 'checking' : ''} ${checkedLinks.includes(6) ? 'checked' : ''}`}
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => handleLinkClick(6, e)}
-            >
-                MexC
-            </a>
+            {items.map((item, index) => (
+                <div className={`card`} key={index}>
+                    <img src={item.image} alt={item.title} className="card-image" />
+                    <h3 className="card-title">{item.title}</h3>
+                    <p className="card-description">{item.description}</p>
+                    <button className="card-button" onClick={() => handleUseItem(item.title)}>Использовать</button>
+                </div>
+            ))}
         </div>
     );
 };
