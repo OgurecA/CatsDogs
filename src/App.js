@@ -353,7 +353,7 @@ function App() {
     }
 
     const personalCount = personalHarrisCount - personalTrumpCount;
-    const favorite = personalHarrisCount > personalTrumpCount ? 'Owl' : (personalTrumpCount > personalHarrisCount ? 'Snake' : 'None');
+    const favorite = personalHarrisCount > personalTrumpCount ? 'Team A' : (personalTrumpCount > personalHarrisCount ? 'Team B' : 'None');
 
     function updateCounts() {
         const data = {
