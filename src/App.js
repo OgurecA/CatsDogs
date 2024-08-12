@@ -51,8 +51,8 @@ function App() {
     const [isExchangePageVisible, setIsExchangePageVisible] = useState(false);
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
-    const [displayedImageA, setDisplayedImageA] = useState(Snake);
-    const [displayedImageB, setDisplayedImageB] = useState(Snake);
+    const [displayedImageA, setDisplayedImageA] = useState(HarrisImg);
+    const [displayedImageB, setDisplayedImageB] = useState(TrumpImg);
 
     // Восстанавливаем данные из локального хранилища при загрузке приложения
     useEffect(() => {
@@ -241,9 +241,9 @@ function App() {
       }, []);
     
       useEffect(() => {
-        if (playersFavorite === 'Owl') {
+        if (playersFavorite === 'Team A') {
           handleClickHarrisB();
-        } else if (playersFavorite === 'Snake') {
+        } else if (playersFavorite === 'Team B') {
           handleClickTrumpB();
         }
       }, [playersFavorite]);
@@ -275,6 +275,7 @@ function App() {
         setIsSelectedHarris(true);
         setIsSelectedTrump(false);
         changeBackgroundImage(HarrisBG);
+        setDisplayedImageA(Snake);
         console.log("Harris was elected");
     }
     
@@ -286,6 +287,7 @@ function App() {
         setIsSelectedTrump(true);
         setIsSelectedHarris(false);
         changeBackgroundImage(TrumpBG);
+        setDisplayedImageB(Snake);
         console.log("Trump was elected");
     }
 
@@ -354,7 +356,7 @@ function App() {
     }
 
     const personalCount = personalHarrisCount - personalTrumpCount;
-    const favorite = personalHarrisCount > personalTrumpCount ? 'Team A' : (personalTrumpCount > personalHarrisCount ? 'Team B' : 'None');
+    const favorite = isSelectedHarris ? 'Team A' : (isSelectedTrump ? 'Team B' : 'None');
 
     function updateCounts() {
         const data = {
@@ -448,7 +450,7 @@ function App() {
                     style={{
                         top: `${click.y - 70}px`, // Adjusting to center the small image
                         left: `${click.x - 20}px`, // Adjusting to center the small image
-                        opacity: 1,
+                        opacity: 1
                     }}
                     onAnimationEnd={() => handleAnimationEnd(click.id)}
                 >

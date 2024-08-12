@@ -1,5 +1,5 @@
-import HarrisImg from "../Photoes/Tiger.png";
-import TrumpImg from "../Photoes/Snake.png";
+import HarrisImg from "../Photoes/OwlCoin.png";
+import TrumpImg from "../Photoes/SnakeCoin.png";
 import HarrisBG from "../Photoes/FishBack.jpg";
 import TrumpBG from "../Photoes/Skull2.jpg";
 import TrumpH from "../Photoes/TrumpH.png";
