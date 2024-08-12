@@ -52,7 +52,7 @@ function App() {
     const [isExchangePageVisible, setIsExchangePageVisible] = useState(false);
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
-    const [displayedImage, setDisplayedImage] = useState(null);
+    const [displayedImage, setDisplayedImage] = useState(Snake);
 
     // Восстанавливаем данные из локального хранилища при загрузке приложения
     useEffect(() => {
@@ -70,15 +70,20 @@ function App() {
         let image;
         switch (index) {
             case 0:
-                image = '/images/item1.png';
+                image = Snake;
                 break;
             case 1:
-                image = '/images/item2.png';
+                image = Gorilla;
                 break;
             case 2:
-                image = '/images/item3.png';
+                image = Croc;
                 break;
-            // Добавьте другие кейсы для других индексов...
+            case 3:
+                image = Elephant;
+                break;
+            case 4:
+                image = Tiger;
+                break;
             default:
                 image = null;
         }
