@@ -1,6 +1,6 @@
 .page-inventory {
     position: absolute;
-    grid-template-columns: repeat(3, 1fr); /* 3 колонки равной ширины */
+    grid-template-rows: repeat(3, 1fr); /* 3 колонки равной ширины */
     gap: 20px; /* Расстояние между карточками */
     justify-content: flex-start;
     height: 100vh;
@@ -39,7 +39,7 @@
     margin: 10px;
     background-color: rgb(102, 102, 102);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
 }
 
