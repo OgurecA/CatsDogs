@@ -22,6 +22,25 @@ import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack
 
 
 function App() {
+
+
+
+    useEffect(() => {
+        // Очищаем локальное хранилище при закрытии/перезагрузке страницы
+        const handleUnload = () => {
+            localStorage.clear(); // Очищаем все данные из локального хранилища
+        };
+
+        window.addEventListener('beforeunload', handleUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleUnload);
+        };
+    }, []);
+
+
+
+
     const [backgroundImage, setBackgroundImage] = useState('');
 
     const [personalHarrisCount, setPersonalHarrisCount] = useState(0);
@@ -51,7 +70,7 @@ function App() {
     const [isExchangePageVisible, setIsExchangePageVisible] = useState(false);
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
-    const [displayedImage, setDisplayedImage] = useState(Snake);
+    const [displayedImage, setDisplayedImage] = useState(null);
 
     // Восстанавливаем данные из локального хранилища при загрузке приложения
     useEffect(() => {
