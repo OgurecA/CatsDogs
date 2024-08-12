@@ -18,7 +18,7 @@ import PageInventory from './Components/PageInventory/PageInventory';
 import PageExchange from './Components/PageExchange/PageExchange';
 
 
-import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack } from './Components/Pictures/Pictures';
+import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack, Snake, Gorilla, Tiger, Elephant, Croc } from './Components/Pictures/Pictures';
 
 
 function App() {
@@ -51,14 +51,42 @@ function App() {
     const [isInventoryPageVisible, setIsInventoryPageVisible] = useState(false);
     const [isExchangePageVisible, setIsExchangePageVisible] = useState(false);
 
-    const [favoriteImage, setFavoriteImage] = useState(null);
+    const [selectedCardIndex, setSelectedCardIndex] = useState(null);
+    const [displayedImage, setDisplayedImage] = useState(null);
+
+    // Восстанавливаем данные из локального хранилища при загрузке приложения
     useEffect(() => {
+        const savedIndex = localStorage.getItem('selectedCardIndex');
         const savedImage = localStorage.getItem('selectedCardImage');
-        if (savedImage) {
-            setFavoriteImage(savedImage);
+        if (savedIndex !== null && savedImage !== null) {
+            setSelectedCardIndex(Number(savedIndex));
+            setDisplayedImage(savedImage);
         }
     }, []);
-    
+
+    const handleCardSelect = (index) => {
+        setSelectedCardIndex(index);
+
+        let image;
+        switch (index) {
+            case 0:
+                image = '/images/item1.png';
+                break;
+            case 1:
+                image = '/images/item2.png';
+                break;
+            case 2:
+                image = '/images/item3.png';
+                break;
+            // Добавьте другие кейсы для других индексов...
+            default:
+                image = null;
+        }
+
+        setDisplayedImage(image);
+        localStorage.setItem('selectedCardIndex', index);
+        localStorage.setItem('selectedCardImage', image);
+    };
 
     const handleSocialPage = () => {
         if (isSocialPageVisible) {
@@ -368,11 +396,12 @@ function App() {
             <LoadScreenContainer />
             
             <ButtonBar onShowSocialPage={handleSocialPage} onShowExchangePage={handleExchangePage} onShowInventoryPage={handleInventoryPage} onOpenShop={handleShopPage}/>
+            
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} />
-            <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} />
+            <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} onCardSelect={handleCardSelect} />
             <PageExchange className={isExchangePageVisible ? 'page-exchange' : 'page-exchange hidden'} />
             <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} />
-            
+
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
                         personalCount={personalCount} 
@@ -398,8 +427,8 @@ function App() {
             />
 
             <OverflowFix
-                harrisImage={HarrisImg}
-                trumpImage={TrumpImg}
+                harrisImage={displayedImage}
+                trumpImage={displayedImage}
                 onHarrisClick={handleHarrisClick}
                 onTrumpClick={handleTrumpClick}
                 isSelectedHarris={isSelectedHarris}
