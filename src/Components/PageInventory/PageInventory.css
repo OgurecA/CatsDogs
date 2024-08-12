@@ -1,6 +1,7 @@
 .page-inventory {
     position: absolute;
-    grid-template-rows: repeat(3, 1fr); /* 3 колонки равной ширины */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки равной ширины */
     gap: 20px; /* Расстояние между карточками */
     justify-content: flex-start;
     height: 100vh;
@@ -35,7 +36,7 @@
 
 
 .card-image {
-    width: 100%;
+    width: 90%;
     height: auto;
     border-radius: 5px;
     margin-bottom: 10px;
