@@ -22,7 +22,6 @@ import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack
 
 
 function App() {
-    const [isActive, setIsActive] = useState(false);
     const [backgroundImage, setBackgroundImage] = useState('');
 
     const [personalHarrisCount, setPersonalHarrisCount] = useState(0);
@@ -52,7 +51,8 @@ function App() {
     const [isExchangePageVisible, setIsExchangePageVisible] = useState(false);
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
-    const [displayedImage, setDisplayedImage] = useState(Snake);
+    const [displayedImageA, setDisplayedImageA] = useState(Snake);
+    const [displayedImageB, setDisplayedImageB] = useState(Snake);
 
     // Восстанавливаем данные из локального хранилища при загрузке приложения
     useEffect(() => {
@@ -60,7 +60,8 @@ function App() {
         const savedImage = localStorage.getItem('selectedCardImage');
         if (savedIndex !== null && savedImage !== null) {
             setSelectedCardIndex(Number(savedIndex));
-            setDisplayedImage(savedImage);
+            setDisplayedImageA(savedImage);
+            setDisplayedImageB(savedImage);
         }
     }, []);
 
@@ -270,7 +271,6 @@ function App() {
         document.querySelector('.trump-image').classList.remove('selected');
         document.querySelector('.harris-image').classList.remove('unselected');
         document.querySelector('.harris-image').classList.add('selected');
-        setIsActive(!isActive);
         setIsSelectedHarris(true);
         setIsSelectedTrump(false);
         changeBackgroundImage(HarrisBG);
@@ -400,7 +400,7 @@ function App() {
     <>
             <LoadScreenContainer />
             
-            <ButtonBar onShowSocialPage={handleSocialPage} onShowExchangePage={handleExchangePage} onShowInventoryPage={handleInventoryPage} onOpenShop={handleShopPage}/>
+            <ButtonBar onShowSocialPage={handleSocialPage} onShowExchangePage={handleExchangePage} onShowInventoryPage={handleInventoryPage} onOpenShop={handleShopPage} isDisabled={!choice} />
             
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} />
             <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} onCardSelect={handleCardSelect} />
@@ -432,8 +432,8 @@ function App() {
             />
 
             <OverflowFix
-                harrisImage={displayedImage}
-                trumpImage={displayedImage}
+                harrisImage={displayedImageA}
+                trumpImage={displayedImageB}
                 onHarrisClick={handleHarrisClick}
                 onTrumpClick={handleTrumpClick}
                 isSelectedHarris={isSelectedHarris}

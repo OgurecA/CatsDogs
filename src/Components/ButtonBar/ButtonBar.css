@@ -64,3 +64,10 @@
     pointer-events: none; /* Избегаем влияния на клики и другие события */
     z-index: 2;
   }
+
+  .button-bar.disabled {
+    pointer-events: none;
+}
+.button-bar-button:disabled {
+  cursor: not-allowed; /* Изменяем курсор для неактивных кнопок */
+}
