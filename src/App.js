@@ -277,7 +277,7 @@ function App() {
             const timeElapsed = currentTime - parseInt(lastActiveTime, 10);
 
             // Восстановление энергии, основываясь на времени отсутствия
-            const energyRecovered = Math.floor(timeElapsed / 1000); // Например, 1 единица энергии в секунду
+            const energyRecovered = Math.floor(timeElapsed / 1000); // 1 единица энергии в секунду
 
             const newEnergy = Math.min(parseInt(savedEnergy, 10) + energyRecovered, 100);
             setEnergy(newEnergy);
@@ -285,13 +285,16 @@ function App() {
             setEnergy(100);
         }
 
+        // Устанавливаем текущее время как время последней активности
         localStorage.setItem('lastActiveTime', Date.now());
 
         const energyRecoveryInterval = setInterval(() => {
             setEnergy(prevEnergy => {
                 const newEnergy = Math.min(prevEnergy + 1, 100);
-                localStorage.setItem('energy', newEnergy);
-                localStorage.setItem('lastActiveTime', Date.now());
+                if (newEnergy < 100) {
+                    localStorage.setItem('energy', newEnergy);
+                    localStorage.setItem('lastActiveTime', Date.now());
+                }
                 return newEnergy;
             });
         }, 1000);
