@@ -43,6 +43,8 @@ function App() {
 
     const [playersFavorite, setPlayersFavorite] = useState(null)
 
+    const [favorite, setFavorite] = useState("none")
+
     const [fingerprintData, setFingerprintData] = useState(null);
     
     const [isSocialPageVisible, setIsSocialPageVisible] = useState(false);
@@ -276,6 +278,7 @@ function App() {
         setIsSelectedTrump(false);
         changeBackgroundImage(HarrisBG);
         setDisplayedImageA(Snake);
+        setFavorite("Team A");
         console.log("Harris was elected");
     }
     
@@ -288,6 +291,7 @@ function App() {
         setIsSelectedHarris(false);
         changeBackgroundImage(TrumpBG);
         setDisplayedImageB(Snake);
+        setFavorite("Team B");
         console.log("Trump was elected");
     }
 
@@ -360,7 +364,6 @@ function App() {
     }
 
     const personalCount = personalHarrisCount - personalTrumpCount;
-    const favorite = isSelectedHarris ? 'Team A' : (isSelectedTrump ? 'Team B' : 'None');
 
     function updateCounts() {
         const data = {
