@@ -25,6 +25,21 @@ function App() {
 
 
 
+   // useEffect(() => {
+        // Очищаем локальное хранилище при закрытии/перезагрузке страницы
+    //    const handleUnload = () => {
+    //        localStorage.clear(); // Очищаем все данные из локального хранилища
+    //    };
+
+    //    window.addEventListener('beforeunload', handleUnload);
+
+    //    return () => {
+    //        window.removeEventListener('beforeunload', handleUnload);
+    //    };
+ //   }, []);
+
+
+
 
     const [backgroundImage, setBackgroundImage] = useState('');
 
@@ -231,7 +246,6 @@ function App() {
             console.log('Fetched counts:', data); // Логирование полученных данных
             setPersonalHarrisCount(data.personal_harris_count ?? 0);
             setPersonalTrumpCount(data.personal_trump_count ?? 0);
-            setEnergy(data.energy ?? 100); // Устанавливаем энергию из базы данных
             setPlayersFavorite(data.favorite ?? 'none');
         })
         .catch((error) => {
@@ -255,12 +269,37 @@ function App() {
       }, [playersFavorite]);
 
       useEffect(() => {
+        const savedEnergy = localStorage.getItem('energy');
+        const lastActiveTime = localStorage.getItem('lastActiveTime');
+    
+        if (savedEnergy !== null && lastActiveTime !== null) {
+            const currentTime = Date.now();
+            const timeElapsed = currentTime - parseInt(lastActiveTime, 10);
+    
+            // Определяем, сколько энергии могло восстановиться
+            const energyRecovered = Math.floor(timeElapsed / 1000); // Например, 1 единица энергии в секунду
+    
+            setEnergy(Math.min(parseInt(savedEnergy, 10) + energyRecovered, 100));
+        } else {
+            setEnergy(100); // Установить начальную энергию, если данные не были сохранены
+        }
+    
+        localStorage.setItem('lastActiveTime', Date.now()); // Сохраняем текущее время
+    
+        // Запуск интервала для восстановления энергии
         const energyRecoveryInterval = setInterval(() => {
-            setEnergy(prevEnergy => Math.min(prevEnergy + 1, 100));
-        }, 1000);
-
+            setEnergy(prevEnergy => {
+                const newEnergy = Math.min(prevEnergy + 1, 100);
+                if (newEnergy < 100) {
+                    localStorage.setItem('lastActiveTime', Date.now());
+                }
+                return newEnergy;
+            });
+        }, 2000);
+    
         return () => clearInterval(energyRecoveryInterval);
     }, []);
+    
 
     const totalVotes = votes.Trump + votes.Harris;
     const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(1) : 0;
@@ -372,8 +411,7 @@ function App() {
             personal_count: personalCount,
             personal_harris_count: personalHarrisCount,
             personal_trump_count: personalTrumpCount,
-            favorite: favorite,
-            energy: energy
+            favorite: favorite
         };
 
         fetch('https://btc24news.online/update-counts', {
