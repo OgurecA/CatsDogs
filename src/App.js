@@ -22,6 +22,7 @@ import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack
 
 
 function App() {
+    const [isActive, setIsActive] = useState(false);
     const [backgroundImage, setBackgroundImage] = useState('');
 
     const [personalHarrisCount, setPersonalHarrisCount] = useState(0);
@@ -51,8 +52,7 @@ function App() {
     const [isExchangePageVisible, setIsExchangePageVisible] = useState(false);
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
-    const [displayedImageA, setDisplayedImageA] = useState(HarrisImg);
-    const [displayedImageB, setDisplayedImageB] = useState(TrumpImg);
+    const [displayedImage, setDisplayedImage] = useState(Snake);
 
     // Восстанавливаем данные из локального хранилища при загрузке приложения
     useEffect(() => {
@@ -60,8 +60,7 @@ function App() {
         const savedImage = localStorage.getItem('selectedCardImage');
         if (savedIndex !== null && savedImage !== null) {
             setSelectedCardIndex(Number(savedIndex));
-            setDisplayedImageA(savedImage);
-            setDisplayedImageB(savedImage);
+            setDisplayedImage(savedImage);
         }
     }, []);
 
@@ -89,8 +88,7 @@ function App() {
                 image = null;
         }
 
-        setDisplayedImageB(image);
-        setDisplayedImageA(image);
+        setDisplayedImage(image);
         localStorage.setItem('selectedCardIndex', index);
         localStorage.setItem('selectedCardImage', image);
     };
@@ -275,7 +273,6 @@ function App() {
         setIsSelectedHarris(true);
         setIsSelectedTrump(false);
         changeBackgroundImage(HarrisBG);
-        setDisplayedImageA(Snake);
         console.log("Harris was elected");
     }
     
@@ -287,7 +284,6 @@ function App() {
         setIsSelectedTrump(true);
         setIsSelectedHarris(false);
         changeBackgroundImage(TrumpBG);
-        setDisplayedImageB(Snake);
         console.log("Trump was elected");
     }
 
@@ -356,7 +352,7 @@ function App() {
     }
 
     const personalCount = personalHarrisCount - personalTrumpCount;
-    const favorite = isSelectedHarris ? 'Team A' : (isSelectedTrump ? 'Team B' : 'None');
+    const favorite = personalHarrisCount > personalTrumpCount ? 'Team A' : (personalTrumpCount > personalHarrisCount ? 'Team B' : 'None');
 
     function updateCounts() {
         const data = {
@@ -403,7 +399,7 @@ function App() {
     <>
             <LoadScreenContainer />
             
-            <ButtonBar onShowSocialPage={handleSocialPage} onShowExchangePage={handleExchangePage} onShowInventoryPage={handleInventoryPage} onOpenShop={handleShopPage} isDisabled={!choice} />
+            <ButtonBar onShowSocialPage={handleSocialPage} onShowExchangePage={handleExchangePage} onShowInventoryPage={handleInventoryPage} onOpenShop={handleShopPage} isDisabled={!choice}/>
             
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} />
             <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} onCardSelect={handleCardSelect} />
@@ -435,8 +431,8 @@ function App() {
             />
 
             <OverflowFix
-                harrisImage={displayedImageA}
-                trumpImage={displayedImageB}
+                harrisImage={displayedImage}
+                trumpImage={displayedImage}
                 onHarrisClick={handleHarrisClick}
                 onTrumpClick={handleTrumpClick}
                 isSelectedHarris={isSelectedHarris}
@@ -450,11 +446,11 @@ function App() {
                     style={{
                         top: `${click.y - 70}px`, // Adjusting to center the small image
                         left: `${click.x - 20}px`, // Adjusting to center the small image
-                        opacity: 1
+                        opacity: 1,
                     }}
                     onAnimationEnd={() => handleAnimationEnd(click.id)}
                 >
-                    <img src={displayedImageA} alt="Small Image" style={{ width: '50px', height: '50px' }} />
+                    <img src={displayedImage} alt="Small Image" style={{ width: '50px', height: '50px' }} />
                 </div>
             ))}
         </>
