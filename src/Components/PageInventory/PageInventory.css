@@ -27,7 +27,7 @@
     border: 1px solid #3a3a3a;
     border-radius: 10px;
     width: calc(100% - 1vw); /* Учитываем gap, чтобы карточки не выходили за края */
-    max-width: 30vw; /* Ограничение максимальной ширины */
+    max-width: 31vw; /* Ограничение максимальной ширины */
     height: 20vh;
     background-color: rgba(102, 102, 102, 0.5);
     display: flex;
@@ -35,6 +35,11 @@
     align-items: center;
     padding: 0;
     margin: 0 auto; /* Центрирование карточек в колонке */
+}
+
+.card.chosen {
+    background-color: rgba(255, 255, 255, 0.5); /* Фон карточки становится белым */
+    border: 1px solid #e4e4e4;
 }
 
 .card-image {

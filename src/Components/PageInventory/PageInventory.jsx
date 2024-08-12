@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './PageInventory.css';
-import {Snake, Gorilla, Croc, Elephant} from '../Pictures/Pictures';
+import {Snake, Gorilla, Croc, Elephant, Tiger} from '../Pictures/Pictures';
 
 const PageInventory = ({ className }) => {
+    const [selectedCardIndex, setSelectedCardIndex] = useState(null);
     const items = [
         {
             title: 'Snake',
@@ -14,60 +15,38 @@ const PageInventory = ({ className }) => {
         },
         {
             title: 'Croc',
-            description: 'CON +10',
             image: Croc
         },
         {
             title: 'Elephant',
-            description: 'INT +5',
             image: Elephant
         },
         {
-            title: 'Snake',
-            image: Snake
-        },
-        {
-            title: 'Gorilla',
-            image: Gorilla
-        },
-        {
-            title: 'Croc',
-            description: 'CON +10',
-            image: Croc
-        },
-        {
-            title: 'Elephant',
-            description: 'INT +5',
-            image: Elephant
-        },
-        {
-            title: 'Snake',
-            image: Snake
-        },
-        {
-            title: 'Gorilla',
-            image: Gorilla
-        },
-        {
-            title: 'Croc',
-            description: 'CON +10',
-            image: Croc
-        },
-        {
-            title: 'Elephant',
-            description: 'INT +5',
-            image: Elephant
+            title: 'Tiger',
+            image: Tiger
         }
     ];
 
-    const handleUseItem = (itemTitle) => {
-        alert(`You selected ${itemTitle}`);
+    useEffect(() => {
+        const savedIndex = localStorage.getItem('selectedCardIndex');
+        if (savedIndex !== null) {
+            setSelectedCardIndex(Number(savedIndex));
+        }
+    }, []);
+
+    const handleCardClick = (index) => {
+        setSelectedCardIndex(index);
+        localStorage.setItem('selectedCardIndex', index);
     };
 
     return (
         <div className={`page-inventory ${className}`}>
             {items.map((item, index) => (
-                <div className={`card`} key={index}>
+                <div
+                    className={`card ${selectedCardIndex === index ? 'chosen' : ''}`}
+                    key={index}
+                    onClick={() => handleCardClick(index)}
+                >
                     <img src={item.image} alt={item.title} className="card-image" />
                     <h3 className="card-title">{item.title}</h3>
                 </div>
