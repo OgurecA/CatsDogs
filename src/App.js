@@ -89,7 +89,8 @@ function App() {
                 image = null;
         }
 
-        setDisplayedImage(image);
+        setDisplayedImageB(image);
+        setDisplayedImageA(image);
         localStorage.setItem('selectedCardIndex', index);
         localStorage.setItem('selectedCardImage', image);
     };
@@ -451,7 +452,7 @@ function App() {
                     }}
                     onAnimationEnd={() => handleAnimationEnd(click.id)}
                 >
-                    <img src={displayedImage} alt="Small Image" style={{ width: '50px', height: '50px' }} />
+                    <img src={displayedImageA} alt="Small Image" style={{ width: '50px', height: '50px' }} />
                 </div>
             ))}
         </>
