@@ -52,21 +52,12 @@ function App() {
     const [isExchangePageVisible, setIsExchangePageVisible] = useState(false);
 
     const [favoriteImage, setFavoriteImage] = useState(null);
-    const [harrisImage, setHarrisImage] = useState(HarrisImg);
-    const [trumpImage, setTrumpImage] = useState(TrumpImg);
-
     useEffect(() => {
         const savedImage = localStorage.getItem('selectedCardImage');
         if (savedImage) {
             setFavoriteImage(savedImage);
         }
     }, []);
-
-    const handleCardSelection = (image) => {
-        setFavoriteImage(image);
-        setHarrisImage(image); // Или setTrumpImage(image) в зависимости от вашего логики
-        setTrumpImage(image);
-    };
     
 
     const handleSocialPage = () => {
@@ -375,14 +366,13 @@ function App() {
   return (
     <>
             <LoadScreenContainer />
-
+            
             <ButtonBar onShowSocialPage={handleSocialPage} onShowExchangePage={handleExchangePage} onShowInventoryPage={handleInventoryPage} onOpenShop={handleShopPage}/>
-           
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} />
             <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} />
             <PageExchange className={isExchangePageVisible ? 'page-exchange' : 'page-exchange hidden'} />
-            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} setFavoriteImage={handleCardSelection} />
-
+            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} />
+            
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
                         personalCount={personalCount} 
@@ -408,8 +398,8 @@ function App() {
             />
 
             <OverflowFix
-                harrisImage={harrisImage}
-                trumpImage={trumpImage}
+                harrisImage={HarrisImg}
+                trumpImage={TrumpImg}
                 onHarrisClick={handleHarrisClick}
                 onTrumpClick={handleTrumpClick}
                 isSelectedHarris={isSelectedHarris}
