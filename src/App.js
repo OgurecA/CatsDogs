@@ -293,6 +293,8 @@ function App() {
         setIsSelectedHarris(true);
         setIsSelectedTrump(false);
         changeBackgroundImage(HarrisBG);
+        setDisplayedImage(Snake);
+        setSelectedCardIndex(0);
         console.log("Harris was elected");
     }
     
@@ -304,6 +306,8 @@ function App() {
         setIsSelectedTrump(true);
         setIsSelectedHarris(false);
         changeBackgroundImage(TrumpBG);
+        setDisplayedImage(Snake);
+        setSelectedCardIndex(0);
         console.log("Trump was elected");
     }
 
