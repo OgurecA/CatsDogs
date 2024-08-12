@@ -6,22 +6,22 @@ const PageInventory = ({ className }) => {
     const items = [
         {
             title: 'Snake',
-            description: 'This is a description of OKX. It is a popular exchange.',
+            description: 'DMG +1',
             image: Snake,
         },
         {
             title: 'Gorilla',
-            description: 'This is a description of Binance. Another popular exchange.',
+            description: 'DMG +2.',
             image: Gorilla,
         },
         {
             title: 'Croc',
-            description: 'This is a description of Coinbase. Another useful exchange.',
+            description: 'CON +10',
             image: Croc,
         },
         {
             title: 'Elephant',
-            description: 'This is a description of Kraken. A widely used exchange.',
+            description: 'INT +5',
             image: Elephant,
         }
     ];

@@ -39,26 +39,26 @@
     width: 90%;
     height: auto;
     border-radius: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .card-title {
-    font-size: 1.2em;
-    margin-bottom: 10px;
+    font-size: 1em;
+    margin-bottom: 5px;
     color: #333;
     text-align: center;
 }
 
 .card-description {
-    font-size: 0.9em;
+    font-size: 0.7em;
     color: #666;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     text-align: center;
 }
 
 .card-button {
     width: 80%;
-    font-size: 1em;
+    font-size: 0.8em;
     color: #fff;
     background-color: #989898;
     border: none;
