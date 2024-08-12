@@ -269,6 +269,7 @@ function App() {
       }, [playersFavorite]);
 
       useEffect(() => {
+        // Загружаем сохраненную энергию и время последней активности
         const savedEnergy = localStorage.getItem('energy');
         const lastActiveTime = localStorage.getItem('lastActiveTime');
 
@@ -278,33 +279,34 @@ function App() {
 
             console.log("Time elapsed since last active (ms):", timeElapsed);
 
-            // Восстановление энергии, основываясь на времени отсутствия
-            const energyRecovered = Math.floor(timeElapsed / 1000); // 1 единица энергии в секунду
+            // Восстановление энергии на основе времени отсутствия (1 единица энергии в секунду)
+            const energyRecovered = Math.floor(timeElapsed / 1000);
 
             console.log("Energy recovered:", energyRecovered);
 
+            // Рассчитываем новую энергию и обновляем состояние
             const newEnergy = Math.min(parseInt(savedEnergy, 10) + energyRecovered, 100);
-            setEnergy(Math.min(parseInt(savedEnergy, 10) + energyRecovered, 100));
+            setEnergy(newEnergy);
 
             console.log("New energy after recovery:", newEnergy);
         } else {
-            setEnergy(100);
+            setEnergy(100); // Если данных нет, устанавливаем начальное значение энергии
         }
 
-        // Устанавливаем текущее время как время последней активности
+        // Обновляем время последней активности в локальном хранилище
         localStorage.setItem('lastActiveTime', Date.now());
 
+        // Запускаем интервал восстановления энергии
         const energyRecoveryInterval = setInterval(() => {
             setEnergy(prevEnergy => {
                 const newEnergy = Math.min(prevEnergy + 1, 100);
-                if (newEnergy < 100) {
-                    localStorage.setItem('energy', newEnergy);
-                    localStorage.setItem('lastActiveTime', Date.now());
-                }
+                localStorage.setItem('energy', newEnergy); // Сохраняем новую энергию
+                localStorage.setItem('lastActiveTime', Date.now()); // Обновляем время последней активности
                 return newEnergy;
             });
         }, 1000);
 
+        // Очищаем интервал при размонтировании компонента
         return () => clearInterval(energyRecoveryInterval);
     }, []);
     
