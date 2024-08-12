@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './Pageinventory.css';
+import './PageInventory.css';
 
-const Pageinventory = ({ className }) => {
+const PageInventory = ({ className }) => {
 
     return (
         <div className={`page-inventory ${className}`}>
@@ -72,4 +72,4 @@ const Pageinventory = ({ className }) => {
     );
 };
 
-export default Pageinventory;
+export default PageInventory;
