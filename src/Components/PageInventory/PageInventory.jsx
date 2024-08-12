@@ -1,27 +1,28 @@
 import React, { useState } from 'react';
 import './PageInventory.css';
+import {Snake, Gorilla, Croc, Elephant} from '../Pictures/Pictures';
 
 const PageInventory = ({ className }) => {
     const items = [
         {
             title: 'Snake',
             description: 'This is a description of OKX. It is a popular exchange.',
-            image: '../Photoes/Snake.png',
+            image: Snake,
         },
         {
             title: 'Gorilla',
             description: 'This is a description of Binance. Another popular exchange.',
-            image: '../Photoes/Gorilla.png',
+            image: Gorilla,
         },
         {
             title: 'Croc',
             description: 'This is a description of Coinbase. Another useful exchange.',
-            image: '../Photoes/Croc.png',
+            image: Croc,
         },
         {
             title: 'Elephant',
             description: 'This is a description of Kraken. A widely used exchange.',
-            image: '../Photoes/Elephant.png',
+            image: Elephant,
         }
     ];
 
