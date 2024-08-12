@@ -25,21 +25,6 @@ function App() {
 
 
 
-    useEffect(() => {
-        // Очищаем локальное хранилище при закрытии/перезагрузке страницы
-        const handleUnload = () => {
-            localStorage.clear(); // Очищаем все данные из локального хранилища
-        };
-
-        window.addEventListener('beforeunload', handleUnload);
-
-        return () => {
-            window.removeEventListener('beforeunload', handleUnload);
-        };
-    }, []);
-
-
-
 
     const [backgroundImage, setBackgroundImage] = useState('');
 
@@ -52,7 +37,7 @@ function App() {
     const [votes, setVotes] = useState({ Trump: 0, Harris: 0 });
 
     const [energy, setEnergy] = useState(100);
-    const [maxEnergy, setMaxEnergy] = useState(100)
+    const [maxEnergy, setMaxEnergy] = useState(100);
 
     const [userData, setUserData] = useState(null);
 
@@ -60,7 +45,7 @@ function App() {
 
     const [clicks, setClicks] = useState([]);
 
-    const [playersFavorite, setPlayersFavorite] = useState(null)
+    const [playersFavorite, setPlayersFavorite] = useState(null);
 
     const [fingerprintData, setFingerprintData] = useState(null);
     
@@ -71,7 +56,7 @@ function App() {
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
     const [displayedImageA, setDisplayedImageA] = useState(HarrisImg);
-    const [displayedImageB, setDisplayedImageB] = useState(TrumpBG);
+    const [displayedImageB, setDisplayedImageB] = useState(TrumpImg);
 
     // Восстанавливаем данные из локального хранилища при загрузке приложения
     useEffect(() => {
