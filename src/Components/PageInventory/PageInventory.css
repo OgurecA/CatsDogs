@@ -2,8 +2,10 @@
     position: absolute;
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 колонки равной ширины */
-    gap: 0.8vw; /* Расстояние между карточками */
+    gap: 0.5vw; /* Уменьшенное расстояние между карточками */
     justify-content: flex-start;
+    align-content: start; /* Выровняем строки карточек ближе к верху */
+    padding: 1vh 0; /* Уменьшенный верхний и нижний отступ внутри контейнера */
     height: 100vh;
     width: 100vw;
     background-color: #5d5d5d;
@@ -14,14 +16,11 @@
     background-repeat: no-repeat;
 }
 
-
 .page-inventory.hidden {
     opacity: 0;
     pointer-events: none;
     z-index: -10;
 }
-/* src/pages/Inventory/Pageinventory.css */
-
 
 .card {
     border: 1px solid #3a3a3a;
@@ -34,10 +33,7 @@
     align-items: center;
     padding: 0;
     margin: auto;
-    margin-top: 2vh;
-    margin-bottom: 1vh;
 }
-
 
 .card-image {
     width: 90%;
@@ -52,4 +48,3 @@
     text-align: center;
     margin-bottom: -10px;
 }
-
