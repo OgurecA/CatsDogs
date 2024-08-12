@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './PageInventory.css';
 import {Snake, Gorilla, Croc, Elephant, Tiger} from '../Pictures/Pictures';
 
