@@ -22,7 +22,6 @@ import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack
 
 
 function App() {
-    const [isActive, setIsActive] = useState(false);
     const [backgroundImage, setBackgroundImage] = useState('');
 
     const [personalHarrisCount, setPersonalHarrisCount] = useState(0);
@@ -241,8 +240,10 @@ function App() {
       useEffect(() => {
         if (playersFavorite === 'Team A') {
           handleClickHarrisB();
+          setChoice(true);
         } else if (playersFavorite === 'Team B') {
           handleClickTrumpB();
+          setChoice(true);
         }
       }, [playersFavorite]);
 
