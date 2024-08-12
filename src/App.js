@@ -451,7 +451,7 @@ function App() {
                     }}
                     onAnimationEnd={() => handleAnimationEnd(click.id)}
                 >
-                    <img src={isSelectedHarris ? HarrisImg : TrumpImg} alt="Small Image" style={{ width: '50px', height: '50px' }} />
+                    <img src={displayedImage} alt="Small Image" style={{ width: '50px', height: '50px' }} />
                 </div>
             ))}
         </>
