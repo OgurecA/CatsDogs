@@ -271,32 +271,31 @@ function App() {
       useEffect(() => {
         const savedEnergy = localStorage.getItem('energy');
         const lastActiveTime = localStorage.getItem('lastActiveTime');
-    
+
         if (savedEnergy !== null && lastActiveTime !== null) {
             const currentTime = Date.now();
             const timeElapsed = currentTime - parseInt(lastActiveTime, 10);
-    
-            // Определяем, сколько энергии могло восстановиться
+
+            // Восстановление энергии, основываясь на времени отсутствия
             const energyRecovered = Math.floor(timeElapsed / 1000); // Например, 1 единица энергии в секунду
-    
-            setEnergy(Math.min(parseInt(savedEnergy, 10) + energyRecovered, 100));
+
+            const newEnergy = Math.min(parseInt(savedEnergy, 10) + energyRecovered, 100);
+            setEnergy(newEnergy);
         } else {
-            setEnergy(100); // Установить начальную энергию, если данные не были сохранены
+            setEnergy(100);
         }
-    
-        localStorage.setItem('lastActiveTime', Date.now()); // Сохраняем текущее время
-    
-        // Запуск интервала для восстановления энергии
+
+        localStorage.setItem('lastActiveTime', Date.now());
+
         const energyRecoveryInterval = setInterval(() => {
             setEnergy(prevEnergy => {
                 const newEnergy = Math.min(prevEnergy + 1, 100);
-                if (newEnergy < 100) {
-                    localStorage.setItem('lastActiveTime', Date.now());
-                }
+                localStorage.setItem('energy', newEnergy);
+                localStorage.setItem('lastActiveTime', Date.now());
                 return newEnergy;
             });
-        }, 2000);
-    
+        }, 1000);
+
         return () => clearInterval(energyRecoveryInterval);
     }, []);
     
