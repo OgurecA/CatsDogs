@@ -2,7 +2,7 @@
     position: absolute;
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 колонки равной ширины */
-    gap: 20px; /* Расстояние между карточками */
+    gap: 2vw; /* Расстояние между карточками */
     justify-content: flex-start;
     height: 100vh;
     width: 100vw;
@@ -27,7 +27,7 @@
     border: 1px solid #3a3a3a;
     border-radius: 10px;
     width: 30vw;
-    margin: 10px;
+    height: 20vh;
     background-color: rgb(102, 102, 102);
     display: flex;
     flex-direction: column;
@@ -38,7 +38,7 @@
 .card-image {
     width: 90%;
     height: auto;
-    border-radius: 5px;
+    border-radius: 10px;
     margin-bottom: 10px;
 }
 
@@ -57,10 +57,10 @@
 }
 
 .card-button {
-    padding: 10px 20px;
+    width: 80%;
     font-size: 1em;
     color: #fff;
-    background-color: #7fbdff;
+    background-color: #989898;
     border: none;
     border-radius: 5px;
     cursor: pointer;
