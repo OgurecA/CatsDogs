@@ -51,8 +51,8 @@ function App() {
     const [isExchangePageVisible, setIsExchangePageVisible] = useState(false);
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
-    const [displayedImageA, setDisplayedImageA] = useState(HarrisImg);
-    const [displayedImageB, setDisplayedImageB] = useState(TrumpImg);
+    const [displayedImageA, setDisplayedImageA] = useState(Null);
+    const [displayedImageB, setDisplayedImageB] = useState(Null);
 
     // Восстанавливаем данные из локального хранилища при загрузке приложения
     useEffect(() => {
@@ -86,7 +86,7 @@ function App() {
                 image = Tiger;
                 break;
             default:
-                image = null;
+                image = Snake;
         }
 
         setDisplayedImageB(image);
@@ -342,6 +342,7 @@ function App() {
         if(!choice) {
             setChoice(true)
             handleClickHarrisB();
+            updateCounts();
         }
         incrementHarrisCount(e);
         updateCounts();
@@ -350,6 +351,7 @@ function App() {
         if(!choice) {
             setChoice(true)
             handleClickTrumpB();
+            updateCounts();
         }
         incrementTrumpCount(e);
         updateCounts();
