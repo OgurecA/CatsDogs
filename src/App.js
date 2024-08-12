@@ -276,11 +276,17 @@ function App() {
             const currentTime = Date.now();
             const timeElapsed = currentTime - parseInt(lastActiveTime, 10);
 
+            console.log("Time elapsed since last active (ms):", timeElapsed);
+
             // Восстановление энергии, основываясь на времени отсутствия
             const energyRecovered = Math.floor(timeElapsed / 1000); // 1 единица энергии в секунду
 
+            console.log("Energy recovered:", energyRecovered);
+
             const newEnergy = Math.min(parseInt(savedEnergy, 10) + energyRecovered, 100);
             setEnergy(newEnergy);
+
+            console.log("New energy after recovery:", newEnergy);
         } else {
             setEnergy(100);
         }
