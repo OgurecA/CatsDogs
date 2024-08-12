@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './PageInventory.css';
 import {Snake, Gorilla, Croc, Elephant, Tiger} from '../Pictures/Pictures';
 
-const PageInventory = ({ className }) => {
+const PageInventory = ({ className, setFavoriteImage }) => {
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
     const items = [
         {
@@ -31,12 +31,16 @@ const PageInventory = ({ className }) => {
         const savedIndex = localStorage.getItem('selectedCardIndex');
         if (savedIndex !== null) {
             setSelectedCardIndex(Number(savedIndex));
+            setFavoriteImage(items[Number(savedIndex)].image);
         }
     }, []);
 
     const handleCardClick = (index) => {
         setSelectedCardIndex(index);
+        const selectedImage = items[index].image;
         localStorage.setItem('selectedCardIndex', index);
+        localStorage.setItem('selectedCardImage', selectedImage);
+        setFavoriteImage(selectedImage);
     };
 
     return (
