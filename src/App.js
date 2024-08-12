@@ -51,8 +51,8 @@ function App() {
     const [isExchangePageVisible, setIsExchangePageVisible] = useState(false);
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
-    const [displayedImageA, setDisplayedImageA] = useState(Null);
-    const [displayedImageB, setDisplayedImageB] = useState(Null);
+    const [displayedImageA, setDisplayedImageA] = useState(null);
+    const [displayedImageB, setDisplayedImageB] = useState(null);
 
     // Восстанавливаем данные из локального хранилища при загрузке приложения
     useEffect(() => {
