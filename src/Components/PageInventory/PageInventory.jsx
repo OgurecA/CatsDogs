@@ -4,40 +4,25 @@ import './PageInventory.css';
 const PageInventory = ({ className }) => {
     const items = [
         {
-            title: 'OKX',
+            title: 'Snake',
             description: 'This is a description of OKX. It is a popular exchange.',
-            image: '/images/okx.png',
+            image: '../Photoes/Snake.png',
         },
         {
-            title: 'Binance',
+            title: 'Gorilla',
             description: 'This is a description of Binance. Another popular exchange.',
-            image: '/images/binance.png',
+            image: '../Photoes/Gorilla.png',
         },
         {
-            title: 'Coinbase',
+            title: 'Croc',
             description: 'This is a description of Coinbase. Another useful exchange.',
-            image: '/images/coinbase.png',
+            image: '../Photoes/Croc.png',
         },
         {
-            title: 'Kraken',
+            title: 'Elephant',
             description: 'This is a description of Kraken. A widely used exchange.',
-            image: '/images/kraken.png',
-        },
-        {
-            title: 'Bitfinex',
-            description: 'This is a description of Bitfinex. A well-known exchange.',
-            image: '/images/bitfinex.png',
-        },
-        {
-            title: 'Huobi',
-            description: 'This is a description of Huobi. A prominent exchange.',
-            image: '/images/huobi.png',
-        },
-        {
-            title: 'MexC',
-            description: 'This is a description of MexC. A rapidly growing exchange.',
-            image: '/images/mexc.png',
-        },
+            image: '../Photoes/Elephant.png',
+        }
     ];
 
     const handleUseItem = (itemTitle) => {
