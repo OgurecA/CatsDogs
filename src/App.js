@@ -100,6 +100,8 @@ function App() {
         let newTeamDMG;
         let newPersonalDMG;
 
+        let newName;
+
         switch (index) {
             case 0:
                 image = Snake;
