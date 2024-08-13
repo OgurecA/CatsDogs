@@ -92,7 +92,6 @@ function App() {
 
     const handleCardSelect = (index) => {
         setSelectedCardIndex(index);
-
         let image;
         let newMaxEnergy;
         let newEnergyRecovery;
@@ -153,7 +152,6 @@ function App() {
         }
 
         setMaxEnergy(newMaxEnergy);
-
         setEnergyRecovery(newEnergyRecovery);
         setEnergyTake(newEnergyTake);
         setTeamDMG(newTeamDMG);
@@ -336,19 +334,21 @@ function App() {
     
                 const energyRecovered = Math.floor(timeElapsed / 1000) * energyRecovery;
                 const currentEnergy = parseInt(savedEnergy, 10);
-                let newEnergy = currentEnergy;
-    
-                if (currentEnergy < maxEnergy) {
+                
+                // Логика восстановления энергии
+                let newEnergy;
+                if (currentEnergy >= maxEnergy) {
+                    newEnergy = currentEnergy;
+                    console.log("Energy is already at or above max, no recovery applied.");
+                } else {
                     newEnergy = Math.min(currentEnergy + energyRecovered, maxEnergy);
                     console.log("New energy after recovery:", newEnergy);
-                } else {
-                    console.log("Energy is already at or above max, no recovery applied.");
                 }
     
                 setEnergy(newEnergy);
                 localStorage.setItem('energy', newEnergy);
             } else {
-                // Если данных нет, устанавливаем начальное значение энергии, но не выше maxEnergy
+                // Если данных нет, устанавливаем начальное значение энергии
                 setEnergy(prevEnergy => {
                     const initialEnergy = Math.min(prevEnergy, maxEnergy);
                     localStorage.setItem('energy', initialEnergy);
@@ -359,14 +359,16 @@ function App() {
     
         const updateEnergy = () => {
             setEnergy(prevEnergy => {
-                if (prevEnergy < maxEnergy) {
-                    const newEnergy = Math.min(prevEnergy + energyRecovery, maxEnergy);
-                    localStorage.setItem('energy', newEnergy);
+                // Не восстанавливаем энергию, если она уже больше или равна maxEnergy
+                if (prevEnergy >= maxEnergy) {
                     localStorage.setItem('lastActiveTime', Date.now());
-                    return newEnergy;
+                    return prevEnergy;
                 }
+    
+                const newEnergy = Math.min(prevEnergy + energyRecovery, maxEnergy);
+                localStorage.setItem('energy', newEnergy);
                 localStorage.setItem('lastActiveTime', Date.now());
-                return prevEnergy; // Если энергия уже выше или равна maxEnergy, ничего не делаем
+                return newEnergy;
             });
         };
     
@@ -377,6 +379,7 @@ function App() {
         return () => clearInterval(energyRecoveryInterval);
     }, [maxEnergy, energyRecovery]);
     
+
     
 
     const totalVotes = votes.Trump + votes.Harris;
