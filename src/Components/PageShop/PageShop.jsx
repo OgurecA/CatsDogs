@@ -1,13 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import './PageShop.css';
 
 const PageShop = ({ className, title, votesA, votesB }) => {
-    const [displayedVotes, setDisplayedVotes] = useState("Calculating...")
-    if (title === 'Dire Warriors') {
-        setDisplayedVotes(votesA);
-      } else if (title === 'Wild Hearts') {
-        setDisplayedVotes(votesB);
-      }
+    const [displayedVotes, setDisplayedVotes] = useState("Calculating...");
+
+    useEffect(() => {
+        if (title === 'Dire Warriors') {
+            setDisplayedVotes(votesA);
+        } else if (title === 'Wild Hearts') {
+            setDisplayedVotes(votesB);
+        }
+    }, [title, votesA, votesB]); // Добавляем зависимости
+
     return (
         <div className={`page-shop ${className}`}>
             <div className="shop-title">
