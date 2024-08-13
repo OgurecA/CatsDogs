@@ -419,7 +419,7 @@ function App() {
                 setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
 
                 setPersonalTrumpCount(personalTrumpCount + personalDMG);
-                handleVote('Trump');
+                handleVote('Trump', teamDMG);
                 setEnergy(energy - energyTake);
             } else {
                 alert('Недостаточно энергии');
@@ -440,7 +440,7 @@ function App() {
                 setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
             
                 setPersonalHarrisCount(personalHarrisCount + personalDMG);
-                handleVote('Harris');
+                handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
             } else {
                 alert('Недостаточно энергии');

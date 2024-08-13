@@ -76,7 +76,7 @@ db.serialize(() => {
 
 
 
-function incrementTrumpTotalVotes() {
+function incrementTrumpTotalVotes(teamDMG) {
   const updateQuery = `UPDATE total_votes SET votes = votes + ? WHERE candidate = 'Trump';`;
   const selectQuery = `SELECT votes FROM total_votes WHERE candidate = 'Trump';`;
 
@@ -95,7 +95,7 @@ function incrementTrumpTotalVotes() {
   });
 }
 
-function incrementHarrisTotalVotes() {
+function incrementHarrisTotalVotes(teamDMG) {
   const updateQuery = `UPDATE total_votes SET votes = votes + ? WHERE candidate = 'Harris';`;
   const selectQuery = `SELECT votes FROM total_votes WHERE candidate = 'Harris';`;
 
