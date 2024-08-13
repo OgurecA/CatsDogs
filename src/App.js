@@ -53,7 +53,7 @@ function App() {
 
     const [energy, setEnergy] = useState(100);
     const [maxEnergy, setMaxEnergy] = useState(100);
-    const [energyRecovery, setEnergyRecovery] = useState(2);
+    const [energyRecovery, setEnergyRecovery] = useState(1);
 
     const [userData, setUserData] = useState(null);
 
@@ -92,18 +92,23 @@ function App() {
         switch (index) {
             case 0:
                 image = Snake;
+                setMaxEnergy(100);
                 break;
             case 1:
                 image = Gorilla;
+                setMaxEnergy(100);
                 break;
             case 2:
                 image = Croc;
+                setMaxEnergy(100);
                 break;
             case 3:
                 image = Elephant;
+                setMaxEnergy(200);
                 break;
             case 4:
                 image = Tiger;
+                setMaxEnergy(100);
                 break;
             default:
                 image = null;
