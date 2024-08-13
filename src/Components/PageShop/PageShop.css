@@ -19,7 +19,7 @@
 .shop-title {
     position: absolute;
     text-align: center;
-    font-size: 50px;
+    font-size: 46px;
     font-weight: bold;
     color: #ffffff;
     z-index: 2;
@@ -27,7 +27,8 @@
     height: 10vh;
     overflow: hidden;
     left: 0%;
-    top: 0%;
+    top: 5vh;
+    margin-bottom: 20px;
 }
 .shop-list {
     position: absolute;
@@ -51,7 +52,6 @@
     margin: 10px 0;
     padding: 15px;
     background-color: transparent;
-    border-radius: 10px;
     transition: transform 0.3s ease-in-out;
 }
 
