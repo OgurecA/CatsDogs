@@ -92,6 +92,8 @@ function App() {
 
     const handleCardSelect = (index) => {
         setSelectedCardIndex(index);
+        const currentEnergy = energy;
+        localStorage.setItem('currentEnergy', currentEnergy);
 
         let image;
         let newMaxEnergy;
@@ -153,6 +155,11 @@ function App() {
         }
 
         setMaxEnergy(newMaxEnergy);
+
+        const savedEnergy = localStorage.getItem('currentEnergy');
+        const newEnergy = Math.min(parseInt(savedEnergy, 10), newMaxEnergy);
+        setEnergy(newEnergy);
+
         setEnergyRecovery(newEnergyRecovery);
         setEnergyTake(newEnergyTake);
         setTeamDMG(newTeamDMG);
@@ -161,6 +168,7 @@ function App() {
 
         setDisplayedImageA(image);
         setDisplayedImageB(image);
+        
         localStorage.setItem('selectedCardIndex', index);
         localStorage.setItem('selectedCardImage', image);
 
