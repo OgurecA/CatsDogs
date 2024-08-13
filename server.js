@@ -77,6 +77,15 @@ db.serialize(() => {
 
 
 function incrementTrumpTotalVotes(teamDMG) {
+
+    console.log(`Incrementing Trump votes by: ${teamDMG}`);
+
+    // Проверяем, что значение teamDMG корректное
+    if (teamDMG === null || teamDMG === undefined || isNaN(teamDMG)) {
+        console.error('Invalid teamDMG value:', teamDMG);
+        return;
+    }
+
   const updateQuery = `UPDATE total_votes SET votes = votes + ? WHERE candidate = 'Trump';`;
   const selectQuery = `SELECT votes FROM total_votes WHERE candidate = 'Trump';`;
 
