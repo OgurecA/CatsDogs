@@ -92,7 +92,6 @@ function App() {
 
     const handleCardSelect = (index) => {
         setSelectedCardIndex(index);
-        const currentEnergy = energy;
 
         let image;
         let newMaxEnergy;
@@ -154,8 +153,6 @@ function App() {
         }
 
         setMaxEnergy(newMaxEnergy);
-
-        setEnergy(currentEnergy);
 
         setEnergyRecovery(newEnergyRecovery);
         setEnergyTake(newEnergyTake);
@@ -338,21 +335,25 @@ function App() {
                 console.log("Time elapsed since last active (ms):", timeElapsed);
     
                 const energyRecovered = Math.floor(timeElapsed / 1000) * energyRecovery;
-    
-                console.log("Energy recovered:", energyRecovered);
-    
-                // Рассчитываем новую энергию только если текущая энергия меньше максимальной
                 const currentEnergy = parseInt(savedEnergy, 10);
+                let newEnergy = currentEnergy;
+    
                 if (currentEnergy < maxEnergy) {
-                    const newEnergy = Math.min(currentEnergy + energyRecovered, maxEnergy);
-                    setEnergy(newEnergy);
+                    newEnergy = Math.min(currentEnergy + energyRecovered, maxEnergy);
                     console.log("New energy after recovery:", newEnergy);
                 } else {
-                    setEnergy(currentEnergy); // Оставляем текущую энергию как есть
                     console.log("Energy is already at or above max, no recovery applied.");
                 }
+    
+                setEnergy(newEnergy);
+                localStorage.setItem('energy', newEnergy);
             } else {
-                setEnergy(maxEnergy); // Если данных нет, устанавливаем начальное значение энергии в maxEnergy
+                // Если данных нет, устанавливаем начальное значение энергии, но не выше maxEnergy
+                setEnergy(prevEnergy => {
+                    const initialEnergy = Math.min(prevEnergy, maxEnergy);
+                    localStorage.setItem('energy', initialEnergy);
+                    return initialEnergy;
+                });
             }
         };
     
@@ -375,6 +376,7 @@ function App() {
     
         return () => clearInterval(energyRecoveryInterval);
     }, [maxEnergy, energyRecovery]);
+    
     
 
     const totalVotes = votes.Trump + votes.Harris;
