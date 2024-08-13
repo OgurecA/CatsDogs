@@ -129,11 +129,7 @@ function App() {
         localStorage.setItem('selectedCardIndex', index);
         localStorage.setItem('selectedCardImage', image);
 
-        setEnergy(prevEnergy => {
-            const adjustedEnergy = Math.min(prevEnergy, newMaxEnergy);
-            localStorage.setItem('energy', adjustedEnergy);
-            return adjustedEnergy;
-        });
+
     };
 
     const handleSocialPage = () => {
