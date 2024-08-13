@@ -93,7 +93,6 @@ function App() {
     const handleCardSelect = (index) => {
         setSelectedCardIndex(index);
         const currentEnergy = energy;
-        localStorage.setItem('currentEnergy', currentEnergy);
 
         let image;
         let newMaxEnergy;
@@ -108,7 +107,7 @@ function App() {
             case 0:
                 image = Snake;
                 newMaxEnergy = 100;
-                newEnergyRecovery = 10;
+                newEnergyRecovery = 4;
                 newEnergyTake = 1;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
@@ -156,16 +155,7 @@ function App() {
 
         setMaxEnergy(newMaxEnergy);
 
-        const savedEnergy = localStorage.getItem('currentEnergy');
-        const parsedEnergy = parseInt(savedEnergy, 10);
-
-        // Если текущая энергия больше максимальной, оставляем её без изменений
-        if (parsedEnergy >= newMaxEnergy) {
-            setEnergy(parsedEnergy);
-        } else {
-            // Если энергия меньше максимальной, устанавливаем её значение
-            setEnergy(parsedEnergy);
-        }
+        setEnergy(currentEnergy);
 
         setEnergyRecovery(newEnergyRecovery);
         setEnergyTake(newEnergyTake);
