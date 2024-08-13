@@ -529,7 +529,7 @@ function App() {
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} />
             <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} onCardSelect={handleCardSelect} />
             <PageExchange className={isExchangePageVisible ? 'page-exchange' : 'page-exchange hidden'} />
-            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} title={favorite} votesA={votes.Harris} votesB={votes.Trump}/>
+            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} title={favorite}/>
 
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
