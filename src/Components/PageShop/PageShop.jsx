@@ -19,13 +19,13 @@ const PageShop = ({ className, title, votesA, votesB }) => {
             </div>
             <ul className="shop-list">
                 <li className="list-item">
-                    <span>Team Score: {displayedVotes}</span>
+                    Team Score: {displayedVotes}
                 </li>
                 <li className="list-item">
-                    <span>Item 2</span>
+                    Item 2
                 </li>
                 <li className="list-item">
-                    <span>Item 3</span>
+                    Item 3
                 </li>
             </ul>
         </div>

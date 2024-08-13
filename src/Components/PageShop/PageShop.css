@@ -53,9 +53,6 @@
     padding: 15px;
     background-color: transparent;
     transition: transform 0.3s ease-in-out;
-}
-
-.shop-item span {
     padding-left: 15px;
     font-size: 1.2em;
     color: rgb(255, 255, 255);
