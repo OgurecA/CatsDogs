@@ -58,7 +58,7 @@ function App() {
     const [personalDMG, setPersonalDMG] = useState(1);
     const [teamDMG, setTeamDMG] = useState(1);
 
-
+    const [name, setName] = useState("none");
 
     const [userData, setUserData] = useState(null);
 
@@ -108,6 +108,7 @@ function App() {
                 newEnergyTake = 1;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
+                newName = Snake;
                 break;
             case 1:
                 image = Gorilla;
@@ -116,6 +117,7 @@ function App() {
                 newEnergyTake = 1;
                 newTeamDMG = 5;
                 newPersonalDMG = 1;
+                newName = Gorilla;
                 break;
             case 2:
                 image = Croc;
@@ -124,6 +126,7 @@ function App() {
                 newEnergyTake = 10;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
+                newName = Croc;
                 break;
             case 3:
                 image = Elephant;
@@ -132,6 +135,7 @@ function App() {
                 newEnergyTake = 1;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
+                newName = Elephant;
                 break;
             case 4:
                 image = Tiger;
@@ -140,6 +144,7 @@ function App() {
                 newEnergyTake = 1;
                 newTeamDMG = 1;
                 newPersonalDMG = 5;
+                newName = Tiger;
                 break;
             default:
                 image = null;
@@ -150,6 +155,7 @@ function App() {
         setEnergyTake(newEnergyTake);
         setTeamDMG(newTeamDMG);
         setPersonalDMG(newPersonalDMG);
+        setName(newName);
 
         setDisplayedImageA(image);
         setDisplayedImageB(image);
@@ -466,7 +472,7 @@ function App() {
     }
 
     const personalCount = personalHarrisCount - personalTrumpCount;
-    const favorite = personalHarrisCount > personalTrumpCount ? 'Team A' : (personalTrumpCount > personalHarrisCount ? 'Team B' : 'None');
+    const favorite = personalHarrisCount > personalTrumpCount ? 'Dire Warriors' : (personalTrumpCount > personalHarrisCount ? 'Wild Hearts' : 'None');
 
     function updateCounts() {
         const data = {
@@ -526,7 +532,7 @@ function App() {
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
                         personalCount={personalCount} 
-                        favorite={favorite} 
+                        favorite={name} 
                     />
             <Energy
                         energy={energy}
