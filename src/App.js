@@ -330,7 +330,7 @@ function App() {
 
         // Очищаем интервал при размонтировании компонента
         return () => clearInterval(energyRecoveryInterval);
-    }, [maxEnergy]);
+    }, [maxEnergy, energyRecovery]);
     
 
     const totalVotes = votes.Trump + votes.Harris;
