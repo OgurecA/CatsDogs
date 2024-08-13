@@ -92,6 +92,7 @@ function App() {
 
     const handleCardSelect = (index) => {
         setSelectedCardIndex(index);
+
         let image;
         let newMaxEnergy;
         let newEnergyRecovery;
@@ -152,6 +153,7 @@ function App() {
         }
 
         setMaxEnergy(newMaxEnergy);
+
         setEnergyRecovery(newEnergyRecovery);
         setEnergyTake(newEnergyTake);
         setTeamDMG(newTeamDMG);
@@ -323,62 +325,57 @@ function App() {
 
       useEffect(() => {
         const loadEnergy = () => {
-            const savedEnergy = localStorage.getItem('energy');
-            const lastActiveTime = localStorage.getItem('lastActiveTime');
+            const savedEnergy = parseInt(localStorage.getItem('energy'), 10);
+            const lastActiveTime = parseInt(localStorage.getItem('lastActiveTime'), 10);
     
-            if (savedEnergy !== null && lastActiveTime !== null) {
+            if (!isNaN(savedEnergy) && !isNaN(lastActiveTime)) {
                 const currentTime = Date.now();
-                const timeElapsed = currentTime - parseInt(lastActiveTime, 10);
+                const timeElapsed = currentTime - lastActiveTime;
     
                 console.log("Time elapsed since last active (ms):", timeElapsed);
     
                 const energyRecovered = Math.floor(timeElapsed / 1000) * energyRecovery;
-                const currentEnergy = parseInt(savedEnergy, 10);
-                
-                // Логика восстановления энергии
-                let newEnergy;
-                if (currentEnergy >= maxEnergy) {
-                    newEnergy = currentEnergy;
-                    console.log("Energy is already at or above max, no recovery applied.");
-                } else {
-                    newEnergy = Math.min(currentEnergy + energyRecovered, maxEnergy);
+    
+                let newEnergy = savedEnergy;
+                if (savedEnergy < maxEnergy) {
+                    newEnergy = Math.min(savedEnergy + energyRecovered, maxEnergy);
                     console.log("New energy after recovery:", newEnergy);
+                } else {
+                    console.log("Energy is already at or above max, no recovery applied.");
                 }
     
+                // Устанавливаем новое значение энергии
                 setEnergy(newEnergy);
-                localStorage.setItem('energy', newEnergy);
             } else {
-                // Если данных нет, устанавливаем начальное значение энергии
-                setEnergy(prevEnergy => {
-                    const initialEnergy = Math.min(prevEnergy, maxEnergy);
-                    localStorage.setItem('energy', initialEnergy);
-                    return initialEnergy;
-                });
+                // Если данных нет, устанавливаем начальное значение энергии, но не выше maxEnergy
+                setEnergy(prevEnergy => Math.min(prevEnergy, maxEnergy));
             }
         };
     
         const updateEnergy = () => {
             setEnergy(prevEnergy => {
-                // Не восстанавливаем энергию, если она уже больше или равна maxEnergy
                 if (prevEnergy >= maxEnergy) {
                     localStorage.setItem('lastActiveTime', Date.now());
-                    return prevEnergy;
+                    return prevEnergy; // Если энергия уже больше или равна maxEnergy, ничего не делаем
                 }
     
                 const newEnergy = Math.min(prevEnergy + energyRecovery, maxEnergy);
-                localStorage.setItem('energy', newEnergy);
+                localStorage.setItem('energy', newEnergy); // Сохраняем энергию в хранилище при обновлении
                 localStorage.setItem('lastActiveTime', Date.now());
                 return newEnergy;
             });
         };
     
+        // Загружаем энергию и рассчитываем её восстановление только при запуске приложения
         loadEnergy();
     
+        // Запускаем интервал восстановления энергии
         const energyRecoveryInterval = setInterval(updateEnergy, 1000);
     
         return () => clearInterval(energyRecoveryInterval);
     }, [maxEnergy, energyRecovery]);
     
+
 
     
 
