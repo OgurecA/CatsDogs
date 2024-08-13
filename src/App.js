@@ -360,6 +360,7 @@ function App() {
                     localStorage.setItem('lastActiveTime', Date.now());
                     return newEnergy;
                 }
+                localStorage.setItem('energy', prevEnergy);
                 localStorage.setItem('lastActiveTime', Date.now());
                 return prevEnergy; // Если энергия уже выше или равна maxEnergy, ничего не делаем
             });
