@@ -89,35 +89,44 @@ function App() {
         setSelectedCardIndex(index);
 
         let image;
+        let newMaxEnergy;
         switch (index) {
             case 0:
                 image = Snake;
-                setMaxEnergy(100);
+                newMaxEnergy = 100;
                 break;
             case 1:
                 image = Gorilla;
-                setMaxEnergy(100);
+                newMaxEnergy = 100;
                 break;
             case 2:
                 image = Croc;
-                setMaxEnergy(100);
+                newMaxEnergy = 100;
                 break;
             case 3:
                 image = Elephant;
-                setMaxEnergy(200);
+                newMaxEnergy = 300;
                 break;
             case 4:
                 image = Tiger;
-                setMaxEnergy(100);
+                newMaxEnergy = 100;
                 break;
             default:
                 image = null;
         }
 
+        setMaxEnergy(newMaxEnergy);
+
         setDisplayedImageA(image);
         setDisplayedImageB(image);
         localStorage.setItem('selectedCardIndex', index);
         localStorage.setItem('selectedCardImage', image);
+
+        setEnergy(prevEnergy => {
+            const adjustedEnergy = Math.min(prevEnergy, newMaxEnergy);
+            localStorage.setItem('energy', adjustedEnergy);
+            return adjustedEnergy;
+        });
     };
 
     const handleSocialPage = () => {
@@ -284,20 +293,15 @@ function App() {
                 const currentTime = Date.now();
                 const timeElapsed = currentTime - parseInt(lastActiveTime, 10);
 
-                console.log("Time elapsed since last active (ms):", timeElapsed);
-
                 // Восстановление энергии на основе времени отсутствия (1 единица энергии в секунду)
                 const energyRecovered = Math.floor(timeElapsed / 1000) * energyRecovery;
-
-                console.log("Energy recovered:", energyRecovered);
 
                 // Рассчитываем новую энергию и обновляем состояние
                 const newEnergy = Math.min(parseInt(savedEnergy, 10) + energyRecovered, maxEnergy);
                 setEnergy(newEnergy);
 
-                console.log("New energy after recovery:", newEnergy);
             } else {
-                setEnergy(100); // Если данных нет, устанавливаем начальное значение энергии
+                setEnergy(maxEnergy); // Если данных нет, устанавливаем начальное значение энергии
             }
         };
 
@@ -319,7 +323,7 @@ function App() {
 
         // Очищаем интервал при размонтировании компонента
         return () => clearInterval(energyRecoveryInterval);
-    }, []);
+    }, [maxEnergy]);
     
 
     const totalVotes = votes.Trump + votes.Harris;
