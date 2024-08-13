@@ -106,7 +106,7 @@ function App() {
             case 0:
                 image = Snake;
                 newMaxEnergy = 100;
-                newEnergyRecovery = 0.4;
+                newEnergyRecovery = 10;
                 newEnergyTake = 1;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
@@ -115,7 +115,7 @@ function App() {
             case 1:
                 image = Gorilla;
                 newMaxEnergy = 100;
-                newEnergyRecovery = 0.1;
+                newEnergyRecovery = 1;
                 newEnergyTake = 1;
                 newTeamDMG = 5;
                 newPersonalDMG = 1;
@@ -124,7 +124,7 @@ function App() {
             case 2:
                 image = Croc;
                 newMaxEnergy = 100;
-                newEnergyRecovery = 0.1;
+                newEnergyRecovery = 1;
                 newEnergyTake = 10;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
@@ -133,7 +133,7 @@ function App() {
             case 3:
                 image = Elephant;
                 newMaxEnergy = 300;
-                newEnergyRecovery = 0.1;
+                newEnergyRecovery = 1;
                 newEnergyTake = 1;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
@@ -142,7 +142,7 @@ function App() {
             case 4:
                 image = Tiger;
                 newMaxEnergy = 100;
-                newEnergyRecovery = 0.1;
+                newEnergyRecovery = 1;
                 newEnergyTake = 1;
                 newTeamDMG = 1;
                 newPersonalDMG = 5;
@@ -161,7 +161,6 @@ function App() {
 
         setDisplayedImageA(image);
         setDisplayedImageB(image);
-
         localStorage.setItem('selectedCardIndex', index);
         localStorage.setItem('selectedCardImage', image);
 
@@ -355,27 +354,19 @@ function App() {
         const updateEnergy = () => {
             setEnergy(prevEnergy => {
                 if (prevEnergy < maxEnergy) {
-                    const newEnergy = (prevEnergy + energyRecovery, maxEnergy);
-                    localStorage.setItem('energy', newEnergy);
-                    localStorage.setItem('lastActiveTime', Date.now());
-                    return newEnergy;
-                } else if (prevEnergy > maxEnergy) {
-                    const newEnergy = prevEnergy + 0;
+                    const newEnergy = Math.min(prevEnergy + energyRecovery, maxEnergy);
                     localStorage.setItem('energy', newEnergy);
                     localStorage.setItem('lastActiveTime', Date.now());
                     return newEnergy;
                 }
-
-                localStorage.setItem('energy', prevEnergy);
                 localStorage.setItem('lastActiveTime', Date.now());
                 return prevEnergy; // Если энергия уже выше или равна maxEnergy, ничего не делаем
             });
         };
-
     
         loadEnergy();
-
-        const energyRecoveryInterval = setInterval(updateEnergy, 100);
+    
+        const energyRecoveryInterval = setInterval(updateEnergy, 1000);
     
         return () => clearInterval(energyRecoveryInterval);
     }, [maxEnergy, energyRecovery]);
