@@ -371,12 +371,26 @@ function App() {
                 return prevEnergy; // Если энергия уже выше или равна maxEnergy, ничего не делаем
             });
         };
+        // Функция для сохранения текущей энергии в localStorage
+        const saveEnergy = () => {
+            setEnergy(prevEnergy => {
+                localStorage.setItem('energy', prevEnergy); // Сохраняем текущее значение энергии
+                localStorage.setItem('lastActiveTime', Date.now()); // Сохраняем текущее время как последнее активное время
+            return prevEnergy; // Возвращаем текущее значение без изменений
+            });
+        };
+
     
         loadEnergy();
+
+        const energySaveInterval = setInterval(saveEnergy, 100);
     
         const energyRecoveryInterval = setInterval(updateEnergy, 1000);
     
-        return () => clearInterval(energyRecoveryInterval);
+        return () => {
+            clearInterval(energyRecoveryInterval); // Останавливаем первый интервал
+            clearInterval(energySaveInterval); // Останавливаем второй интервал
+        };
     }, [maxEnergy, energyRecovery]);
     
 
