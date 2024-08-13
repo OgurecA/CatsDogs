@@ -77,10 +77,10 @@ db.serialize(() => {
 
 
 function incrementTrumpTotalVotes() {
-  const updateQuery = `UPDATE total_votes SET votes = votes + 1 WHERE candidate = 'Trump';`;
+  const updateQuery = `UPDATE total_votes SET votes = votes + ? WHERE candidate = 'Trump';`;
   const selectQuery = `SELECT votes FROM total_votes WHERE candidate = 'Trump';`;
 
-  db.run(updateQuery, function(updateErr) {
+  db.run(updateQuery, [teamDMG], function(updateErr) {
       if (updateErr) {
           console.error('Error updating Trump votes', updateErr.message);
       } else {
@@ -96,10 +96,10 @@ function incrementTrumpTotalVotes() {
 }
 
 function incrementHarrisTotalVotes() {
-  const updateQuery = `UPDATE total_votes SET votes = votes + 1 WHERE candidate = 'Harris';`;
+  const updateQuery = `UPDATE total_votes SET votes = votes + ? WHERE candidate = 'Harris';`;
   const selectQuery = `SELECT votes FROM total_votes WHERE candidate = 'Harris';`;
 
-  db.run(updateQuery, function(updateErr) {
+  db.run(updateQuery, [teamDMG], function(updateErr) {
       if (updateErr) {
           console.error('Error updating Harris votes', updateErr.message);
       } else {

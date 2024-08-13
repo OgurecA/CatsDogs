@@ -54,6 +54,11 @@ function App() {
     const [energy, setEnergy] = useState(100);
     const [maxEnergy, setMaxEnergy] = useState(100);
     const [energyRecovery, setEnergyRecovery] = useState(1);
+    const [energyTake, setEnergyTake] = useState(1);
+    const [personalDMG, setPersonalDMG] = useState(1);
+    const [teamDMG, setTeamDMG] = useState(1);
+
+
 
     const [userData, setUserData] = useState(null);
 
@@ -391,9 +396,9 @@ function App() {
 
                 setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
 
-                setPersonalTrumpCount(personalTrumpCount + 1);
+                setPersonalTrumpCount(personalTrumpCount + personalDMG);
                 handleVote('Trump');
-                setEnergy(energy - 1);
+                setEnergy(energy - energyTake);
             } else {
                 alert('Недостаточно энергии');
             }
@@ -412,9 +417,9 @@ function App() {
 
                 setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
             
-                setPersonalHarrisCount(personalHarrisCount + 1);
+                setPersonalHarrisCount(personalHarrisCount + personalDMG);
                 handleVote('Harris');
-                setEnergy(energy - 1);
+                setEnergy(energy - energyTake);
             } else {
                 alert('Недостаточно энергии');
         }
@@ -472,14 +477,18 @@ function App() {
         setClicks((prevClicks) => prevClicks.filter(click => click.id !== id));
     }
 
-    function handleVote(candidate) {
+    function handleVote(candidate, teamDMG) {
         fetch(`https://btc24news.online/vote/${candidate}`, {
-          method: 'POST'
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ teamDMG }) // Передаем значение teamDMG в запросе
         })
         .then(response => response.json())
         .then(data => console.log(data.message))
         .catch(error => console.error('Error:', error));
-      }
+    }
 
   return (
     <>
