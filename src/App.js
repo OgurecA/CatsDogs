@@ -408,7 +408,7 @@ function App() {
 
     function incrementTrumpCount(e) {
         if (isSelectedTrump) {
-            if (energy > 0) {
+            if (energy > energyTake || energy === energyTake) {
                 const rect = e.target.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
@@ -429,7 +429,7 @@ function App() {
 
     function incrementHarrisCount(e) {
         if (isSelectedHarris) {
-            if (energy > 0) {
+            if (energy > energyTake || energy === energyTake) {
                 const rect = e.target.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
@@ -500,6 +500,7 @@ function App() {
     }
 
     function handleVote(candidate, teamDMG) {
+        console.log(teamDMG);
         fetch(`https://btc24news.online/vote/${candidate}`, {
             method: 'POST',
             headers: {
