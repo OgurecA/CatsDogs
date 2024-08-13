@@ -1,60 +1,30 @@
 .page-shop {
     position: absolute;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     height: 100vh;
     width: 100vw;
     background-color: #00e217;
     z-index: 100;
-    background-image: url('../Photoes/WolfBack.jpg'); /* Укажите путь к вашему изображению */
+    background-image: url('../Photoes/DarkWolfBack.jpg'); /* Укажите путь к вашему изображению */
     background-size: cover; /* Изображение будет покрывать всю область */
     background-position: center; /* Центрировать изображение */
     background-repeat: no-repeat;
-}
-.page-shop::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный слой для затемнения */
-    z-index: 1;
-}
-.shop-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 80%;
-    margin: 10px 0;
-    padding: 10px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 3;
-}
-
-.shop-item span {
-    font-size: 1.2em;
-}
-
-.shop-item button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 3;
-}
-
-.shop-item button:hover {
-    background-color: #0056b3;
 }
 
 .page-shop.hidden {
     opacity: 0;
     pointer-events: none;
     z-index: -10;
+}
+
+.shop-title {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    z-index: 2;
+    width: 100vw;
+    height: 10vh;
+    overflow: hidden;
+    left: 0%;
+    top: 0%;
 }
