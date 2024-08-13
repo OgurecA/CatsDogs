@@ -110,7 +110,7 @@ function App() {
                 newEnergyTake = 1;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
-                newName = Snake;
+                newName = "Snake";
                 break;
             case 1:
                 image = Gorilla;
@@ -119,7 +119,7 @@ function App() {
                 newEnergyTake = 1;
                 newTeamDMG = 5;
                 newPersonalDMG = 1;
-                newName = Gorilla;
+                newName = "Gorilla";
                 break;
             case 2:
                 image = Croc;
@@ -128,7 +128,7 @@ function App() {
                 newEnergyTake = 10;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
-                newName = Croc;
+                newName = "Croc";
                 break;
             case 3:
                 image = Elephant;
@@ -137,7 +137,7 @@ function App() {
                 newEnergyTake = 1;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
-                newName = Elephant;
+                newName = "Elephant";
                 break;
             case 4:
                 image = Tiger;
@@ -146,7 +146,7 @@ function App() {
                 newEnergyTake = 1;
                 newTeamDMG = 1;
                 newPersonalDMG = 5;
-                newName = Tiger;
+                newName = "Tiger";
                 break;
             default:
                 image = null;
