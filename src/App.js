@@ -106,7 +106,7 @@ function App() {
             case 0:
                 image = Snake;
                 newMaxEnergy = 100;
-                newEnergyRecovery = 1;
+                newEnergyRecovery = 4;
                 newEnergyTake = 1;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
