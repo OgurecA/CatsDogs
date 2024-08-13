@@ -332,14 +332,14 @@ function App() {
     
                 console.log("Time elapsed since last active (ms):", timeElapsed);
     
-                const energyRecovered = Math.floor(timeElapsed / 1000) * energyRecovery;
+                const energyRecovered = Math.floor(timeElapsed / 1000) * 1;
     
                 console.log("Energy recovered:", energyRecovered);
     
                 // Рассчитываем новую энергию только если текущая энергия меньше максимальной
                 const currentEnergy = parseInt(savedEnergy, 10);
-                if (currentEnergy < maxEnergy) {
-                    const newEnergy = Math.min(currentEnergy + energyRecovered, maxEnergy);
+                if (currentEnergy < 100) {
+                    const newEnergy = Math.min(currentEnergy + energyRecovered, 100);
                     setEnergy(newEnergy);
                     console.log("New energy after recovery:", newEnergy);
                 } else {
@@ -347,14 +347,14 @@ function App() {
                     console.log("Energy is already at or above max, no recovery applied.");
                 }
             } else {
-                setEnergy(maxEnergy); // Если данных нет, устанавливаем начальное значение энергии в maxEnergy
+                setEnergy(100); // Если данных нет, устанавливаем начальное значение энергии в maxEnergy
             }
         };
     
         const updateEnergy = () => {
             setEnergy(prevEnergy => {
-                if (prevEnergy < maxEnergy) {
-                    const newEnergy = Math.min(prevEnergy + energyRecovery, maxEnergy);
+                if (prevEnergy < 100) {
+                    const newEnergy = Math.min(prevEnergy + 1, 100);
                     localStorage.setItem('energy', newEnergy);
                     localStorage.setItem('lastActiveTime', Date.now());
                     return newEnergy;
