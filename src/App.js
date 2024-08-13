@@ -93,6 +93,8 @@ function App() {
     const handleCardSelect = (index) => {
         setSelectedCardIndex(index);
 
+        let saveForEnergy;
+
         let image;
         let newMaxEnergy;
         let newEnergyRecovery;
@@ -111,6 +113,7 @@ function App() {
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
                 newName = "Snake";
+                saveForEnergy = energy;
                 break;
             case 1:
                 image = Gorilla;
@@ -120,6 +123,7 @@ function App() {
                 newTeamDMG = 5;
                 newPersonalDMG = 1;
                 newName = "Gorilla";
+                saveForEnergy = energy;
                 break;
             case 2:
                 image = Croc;
@@ -129,6 +133,7 @@ function App() {
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
                 newName = "Croc";
+                saveForEnergy = energy;
                 break;
             case 3:
                 image = Elephant;
@@ -138,6 +143,7 @@ function App() {
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
                 newName = "Elephant";
+                saveForEnergy = energy;
                 break;
             case 4:
                 image = Tiger;
@@ -147,6 +153,7 @@ function App() {
                 newTeamDMG = 1;
                 newPersonalDMG = 5;
                 newName = "Tiger";
+                saveForEnergy = energy;
                 break;
             default:
                 image = null;
@@ -158,6 +165,8 @@ function App() {
         setTeamDMG(newTeamDMG);
         setPersonalDMG(newPersonalDMG);
         setName(newName);
+
+        setEnergy(saveForEnergy);
 
         setDisplayedImageA(image);
         setDisplayedImageB(image);
