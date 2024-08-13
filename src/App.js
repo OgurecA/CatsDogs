@@ -96,31 +96,50 @@ function App() {
         let image;
         let newMaxEnergy;
         let newEnergyRecovery;
+        let newEnergyTake;
+        let newTeamDMG;
+        let newPersonalDMG;
+
         switch (index) {
             case 0:
                 image = Snake;
                 newMaxEnergy = 100;
                 newEnergyRecovery = 10;
+                newEnergyTake = 1;
+                newTeamDMG = 1;
+                newPersonalDMG = 1;
                 break;
             case 1:
                 image = Gorilla;
                 newMaxEnergy = 100;
                 newEnergyRecovery = 1;
+                newEnergyTake = 1;
+                newTeamDMG = 5;
+                newPersonalDMG = 1;
                 break;
             case 2:
                 image = Croc;
                 newMaxEnergy = 100;
                 newEnergyRecovery = 1;
+                newEnergyTake = 10;
+                newTeamDMG = 1;
+                newPersonalDMG = 1;
                 break;
             case 3:
                 image = Elephant;
                 newMaxEnergy = 300;
                 newEnergyRecovery = 1;
+                newEnergyTake = 1;
+                newTeamDMG = 1;
+                newPersonalDMG = 1;
                 break;
             case 4:
                 image = Tiger;
                 newMaxEnergy = 100;
                 newEnergyRecovery = 1;
+                newEnergyTake = 1;
+                newTeamDMG = 1;
+                newPersonalDMG = 5;
                 break;
             default:
                 image = null;
@@ -128,6 +147,9 @@ function App() {
 
         setMaxEnergy(newMaxEnergy);
         setEnergyRecovery(newEnergyRecovery);
+        setEnergyTake(newEnergyTake);
+        setTeamDMG(newTeamDMG);
+        setPersonalDMG(newPersonalDMG);
 
         setDisplayedImageA(image);
         setDisplayedImageB(image);
