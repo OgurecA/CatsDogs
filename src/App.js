@@ -106,7 +106,7 @@ function App() {
             case 0:
                 image = Snake;
                 newMaxEnergy = 100;
-                newEnergyRecovery = 4;
+                newEnergyRecovery = 1;
                 newEnergyTake = 1;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
@@ -153,7 +153,6 @@ function App() {
         }
 
         setMaxEnergy(newMaxEnergy);
-
         setEnergyRecovery(newEnergyRecovery);
         setEnergyTake(newEnergyTake);
         setTeamDMG(newTeamDMG);
@@ -325,58 +324,53 @@ function App() {
 
       useEffect(() => {
         const loadEnergy = () => {
-            const savedEnergy = parseInt(localStorage.getItem('energy'), 10);
-            const lastActiveTime = parseInt(localStorage.getItem('lastActiveTime'), 10);
+            const savedEnergy = localStorage.getItem('energy');
+            const lastActiveTime = localStorage.getItem('lastActiveTime');
     
-            if (!isNaN(savedEnergy) && !isNaN(lastActiveTime)) {
+            if (savedEnergy !== null && lastActiveTime !== null) {
                 const currentTime = Date.now();
-                const timeElapsed = currentTime - lastActiveTime;
+                const timeElapsed = currentTime - parseInt(lastActiveTime, 10);
     
                 console.log("Time elapsed since last active (ms):", timeElapsed);
     
                 const energyRecovered = Math.floor(timeElapsed / 1000) * energyRecovery;
     
-                let newEnergy = savedEnergy;
-                if (savedEnergy < maxEnergy) {
-                    newEnergy = Math.min(savedEnergy + energyRecovered, maxEnergy);
+                console.log("Energy recovered:", energyRecovered);
+    
+                // Рассчитываем новую энергию только если текущая энергия меньше максимальной
+                const currentEnergy = parseInt(savedEnergy, 10);
+                if (currentEnergy < maxEnergy) {
+                    const newEnergy = Math.min(currentEnergy + energyRecovered, maxEnergy);
+                    setEnergy(newEnergy);
                     console.log("New energy after recovery:", newEnergy);
                 } else {
+                    setEnergy(currentEnergy); // Оставляем текущую энергию как есть
                     console.log("Energy is already at or above max, no recovery applied.");
                 }
-    
-                // Устанавливаем новое значение энергии
-                setEnergy(newEnergy);
             } else {
-                // Если данных нет, устанавливаем начальное значение энергии, но не выше maxEnergy
-                setEnergy(prevEnergy => Math.min(prevEnergy, maxEnergy));
+                setEnergy(maxEnergy); // Если данных нет, устанавливаем начальное значение энергии в maxEnergy
             }
         };
     
         const updateEnergy = () => {
             setEnergy(prevEnergy => {
-                if (prevEnergy >= maxEnergy) {
+                if (prevEnergy < maxEnergy) {
+                    const newEnergy = Math.min(prevEnergy + energyRecovery, maxEnergy);
+                    localStorage.setItem('energy', newEnergy);
                     localStorage.setItem('lastActiveTime', Date.now());
-                    return prevEnergy; // Если энергия уже больше или равна maxEnergy, ничего не делаем
+                    return newEnergy;
                 }
-    
-                const newEnergy = Math.min(prevEnergy + energyRecovery, maxEnergy);
-                localStorage.setItem('energy', newEnergy); // Сохраняем энергию в хранилище при обновлении
                 localStorage.setItem('lastActiveTime', Date.now());
-                return newEnergy;
+                return prevEnergy; // Если энергия уже выше или равна maxEnergy, ничего не делаем
             });
         };
     
-        // Загружаем энергию и рассчитываем её восстановление только при запуске приложения
         loadEnergy();
     
-        // Запускаем интервал восстановления энергии
         const energyRecoveryInterval = setInterval(updateEnergy, 1000);
     
         return () => clearInterval(energyRecoveryInterval);
     }, [maxEnergy, energyRecovery]);
-    
-
-
     
 
     const totalVotes = votes.Trump + votes.Harris;
