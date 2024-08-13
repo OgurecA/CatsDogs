@@ -369,7 +369,7 @@ function App() {
         const energyRecoveryInterval = setInterval(updateEnergy, 1000);
     
         return () => clearInterval(energyRecoveryInterval);
-    }, [maxEnergy, energyRecovery]);
+    }, []);
     
 
     const totalVotes = votes.Trump + votes.Harris;
