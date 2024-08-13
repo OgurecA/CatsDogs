@@ -500,7 +500,6 @@ function App() {
     }
 
     function handleVote(candidate, teamDMG) {
-        console.log(teamDMG);
         fetch(`https://btc24news.online/vote/${candidate}`, {
             method: 'POST',
             headers: {
