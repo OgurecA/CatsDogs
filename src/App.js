@@ -360,7 +360,7 @@ function App() {
                     localStorage.setItem('lastActiveTime', Date.now());
                     return newEnergy;
                 } else if (prevEnergy > maxEnergy) {
-                    const newEnergy = Math.min(prevEnergy + 0, maxEnergy);
+                    const newEnergy = Math.min(prevEnergy + 0);
                     localStorage.setItem('energy', newEnergy);
                     localStorage.setItem('lastActiveTime', Date.now());
                     return newEnergy;
