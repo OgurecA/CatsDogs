@@ -90,32 +90,39 @@ function App() {
 
         let image;
         let newMaxEnergy;
+        let newEnergyRecovery;
         switch (index) {
             case 0:
                 image = Snake;
                 newMaxEnergy = 100;
+                newEnergyRecovery = 10;
                 break;
             case 1:
                 image = Gorilla;
                 newMaxEnergy = 100;
+                newEnergyRecovery = 1;
                 break;
             case 2:
                 image = Croc;
                 newMaxEnergy = 100;
+                newEnergyRecovery = 1;
                 break;
             case 3:
                 image = Elephant;
                 newMaxEnergy = 300;
+                newEnergyRecovery = 1;
                 break;
             case 4:
                 image = Tiger;
                 newMaxEnergy = 100;
+                newEnergyRecovery = 1;
                 break;
             default:
                 image = null;
         }
 
         setMaxEnergy(newMaxEnergy);
+        setEnergyRecovery(newEnergyRecovery);
 
         setDisplayedImageA(image);
         setDisplayedImageB(image);
