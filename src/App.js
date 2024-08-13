@@ -53,6 +53,7 @@ function App() {
 
     const [energy, setEnergy] = useState(100);
     const [maxEnergy, setMaxEnergy] = useState(100);
+    const [energyRecovery, setEnergyRecovery] = useState(2);
 
     const [userData, setUserData] = useState(null);
 
@@ -281,12 +282,12 @@ function App() {
                 console.log("Time elapsed since last active (ms):", timeElapsed);
 
                 // Восстановление энергии на основе времени отсутствия (1 единица энергии в секунду)
-                const energyRecovered = Math.floor(timeElapsed / 1000);
+                const energyRecovered = Math.floor(timeElapsed / (energyRecovery * 1000));
 
                 console.log("Energy recovered:", energyRecovered);
 
                 // Рассчитываем новую энергию и обновляем состояние
-                const newEnergy = Math.min(parseInt(savedEnergy, 10) + energyRecovered, 100);
+                const newEnergy = Math.min(parseInt(savedEnergy, 10) + energyRecovered, maxEnergy);
                 setEnergy(newEnergy);
 
                 console.log("New energy after recovery:", newEnergy);
@@ -298,7 +299,7 @@ function App() {
         // Функция для обновления энергии
         const updateEnergy = () => {
             setEnergy(prevEnergy => {
-                const newEnergy = Math.min(prevEnergy + 1, 100);
+                const newEnergy = Math.min(prevEnergy + energyRecovery, maxEnergy);
                 localStorage.setItem('energy', newEnergy); // Сохраняем новую энергию
                 localStorage.setItem('lastActiveTime', Date.now()); // Обновляем время последней активности
                 return newEnergy;
