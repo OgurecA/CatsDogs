@@ -29,3 +29,27 @@
     left: 0%;
     top: 0%;
 }
+.shop-list {
+    position: relative;
+    z-index: 2;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 80%;
+}
+
+.shop-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
+    padding: 15px;
+    background-color: transparent;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.shop-item span {
+    font-size: 1.2em;
+}
