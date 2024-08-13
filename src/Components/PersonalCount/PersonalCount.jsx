@@ -1,12 +1,12 @@
 import React from 'react';
 import './PersonalCount.css';
 
-function PersonalCount({ favorite, personalCount }) {
+function PersonalCount({ name, personalCount }) {
 
     return (
         <div className="personal-count">
-            <p>Votes: {Math.abs(personalCount)}</p>
-            <p>Favorite: {favorite}</p>
+            <p>Score: {Math.abs(personalCount)}</p>
+            <p>Gangster: {name}</p>
         </div>
     );
 }

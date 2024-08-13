@@ -534,7 +534,7 @@ function App() {
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
                         personalCount={personalCount} 
-                        favorite={name} 
+                        name={name} 
                     />
             <Energy
                         energy={energy}
