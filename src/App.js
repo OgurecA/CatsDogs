@@ -287,7 +287,7 @@ function App() {
                 console.log("Time elapsed since last active (ms):", timeElapsed);
 
                 // Восстановление энергии на основе времени отсутствия (1 единица энергии в секунду)
-                const energyRecovered = Math.floor(timeElapsed / (energyRecovery * 1000));
+                const energyRecovered = Math.floor(timeElapsed / 1000) * energyRecovery;
 
                 console.log("Energy recovered:", energyRecovered);
 
