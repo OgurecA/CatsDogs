@@ -291,44 +291,52 @@ function App() {
       }, [playersFavorite]);
 
       useEffect(() => {
-        // Функция для загрузки сохраненной энергии и времени последней активности
         const loadEnergy = () => {
             const savedEnergy = localStorage.getItem('energy');
             const lastActiveTime = localStorage.getItem('lastActiveTime');
-
+    
             if (savedEnergy !== null && lastActiveTime !== null) {
                 const currentTime = Date.now();
                 const timeElapsed = currentTime - parseInt(lastActiveTime, 10);
-
-                // Восстановление энергии на основе времени отсутствия (1 единица энергии в секунду)
+    
+                console.log("Time elapsed since last active (ms):", timeElapsed);
+    
                 const energyRecovered = Math.floor(timeElapsed / 1000) * energyRecovery;
-
-                // Рассчитываем новую энергию и обновляем состояние
-                const newEnergy = Math.min(parseInt(savedEnergy, 10) + energyRecovered, maxEnergy);
-                setEnergy(newEnergy);
-
+    
+                console.log("Energy recovered:", energyRecovered);
+    
+                // Рассчитываем новую энергию только если текущая энергия меньше максимальной
+                const currentEnergy = parseInt(savedEnergy, 10);
+                if (currentEnergy < maxEnergy) {
+                    const newEnergy = Math.min(currentEnergy + energyRecovered, maxEnergy);
+                    setEnergy(newEnergy);
+                    console.log("New energy after recovery:", newEnergy);
+                } else {
+                    setEnergy(currentEnergy); // Оставляем текущую энергию как есть
+                    console.log("Energy is already at or above max, no recovery applied.");
+                }
             } else {
-                setEnergy(maxEnergy); // Если данных нет, устанавливаем начальное значение энергии
+                setEnergy(maxEnergy); // Если данных нет, устанавливаем начальное значение энергии в maxEnergy
             }
         };
-
-        // Функция для обновления энергии
+    
         const updateEnergy = () => {
             setEnergy(prevEnergy => {
-                const newEnergy = Math.min(prevEnergy + energyRecovery, maxEnergy);
-                localStorage.setItem('energy', newEnergy); // Сохраняем новую энергию
-                localStorage.setItem('lastActiveTime', Date.now()); // Обновляем время последней активности
-                return newEnergy;
+                if (prevEnergy < maxEnergy) {
+                    const newEnergy = Math.min(prevEnergy + energyRecovery, maxEnergy);
+                    localStorage.setItem('energy', newEnergy);
+                    localStorage.setItem('lastActiveTime', Date.now());
+                    return newEnergy;
+                }
+                localStorage.setItem('lastActiveTime', Date.now());
+                return prevEnergy; // Если энергия уже выше или равна maxEnergy, ничего не делаем
             });
         };
-
-        // Загружаем сохраненную энергию при монтировании компонента
+    
         loadEnergy();
-
-        // Запускаем интервал восстановления энергии
+    
         const energyRecoveryInterval = setInterval(updateEnergy, 1000);
-
-        // Очищаем интервал при размонтировании компонента
+    
         return () => clearInterval(energyRecoveryInterval);
     }, [maxEnergy, energyRecovery]);
     
