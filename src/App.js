@@ -312,10 +312,10 @@ function App() {
       }, []);
     
       useEffect(() => {
-        if (playersFavorite === 'Team A') {
+        if (playersFavorite === 'Dire Warriors') {
           handleClickHarrisB();
           setChoice(true);
-        } else if (playersFavorite === 'Team B') {
+        } else if (playersFavorite === 'Wild Hearts') {
           handleClickTrumpB();
           setChoice(true);
         }
