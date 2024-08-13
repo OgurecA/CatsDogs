@@ -93,8 +93,6 @@ function App() {
     const handleCardSelect = (index) => {
         setSelectedCardIndex(index);
 
-        let saveForEnergy;
-
         let image;
         let newMaxEnergy;
         let newEnergyRecovery;
@@ -108,52 +106,47 @@ function App() {
             case 0:
                 image = Snake;
                 newMaxEnergy = 100;
-                newEnergyRecovery = 4;
+                newEnergyRecovery = 0.4;
                 newEnergyTake = 1;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
                 newName = "Snake";
-                saveForEnergy = energy;
                 break;
             case 1:
                 image = Gorilla;
                 newMaxEnergy = 100;
-                newEnergyRecovery = 1;
+                newEnergyRecovery = 0.1;
                 newEnergyTake = 1;
                 newTeamDMG = 5;
                 newPersonalDMG = 1;
                 newName = "Gorilla";
-                saveForEnergy = energy;
                 break;
             case 2:
                 image = Croc;
                 newMaxEnergy = 100;
-                newEnergyRecovery = 1;
+                newEnergyRecovery = 0.1;
                 newEnergyTake = 10;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
                 newName = "Croc";
-                saveForEnergy = energy;
                 break;
             case 3:
                 image = Elephant;
                 newMaxEnergy = 300;
-                newEnergyRecovery = 1;
+                newEnergyRecovery = 0.1;
                 newEnergyTake = 1;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
                 newName = "Elephant";
-                saveForEnergy = energy;
                 break;
             case 4:
                 image = Tiger;
                 newMaxEnergy = 100;
-                newEnergyRecovery = 1;
+                newEnergyRecovery = 0.1;
                 newEnergyTake = 1;
                 newTeamDMG = 1;
                 newPersonalDMG = 5;
                 newName = "Tiger";
-                saveForEnergy = energy;
                 break;
             default:
                 image = null;
@@ -165,8 +158,6 @@ function App() {
         setTeamDMG(newTeamDMG);
         setPersonalDMG(newPersonalDMG);
         setName(newName);
-
-        setEnergy(saveForEnergy);
 
         setDisplayedImageA(image);
         setDisplayedImageB(image);
@@ -364,12 +355,12 @@ function App() {
         const updateEnergy = () => {
             setEnergy(prevEnergy => {
                 if (prevEnergy < maxEnergy) {
-                    const newEnergy = Math.min(prevEnergy + energyRecovery, maxEnergy);
+                    const newEnergy = (prevEnergy + energyRecovery, maxEnergy);
                     localStorage.setItem('energy', newEnergy);
                     localStorage.setItem('lastActiveTime', Date.now());
                     return newEnergy;
                 } else if (prevEnergy > maxEnergy) {
-                    const newEnergy = Math.min(prevEnergy + 0);
+                    const newEnergy = prevEnergy + 0;
                     localStorage.setItem('energy', newEnergy);
                     localStorage.setItem('lastActiveTime', Date.now());
                     return newEnergy;
@@ -380,26 +371,13 @@ function App() {
                 return prevEnergy; // Если энергия уже выше или равна maxEnergy, ничего не делаем
             });
         };
-        // Функция для сохранения текущей энергии в localStorage
-        const saveEnergy = () => {
-            setEnergy(prevEnergy => {
-                localStorage.setItem('energy', prevEnergy); // Сохраняем текущее значение энергии
-                localStorage.setItem('lastActiveTime', Date.now()); // Сохраняем текущее время как последнее активное время
-            return prevEnergy; // Возвращаем текущее значение без изменений
-            });
-        };
 
     
         loadEnergy();
 
-        const energySaveInterval = setInterval(saveEnergy, 100);
+        const energyRecoveryInterval = setInterval(updateEnergy, 100);
     
-        const energyRecoveryInterval = setInterval(updateEnergy, 1000);
-    
-        return () => {
-            clearInterval(energyRecoveryInterval); // Останавливаем первый интервал
-            clearInterval(energySaveInterval); // Останавливаем второй интервал
-        };
+        return () => clearInterval(energyRecoveryInterval);
     }, [maxEnergy, energyRecovery]);
     
 
