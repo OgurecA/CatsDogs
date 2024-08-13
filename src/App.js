@@ -157,8 +157,15 @@ function App() {
         setMaxEnergy(newMaxEnergy);
 
         const savedEnergy = localStorage.getItem('currentEnergy');
-        const newEnergy = Math.min(parseInt(savedEnergy, 10), newMaxEnergy);
-        setEnergy(newEnergy);
+        const parsedEnergy = parseInt(savedEnergy, 10);
+
+        // Если текущая энергия больше максимальной, оставляем её без изменений
+        if (parsedEnergy >= newMaxEnergy) {
+            setEnergy(parsedEnergy);
+        } else {
+            // Если энергия меньше максимальной, устанавливаем её значение
+            setEnergy(parsedEnergy);
+        }
 
         setEnergyRecovery(newEnergyRecovery);
         setEnergyTake(newEnergyTake);
@@ -168,7 +175,7 @@ function App() {
 
         setDisplayedImageA(image);
         setDisplayedImageB(image);
-        
+
         localStorage.setItem('selectedCardIndex', index);
         localStorage.setItem('selectedCardImage', image);
 
