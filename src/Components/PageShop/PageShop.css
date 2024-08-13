@@ -2,7 +2,7 @@
     position: absolute;
     height: 100vh;
     width: 100vw;
-    background-color: #00e217;
+    background-color: #8f8f8f;
     z-index: 100;
     background-image: url('../Photoes/DarkWolfBack.jpg'); /* Укажите путь к вашему изображению */
     background-size: cover; /* Изображение будет покрывать всю область */
@@ -18,7 +18,8 @@
 
 .shop-title {
     position: absolute;
-    font-size: 24px;
+    text-align: center;
+    font-size: 40px;
     font-weight: bold;
     color: #ffffff;
     z-index: 2;
