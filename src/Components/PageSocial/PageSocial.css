@@ -51,8 +51,7 @@
 }
 .social-item:active {
     transform: translateY(1px); /* Сдвиг кнопки при нажатии */
-    text-decoration: none; /* Убираем подчеркивание ссылок */
-    outline: none;
+    text-decoration: none;
   }
   .social-item:hover,
   .social-item:focus {
@@ -76,30 +75,18 @@
 }
 
 .social-item.checked {
-    border-image-slice: 1; /* Включаем всю область изображения для рамки */
+    border-image-slice: 1; 
     border-width: 3px;
     border-image-repeat: round;
-    border-image-source: url('../Photoes/SteelTexture.jpg');
+    border-image-source: url('https://via.placeholder.com/150'); /* Простое изображение для теста */
     border-image-outset: 0;
-    background: url('../Photoes/SteelTexture.jpg') center/cover; /* Используем текстуру металла */
+    
+    /* Текстура для текста */
+    background: url('https://via.placeholder.com/150') center/cover no-repeat;
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent; /* Делаем текст прозрачным, чтобы текстура была видна */
-    -webkit-text-fill-color: transparent;
-}
-
-
-
-.social-item button {
-    padding: 10px 20px;
-    background-color: #00356e;
-    color: #b1b1b1;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 3;
-    font-size: 1em; /* Увеличиваем размер текста на кнопках */
-    text-align: center;
+    color: transparent; /* Делаем текст прозрачным, чтобы был виден фон */
+    -webkit-text-fill-color: transparent; /* Применяем для WebKit браузеров */
 }
 
 .page-social.hidden {
