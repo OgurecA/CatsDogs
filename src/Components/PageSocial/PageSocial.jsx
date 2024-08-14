@@ -8,6 +8,28 @@ const PageSocial = ({ className }) => {
     useEffect(() => {
         const savedCheckedLinks = JSON.parse(localStorage.getItem('checkedLinks')) || [];
         setCheckedLinks(savedCheckedLinks);
+
+        const resetCheckedLinksIfNeeded = () => {
+            const now = new Date();
+            const lastReset = parseInt(localStorage.getItem('lastReset'), 10) || 0;
+            const currentUTCDate = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+            
+            if (currentUTCDate > lastReset) {
+                // Если прошло 00:00 UTC, сбрасываем checkedLinks
+                setCheckedLinks([]);
+                localStorage.setItem('checkedLinks', JSON.stringify([]));
+                localStorage.setItem('lastReset', currentUTCDate);
+            }
+        };
+
+        resetCheckedLinksIfNeeded();
+
+        // Устанавливаем таймер, который будет сбрасывать checkedLinks каждый день в 00:00 UTC
+        const interval = setInterval(() => {
+            resetCheckedLinksIfNeeded();
+        }, 1000 * 60 * 60); // Проверяем каждый час
+
+        return () => clearInterval(interval);
     }, []);
 
     const handleLinkClick = (index, event) => {
@@ -25,7 +47,7 @@ const PageSocial = ({ className }) => {
             setCheckingLinks(prevCheckingLinks => [...prevCheckingLinks, index]);
         }
 
-        // Через 10 секунд удаляем класс checking и добавляем класс checked
+        // Через 5 секунд удаляем класс checking и добавляем класс checked
         setTimeout(() => {
             setCheckingLinks(prevCheckingLinks => prevCheckingLinks.filter(i => i !== index));
             setCheckedLinks(prevCheckedLinks => {
@@ -33,9 +55,8 @@ const PageSocial = ({ className }) => {
                 localStorage.setItem('checkedLinks', JSON.stringify(newCheckedLinks));
                 return newCheckedLinks;
             });
-        }, 5000); // 10000 миллисекунд = 10 секунд
+        }, 5000);
     };
-
 
     return (
         <div className={`page-social ${className}`}>
