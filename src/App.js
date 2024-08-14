@@ -464,7 +464,9 @@ function App() {
             handleClickHarrisB();
         }
         incrementHarrisCount(e);
-        updateCounts();
+        setTimeout(() => {
+            updateCounts();
+        }, 100);
     }
     function handleTrumpClick(e) {
         if(!choice) {
@@ -472,7 +474,9 @@ function App() {
             handleClickTrumpB();
         }
         incrementTrumpCount(e);
-        updateCounts();
+        setTimeout(() => {
+            updateCounts();
+        }, 100);
     }
 
     const personalCount = personalHarrisCount - personalTrumpCount;
