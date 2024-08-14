@@ -38,7 +38,6 @@
 .shop-title {
     position: absolute;
     text-align: center;
-    font-size: 60px;
     z-index: 2;
     width: 100vw;
     height: 10vh;
@@ -48,12 +47,20 @@
     margin-bottom: 20px;
 }
 .shop-title.WildHearts {
-    color: #9e2626;
+    background: url('../Photoes/WarmSteel.jpg') center/cover; /* Используем текстуру золота */
+    -webkit-background-clip: text;
+    color: transparent;
+    background-clip: text;
     font-family: 'BreatheFire', sans-serif;
+    font-size: 60px;
 }
 .shop-title.DireWarriors {
-    color: #3c2ea9;
+    background: url('../Photoes/ColdSteel.jpg') center/cover; /* Используем текстуру золота */
+    -webkit-background-clip: text;
+    color: transparent;
+    background-clip: text;
     font-family: 'AnimalesFantastic', sans-serif;
+    font-size: 40px;
 }
 .shop-list {
     position: absolute;
