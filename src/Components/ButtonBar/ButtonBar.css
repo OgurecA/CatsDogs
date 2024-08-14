@@ -33,7 +33,6 @@
 }
 
 .button-bar-button:active {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Возвращаем начальную тень */
   transform: translateY(1px); /* Сдвиг кнопки при нажатии */
 }
 
@@ -45,7 +44,6 @@
 
   .button-bar-button.chosen:active {
     background: linear-gradient(to bottom, #710000, #960000); /* Градиент при нажатии */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Возвращаем начальную тень */
     transform: translateY(1px); /* Сдвиг кнопки при нажатии */
   }
 
