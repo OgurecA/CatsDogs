@@ -43,7 +43,7 @@
 
 .card.chosen {
     border-image-slice: 1; /* Включаем всю область изображения для рамки */
-    border-width: 4px;
+    border-width: 3px;
     border-image-repeat: round;
     border-image-source: url('../Photoes/SteelTexture.jpg');
     border-image-outset: 0;
