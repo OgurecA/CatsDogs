@@ -22,7 +22,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount }) => {
                     Team Score: {displayedVotes}
                 </li>
                 <li className="list-item">
-                    Personal Score: {personalCount}
+                    Personal Score: {Math.abs(personalCount)}
                 </li>
                 <li className="list-item">
                     Item 3
