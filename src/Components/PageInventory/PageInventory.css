@@ -45,7 +45,7 @@
     border-image-slice: 1; /* Включаем всю область изображения для рамки */
     border-width: 3px;
     border-image-repeat: round;
-    border-image-source: url('../Photoes/LavaVorder.jpg');
+    border-image-source: url('../Photoes/WS.jpg');
     border-image-outset: 0;
 }
 
