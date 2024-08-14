@@ -531,7 +531,7 @@ function App() {
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} updateCheckedCount={setCheckedCount} />
             <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} onCardSelect={handleCardSelect} />
             <PageExchange className={isExchangePageVisible ? 'page-exchange' : 'page-exchange hidden'} />
-            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} title={favorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} />
+            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} title={favorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} checkedLinks={checkedCount} />
 
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
@@ -540,7 +540,7 @@ function App() {
                     />
             <Energy
                         energy={energy}
-                        maxEnergy={checkedCount}
+                        maxEnergy={maxEnergy}
                     />
             <AddContainer
                 ads={[

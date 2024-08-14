@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './PageShop.css';
 
-const PageShop = ({ className, title, votesA, votesB, personalCount }) => {
+const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLinks }) => {
     const [displayedVotes, setDisplayedVotes] = useState("Calculating...");
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount }) => {
                     Personal Score: {Math.abs(personalCount)}
                 </li>
                 <li className="list-item">
-                    Item 3
+                    Daily Tasks: {checkedLinks}/7
                 </li>
             </ul>
         </div>
