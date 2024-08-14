@@ -78,11 +78,11 @@
     border-image-slice: 1; 
     border-width: 3px;
     border-image-repeat: round;
-    border-image-source: url('https://via.placeholder.com/150'); /* Простое изображение для теста */
+    border-image-source: url('../Photoes/SteelTexture.jpg'); /* Простое изображение для теста */
     border-image-outset: 0;
     
     /* Текстура для текста */
-    background: url('https://via.placeholder.com/150') center/cover no-repeat;
+    background: url('../Photoes/SteelTexture.jpg') center/cover no-repeat;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent; /* Делаем текст прозрачным, чтобы был виден фон */
