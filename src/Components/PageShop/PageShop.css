@@ -38,7 +38,7 @@
 .shop-title {
     position: absolute;
     text-align: center;
-    font-size: 46px;
+    font-size: 60px;
     z-index: 2;
     width: 100vw;
     height: 10vh;
@@ -48,11 +48,11 @@
     margin-bottom: 20px;
 }
 .shop-title.WildHearts {
-    color: #701d1d;
+    color: #9e2626;
     font-family: 'BreatheFire', sans-serif;
 }
 .shop-title.DireWarriors {
-    color: #271d70;
+    color: #3c2ea9;
     font-family: 'AnimalesFantastic', sans-serif;
 }
 .shop-list {
