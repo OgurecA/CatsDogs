@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './PageShop.css';
 
 const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLinks }) => {
-    const [displayedVotes, setDisplayedVotes] = useState("Calculating...");
+    const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
 
     useEffect(() => {
         if (title === 'Dire Warriors') {
