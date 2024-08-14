@@ -8,7 +8,7 @@
     width: 100vw;
     background-color: #e20000;
     z-index: 100;
-    background-image: url('../Photoes/RaptorBack.jpg'); /* Укажите путь к вашему изображению */
+    background-image: url('../Photoes/LavaBack.jpg'); /* Укажите путь к вашему изображению */
     background-size: cover; /* Изображение будет покрывать всю область */
     background-position: center; /* Центрировать изображение */
     background-repeat: no-repeat;
@@ -80,6 +80,10 @@
     border-image-repeat: round;
     border-image-source: url('../Photoes/SteelTexture.jpg');
     border-image-outset: 0;
+    background: url('../Photoes/SteelTexture.jpg') center/cover; /* Используем текстуру золота */
+    -webkit-background-clip: text;
+    color: transparent;
+    background-clip: text;
 }
 
 
