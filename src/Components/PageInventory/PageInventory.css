@@ -45,7 +45,7 @@
     border-image-slice: 1; /* Включаем всю область изображения для рамки */
     border-width: 2px;
     border-image-repeat: round;
-    border-image-source: url('../Photoes/SteelTexture.jpg');
+    border-image-source: url('../Photoes/GoldTexture.jpg');
     border-image-outset: 0;
 }
 
@@ -63,7 +63,7 @@
     margin-bottom: -10px;
 }
 .card.chosen .card-title {
-    background: url('../Photoes/SteelTexture.jpg') center/cover; /* Используем текстуру золота */
+    background: url('../Photoes/GoldTexture.jpg') center/cover; /* Используем текстуру золота */
     -webkit-background-clip: text;
     color: transparent;
     background-clip: text;
