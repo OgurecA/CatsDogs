@@ -64,6 +64,8 @@ function App() {
 
     const [choice, setChoice] = useState(false);
 
+    const [checkedCount, setCheckedCount] = useState(0);
+
     const [clicks, setClicks] = useState([]);
 
     const [playersFavorite, setPlayersFavorite] = useState(null);
@@ -526,7 +528,7 @@ function App() {
             
             <ButtonBar onShowSocialPage={handleSocialPage} onShowExchangePage={handleExchangePage} onShowInventoryPage={handleInventoryPage} onOpenShop={handleShopPage} isDisabled={!choice}/>
             
-            <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} />
+            <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} updateCheckedCount={setCheckedCount} />
             <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} onCardSelect={handleCardSelect} />
             <PageExchange className={isExchangePageVisible ? 'page-exchange' : 'page-exchange hidden'} />
             <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} title={favorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} />
@@ -538,7 +540,7 @@ function App() {
                     />
             <Energy
                         energy={energy}
-                        maxEnergy={maxEnergy}
+                        maxEnergy={checkedCount}
                     />
             <AddContainer
                 ads={[

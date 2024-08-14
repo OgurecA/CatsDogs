@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import './PageSocial.css';
 
-const PageSocial = ({ className }) => {
+const PageSocial = ({ className, updateCheckedCount }) => {
     const [checkingLinks, setCheckingLinks] = useState([]);
     const [checkedLinks, setCheckedLinks] = useState([]);
 
     useEffect(() => {
         const savedCheckedLinks = JSON.parse(localStorage.getItem('checkedLinks')) || [];
         setCheckedLinks(savedCheckedLinks);
+        updateCheckedCount(savedCheckedLinks.length);
 
         const resetCheckedLinksIfNeeded = () => {
             const now = new Date();
             const lastReset = parseInt(localStorage.getItem('lastReset'), 10) || 0;
 
             // Устанавливаем целевое время сброса (14:30 UTC)
-            const targetHour = 7;
-            const targetMinute = 33;
+            const targetHour = 0;
+            const targetMinute = 0;
             const targetDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), targetHour, targetMinute));
 
             if (now >= targetDate && lastReset < targetDate.getTime()) {
@@ -23,6 +24,7 @@ const PageSocial = ({ className }) => {
                 setCheckedLinks([]);
                 localStorage.setItem('checkedLinks', JSON.stringify([]));
                 localStorage.setItem('lastReset', targetDate.getTime());
+                updateCheckedCount(0);
             }
         };
 
@@ -57,6 +59,7 @@ const PageSocial = ({ className }) => {
             setCheckedLinks(prevCheckedLinks => {
                 const newCheckedLinks = [...prevCheckedLinks, index];
                 localStorage.setItem('checkedLinks', JSON.stringify(newCheckedLinks));
+                updateCheckedCount(newCheckedLinks.length);
                 return newCheckedLinks;
             });
         }, 5000);
