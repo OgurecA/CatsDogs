@@ -39,8 +39,7 @@ function App() {
  //   }, []);
 
 
-    const [favorite, setFavorite] = useState('');
-    const [personalCount, setPersonalCount] = useState(0);
+
 
     const [backgroundImage, setBackgroundImage] = useState('');
 
@@ -432,7 +431,6 @@ function App() {
                 setPersonalTrumpCount(personalTrumpCount + personalDMG);
                 handleVote('Trump', teamDMG);
                 setEnergy(energy - energyTake);
-                updatePersonalCount();
                 setTimeout(() => {
                     updateCounts();
                 }, 100);
@@ -457,7 +455,6 @@ function App() {
                 setPersonalHarrisCount(personalHarrisCount + personalDMG);
                 handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
-                updatePersonalCount();
                 setTimeout(() => {
                     updateCounts();
                 }, 100);
@@ -481,11 +478,9 @@ function App() {
         }
         incrementTrumpCount(e);
     }
-
-    function updatePersonalCount() {
-        setPersonalCount(personalHarrisCount - personalTrumpCount);
-        setFavorite(personalHarrisCount > personalTrumpCount ? 'Dire Warriors' : (personalTrumpCount > personalHarrisCount ? 'Wild Hearts' : 'None'));    
-    }
+    
+    const personalCount = personalHarrisCount - personalTrumpCount;
+    const favorite = personalHarrisCount > personalTrumpCount ? 'Dire Warriors' : (personalTrumpCount > personalHarrisCount ? 'Wild Hearts' : 'None');
 
     function updateCounts() {
         const data = {
