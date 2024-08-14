@@ -39,7 +39,6 @@
     position: absolute;
     text-align: center;
     font-size: 46px;
-    color: #ffffff;
     z-index: 2;
     width: 100vw;
     height: 10vh;
@@ -47,7 +46,6 @@
     left: 0%;
     top: 3vh;
     margin-bottom: 20px;
-    font-family: 'Grunger', sans-serif;
 }
 .shop-title.Wild-Hearts {
     color: #701d1d;
