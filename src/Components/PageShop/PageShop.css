@@ -40,7 +40,7 @@
     text-align: center;
     z-index: 2;
     width: 100vw;
-    height: 10vh;
+    height: 15vh;
     overflow: hidden;
     left: 0%;
     top: 3vh;
@@ -52,7 +52,7 @@
     color: transparent;
     background-clip: text;
     font-family: 'BreatheFire', sans-serif;
-    font-size: 60px;
+    font-size: 70px;
 }
 .shop-title.DireWarriors {
     background: url('../Photoes/ColdSteel.jpg') center/cover; /* Используем текстуру золота */
