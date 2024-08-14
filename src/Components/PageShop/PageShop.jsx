@@ -14,7 +14,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLink
 
     return (
         <div className={`page-shop ${className}`}>
-            <div className="shop-title ${title}">
+            <div className="shop-title ${title.replace(/\s+/g, '-')}">
                 {title}
             </div>
             <ul className="shop-list">
