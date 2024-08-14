@@ -17,7 +17,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLink
 
     return (
         <div className={`page-shop ${className}`}>
-            <div className="shop-title ${titleName}">
+            <div className={`shop-title ${titleName}`}>
                 {title}
             </div>
             <ul className="shop-list">
