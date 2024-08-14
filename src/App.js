@@ -431,9 +431,6 @@ function App() {
                 setPersonalTrumpCount(personalTrumpCount + personalDMG);
                 handleVote('Trump', teamDMG);
                 setEnergy(energy - energyTake);
-                setTimeout(() => {
-                    updateCounts();
-                }, 100);
             } else {
                 alert('Недостаточно энергии');
             }
@@ -455,9 +452,6 @@ function App() {
                 setPersonalHarrisCount(personalHarrisCount + personalDMG);
                 handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
-                setTimeout(() => {
-                    updateCounts();
-                }, 100);
             } else {
                 alert('Недостаточно энергии');
         }
@@ -470,6 +464,7 @@ function App() {
             handleClickHarrisB();
         }
         incrementHarrisCount(e);
+        updateCounts();
     }
     function handleTrumpClick(e) {
         if(!choice) {
@@ -477,8 +472,9 @@ function App() {
             handleClickTrumpB();
         }
         incrementTrumpCount(e);
+        updateCounts();
     }
-    
+
     const personalCount = personalHarrisCount - personalTrumpCount;
     const favorite = personalHarrisCount > personalTrumpCount ? 'Dire Warriors' : (personalTrumpCount > personalHarrisCount ? 'Wild Hearts' : 'None');
 
