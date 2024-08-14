@@ -32,10 +32,11 @@
     text-align: center;
     width: 90vw; /* Увеличиваем ширину контейнеров */
     height: 7vh; /* Устанавливаем высоту контейнеров */
+    margin-top: 4px;
     margin: 2px 0;
     padding: 10px; /* Увеличиваем внутренние отступы */
     background-color: rgba(77, 77, 77, 0.2);
-    border: 2px solid #2e2e2e;
+    border: 3px solid #2e2e2e;
     color: aliceblue;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -61,7 +62,7 @@
 
   
   .social-item.checking {
-    border: 2px solid #cbfff8; /* Желтая рамка при проверке */
+    border: 3px solid #cbfff8; /* Желтая рамка при проверке */
     animation: soft-pulse 1s infinite ease-in-out;
 }
 
@@ -76,15 +77,17 @@
 
 .social-item.checked {
     border-image-slice: 1; /* Включаем всю область изображения для рамки */
-    border-width: 2px;
+    border-width: 3px;
     border-image-repeat: round;
     border-image-source: url('../Photoes/SteelTexture.jpg');
     border-image-outset: 0;
-    background: url('../Photoes/SteelTexture.jpg') center/cover; /* Используем текстуру золота */
+    background: url('../Photoes/SteelTexture.jpg') center/cover; /* Используем текстуру металла */
     -webkit-background-clip: text;
-    color: transparent;
     background-clip: text;
+    color: transparent; /* Делаем текст прозрачным, чтобы текстура была видна */
+    -webkit-text-fill-color: transparent;
 }
+
 
 
 .social-item button {
