@@ -74,7 +74,7 @@
     }
 }
 
-.social-item {
+.social-item.checked {
     border-image-slice: 1; /* Включаем всю область изображения для рамки */
     border-width: 2px;
     border-image-repeat: round;
