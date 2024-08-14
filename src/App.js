@@ -431,6 +431,7 @@ function App() {
                 setPersonalTrumpCount(personalTrumpCount + personalDMG);
                 handleVote('Trump', teamDMG);
                 setEnergy(energy - energyTake);
+                updateCounts();
             } else {
                 alert('Недостаточно энергии');
             }
@@ -452,6 +453,7 @@ function App() {
                 setPersonalHarrisCount(personalHarrisCount + personalDMG);
                 handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
+                updateCounts();
             } else {
                 alert('Недостаточно энергии');
         }
@@ -464,9 +466,6 @@ function App() {
             handleClickHarrisB();
         }
         incrementHarrisCount(e);
-        setTimeout(() => {
-            updateCounts();
-        }, 100);
     }
     function handleTrumpClick(e) {
         if(!choice) {
@@ -474,9 +473,6 @@ function App() {
             handleClickTrumpB();
         }
         incrementTrumpCount(e);
-        setTimeout(() => {
-            updateCounts();
-        }, 100);
     }
 
     const personalCount = personalHarrisCount - personalTrumpCount;
