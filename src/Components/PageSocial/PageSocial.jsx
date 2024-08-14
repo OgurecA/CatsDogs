@@ -14,8 +14,8 @@ const PageSocial = ({ className }) => {
             const lastReset = parseInt(localStorage.getItem('lastReset'), 10) || 0;
 
             // Устанавливаем целевое время сброса (14:30 UTC)
-            const targetHour = 14;
-            const targetMinute = 30;
+            const targetHour = 7;
+            const targetMinute = 33;
             const targetDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), targetHour, targetMinute));
 
             if (now >= targetDate && lastReset < targetDate.getTime()) {
