@@ -12,19 +12,23 @@ const PageSocial = ({ className }) => {
         const resetCheckedLinksIfNeeded = () => {
             const now = new Date();
             const lastReset = parseInt(localStorage.getItem('lastReset'), 10) || 0;
-            const currentUTCDate = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
-            
-            if (currentUTCDate > lastReset) {
-                // Если прошло 00:00 UTC, сбрасываем checkedLinks
+
+            // Устанавливаем целевое время сброса (14:30 UTC)
+            const targetHour = 14;
+            const targetMinute = 30;
+            const targetDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), targetHour, targetMinute));
+
+            if (now >= targetDate && lastReset < targetDate.getTime()) {
+                // Если текущее время прошло 14:30 UTC и сброс еще не происходил, сбрасываем checkedLinks
                 setCheckedLinks([]);
                 localStorage.setItem('checkedLinks', JSON.stringify([]));
-                localStorage.setItem('lastReset', currentUTCDate);
+                localStorage.setItem('lastReset', targetDate.getTime());
             }
         };
 
         resetCheckedLinksIfNeeded();
 
-        // Устанавливаем таймер, который будет сбрасывать checkedLinks каждый день в 00:00 UTC
+        // Устанавливаем таймер, который будет проверять необходимость сброса каждый час
         const interval = setInterval(() => {
             resetCheckedLinksIfNeeded();
         }, 1000 * 60 * 60); // Проверяем каждый час
