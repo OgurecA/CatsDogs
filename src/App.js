@@ -132,7 +132,7 @@ function App() {
                 break;
             case 3:
                 image = Elephant;
-                newMaxEnergy = 300;
+                newMaxEnergy = 100;
                 newEnergyRecovery = 1;
                 newEnergyTake = 1;
                 newTeamDMG = 1;

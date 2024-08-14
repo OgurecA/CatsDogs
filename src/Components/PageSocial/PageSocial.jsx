@@ -8,6 +8,29 @@ const PageSocial = ({ className }) => {
     useEffect(() => {
         const savedCheckedLinks = JSON.parse(localStorage.getItem('checkedLinks')) || [];
         setCheckedLinks(savedCheckedLinks);
+
+        // Проверяем, нужно ли сбросить checkedLinks
+        const resetCheckedLinks = () => {
+            const lastReset = parseInt(localStorage.getItem('lastReset'), 10);
+            const now = new Date();
+            const utcMidnight = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+
+            if (!lastReset || now >= utcMidnight) {
+                // Если прошла полночь, сбрасываем checkedLinks
+                setCheckedLinks([]);
+                localStorage.setItem('checkedLinks', JSON.stringify([]));
+                localStorage.setItem('lastReset', Date.now());
+            }
+        };
+
+        resetCheckedLinks();
+
+        // Устанавливаем таймер, который будет сбрасывать checkedLinks каждый день в 00:00 UTC
+        const interval = setInterval(() => {
+            resetCheckedLinks();
+        }, 1000 * 60 * 60); // Проверяем каждый час
+
+        return () => clearInterval(interval);
     }, []);
 
     const handleLinkClick = (index, event) => {
@@ -35,7 +58,6 @@ const PageSocial = ({ className }) => {
             });
         }, 5000); // 10000 миллисекунд = 10 секунд
     };
-
 
     return (
         <div className={`page-social ${className}`}>
