@@ -4,6 +4,18 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'AnimalesFantastic';
+    src: url('../Fonts/AnimalesFantastic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'BreatheFire';
+    src: url('../Fonts/BreatheFire.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .page-shop {
     position: absolute;
@@ -36,6 +48,14 @@
     top: 3vh;
     margin-bottom: 20px;
     font-family: 'Grunger', sans-serif;
+}
+.shop-title.Wild-Hearts {
+    color: #701d1d;
+    font-family: 'BreatheFire', sans-serif;
+}
+.shop-title.Dire-Warriors {
+    color: #271d70;
+    font-family: 'AnimalesFantastic', sans-serif;
 }
 .shop-list {
     position: absolute;
