@@ -431,7 +431,9 @@ function App() {
                 setPersonalTrumpCount(personalTrumpCount + personalDMG);
                 handleVote('Trump', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts();
+                setTimeout(() => {
+                    updateCounts();
+                }, 100);
             } else {
                 alert('Недостаточно энергии');
             }
@@ -453,7 +455,9 @@ function App() {
                 setPersonalHarrisCount(personalHarrisCount + personalDMG);
                 handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts();
+                setTimeout(() => {
+                    updateCounts();
+                }, 100);
             } else {
                 alert('Недостаточно энергии');
         }
