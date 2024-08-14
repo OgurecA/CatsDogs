@@ -44,7 +44,10 @@
     overflow: hidden;
     left: 0%;
     top: 3vh;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
+    font-size: 48px;
+    color: aliceblue;
+    font-family: 'Grunger', sans-serif;
 }
 .shop-title.WildHearts {
     background: url('../Photoes/WarmSteel.jpg') center/cover; /* Используем текстуру золота */
