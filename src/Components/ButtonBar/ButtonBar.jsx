@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ButtonBar.css';
 
-const ButtonBar = ({ onOpenShop, onShowSocialPage, onShowInventoryPage, isDisabled }) => {
+const ButtonBar = ({ onOpenShop, onShowSocialPage, onShowInventoryPage, onShowExchangePage, isDisabled }) => {
     const [chosenButton, setChosenButton] = useState(null);
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
@@ -55,8 +55,3 @@ const ButtonBar = ({ onOpenShop, onShowSocialPage, onShowInventoryPage, isDisabl
 };
 
 export default ButtonBar;
-
-
-<button className={`button-bar-button ${chosenButton === 3 ? 'chosen' : ''}`} onClick={() => handleButtonClick(3, onShowExchangePage)} disabled={true} >
-                Exchange
-            </button>
