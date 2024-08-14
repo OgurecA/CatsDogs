@@ -3,18 +3,21 @@ import './PageShop.css';
 
 const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLinks }) => {
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
+    const [titleName, setTitleName] = useState("none");
 
     useEffect(() => {
         if (title === 'Dire Warriors') {
+            setTitleName("DireWarriors")
             setDisplayedVotes(votesA);
         } else if (title === 'Wild Hearts') {
             setDisplayedVotes(votesB);
+            setTitleName("WildHearts")
         }
     }, [title, votesA, votesB]); // Добавляем зависимости
 
     return (
         <div className={`page-shop ${className}`}>
-            <div className="shop-title ${title.replace(/\s+/g, '-')}">
+            <div className="shop-title ${titleName}">
                 {title}
             </div>
             <ul className="shop-list">
