@@ -450,18 +450,22 @@ function App() {
                 const imgRect = e.target.getBoundingClientRect();
                 const imgX = imgRect.left;
                 const imgY = imgRect.top;
+                
 
                 setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
             
                 setPersonalHarrisCount(personalHarrisCount + personalDMG);
+                
                 setPersonalCount(personalCount + personalDMG);
+                const newPoints = (personalCount + personalDMG);
+
                 handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
+                updateCounts(newPoints);
             } else {
                 alert('Недостаточно энергии');
             }
         }
-        updateCounts();
     }
 
     function handleHarrisClick(e) {
@@ -481,10 +485,10 @@ function App() {
 
     const favorite = personalHarrisCount > personalTrumpCount ? 'Dire Warriors' : (personalTrumpCount > personalHarrisCount ? 'Wild Hearts' : 'None');
 
-    function updateCounts() {
+    function updateCounts(newPoints,) {
         const data = {
             id: userData.id,
-            personal_count: personalCount,
+            personal_count: newPoints,
             personal_harris_count: personalHarrisCount,
             personal_trump_count: personalTrumpCount,
             favorite: favorite
@@ -527,11 +531,9 @@ function App() {
 
     const updatePersonalPoints = (newPoints) => {
         setPersonalCount(newPoints);
+        updateCounts(newPoints);
     };
     
-    useEffect(() => {
-        updateCounts();
-    }, [personalCount]);
 
   return (
     <>
