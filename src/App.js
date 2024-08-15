@@ -455,7 +455,7 @@ function App() {
                 setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
             
                 setPersonalHarrisCount(personalHarrisCount + personalDMG);
-                
+
                 setPersonalCount(personalCount + personalDMG);
                 const newPoints = (personalCount + personalDMG);
 
@@ -485,7 +485,7 @@ function App() {
 
     const favorite = personalHarrisCount > personalTrumpCount ? 'Dire Warriors' : (personalTrumpCount > personalHarrisCount ? 'Wild Hearts' : 'None');
 
-    function updateCounts(newPoints,) {
+    function updateCounts(newPoints) {
         const data = {
             id: userData.id,
             personal_count: newPoints,
