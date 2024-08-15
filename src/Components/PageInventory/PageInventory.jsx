@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './PageInventory.css';
-import { Snake, Gorilla, Croc, Elephant, Tiger, LockIcon } from '../Pictures/Pictures';
+import { Snake, Gorilla, Croc, Elephant, Tiger, Cage } from '../Pictures/Pictures';
 
 const PageInventory = ({ className, onCardSelect }) => {
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
@@ -58,7 +58,7 @@ const PageInventory = ({ className, onCardSelect }) => {
                     <h3 className="card-title">{item.title}</h3>
                     {lockedCards[index] && (
                         <div className="lock-overlay">
-                            <img src={LockIcon} alt="Locked" className="lock-icon" />
+                            <img src={Cage} alt="Locked" className="lock-icon" />
                         </div>
                     )}
                 </div>
