@@ -351,7 +351,7 @@ function App() {
                     console.log("Energy is already at or above max, no recovery applied.");
                 }
             } else {
-                setEnergy(0); // Если данных нет, устанавливаем начальное значение энергии в maxEnergy
+                setEnergy(100); // Если данных нет, устанавливаем начальное значение энергии в maxEnergy
             }
         };
     
@@ -488,14 +488,16 @@ function App() {
 
     const favorite = personalHarrisCount > personalTrumpCount ? 'Dire Warriors' : (personalTrumpCount > personalHarrisCount ? 'Wild Hearts' : 'None');
 
-    const updatePersonalPoints = (newPoints) => {
-        setPersonalCount(newPoints);
-        const newCount = newPoints;
+    const updatePersonalPoints = (personalPoints) => {
+        console.log("New Points being set:", personalPoints);
+        setPersonalCount(personalPoints);
+        const newCount = personalPoints;
         updateCounts(newCount);
     };
 
 
     function updateCounts(newCount) {
+        console.log("Updating counts with:", newCount)
         const data = {
             id: userData.id,
             personal_count: newCount,
