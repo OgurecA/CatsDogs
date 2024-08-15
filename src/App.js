@@ -433,11 +433,11 @@ function App() {
                 setPersonalTrumpCount(personalTrumpCount + personalDMG);
                 
                 setPersonalCount(personalCount + personalDMG);
-                const newPoints = (personalCount + personalDMG);
+                const newCount = (personalCount + personalDMG);
 
                 handleVote('Trump', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts(newPoints);
+                updateCounts(newCount);
             } else {
                 alert('Недостаточно энергии');
             }
@@ -460,11 +460,11 @@ function App() {
                 setPersonalHarrisCount(personalHarrisCount + personalDMG);
 
                 setPersonalCount(personalCount + personalDMG);
-                const newPoints = (personalCount + personalDMG);
+                const newCount = (personalCount + personalDMG);
 
                 handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts(newPoints);
+                updateCounts(newCount);
             } else {
                 alert('Недостаточно энергии');
             }
@@ -490,14 +490,15 @@ function App() {
 
     const updatePersonalPoints = (newPoints) => {
         setPersonalCount(newPoints);
-        updateCounts(newPoints);
+        const newCount = newPoints;
+        updateCounts(newCount);
     };
 
 
-    function updateCounts(newPoints) {
+    function updateCounts(newCount) {
         const data = {
             id: userData.id,
-            personal_count: newPoints,
+            personal_count: newCount,
             personal_harris_count: personalHarrisCount,
             personal_trump_count: personalTrumpCount,
             favorite: favorite
