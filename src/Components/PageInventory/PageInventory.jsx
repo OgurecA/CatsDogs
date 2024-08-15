@@ -2,28 +2,22 @@ import React, { useState, useEffect } from 'react';
 import './PageInventory.css';
 import { Snake, Gorilla, Croc, Elephant, Tiger, Cage } from '../Pictures/Pictures';
 
-const PageInventory = ({ className, onCardSelect }) => {
+const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoints }) => {
     const items = [
-        { title: 'Snake', image: Snake },
-        { title: 'Gorilla', image: Gorilla },
-        { title: 'Croc', image: Croc },
-        { title: 'Elephant', image: Elephant },
-        { title: 'Tiger', image: Tiger }
+        { title: 'Snake', image: Snake, price: 0 }, // Змея открыта по умолчанию и бесплатна
+        { title: 'Gorilla', image: Gorilla, price: 10 },
+        { title: 'Croc', image: Croc, price: 20 },
+        { title: 'Elephant', image: Elephant, price: 30 },
+        { title: 'Tiger', image: Tiger, price: 40 }
     ];
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [cardToUnlock, setCardToUnlock] = useState(null);
 
-    // Инициализация состояния заблокированных карточек: первая карточка (Snake) всегда разблокирована
-    const [lockedCards, setLockedCards] = useState(
-        items.map((_, index) => index !== 0)
-    );
+    const [lockedCards, setLockedCards] = useState(items.map((_, index) => index !== 0)); // Первая карточка открыта
 
     useEffect(() => {
-
-        //localStorage.clear();
-
         const savedLockedCards = JSON.parse(localStorage.getItem('lockedCards'));
         if (savedLockedCards) {
             savedLockedCards[0] = false; // Всегда оставляем первую карточку (Snake) разблокированной
@@ -38,7 +32,7 @@ const PageInventory = ({ className, onCardSelect }) => {
     }, [onCardSelect]);
 
     const handleCardClick = (index) => {
-        if (!lockedCards[index]) { 
+        if (!lockedCards[index]) {
             setSelectedCardIndex(index);
             localStorage.setItem('selectedCardIndex', index);
             onCardSelect(index);
@@ -54,14 +48,20 @@ const PageInventory = ({ className, onCardSelect }) => {
 
     const unlockCard = () => {
         if (cardToUnlock !== null) {
-            setLockedCards(prevState => {
-                const newLockedCards = [...prevState];
-                newLockedCards[cardToUnlock] = false;
-                newLockedCards[0] = false; // Всегда оставляем первую карточку разблокированной
-                localStorage.setItem('lockedCards', JSON.stringify(newLockedCards));
-                return newLockedCards;
-            });
-            closeModal();
+            const cardPrice = items[cardToUnlock].price;
+            if (personalPoints >= cardPrice) {
+                setLockedCards(prevState => {
+                    const newLockedCards = [...prevState];
+                    newLockedCards[cardToUnlock] = false;
+                    newLockedCards[0] = false; // Всегда оставляем первую карточку разблокированной
+                    localStorage.setItem('lockedCards', JSON.stringify(newLockedCards));
+                    return newLockedCards;
+                });
+                setPersonalPoints(prevPoints => prevPoints - cardPrice); // Вычитаем очки
+                closeModal();
+            } else {
+                alert('Недостаточно очков для разблокировки этой карточки.');
+            }
         }
     };
 
@@ -74,7 +74,7 @@ const PageInventory = ({ className, onCardSelect }) => {
                     onClick={() => handleCardClick(index)}
                 >
                     <img src={item.image} alt={item.title} className="card-image" />
-                    <h3 className="card-title">{item.title}</h3>
+                    <h3 className="card-title">{item.title} {lockedCards[index] && `(Цена: ${item.price} очков)`}</h3>
                     {lockedCards[index] && (
                         <div className="lock-overlay">
                             <img src={Cage} alt="Locked" className="lock-icon" />
@@ -87,7 +87,7 @@ const PageInventory = ({ className, onCardSelect }) => {
                 <div className="modal-overlay" onClick={closeModal}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <h2>Персонаж заблокирован</h2>
-                        <p>Этот персонаж в настоящее время недоступен. Разблокируйте его, чтобы выбрать.</p>
+                        <p>Для разблокировки персонажа потребуется {items[cardToUnlock].price} очков. Ваши текущие очки: {personalPoints}.</p>
                         <button onClick={unlockCard}>Открыть</button>
                         <button onClick={closeModal}>Закрыть</button>
                     </div>
