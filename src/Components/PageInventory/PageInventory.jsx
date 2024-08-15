@@ -74,7 +74,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                     onClick={() => handleCardClick(index)}
                 >
                     <img src={item.image} alt={item.title} className="card-image" />
-                    <h3 className="card-title">{item.title} {lockedCards[index] && `(Цена: ${item.price} очков)`}</h3>
+                    <h3 className="card-title">{item.title} {lockedCards[index]}</h3>
                     {lockedCards[index] && (
                         <div className="lock-overlay">
                             <img src={Cage} alt="Locked" className="lock-icon" />
@@ -88,8 +88,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <h2>Персонаж заблокирован</h2>
                         <p>Для разблокировки персонажа потребуется {items[cardToUnlock].price} очков. Ваши текущие очки: {personalPoints}.</p>
-                        <button onClick={unlockCard}>Открыть</button>
-                        <button onClick={closeModal}>Закрыть</button>
+                        <button onClick={unlockCard}>Освободить</button>
                     </div>
                 </div>
             )}
