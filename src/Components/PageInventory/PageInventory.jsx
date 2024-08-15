@@ -4,35 +4,20 @@ import { Snake, Gorilla, Croc, Elephant, Tiger, Cage } from '../Pictures/Picture
 
 const PageInventory = ({ className, onCardSelect }) => {
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
-    const [showModal, setShowModal] = useState(false); // Состояние для отображения модального окна
-    const [cardToUnlock, setCardToUnlock] = useState(null); // Состояние для карточки, которую нужно разблокировать
+    const [showModal, setShowModal] = useState(false); 
+    const [cardToUnlock, setCardToUnlock] = useState(null);
     const items = [
-        {
-            title: 'Snake',
-            image: Snake
-        },
-        {
-            title: 'Gorilla',
-            image: Gorilla
-        },
-        {
-            title: 'Croc',
-            image: Croc
-        },
-        {
-            title: 'Elephant',
-            image: Elephant
-        },
-        {
-            title: 'Tiger',
-            image: Tiger
-        }
+        { title: 'Snake', image: Snake },
+        { title: 'Gorilla', image: Gorilla },
+        { title: 'Croc', image: Croc },
+        { title: 'Elephant', image: Elephant },
+        { title: 'Tiger', image: Tiger }
     ];
 
-    // Состояние, указывающее на то, какие карточки заблокированы
+    // Состояние заблокированных карточек
     const [lockedCards, setLockedCards] = useState(items.map(() => true));
 
-    // Загрузка состояния заблокированных карточек при монтировании компонента
+    // Загрузка состояния заблокированных карточек и выбранной карточки
     useEffect(() => {
         const savedLockedCards = JSON.parse(localStorage.getItem('lockedCards'));
         if (savedLockedCards) {
@@ -40,33 +25,33 @@ const PageInventory = ({ className, onCardSelect }) => {
         }
 
         const savedIndex = localStorage.getItem('selectedCardIndex');
-        if (savedIndex !== null && !savedLockedCards[savedIndex]) {
+        if (savedIndex !== null && !savedLockedCards?.[savedIndex]) {
             setSelectedCardIndex(Number(savedIndex));
-            onCardSelect(Number(savedIndex)); // Передаем индекс при загрузке
+            onCardSelect(Number(savedIndex));
         }
     }, [onCardSelect]);
 
     const handleCardClick = (index) => {
-        if (!lockedCards[index]) { // Проверяем, не заблокирована ли карточка
+        if (!lockedCards[index]) { 
             setSelectedCardIndex(index);
             localStorage.setItem('selectedCardIndex', index);
-            onCardSelect(index); // Передаем индекс выбранной карточки
+            onCardSelect(index); 
         } else {
-            setCardToUnlock(index); // Запоминаем, какую карточку нужно разблокировать
-            setShowModal(true); // Показать модальное окно, если карточка заблокирована
+            setCardToUnlock(index); 
+            setShowModal(true); 
         }
     };
 
     const closeModal = () => {
-        setShowModal(false); // Закрыть модальное окно
+        setShowModal(false); 
     };
 
     const unlockCard = () => {
         if (cardToUnlock !== null) {
             setLockedCards(prevState => {
                 const newLockedCards = [...prevState];
-                newLockedCards[cardToUnlock] = false; // Разблокируем карточку
-                localStorage.setItem('lockedCards', JSON.stringify(newLockedCards)); // Сохраняем новое состояние в localStorage
+                newLockedCards[cardToUnlock] = false; 
+                localStorage.setItem('lockedCards', JSON.stringify(newLockedCards)); // Сохраняем в localStorage
                 return newLockedCards;
             });
             closeModal();
