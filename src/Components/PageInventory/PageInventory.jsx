@@ -4,6 +4,7 @@ import { Snake, Gorilla, Croc, Elephant, Tiger, Cage } from '../Pictures/Picture
 
 const PageInventory = ({ className, onCardSelect }) => {
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
+    const [showModal, setShowModal] = useState(false); // Состояние для отображения модального окна
     const items = [
         {
             title: 'Snake',
@@ -43,7 +44,13 @@ const PageInventory = ({ className, onCardSelect }) => {
             setSelectedCardIndex(index);
             localStorage.setItem('selectedCardIndex', index);
             onCardSelect(index); // Передаем индекс выбранной карточки
+        } else {
+            setShowModal(true); // Показать модальное окно, если карточка заблокирована
         }
+    };
+
+    const closeModal = () => {
+        setShowModal(false); // Закрыть модальное окно
     };
 
     return (
@@ -63,6 +70,16 @@ const PageInventory = ({ className, onCardSelect }) => {
                     )}
                 </div>
             ))}
+
+            {showModal && (
+                <div className="modal-overlay" onClick={closeModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <h2>Персонаж заблокирован</h2>
+                        <p>Этот персонаж в настоящее время недоступен. Разблокируйте его, чтобы выбрать.</p>
+                        <button onClick={closeModal}>Закрыть</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
