@@ -13,6 +13,8 @@ import Snake from "../Photoes/Snake.png";
 import Croc from "../Photoes/Croc.png";
 import Elephant from "../Photoes/Elephant.png";
 import Gorilla from "../Photoes/Gorilla.png";
+import Cage from "../Photoes/Cage.png";
 
 
-export {TrumpImg, TrumpBG, HarrisBG, TrumpH, HarrisH, HarrisImg, HarrisP, TrumpP, bybit, CatBack, Gorilla, Tiger, Snake, Croc, Elephant };
+
+export { Cage, TrumpImg, TrumpBG, HarrisBG, TrumpH, HarrisH, HarrisImg, HarrisP, TrumpP, bybit, CatBack, Gorilla, Tiger, Snake, Croc, Elephant };
