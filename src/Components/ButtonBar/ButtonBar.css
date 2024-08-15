@@ -29,6 +29,7 @@
     z-index: 16;
     background-image: url('../Photoes/SteelTexture.jpg');
     transition: all 0.1s ease;
+    overflow: visible;
 }
 
 .button-bar-button:active {
@@ -39,6 +40,7 @@
   /* Стили для выбранной кнопки */
   background: linear-gradient(to bottom, #710000, #960000); /* Цвет фона выбранной кнопки */
   color: transparent;
+  overflow: visible;
 }
 
   .button-bar-button.chosen:active {
