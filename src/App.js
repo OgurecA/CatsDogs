@@ -431,14 +431,17 @@ function App() {
                 setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
 
                 setPersonalTrumpCount(personalTrumpCount + personalDMG);
+                
                 setPersonalCount(personalCount + personalDMG);
+                const newPoints = (personalCount + personalDMG);
+
                 handleVote('Trump', teamDMG);
                 setEnergy(energy - energyTake);
+                updateCounts(newPoints);
             } else {
                 alert('Недостаточно энергии');
             }
         }  
-        updateCounts();
     }
 
     function incrementHarrisCount(e) {
