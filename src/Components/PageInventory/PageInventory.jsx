@@ -29,16 +29,22 @@ const PageInventory = ({ className, onCardSelect }) => {
         }
     ];
 
-    // Состояние, указывающее на то, какие карточки заблокированы (по умолчанию все заблокированы)
+    // Состояние, указывающее на то, какие карточки заблокированы
     const [lockedCards, setLockedCards] = useState(items.map(() => true));
 
+    // Загрузка состояния заблокированных карточек при монтировании компонента
     useEffect(() => {
+        const savedLockedCards = JSON.parse(localStorage.getItem('lockedCards'));
+        if (savedLockedCards) {
+            setLockedCards(savedLockedCards);
+        }
+
         const savedIndex = localStorage.getItem('selectedCardIndex');
-        if (savedIndex !== null && !lockedCards[savedIndex]) {
+        if (savedIndex !== null && !savedLockedCards[savedIndex]) {
             setSelectedCardIndex(Number(savedIndex));
             onCardSelect(Number(savedIndex)); // Передаем индекс при загрузке
         }
-    }, [onCardSelect, lockedCards]);
+    }, [onCardSelect]);
 
     const handleCardClick = (index) => {
         if (!lockedCards[index]) { // Проверяем, не заблокирована ли карточка
@@ -60,6 +66,7 @@ const PageInventory = ({ className, onCardSelect }) => {
             setLockedCards(prevState => {
                 const newLockedCards = [...prevState];
                 newLockedCards[cardToUnlock] = false; // Разблокируем карточку
+                localStorage.setItem('lockedCards', JSON.stringify(newLockedCards)); // Сохраняем новое состояние в localStorage
                 return newLockedCards;
             });
             closeModal();
