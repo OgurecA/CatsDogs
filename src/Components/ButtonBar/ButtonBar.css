@@ -34,6 +34,7 @@
 
 .button-bar-button:active {
   transform: translateY(1px); /* Сдвиг кнопки при нажатии */
+  background-image: url('../Photoes/SteelTexture.jpg');
 }
 
 .button-bar-button.chosen {
