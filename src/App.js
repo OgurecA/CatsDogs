@@ -433,11 +433,11 @@ function App() {
                 setPersonalTrumpCount(personalTrumpCount + personalDMG);
                 
                 setPersonalCount(personalCount + personalDMG);
-                const newCount = (personalCount + personalDMG);
+                const updatedPoints = (personalCount + personalDMG);
 
                 handleVote('Trump', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts(newCount);
+                updateCounts(updatedPoints);
             } else {
                 alert('Недостаточно энергии');
             }
@@ -460,11 +460,11 @@ function App() {
                 setPersonalHarrisCount(personalHarrisCount + personalDMG);
 
                 setPersonalCount(personalCount + personalDMG);
-                const newCount = (personalCount + personalDMG);
+                const updatedPoints = (personalCount + personalDMG);
 
                 handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts(newCount);
+                updateCounts(updatedPoints);
             } else {
                 alert('Недостаточно энергии');
             }
@@ -488,19 +488,12 @@ function App() {
 
     const favorite = personalHarrisCount > personalTrumpCount ? 'Dire Warriors' : (personalTrumpCount > personalHarrisCount ? 'Wild Hearts' : 'None');
 
-    const updatePersonalPoints = (personalPoints) => {
-        console.log("New Points being set:", personalPoints);
-        setPersonalCount(personalPoints);
-        const newCount = personalPoints;
-        updateCounts(newCount);
-    };
 
 
-    function updateCounts(newCount) {
-        console.log("Updating counts with:", newCount)
+    function updateCounts(updatedPoints) {
         const data = {
             id: userData.id,
-            personal_count: newCount,
+            personal_count: updatedPoints,
             personal_harris_count: personalHarrisCount,
             personal_trump_count: personalTrumpCount,
             favorite: favorite

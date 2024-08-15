@@ -53,6 +53,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
         if (cardToUnlock !== null) {
             const cardPrice = items[cardToUnlock].price;
             if (personalPoints >= cardPrice) {
+                const updatedPoints = personalPoints - cardPrice;
                 setLockedCards(prevState => {
                     const newLockedCards = [...prevState];
                     newLockedCards[cardToUnlock] = false;
@@ -61,6 +62,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                     return newLockedCards;
                 });
                 setPersonalPoints(prevPoints => prevPoints - cardPrice); // Вычитаем очки
+                updateCounts(updatedPoints);
                 closeModal();
             } else {
                 alert('Недостаточно очков для разблокировки этой карточки.');
