@@ -488,6 +488,12 @@ function App() {
 
     const favorite = personalHarrisCount > personalTrumpCount ? 'Dire Warriors' : (personalTrumpCount > personalHarrisCount ? 'Wild Hearts' : 'None');
 
+    const updatePersonalPoints = (newPoints) => {
+        setPersonalCount(newPoints);
+        updateCounts(newPoints);
+    };
+
+
     function updateCounts(newPoints) {
         const data = {
             id: userData.id,
@@ -532,10 +538,7 @@ function App() {
         .catch(error => console.error('Error:', error));
     }
 
-    const updatePersonalPoints = (newPoints) => {
-        setPersonalCount(newPoints);
-        updateCounts(newPoints);
-    };
+
     
 
   return (
