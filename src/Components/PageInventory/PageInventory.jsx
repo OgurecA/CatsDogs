@@ -3,9 +3,6 @@ import './PageInventory.css';
 import { Snake, Gorilla, Croc, Elephant, Tiger, Cage } from '../Pictures/Pictures';
 
 const PageInventory = ({ className, onCardSelect }) => {
-    const [selectedCardIndex, setSelectedCardIndex] = useState(null);
-    const [showModal, setShowModal] = useState(false); 
-    const [cardToUnlock, setCardToUnlock] = useState(null);
     const items = [
         { title: 'Snake', image: Snake },
         { title: 'Gorilla', image: Gorilla },
@@ -14,13 +11,19 @@ const PageInventory = ({ className, onCardSelect }) => {
         { title: 'Tiger', image: Tiger }
     ];
 
-    // Состояние заблокированных карточек
-    const [lockedCards, setLockedCards] = useState(items.map(() => true));
+    const [selectedCardIndex, setSelectedCardIndex] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [cardToUnlock, setCardToUnlock] = useState(null);
 
-    // Загрузка состояния заблокированных карточек и выбранной карточки
+    // Инициализация состояния заблокированных карточек: первая карточка (Snake) всегда разблокирована
+    const [lockedCards, setLockedCards] = useState(
+        items.map((_, index) => index !== 0)
+    );
+
     useEffect(() => {
         const savedLockedCards = JSON.parse(localStorage.getItem('lockedCards'));
         if (savedLockedCards) {
+            savedLockedCards[0] = false; // Всегда оставляем первую карточку (Snake) разблокированной
             setLockedCards(savedLockedCards);
         }
 
@@ -35,23 +38,24 @@ const PageInventory = ({ className, onCardSelect }) => {
         if (!lockedCards[index]) { 
             setSelectedCardIndex(index);
             localStorage.setItem('selectedCardIndex', index);
-            onCardSelect(index); 
+            onCardSelect(index);
         } else {
-            setCardToUnlock(index); 
-            setShowModal(true); 
+            setCardToUnlock(index);
+            setShowModal(true);
         }
     };
 
     const closeModal = () => {
-        setShowModal(false); 
+        setShowModal(false);
     };
 
     const unlockCard = () => {
         if (cardToUnlock !== null) {
             setLockedCards(prevState => {
                 const newLockedCards = [...prevState];
-                newLockedCards[cardToUnlock] = false; 
-                localStorage.setItem('lockedCards', JSON.stringify(newLockedCards)); // Сохраняем в localStorage
+                newLockedCards[cardToUnlock] = false;
+                newLockedCards[0] = false; // Всегда оставляем первую карточку разблокированной
+                localStorage.setItem('lockedCards', JSON.stringify(newLockedCards));
                 return newLockedCards;
             });
             closeModal();
