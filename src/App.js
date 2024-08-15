@@ -527,8 +527,11 @@ function App() {
 
     const updatePersonalPoints = (newPoints) => {
         setPersonalCount(newPoints);
-        updateCounts();
     };
+    
+    useEffect(() => {
+        updateCounts();
+    }, [personalCount]);
 
   return (
     <>
