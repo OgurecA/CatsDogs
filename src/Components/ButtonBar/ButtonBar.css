@@ -3,12 +3,12 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 10vh; /* Устанавливаем высоту полосы */
+    height: 8vh; /* Устанавливаем высоту полосы */
     background-color: #282828;
     display: flex;
     justify-content: space-around;
     align-items: center; /* Центрирование кнопок по вертикали */
-    padding: 10px 0;
+    padding: 5px 0;
     border-radius: 15px 15px 0 0; /* Скругляем верхние углы полосы */
     z-index: 150;
 }
