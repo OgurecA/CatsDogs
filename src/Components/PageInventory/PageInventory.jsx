@@ -21,6 +21,9 @@ const PageInventory = ({ className, onCardSelect }) => {
     );
 
     useEffect(() => {
+
+        localStorage.clear();
+
         const savedLockedCards = JSON.parse(localStorage.getItem('lockedCards'));
         if (savedLockedCards) {
             savedLockedCards[0] = false; // Всегда оставляем первую карточку (Snake) разблокированной
