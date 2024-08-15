@@ -5,6 +5,7 @@ import { Snake, Gorilla, Croc, Elephant, Tiger, Cage } from '../Pictures/Picture
 const PageInventory = ({ className, onCardSelect }) => {
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
     const [showModal, setShowModal] = useState(false); // Состояние для отображения модального окна
+    const [cardToUnlock, setCardToUnlock] = useState(null); // Состояние для карточки, которую нужно разблокировать
     const items = [
         {
             title: 'Snake',
@@ -45,12 +46,24 @@ const PageInventory = ({ className, onCardSelect }) => {
             localStorage.setItem('selectedCardIndex', index);
             onCardSelect(index); // Передаем индекс выбранной карточки
         } else {
+            setCardToUnlock(index); // Запоминаем, какую карточку нужно разблокировать
             setShowModal(true); // Показать модальное окно, если карточка заблокирована
         }
     };
 
     const closeModal = () => {
         setShowModal(false); // Закрыть модальное окно
+    };
+
+    const unlockCard = () => {
+        if (cardToUnlock !== null) {
+            setLockedCards(prevState => {
+                const newLockedCards = [...prevState];
+                newLockedCards[cardToUnlock] = false; // Разблокируем карточку
+                return newLockedCards;
+            });
+            closeModal();
+        }
     };
 
     return (
@@ -76,6 +89,7 @@ const PageInventory = ({ className, onCardSelect }) => {
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <h2>Персонаж заблокирован</h2>
                         <p>Этот персонаж в настоящее время недоступен. Разблокируйте его, чтобы выбрать.</p>
+                        <button onClick={unlockCard}>Открыть</button>
                         <button onClick={closeModal}>Закрыть</button>
                     </div>
                 </div>
