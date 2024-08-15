@@ -45,7 +45,7 @@
     border-image-slice: 1; /* Включаем всю область изображения для рамки */
     border-width: 3px;
     border-image-repeat: round;
-    border-image-source: url('../Photoes/WS.jpg');
+    border-image-source: url('../Photoes/SteelTexture.jpg');
     border-image-outset: 0;
 }
 
@@ -63,8 +63,32 @@
     margin-bottom: -10px;
 }
 .card.chosen .card-title {
-    background: url('../Photoes/WarmSteel.jpg') center/cover; /* Используем текстуру золота */
+    background: url('../Photoes/SteelTexture.jpg') center/cover; /* Используем текстуру золота */
     -webkit-background-clip: text;
     color: transparent;
     background-clip: text;
+}
+
+
+.card.locked {
+    filter: grayscale(100%); /* Затемнение заблокированных карточек */
+    cursor: not-allowed; /* Запрещаем выбор заблокированных карточек */
+}
+
+.card.locked .lock-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный слой */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card.locked .lock-icon {
+    width: 50px;
+    height: 50px;
+    opacity: 0.8;
 }

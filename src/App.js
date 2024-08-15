@@ -434,11 +434,11 @@ function App() {
                 setPersonalCount(personalCount + personalDMG);
                 handleVote('Trump', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts();
             } else {
                 alert('Недостаточно энергии');
             }
-        } 
+        }  
+        updateCounts();
     }
 
     function incrementHarrisCount(e) {
@@ -457,12 +457,12 @@ function App() {
                 setPersonalCount(personalCount + personalDMG);
                 handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts();
             } else {
                 alert('Недостаточно энергии');
+            }
         }
-    } 
-}
+        updateCounts();
+    }
 
     function handleHarrisClick(e) {
         if(!choice) {
