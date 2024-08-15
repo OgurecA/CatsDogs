@@ -198,7 +198,7 @@ app.post('/update-counts', (req, res) => {
 
 app.get('/get-counts', (req, res) => {
     const { id } = req.query;
-    db.get(`SELECT personal_harris_count, personal_trump_count, favorite FROM try8 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT personal_harris_count, personal_trump_count, personal_count, favorite FROM try8 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
         }
@@ -207,6 +207,7 @@ app.get('/get-counts', (req, res) => {
             res.status(200).json({
                 personal_harris_count: row.personal_harris_count,
                 personal_trump_count: row.personal_trump_count,
+                personal_count: row.personal_count,
                 favorite: row.favorite
             });
         } else {

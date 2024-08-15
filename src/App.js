@@ -302,6 +302,7 @@ function App() {
             console.log('Fetched counts:', data); // Логирование полученных данных
             setPersonalHarrisCount(data.personal_harris_count ?? 0);
             setPersonalTrumpCount(data.personal_trump_count ?? 0);
+            setPersonalCount(data.personal_count ?? 0);
             setPlayersFavorite(data.favorite ?? 'none');
         })
         .catch((error) => {
