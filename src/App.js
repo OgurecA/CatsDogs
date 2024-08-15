@@ -351,7 +351,7 @@ function App() {
                     console.log("Energy is already at or above max, no recovery applied.");
                 }
             } else {
-                setEnergy(100); // Если данных нет, устанавливаем начальное значение энергии в maxEnergy
+                setEnergy(0); // Если данных нет, устанавливаем начальное значение энергии в maxEnergy
             }
         };
     
@@ -434,6 +434,7 @@ function App() {
                 setPersonalCount(personalCount + personalDMG);
                 handleVote('Trump', teamDMG);
                 setEnergy(energy - energyTake);
+                updateCounts();
             } else {
                 alert('Недостаточно энергии');
             }
@@ -456,6 +457,7 @@ function App() {
                 setPersonalCount(personalCount + personalDMG);
                 handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
+                updateCounts();
             } else {
                 alert('Недостаточно энергии');
         }
@@ -468,7 +470,6 @@ function App() {
             handleClickHarrisB();
         }
         incrementHarrisCount(e);
-        updateCounts();
     }
     function handleTrumpClick(e) {
         if(!choice) {
@@ -476,7 +477,6 @@ function App() {
             handleClickTrumpB();
         }
         incrementTrumpCount(e);
-        updateCounts();
     }
 
     const favorite = personalHarrisCount > personalTrumpCount ? 'Dire Warriors' : (personalTrumpCount > personalHarrisCount ? 'Wild Hearts' : 'None');

@@ -88,3 +88,17 @@
     font-size: 1.2em;
     color: rgb(255, 255, 255);
 }
+
+.buy-button {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    width: 80%; /* Кнопка занимает всю ширину контейнера */
+    height: 100px; /* Высота кнопки */
+    background-color: #ff3ef9; /* Цвет кнопки */
+    color: white; /* Цвет текста кнопки */
+    border: none;
+    cursor: pointer;
+    font-size: 28px;
+    text-align: center;
+}

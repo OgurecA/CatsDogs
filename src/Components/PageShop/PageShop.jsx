@@ -31,6 +31,9 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLink
                     Daily Tasks: {checkedLinks}/7
                 </li>
             </ul>
+            <button className="buy-button">
+                Buy
+            </button>
         </div>
     );
 };
