@@ -54,8 +54,8 @@
     top: 40%; /* Центрируем по вертикали */
     left: 50%; /* Центрируем по горизонтали */
     width: 50%; /* Установите размеры изображения */
-    height: 50%; /* Установите размеры изображения */
-    background-image: url('../Photoes/Cage.png'); /* Путь к вашему изображению */
+    height: 70%; /* Установите размеры изображения */
+    background-image: url('../Photoes/Cross.png'); /* Путь к вашему изображению */
     background-size: cover;
     background-repeat: no-repeat;
     transform: translate(-50%, -50%); /* Сдвигаем на половину ширины и высоты для точного центрирования */
