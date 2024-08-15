@@ -22,7 +22,7 @@ const PageInventory = ({ className, onCardSelect }) => {
 
     useEffect(() => {
 
-        localStorage.clear();
+        //localStorage.clear();
 
         const savedLockedCards = JSON.parse(localStorage.getItem('lockedCards'));
         if (savedLockedCards) {
