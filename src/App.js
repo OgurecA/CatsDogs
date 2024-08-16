@@ -315,7 +315,7 @@ function App() {
             setPersonalHarrisCount(data.personal_harris_count ?? 0);
             setPersonalTrumpCount(data.personal_trump_count ?? 0);
             setPersonalCount(data.personal_count ?? 0);
-            setPlayersFavorite(data.favorite ?? 'none');
+            setPlayersFavorite(data.favorite);
         })
         .catch((error) => {
             console.error('Error:', error);
