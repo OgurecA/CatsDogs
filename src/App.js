@@ -312,11 +312,12 @@ function App() {
         })
         .then(data => {
             console.log('Fetched counts:', data); // Логирование полученных данных
+            const updatedPoints = personalCount;
             setPersonalHarrisCount(data.personal_harris_count ?? 0);
             setPersonalTrumpCount(data.personal_trump_count ?? 0);
             setPersonalCount(data.personal_count ?? 0);
-
             setPlayersFavorite(data.favorite ?? 'none');
+            updateCounts(updatedPoints, playersFavorite)
             
         })
         .catch((error) => {
