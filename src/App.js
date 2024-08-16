@@ -375,7 +375,7 @@ function App() {
                 handleClickTrumpB();
             }
         }
-      }, [playersFavorite]);
+      }, []);
     
 
       useEffect(() => {
