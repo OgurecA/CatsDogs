@@ -40,7 +40,7 @@ function App() {
  //   }, []);
 
 
-
+    const [userId, setUserId] = useState('');
 
     const [backgroundImage, setBackgroundImage] = useState('');
 
@@ -234,6 +234,7 @@ function App() {
 
     useEffect(() => {
         WebApp.setHeaderColor('#282c34');
+        WebApp.expand();
         updateBar();
     
         async function fetchFingerprint() {
@@ -271,7 +272,7 @@ function App() {
     
         if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
           setUserData(WebApp.initDataUnsafe.user);
-    
+          setUserId(WebApp.initDataUnsafe.user.id);
           const data = {
             id: WebApp.initDataUnsafe.user.id,
             first_name: WebApp.initDataUnsafe.user.first_name,
