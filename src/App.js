@@ -493,10 +493,10 @@ function App() {
     };
 
 
-    function updateCounts(newCount) {
+    function updateCounts(updatedPoints) {
         const data = {
             id: userData.id,
-            personal_count: newCount,
+            personal_count: updatedPoints,
             personal_harris_count: personalHarrisCount,
             personal_trump_count: personalTrumpCount,
             favorite: favorite
