@@ -40,6 +40,8 @@ function App() {
  //   }, []);
 
 
+    const [tru, setTru] = useState(false);
+
     const [userId, setUserId] = useState('');
 
     const [backgroundImage, setBackgroundImage] = useState('');
@@ -313,6 +315,7 @@ function App() {
             setPersonalTrumpCount(data.personal_trump_count ?? 0);
             setPersonalCount(data.personal_count ?? 0);
             setPlayersFavorite(data.favorite ?? 'none');
+            setTru(true);
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -371,7 +374,7 @@ function App() {
                 setFavorite('Wild Hearts');
             }
         }
-    }, []);
+    }, [tru]);
     
 
       useEffect(() => {
