@@ -433,11 +433,11 @@ function App() {
                 setPersonalTrumpCount(personalTrumpCount + personalDMG);
                 
                 setPersonalCount(personalCount + personalDMG);
-                const newCount = (personalCount + personalDMG);
+                const updatedPoints = (personalCount + personalDMG);
 
                 handleVote('Trump', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts(newCount);
+                updateCounts(updatedPoints);
             } else {
                 alert('Недостаточно энергии');
             }
@@ -460,11 +460,11 @@ function App() {
                 setPersonalHarrisCount(personalHarrisCount + personalDMG);
 
                 setPersonalCount(personalCount + personalDMG);
-                const newCount = (personalCount + personalDMG);
+                const updatedPoints = (personalCount + personalDMG);
 
                 handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts(newCount);
+                updateCounts(updatedPoints);
             } else {
                 alert('Недостаточно энергии');
             }
