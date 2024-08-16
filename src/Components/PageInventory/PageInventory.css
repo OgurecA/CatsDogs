@@ -73,6 +73,7 @@
 .card.locked {
     filter: grayscale(100%); /* Затемнение заблокированных карточек */
     cursor: not-allowed; /* Запрещаем выбор заблокированных карточек */
+    position: relative;
 }
 
 .card.locked .lock-overlay {
