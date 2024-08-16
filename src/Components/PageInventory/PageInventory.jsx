@@ -18,6 +18,9 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
     const [lockedCards, setLockedCards] = useState(items.map((_, index) => index !== 0)); // Первая карточка открыта
 
     useEffect(() => {
+
+        localStorage.clear();
+
         const savedLockedCards = JSON.parse(localStorage.getItem('lockedCards'));
         if (savedLockedCards) {
             savedLockedCards[0] = false; // Всегда оставляем первую карточку (Snake) разблокированной
