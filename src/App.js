@@ -362,20 +362,18 @@ function App() {
             if (Math.random() < 0.5) {
                 const randomChoice = "Dire Warriors";
                 console.log("Randomly selected Dire Warriors");
-                setPlayersFavorite('Dire Warriors');
                 setFavorite('Dire Warriors');
                 updateCounts(personalCount, randomChoice);
                 handleClickHarrisB();
             } else {
                 const randomChoice = "Wild Hearts";
                 console.log("Randomly selected Wild Hearts");
-                setPlayersFavorite('Wild Hearts');
                 setFavorite('Wild Hearts');
                 updateCounts(personalCount, randomChoice);
                 handleClickTrumpB();
             }
         }
-    }, []);
+    }, [playersFavorite]);
     
 
       useEffect(() => {
