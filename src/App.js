@@ -313,7 +313,6 @@ function App() {
             setPersonalTrumpCount(data.personal_trump_count ?? 0);
             setPersonalCount(data.personal_count ?? 0);
             setPlayersFavorite(data.favorite ?? 'none');
-            setFavorite(data.favorite ?? 'none');
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -432,6 +431,7 @@ function App() {
         changeBackgroundImage(HarrisBG);
         setDisplayedImageA(Snake);
         setSelectedCardIndex(0);
+        setFavorite("Dire Warriors");
         console.log("Harris was elected");
     }
     
@@ -445,6 +445,7 @@ function App() {
         changeBackgroundImage(TrumpBG);
         setDisplayedImageB(Snake);
         setSelectedCardIndex(0);
+        setFavorite("Wild Hearts");
         console.log("Trump was elected");
     }
 
