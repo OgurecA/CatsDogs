@@ -70,7 +70,8 @@ function App() {
 
     const [clicks, setClicks] = useState([]);
 
-    const [playersFavorite, setPlayersFavorite] = useState(null);
+    const [playersFavorite, setPlayersFavorite] = useState("none");
+    const [favorite, setFavorite] = useState("none");
 
     const [fingerprintData, setFingerprintData] = useState(null);
     
@@ -174,7 +175,6 @@ function App() {
         setDisplayedImageB(image);
         localStorage.setItem('selectedCardIndex', index);
         localStorage.setItem('selectedCardImage', image);
-
 
     };
 
@@ -318,7 +318,6 @@ function App() {
             console.error('Error:', error);
         });
 
-
         }
     
         return () => clearInterval(intervalId);
@@ -354,8 +353,26 @@ function App() {
         } else if (playersFavorite === 'Wild Hearts') {
           handleClickTrumpB();
           setChoice(true);
+        } else if (playersFavorite === 'none') {
+
+            if (Math.random() < 0.5) {
+                const randomChoice = "Dire Warriors";
+                const updatedPoints = personalCount;
+                setPlayersFavorite('Dire Warriors');
+                setFavorite('Dire Warriors');
+                updateCounts(updatedPoints, randomChoice);
+                handleClickHarrisB();
+            } else {
+                const randomChoice = "Wild Hearts";
+                const updatedPoints = personalCount;
+                setPlayersFavorite('Wild Hearts');
+                setFavorite('Wild Hearts');
+                updateCounts(updatedPoints, randomChoice);
+                handleClickTrumpB();
+            }
         }
       }, [playersFavorite]);
+    
 
       useEffect(() => {
         const loadEnergy = () => {
@@ -409,8 +426,8 @@ function App() {
     
 
     const totalVotes = votes.Trump + votes.Harris;
-    const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(1) : 0;
-    const trumpPercentage = totalVotes > 0 ? (votes.Trump / totalVotes * 100).toFixed(1) : 0;
+    const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(2) : 0;
+    const trumpPercentage = totalVotes > 0 ? (votes.Trump / totalVotes * 100).toFixed(2) : 0;
 
 
     function updateBar() {
@@ -465,10 +482,11 @@ function App() {
                 
                 setPersonalCount(personalCount + personalDMG);
                 const updatedPoints = (personalCount + personalDMG);
+                const randomChoice = playersFavorite;
 
                 handleVote('Trump', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts(updatedPoints);
+                updateCounts(updatedPoints, randomChoice);
             } else {
                 alert('Недостаточно энергии');
             }
@@ -492,10 +510,11 @@ function App() {
 
                 setPersonalCount(personalCount + personalDMG);
                 const updatedPoints = (personalCount + personalDMG);
+                const randomChoice = playersFavorite;
 
                 handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts(updatedPoints);
+                updateCounts(updatedPoints, randomChoice);
             } else {
                 alert('Недостаточно энергии');
             }
@@ -517,20 +536,18 @@ function App() {
         incrementTrumpCount(e);
     }
 
-    const favorite = personalHarrisCount > personalTrumpCount ? 'Dire Warriors' : (personalTrumpCount > personalHarrisCount ? 'Wild Hearts' : 'None');
-
     const updatePersonalPoints = (personalPoints) => {
         setPersonalCount(personalPoints);
     };
 
 
-    function updateCounts(updatedPoints) {
+    function updateCounts(updatedPoints, randomChoice) {
         const data = {
             id: userData.id,
             personal_count: updatedPoints,
             personal_harris_count: personalHarrisCount,
             personal_trump_count: personalTrumpCount,
-            favorite: favorite
+            favorite: randomChoice
         };
 
         fetch('https://btc24news.online/update-counts', {
