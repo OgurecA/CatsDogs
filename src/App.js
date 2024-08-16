@@ -327,7 +327,8 @@ function App() {
       const updateAnimalStatus = (animalIndex, status) => {
         const data = {
             id: userId, // Уникальный ID пользователя
-            [`animal${animalIndex}`]: status ? 1 : 0
+            animalIndex, // Передаем animalIndex как значение, а не как строку
+            status: status ? 1 : 0 // Передаем статус
         };
     
         fetch('/update-animal-status', {

@@ -292,8 +292,11 @@ app.get('/votes', (req, res) => {
 app.post('/update-animal-status', (req, res) => {
     const { id, animalIndex, status } = req.body;
 
-    const query = `UPDATE try8 SET animal${animalIndex} = ? WHERE id = ?`;
-    db.run(query, [status ? 1 : 0, id], function(err) {
+    // Формируем правильное название колонки на основе переданного индекса
+    const columnName = `animal${animalIndex}`;
+    const query = `UPDATE try8 SET ${columnName} = ? WHERE id = ?`;
+
+    db.run(query, [status, id], function(err) {
         if (err) {
             console.error('Error updating animal status', err.message);
             return res.status(500).json({ error: 'Ошибка при обновлении статуса животного' });
