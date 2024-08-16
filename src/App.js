@@ -365,14 +365,12 @@ function App() {
                 console.log("Randomly selected Dire Warriors");
                 setPlayersFavorite('Dire Warriors');
                 setFavorite('Dire Warriors');
-                updateCounts(updatedPoints, randomChoice);
             } else {
                 const randomChoice = "Wild Hearts";
                 const updatedPoints = personalCount;
                 console.log("Randomly selected Wild Hearts");
                 setPlayersFavorite('Wild Hearts');
                 setFavorite('Wild Hearts');
-                updateCounts(updatedPoints, randomChoice);
             }
         }
     }, []);
