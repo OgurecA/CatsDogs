@@ -29,9 +29,6 @@ const corsOptions = {
   app.use(cors(corsOptions));
 
 
-  const ENERGY_RECOVERY_INTERVAL = 1; // Время в секундах для восстановления одной единицы энергии
-  const MAX_ENERGY = 100; // Максимальное количество энергии
-  
 
 
 let db = new sqlite3.Database('./election.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
@@ -53,8 +50,8 @@ db.serialize(() => {
     // Добавление начальных данных
     db.run(`INSERT OR IGNORE INTO total_votes (candidate, votes) VALUES ('Trump', 0), ('Harris', 0)`);
   
-    db.run(`CREATE TABLE IF NOT EXISTS try9 (
-        id INTEGER PRIMARY KEY,
+    db.run(`CREATE TABLE IF NOT EXISTS try10 (
+        id INTEGER,
         first_name TEXT,
         last_name TEXT,
         username TEXT,
@@ -157,14 +154,14 @@ app.post('/login', async (req) => {
     const processedLastName = last_name || '';
     const processedUsername = username || '';
 
-    db.get(`SELECT * FROM try9 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT * FROM try10 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return console.error('Error fetching data', err.message);
         }
 
         if (row) {
             // Если пользователь существует, обновляем его данные
-            db.run(`UPDATE try9 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ?, city = ?, country = ?, ip = ? WHERE id = ?`, 
+            db.run(`UPDATE try10 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ?, city = ?, country = ?, ip = ? WHERE id = ?`, 
                         [first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip, id], 
                         function(err) {
                 if (err) {
@@ -174,7 +171,7 @@ app.post('/login', async (req) => {
             });
         } else {
             // Если пользователь не существует, вставляем новую запись
-            db.run(`INSERT INTO try9 (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count, favorite, animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11)
+            db.run(`INSERT INTO try10 (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count, favorite, animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11)
                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, 'none', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)`, 
                          [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
                          function(err) {
@@ -198,7 +195,7 @@ app.post('/update-counts', (req, res) => {
         favorite
     });
 
-    db.run(`UPDATE try9 SET personal_count = ?, personal_harris_count = ?, personal_trump_count = ?, favorite = ? WHERE id = ?`, 
+    db.run(`UPDATE try10 SET personal_count = ?, personal_harris_count = ?, personal_trump_count = ?, favorite = ? WHERE id = ?`, 
                 [personal_count, personal_harris_count, personal_trump_count, favorite, id], 
                 function(err) {
         if (err) {
@@ -211,7 +208,7 @@ app.post('/update-counts', (req, res) => {
 
 app.get('/get-counts', (req, res) => {
     const { id } = req.query;
-    db.get(`SELECT personal_harris_count, personal_trump_count, personal_count, favorite FROM try9 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT personal_harris_count, personal_trump_count, personal_count, favorite FROM try10 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
         }
@@ -247,7 +244,7 @@ app.post('/api/save-fingerprint', (req, res) => {
     console.log('Screen Resolution:', screenResolution);
     console.log('Device:', device);
   
-    db.run(`UPDATE try9 SET visitor_id = ?, screen_resolution = ?, device = ?, raw_data = ? WHERE id = ?`,
+    db.run(`UPDATE try10 SET visitor_id = ?, screen_resolution = ?, device = ?, raw_data = ? WHERE id = ?`,
       [visitorId, screenResolution, device, rawData, id],
       function(err) {
         if (err) {
@@ -294,7 +291,7 @@ app.post('/update-animal-status', (req, res) => {
 
     // Формируем правильное название колонки на основе переданного индекса
     const columnName = `animal${animalIndex}`;
-    const query = `UPDATE try9 SET ${columnName} = ? WHERE id = ?`;
+    const query = `UPDATE try10 SET ${columnName} = ? WHERE id = ?`;
 
     db.run(query, [status, id], function(err) {
         if (err) {
