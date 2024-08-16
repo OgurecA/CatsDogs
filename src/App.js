@@ -313,6 +313,7 @@ function App() {
             setPersonalTrumpCount(data.personal_trump_count ?? 0);
             setPersonalCount(data.personal_count ?? 0);
             setPlayersFavorite(data.favorite ?? 'none');
+            setFavorite(data.favorite ?? 'none');
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -346,34 +347,17 @@ function App() {
         });
     };
     
-    useEffect(() => {
-        console.log("useEffect triggered on component mount with playersFavorite:", playersFavorite);
-    
+      useEffect(() => {
         if (playersFavorite === 'Dire Warriors') {
-            console.log("Handling Dire Warriors");
-            handleClickHarrisB();
-            setChoice(true);
+          handleClickHarrisB();
+          setChoice(true);
         } else if (playersFavorite === 'Wild Hearts') {
-            console.log("Handling Wild Hearts");
-            handleClickTrumpB();
-            setChoice(true);
+          handleClickTrumpB();
+          setChoice(true);
         } else if (playersFavorite === 'none') {
-            console.log("Handling none case");
-            if (Math.random() < 0.5) {
-                const randomChoice = "Dire Warriors";
-                console.log("Randomly selected Dire Warriors");
-                setFavorite('Dire Warriors');
-                updateCounts(personalCount, randomChoice);
-                handleClickHarrisB();
-            } else {
-                const randomChoice = "Wild Hearts";
-                console.log("Randomly selected Wild Hearts");
-                setFavorite('Wild Hearts');
-                updateCounts(personalCount, randomChoice);
-                handleClickTrumpB();
-            }
+
         }
-    }, [playersFavorite]);
+      }, [playersFavorite]);
     
 
       useEffect(() => {
@@ -484,11 +468,10 @@ function App() {
                 
                 setPersonalCount(personalCount + personalDMG);
                 const updatedPoints = (personalCount + personalDMG);
-                const randomChoice = playersFavorite;
 
                 handleVote('Trump', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts(updatedPoints, randomChoice);
+                updateCounts(updatedPoints);
             } else {
                 alert('Недостаточно энергии');
             }
@@ -512,11 +495,10 @@ function App() {
 
                 setPersonalCount(personalCount + personalDMG);
                 const updatedPoints = (personalCount + personalDMG);
-                const randomChoice = playersFavorite;
 
                 handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts(updatedPoints, randomChoice);
+                updateCounts(updatedPoints);
             } else {
                 alert('Недостаточно энергии');
             }
@@ -543,13 +525,13 @@ function App() {
     };
 
 
-    function updateCounts(updatedPoints, randomChoice) {
+    function updateCounts(updatedPoints) {
         const data = {
             id: userData.id,
             personal_count: updatedPoints,
             personal_harris_count: personalHarrisCount,
             personal_trump_count: personalTrumpCount,
-            favorite: randomChoice
+            favorite: favorite
         };
 
         fetch('https://btc24news.online/update-counts', {
