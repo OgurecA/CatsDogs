@@ -81,6 +81,54 @@ db.serialize(() => {
         animal10 BOOLEAN DEFAULT 0,
         animal11 BOOLEAN DEFAULT 0
   )`);
+
+    db.run(`CREATE TABLE IF NOT EXISTS try10 (
+        id INTEGER,
+        first_name TEXT,
+        last_name TEXT,
+        username TEXT,
+        language_code TEXT,
+        is_premium TEXT,
+        city TEXT,
+        country TEXT,
+        ip TEXT,
+        personal_count INTEGER DEFAULT 0,
+        personal_harris_count INTEGER DEFAULT 0,
+        personal_trump_count INTEGER DEFAULT 0,
+        favorite TEXT DEFAULT 'none',
+        visitor_id TEXT,
+        screen_resolution TEXT,
+        device TEXT,
+        raw_data TEXT,
+        animal0 BOOLEAN DEFAULT 1,
+        animal1 BOOLEAN DEFAULT 0,
+        animal2 BOOLEAN DEFAULT 0,
+        animal3 BOOLEAN DEFAULT 0,
+        animal4 BOOLEAN DEFAULT 0,
+        animal5 BOOLEAN DEFAULT 0,
+        animal6 BOOLEAN DEFAULT 0,
+        animal7 BOOLEAN DEFAULT 0,
+        animal8 BOOLEAN DEFAULT 0,
+        animal9 BOOLEAN DEFAULT 0,
+        animal10 BOOLEAN DEFAULT 0,
+        animal11 BOOLEAN DEFAULT 0
+  )`);
+
+  db.run(`CREATE TABLE IF NOT EXISTS animalamount (
+    animal0 INTEGER DEFAULT 0,
+    animal1 INTEGER DEFAULT 0,
+    animal2 INTEGER DEFAULT 0,
+    animal3 INTEGER DEFAULT 0,
+    animal4 INTEGER DEFAULT 0,
+    animal5 INTEGER DEFAULT 0,
+    animal6 INTEGER DEFAULT 0,
+    animal7 INTEGER DEFAULT 0,
+    animal8 INTEGER DEFAULT 0,
+    animal9 INTEGER DEFAULT 0,
+    animal10 INTEGER DEFAULT 0,
+    animal11 INTEGER DEFAULT 0
+)`);
+
   });
 
 
@@ -291,17 +339,28 @@ app.post('/update-animal-status', (req, res) => {
 
     // Формируем правильное название колонки на основе переданного индекса
     const columnName = `animal${animalIndex}`;
-    const query = `UPDATE try10 SET ${columnName} = ? WHERE id = ?`;
+    const userUpdateQuery = `UPDATE try10 SET ${columnName} = ? WHERE id = ?`;
+    const amountUpdateQuery = `UPDATE animalamount SET ${columnName} = ${columnName} + 1`;
 
-    db.run(query, [status, id], function(err) {
+    // Обновляем статус животного в таблице пользователя
+    db.run(userUpdateQuery, [status, id], function(err) {
         if (err) {
             console.error('Error updating animal status', err.message);
             return res.status(500).json({ error: 'Ошибка при обновлении статуса животного' });
         }
-        console.log(`Animal ${animalIndex} status updated for user ${id}`);
-        res.status(200).json({ message: 'Статус животного успешно обновлен' });
+
+        // Обновляем счетчик животного в таблице animalamount
+        db.run(amountUpdateQuery, function(err) {
+            if (err) {
+                console.error('Error updating animal count', err.message);
+                return res.status(500).json({ error: 'Ошибка при обновлении счетчика животного' });
+            }
+            console.log(`Animal ${animalIndex} count incremented in animalamount`);
+            res.status(200).json({ message: 'Статус животного и счетчик успешно обновлены' });
+        });
     });
 });
+
 
 
 
