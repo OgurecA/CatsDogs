@@ -82,38 +82,6 @@ db.serialize(() => {
         animal11 BOOLEAN DEFAULT 0
   )`);
 
-    db.run(`CREATE TABLE IF NOT EXISTS try10 (
-        id INTEGER,
-        first_name TEXT,
-        last_name TEXT,
-        username TEXT,
-        language_code TEXT,
-        is_premium TEXT,
-        city TEXT,
-        country TEXT,
-        ip TEXT,
-        personal_count INTEGER DEFAULT 0,
-        personal_harris_count INTEGER DEFAULT 0,
-        personal_trump_count INTEGER DEFAULT 0,
-        favorite TEXT DEFAULT 'none',
-        visitor_id TEXT,
-        screen_resolution TEXT,
-        device TEXT,
-        raw_data TEXT,
-        animal0 BOOLEAN DEFAULT 1,
-        animal1 BOOLEAN DEFAULT 0,
-        animal2 BOOLEAN DEFAULT 0,
-        animal3 BOOLEAN DEFAULT 0,
-        animal4 BOOLEAN DEFAULT 0,
-        animal5 BOOLEAN DEFAULT 0,
-        animal6 BOOLEAN DEFAULT 0,
-        animal7 BOOLEAN DEFAULT 0,
-        animal8 BOOLEAN DEFAULT 0,
-        animal9 BOOLEAN DEFAULT 0,
-        animal10 BOOLEAN DEFAULT 0,
-        animal11 BOOLEAN DEFAULT 0
-  )`);
-
   db.run(`CREATE TABLE IF NOT EXISTS animalamount (
     animal0 INTEGER DEFAULT 0,
     animal1 INTEGER DEFAULT 0,
