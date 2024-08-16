@@ -361,18 +361,18 @@ function App() {
             console.log("Handling none case");
             if (Math.random() < 0.5) {
                 const randomChoice = "Dire Warriors";
+                const updatedPoints = personalCount;
                 console.log("Randomly selected Dire Warriors");
                 setPlayersFavorite('Dire Warriors');
                 setFavorite('Dire Warriors');
-                updateCounts(personalCount, randomChoice);
-                handleClickHarrisB();
+                updateCounts(updatedPoints, randomChoice);
             } else {
                 const randomChoice = "Wild Hearts";
+                const updatedPoints = personalCount;
                 console.log("Randomly selected Wild Hearts");
                 setPlayersFavorite('Wild Hearts');
                 setFavorite('Wild Hearts');
-                updateCounts(personalCount, randomChoice);
-                handleClickTrumpB();
+                updateCounts(updatedPoints, randomChoice);
             }
         }
     }, []);
