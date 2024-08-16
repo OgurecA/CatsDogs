@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './PageInventory.css';
 import { Snake, Gorilla, Croc, Elephant, Tiger, Cage } from '../Pictures/Pictures';
 
-const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoints, updateCounts }) => {
+const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoints }) => {
     const items = [
         { title: 'Snake', image: Snake, price: 0 }, // Змея открыта по умолчанию и бесплатна
         { title: 'Gorilla', image: Gorilla, price: 100 },
@@ -18,9 +18,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
     const [lockedCards, setLockedCards] = useState(items.map((_, index) => index !== 0)); // Первая карточка открыта
 
     useEffect(() => {
-
-        localStorage.clear();
-
+        
         const savedLockedCards = JSON.parse(localStorage.getItem('lockedCards'));
         if (savedLockedCards) {
             savedLockedCards[0] = false; // Всегда оставляем первую карточку (Snake) разблокированной
@@ -53,7 +51,6 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
         if (cardToUnlock !== null) {
             const cardPrice = items[cardToUnlock].price;
             if (personalPoints >= cardPrice) {
-                const updatedPoints = personalPoints - cardPrice;
                 setLockedCards(prevState => {
                     const newLockedCards = [...prevState];
                     newLockedCards[cardToUnlock] = false;
@@ -62,7 +59,6 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                     return newLockedCards;
                 });
                 setPersonalPoints(prevPoints => prevPoints - cardPrice); // Вычитаем очки
-                updateCounts(updatedPoints);
                 closeModal();
             } else {
                 alert('Недостаточно очков для разблокировки этой карточки.');
