@@ -104,6 +104,7 @@ function App() {
         let newTeamDMG;
         let newPersonalDMG;
 
+        let background;
         let newName;
 
         switch (index) {
