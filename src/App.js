@@ -356,6 +356,8 @@ function App() {
         } else if (playersFavorite === 'none') {
 
             if (Math.random() < 0.5) {
+                console.log("Randomly selected Dire Warriors");
+
                 const randomChoice = "Dire Warriors";
                 const updatedPoints = personalCount;
                 setPlayersFavorite('Dire Warriors');
@@ -363,6 +365,8 @@ function App() {
                 updateCounts(updatedPoints, randomChoice);
                 handleClickHarrisB();
             } else {
+                console.log("Randomly selected Wild Hearts");
+
                 const randomChoice = "Wild Hearts";
                 const updatedPoints = personalCount;
                 setPlayersFavorite('Wild Hearts');
