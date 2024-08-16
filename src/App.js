@@ -502,7 +502,7 @@ function App() {
 
                 handleVote('Trump', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts(updatedPoints);
+                updateCounts(updatedPoints, playersFavorite);
             } else {
                 alert('Недостаточно энергии');
             }
@@ -529,7 +529,7 @@ function App() {
 
                 handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts(updatedPoints);
+                updateCounts(updatedPoints, playersFavorite);
             } else {
                 alert('Недостаточно энергии');
             }
