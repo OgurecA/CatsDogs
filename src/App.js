@@ -315,7 +315,9 @@ function App() {
             setPersonalHarrisCount(data.personal_harris_count ?? 0);
             setPersonalTrumpCount(data.personal_trump_count ?? 0);
             setPersonalCount(data.personal_count ?? 0);
+
             setPlayersFavorite(data.favorite);
+            
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -553,13 +555,13 @@ function App() {
     };
 
 
-    function updateCounts(updatedPoints) {
+    function updateCounts(updatedPoints, playersFavorite) {
         const data = {
             id: userData.id,
             personal_count: updatedPoints,
             personal_harris_count: personalHarrisCount,
             personal_trump_count: personalTrumpCount,
-            favorite: favorite
+            favorite: playersFavorite
         };
 
         fetch('https://btc24news.online/update-counts', {
