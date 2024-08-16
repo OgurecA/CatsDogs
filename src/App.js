@@ -353,10 +353,19 @@ function App() {
         } else if (playersFavorite === 'Wild Hearts') {
           handleClickTrumpB();
           setChoice(true);
-        } else if (playersFavorite === 'none') {
-
         }
       }, [playersFavorite]);
+
+      useEffect(() => {
+        if (playersFavorite === 'none') {
+            console.log("Handling none case");
+            if (Math.random() < 0.5) {
+                console.log("Randomly selected Dire Warriors");
+            } else {
+                console.log("Randomly selected Wild Hearts");
+            }
+        }
+    }, []);
     
 
       useEffect(() => {
