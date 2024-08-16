@@ -490,8 +490,6 @@ function App() {
 
     const updatePersonalPoints = (personalPoints) => {
         setPersonalCount(personalPoints);
-        const newCount = personalPoints;
-        updateCounts(newCount);
     };
 
 

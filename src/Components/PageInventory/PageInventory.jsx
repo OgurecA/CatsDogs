@@ -58,8 +58,8 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                     return newLockedCards;
                 });
                 setPersonalPoints(prevPoints => prevPoints - cardPrice); // Вычитаем очки
-                const variable = personalPoints;
-                updateCounts(variable);
+                const newCount = personalPoints;
+                updateCounts(newCount);
                 closeModal();
             } else {
                 alert('Недостаточно очков для разблокировки этой карточки.');
