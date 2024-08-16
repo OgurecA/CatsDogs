@@ -346,32 +346,7 @@ function App() {
         });
     };
     
-      useEffect(() => {
-        if (playersFavorite === 'Dire Warriors') {
-          handleClickHarrisB();
-          setChoice(true);
-        } else if (playersFavorite === 'Wild Hearts') {
-          handleClickTrumpB();
-          setChoice(true);
-        } else if (playersFavorite === 'none') {
 
-            if (Math.random() < 0.5) {
-                const randomChoice = "Dire Warriors";
-                const updatedPoints = personalCount;
-                setPlayersFavorite('Dire Warriors');
-                setFavorite('Dire Warriors');
-                updateCounts(updatedPoints, randomChoice);
-                handleClickHarrisB();
-            } else {
-                const randomChoice = "Wild Hearts";
-                const updatedPoints = personalCount;
-                setPlayersFavorite('Wild Hearts');
-                setFavorite('Wild Hearts');
-                updateCounts(updatedPoints, randomChoice);
-                handleClickTrumpB();
-            }
-        }
-      }, [playersFavorite]);
     
 
       useEffect(() => {
