@@ -350,9 +350,11 @@ function App() {
         if (playersFavorite === 'Dire Warriors') {
           handleClickHarrisB();
           setChoice(true);
+          updateCounts();
         } else if (playersFavorite === 'Wild Hearts') {
           handleClickTrumpB();
           setChoice(true);
+          updateCounts();
         }
       }, [playersFavorite]);
 
@@ -360,14 +362,10 @@ function App() {
         if (playersFavorite === 'none') {
             console.log("Handling none case");
             if (Math.random() < 0.5) {
-                const randomChoice = "Dire Warriors";
-                const updatedPoints = personalCount;
                 console.log("Randomly selected Dire Warriors");
                 setPlayersFavorite('Dire Warriors');
                 setFavorite('Dire Warriors');
             } else {
-                const randomChoice = "Wild Hearts";
-                const updatedPoints = personalCount;
                 console.log("Randomly selected Wild Hearts");
                 setPlayersFavorite('Wild Hearts');
                 setFavorite('Wild Hearts');
