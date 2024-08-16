@@ -351,13 +351,15 @@ function App() {
     
       useEffect(() => {
         if (playersFavorite === 'Dire Warriors') {
+          const updatedPoints = personalCount;
           handleClickHarrisB();
           setChoice(true);
-          updateCounts();
+          updateCounts(updatedPoints, playersFavorite);
         } else if (playersFavorite === 'Wild Hearts') {
+          const updatedPoints = personalCount;
           handleClickTrumpB();
           setChoice(true);
-          updateCounts();
+          updateCounts(updatedPoints, playersFavorite);
         }
       }, [playersFavorite]);
 
@@ -607,7 +609,7 @@ function App() {
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} updateCheckedCount={setCheckedCount} />
             <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} onCardSelect={handleCardSelect} personalPoints={personalCount}  setPersonalPoints={updatePersonalPoints} updateCounts={updateCounts} updateAnimalStatus={updateAnimalStatus} />
             <PageExchange className={isExchangePageVisible ? 'page-exchange' : 'page-exchange hidden'} />
-            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} title={favorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} checkedLinks={checkedCount} />
+            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} title={playersFavorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} checkedLinks={checkedCount} />
 
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
