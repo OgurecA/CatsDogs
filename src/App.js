@@ -18,7 +18,8 @@ import PageInventory from './Components/PageInventory/PageInventory';
 import PageExchange from './Components/PageExchange/PageExchange';
 
 
-import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack, Snake, Gorilla, Tiger, Elephant, Croc } from './Components/Pictures/Pictures';
+import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack, Snake, Gorilla, Tiger, Elephant, Croc,
+TigerBack, CrocBack, ElephantBack, GorillaBack, SnakeBack } from './Components/Pictures/Pictures';
 
 
 function App() {
@@ -114,6 +115,7 @@ function App() {
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
                 newName = "Snake";
+                background = SnakeBack;
                 break;
             case 1:
                 image = Gorilla;
@@ -123,6 +125,7 @@ function App() {
                 newTeamDMG = 5;
                 newPersonalDMG = 1;
                 newName = "Gorilla";
+                background = GorillaBack;
                 break;
             case 2:
                 image = Croc;
@@ -132,6 +135,7 @@ function App() {
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
                 newName = "Croc";
+                background = CrocBack;
                 break;
             case 3:
                 image = Elephant;
@@ -141,6 +145,7 @@ function App() {
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
                 newName = "Elephant";
+                background = ElephantBack;
                 break;
             case 4:
                 image = Tiger;
@@ -150,6 +155,7 @@ function App() {
                 newTeamDMG = 1;
                 newPersonalDMG = 5;
                 newName = "Tiger";
+                background = TigerBack;
                 break;
             default:
                 image = null;
@@ -162,6 +168,7 @@ function App() {
         setPersonalDMG(newPersonalDMG);
         setName(newName);
 
+        setBackgroundImage(background);
         setDisplayedImageA(image);
         setDisplayedImageB(image);
         localStorage.setItem('selectedCardIndex', index);
@@ -414,7 +421,6 @@ function App() {
     }
 
     function changeBackgroundImage(imageUrl) {
-        console.log("Changing background to:", imageUrl);
         setBackgroundImage(imageUrl);
     }
 

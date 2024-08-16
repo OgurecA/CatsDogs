@@ -15,6 +15,13 @@ import Elephant from "../Photoes/Elephant.png";
 import Gorilla from "../Photoes/Gorilla.png";
 import Cage from "../Photoes/Cage.png";
 
+import TigerBack from "../Photoes/TigerBack.jpg";
+import SnakeBack from "../Photoes/SnakeBack.jpg";
+import CrocBack from "../Photoes/CrocBack.jpg";
+import ElephantBack from "../Photoes/ElephantBack.jpg";
+import GorillaBack from "../Photoes/GorillaBack.jpg";
 
 
-export { Cage, TrumpImg, TrumpBG, HarrisBG, TrumpH, HarrisH, HarrisImg, HarrisP, TrumpP, bybit, CatBack, Gorilla, Tiger, Snake, Croc, Elephant };
+
+export { Cage, TrumpImg, TrumpBG, HarrisBG, TrumpH, HarrisH, HarrisImg, HarrisP, TrumpP, bybit, CatBack,
+Gorilla, Tiger, Snake, Croc, Elephant, GorillaBack, TigerBack, SnakeBack, CrocBack, ElephantBack };
