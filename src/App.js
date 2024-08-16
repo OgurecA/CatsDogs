@@ -40,7 +40,8 @@ function App() {
  //   }, []);
 
 
-    const [tru, setTru] = useState(false);
+    const [isFavoriteSet, setIsFavoriteSet] = useState(false);
+
 
     const [userId, setUserId] = useState('');
 
@@ -361,8 +362,15 @@ function App() {
         }
       }, [playersFavorite]);
 
+
       useEffect(() => {
-        if (playersFavorite === 'none') {
+        if (playersFavorite !== null) {
+            setIsFavoriteSet(true);
+        }
+    }, [playersFavorite]);
+
+      useEffect(() => {
+        if (isFavoriteSet && playersFavorite === 'none') {
             console.log("Handling none case");
             if (Math.random() < 0.5) {
                 console.log("Randomly selected Dire Warriors");
