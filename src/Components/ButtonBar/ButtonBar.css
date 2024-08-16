@@ -42,6 +42,7 @@
   background: linear-gradient(to bottom, #710000, #960000); /* Цвет фона выбранной кнопки */
   color: transparent;
   overflow: visible;
+  position: relative;
 }
 
   .button-bar-button.chosen:active {
