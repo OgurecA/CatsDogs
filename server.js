@@ -54,24 +54,36 @@ db.serialize(() => {
     db.run(`INSERT OR IGNORE INTO total_votes (candidate, votes) VALUES ('Trump', 0), ('Harris', 0)`);
   
     db.run(`CREATE TABLE IF NOT EXISTS try8 (
-          id INTEGER,
-          first_name TEXT,
-          last_name TEXT,
-          username TEXT,
-          language_code TEXT,
-          is_premium TEXT,
-          city TEXT,
-          country TEXT,
-          ip TEXT,
-          personal_count INTEGER DEFAULT 0,
-          personal_harris_count INTEGER DEFAULT 0,
-          personal_trump_count INTEGER DEFAULT 0,
-          favorite TEXT DEFAULT 'none',
-          visitor_id TEXT,
-          screen_resolution TEXT,
-          device TEXT,
-          raw_data TEXT
-    )`);
+        id INTEGER PRIMARY KEY,
+        first_name TEXT,
+        last_name TEXT,
+        username TEXT,
+        language_code TEXT,
+        is_premium TEXT,
+        city TEXT,
+        country TEXT,
+        ip TEXT,
+        personal_count INTEGER DEFAULT 0,
+        personal_harris_count INTEGER DEFAULT 0,
+        personal_trump_count INTEGER DEFAULT 0,
+        favorite TEXT DEFAULT 'none',
+        visitor_id TEXT,
+        screen_resolution TEXT,
+        device TEXT,
+        raw_data TEXT,
+        animal0 BOOLEAN DEFAULT 1,
+        animal1 BOOLEAN DEFAULT 0,
+        animal2 BOOLEAN DEFAULT 0,
+        animal3 BOOLEAN DEFAULT 0,
+        animal4 BOOLEAN DEFAULT 0,
+        animal5 BOOLEAN DEFAULT 0,
+        animal6 BOOLEAN DEFAULT 0,
+        animal7 BOOLEAN DEFAULT 0,
+        animal8 BOOLEAN DEFAULT 0,
+        animal9 BOOLEAN DEFAULT 0,
+        animal10 BOOLEAN DEFAULT 0,
+        animal11 BOOLEAN DEFAULT 0
+  )`);
   });
 
 
@@ -162,8 +174,8 @@ app.post('/login', async (req) => {
             });
         } else {
             // Если пользователь не существует, вставляем новую запись
-            db.run(`INSERT INTO try8 (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count, favorite)
-                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, 'none')`, 
+            db.run(`INSERT INTO try8 (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count, favorite, animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11)
+                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, 'none', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)`, 
                          [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
                          function(err) {
                 if (err) {
@@ -276,6 +288,21 @@ app.get('/votes', (req, res) => {
       });
   });
 });
+
+app.post('/update-animal-status', (req, res) => {
+    const { id, animalIndex, status } = req.body;
+
+    const query = `UPDATE try8 SET animal${animalIndex} = ? WHERE id = ?`;
+    db.run(query, [status ? 1 : 0, id], function(err) {
+        if (err) {
+            console.error('Error updating animal status', err.message);
+            return res.status(500).json({ error: 'Ошибка при обновлении статуса животного' });
+        }
+        console.log(`Animal ${animalIndex} status updated for user ${id}`);
+        res.status(200).json({ message: 'Статус животного успешно обновлен' });
+    });
+});
+
 
 
 // Обработка любых маршрутов
