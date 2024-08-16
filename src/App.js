@@ -433,11 +433,11 @@ function App() {
                 setPersonalTrumpCount(personalTrumpCount + personalDMG);
                 
                 setPersonalCount(personalCount + personalDMG);
-                const updatedPoints = (personalCount + personalDMG);
+                const newCount = (personalCount + personalDMG);
 
                 handleVote('Trump', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts(updatedPoints);
+                updateCounts(newCount);
             } else {
                 alert('Недостаточно энергии');
             }
@@ -460,11 +460,11 @@ function App() {
                 setPersonalHarrisCount(personalHarrisCount + personalDMG);
 
                 setPersonalCount(personalCount + personalDMG);
-                const updatedPoints = (personalCount + personalDMG);
+                const newCount = (personalCount + personalDMG);
 
                 handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts(updatedPoints);
+                updateCounts(newCount);
             } else {
                 alert('Недостаточно энергии');
             }
@@ -488,12 +488,17 @@ function App() {
 
     const favorite = personalHarrisCount > personalTrumpCount ? 'Dire Warriors' : (personalTrumpCount > personalHarrisCount ? 'Wild Hearts' : 'None');
 
+    const updatePersonalPoints = (personalPoints) => {
+        setPersonalCount(personalPoints);
+        const newCount = personalPoints;
+        updateCounts(newCount);
+    };
 
 
-    function updateCounts(updatedPoints) {
+    function updateCounts(newCount) {
         const data = {
             id: userData.id,
-            personal_count: updatedPoints,
+            personal_count: newCount,
             personal_harris_count: personalHarrisCount,
             personal_trump_count: personalTrumpCount,
             favorite: favorite
@@ -544,7 +549,7 @@ function App() {
             <ButtonBar onShowSocialPage={handleSocialPage} onShowExchangePage={handleExchangePage} onShowInventoryPage={handleInventoryPage} onOpenShop={handleShopPage} isDisabled={!choice}/>
             
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} updateCheckedCount={setCheckedCount} />
-            <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} onCardSelect={handleCardSelect} personalPoints={personalCount} />
+            <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} onCardSelect={handleCardSelect} personalPoints={personalCount}  setPersonalPoints={updatePersonalPoints} />
             <PageExchange className={isExchangePageVisible ? 'page-exchange' : 'page-exchange hidden'} />
             <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} title={favorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} checkedLinks={checkedCount} />
 
