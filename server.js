@@ -172,7 +172,7 @@ app.post('/login', async (req) => {
         } else {
             // Если пользователь не существует, вставляем новую запись
             db.run(`INSERT INTO try10 (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count, favorite, animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11)
-                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, 'none', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)`, 
+                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, 'none', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)`, 
                          [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
                          function(err) {
                 if (err) {
