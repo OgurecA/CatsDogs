@@ -346,36 +346,36 @@ function App() {
         });
     };
     
-      useEffect(() => {
+    useEffect(() => {
+        console.log("useEffect triggered on component mount with playersFavorite:", playersFavorite);
+    
         if (playersFavorite === 'Dire Warriors') {
-          handleClickHarrisB();
-          setChoice(true);
+            console.log("Handling Dire Warriors");
+            handleClickHarrisB();
+            setChoice(true);
         } else if (playersFavorite === 'Wild Hearts') {
-          handleClickTrumpB();
-          setChoice(true);
+            console.log("Handling Wild Hearts");
+            handleClickTrumpB();
+            setChoice(true);
         } else if (playersFavorite === 'none') {
-
+            console.log("Handling none case");
             if (Math.random() < 0.5) {
-                console.log("Randomly selected Dire Warriors");
-
                 const randomChoice = "Dire Warriors";
-                const updatedPoints = personalCount;
+                console.log("Randomly selected Dire Warriors");
                 setPlayersFavorite('Dire Warriors');
                 setFavorite('Dire Warriors');
-                updateCounts(updatedPoints, randomChoice);
+                updateCounts(personalCount, randomChoice);
                 handleClickHarrisB();
             } else {
-                console.log("Randomly selected Wild Hearts");
-
                 const randomChoice = "Wild Hearts";
-                const updatedPoints = personalCount;
+                console.log("Randomly selected Wild Hearts");
                 setPlayersFavorite('Wild Hearts');
                 setFavorite('Wild Hearts');
-                updateCounts(updatedPoints, randomChoice);
+                updateCounts(personalCount, randomChoice);
                 handleClickTrumpB();
             }
         }
-      }, []);
+    }, []);
     
 
       useEffect(() => {
