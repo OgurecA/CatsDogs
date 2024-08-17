@@ -5,10 +5,10 @@ import { Snake, Gorilla, Croc, Elephant, Tiger, Cage } from '../Pictures/Picture
 const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoints, updateCounts, updateAnimalStatus }) => {
     const items = [
         { title: 'Snake', image: Snake, price: 0 }, // Змея открыта по умолчанию и бесплатна
-        { title: 'Gorilla', image: Gorilla, price: 100 },
-        { title: 'Croc', image: Croc, price: 40 },
-        { title: 'Elephant', image: Elephant, price: 30 },
-        { title: 'Tiger', image: Tiger, price: 40 }
+        { title: 'Marin', image: Gorilla, price: 100 },
+        { title: 'Dave', image: Croc, price: 40 },
+        { title: 'Mic', image: Elephant, price: 30 },
+        { title: 'El Tigro', image: Tiger, price: 40 }
     ];
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);

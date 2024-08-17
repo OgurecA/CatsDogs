@@ -236,7 +236,7 @@ function App() {
 
 
     useEffect(() => {
-        WebApp.setHeaderColor('#282c34');
+        WebApp.setHeaderColor('#0C0C0C');
         WebApp.expand();
         updateBar();
     
