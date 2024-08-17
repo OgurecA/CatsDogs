@@ -117,6 +117,23 @@
     max-width: 400px;
     width: 80%;
 }
+.modal-content .card {
+    width: 200px; /* Размер карточки в модальном окне */
+    margin: 20px auto; /* Центрируем карточку */
+}
+
+.modal-content .card-image {
+    width: 100%;
+    height: auto; /* Подгоняем изображение под размер карточки */
+}
+
+.modal-content .card-title {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 18px;
+    color: #fff;
+}
+
 
 .modal-content h2 {
     margin-top: 0;
