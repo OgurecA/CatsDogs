@@ -112,7 +112,7 @@
 }
 
 .modal-content {
-    background-color: rgb(106, 106, 106);
+    background-color: #0C0C0C;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -134,6 +134,7 @@
 
 .modal-content h2 {
     margin-top: 0;
+    color: aliceblue;
 }
 
 .modal-content button {
