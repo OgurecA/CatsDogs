@@ -151,13 +151,14 @@
 
 .modal-content button {
     margin-top: 5px;
-    padding: 10px 20px;
+    padding: 10px 10px;
     background-color: #919191;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 18px;
+    height: 15%;
 }
 
 @keyframes vibrate {
