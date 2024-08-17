@@ -124,7 +124,8 @@
 }
 .modal-content .card {
     width: 200px; /* Размер карточки в модальном окне */
-    margin: -5px auto; /* Центрируем карточку */
+    margin: 0px auto; /* Центрируем карточку */
+    margin-top: -5px;
     pointer-events: none;
 }
 
