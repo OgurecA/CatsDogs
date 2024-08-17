@@ -114,6 +114,7 @@
 
 .modal-content {
     background-color: #0C0C0C;
+    position: relative;
     padding: 0px;
     border-radius: 10px;
     text-align: center;
@@ -123,9 +124,7 @@
     transform: translateY(-20%);
 }
 .modal-content .card {
-    width: 200px; /* Размер карточки в модальном окне */
-    margin: 0px auto; /* Центрируем карточку */
-    margin-top: -5px;
+    width: 200px;
     pointer-events: none;
 }
 
@@ -136,19 +135,15 @@
 
 
 .modal-content h2 {
-    margin-top: 5px;
     color: aliceblue;
-    margin-bottom: -5px;
 }
 
 .modal-description {
-    margin-top: -5px;
     color: aliceblue;
     font-size: 12px;
 }
 
 .modal-price {
-    margin-top: -5px;
     color: aliceblue;
     font-size: 16px;
 }
@@ -164,6 +159,7 @@
     align-items: center;
     justify-content: center;
     height: 10%;
+    bottom: 5%;
 }
 
 @keyframes vibrate {
