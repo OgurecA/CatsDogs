@@ -4,11 +4,11 @@ import { Snake, Gorilla, Croc, Elephant, Tiger, Cage } from '../Pictures/Picture
 
 const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoints, updateCounts, updateAnimalStatus }) => {
     const items = [
-        { title: 'Snake', image: Snake, price: 0 }, // Змея открыта по умолчанию и бесплатна
-        { title: 'Marin', image: Gorilla, price: 100 },
-        { title: 'Dave', image: Croc, price: 40 },
-        { title: 'Mic', image: Elephant, price: 30 },
-        { title: 'El Tigro', image: Tiger, price: 40 }
+        { title: 'Snake', image: Snake, price: 0, description: "ohotnik na mishej" }, // Змея открыта по умолчанию и бесплатна
+        { title: 'Marin', image: Gorilla, price: 100, description: "monke" },
+        { title: 'Dave', image: Croc, price: 40, description: "aligator" },
+        { title: 'Mic', image: Elephant, price: 30, description: "slon" },
+        { title: 'El Tigro', image: Tiger, price: 40, description: "tigeres" }
     ];
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
@@ -104,7 +104,8 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                     <img src={Cage} alt="Locked" className="lock-icon" />
                     </div>
                 </div>
-                <p>Цена свободы: {items[cardToUnlock].price}.</p>
+                    <p className="modal-description">*{items[cardToUnlock].description}</p>
+                    <p className="modal-price">Цена свободы: {items[cardToUnlock].price}</p>
                 <button onClick={unlockCard} className={isButtonShaking ? 'vibrate' : ''}>
                     Освободить
                 </button>
