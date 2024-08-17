@@ -96,11 +96,20 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
 
             {showModal && (
                 <div className="modal-overlay" onClick={closeModal}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <h2>Персонаж заблокирован</h2>
-                        <p>Для разблокировки персонажа потребуется {items[cardToUnlock].price} очков. Ваши текущие очки: {personalPoints}.</p>
-                        <button onClick={unlockCard} className={isButtonShaking ? 'vibrate' : ''} >Освободить</button>
+                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                    <h2>Персонаж заблокирован</h2>
+                <div className={`card locked`}>
+                    <img src={items[cardToUnlock].image} alt={items[cardToUnlock].title} className="card-image" />
+                    <h3 className="card-title">{items[cardToUnlock].title}</h3>
+                    <div className="lock-overlay">
+                    <img src={Cage} alt="Locked" className="lock-icon" />
                     </div>
+                </div>
+                <p>Цена: {items[cardToUnlock].price}.</p>
+                <button onClick={unlockCard} className={isButtonShaking ? 'vibrate' : ''}>
+                    Освободить
+                </button>
+                </div>
                 </div>
             )}
         </div>
