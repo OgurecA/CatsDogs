@@ -120,6 +120,7 @@
 .modal-content .card {
     width: 200px; /* Размер карточки в модальном окне */
     margin: 20px auto; /* Центрируем карточку */
+    pointer-events: none;
 }
 
 .modal-content .card-image {
@@ -158,3 +159,9 @@
 .vibrate {
     animation: vibrate 0.3s linear;
 }
+.no-select {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Edge */
+  }

@@ -77,7 +77,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
     };
 
     return (
-        <div className={`page-inventory ${className}`}>
+        <div className={`page-inventory no-select ${className}`}>
             {items.map((item, index) => (
                 <div
                     className={`card ${selectedCardIndex === index ? 'chosen' : ''} ${lockedCards[index] ? 'locked' : ''}`}
@@ -95,10 +95,10 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
             ))}
 
             {showModal && (
-                <div className="modal-overlay" onClick={closeModal}>
-                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <div className="modal-overlay no-select" onClick={closeModal}>
+                <div className="modal-content no-select" onClick={(e) => e.stopPropagation()}>
                     <h2>Персонаж заблокирован</h2>
-                <div className={`card locked`}>
+                <div className={`card locked no-select`}>
                     <img src={items[cardToUnlock].image} alt={items[cardToUnlock].title} className="card-image" />
                     <h3 className="card-title">{items[cardToUnlock].title}</h3>
                     <div className="lock-overlay">
