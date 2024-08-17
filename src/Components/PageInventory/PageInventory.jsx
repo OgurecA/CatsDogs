@@ -100,7 +100,6 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                     <h2>Персонаж заблокирован</h2>
                 <div className={`card locked no-select`}>
                     <img src={items[cardToUnlock].image} alt={items[cardToUnlock].title} className="card-image" />
-                    <h3 className="card-title">{items[cardToUnlock].title}</h3>
                     <div className="lock-overlay">
                     <img src={Cage} alt="Locked" className="lock-icon" />
                     </div>
