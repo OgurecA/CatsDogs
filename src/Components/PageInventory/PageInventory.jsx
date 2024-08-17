@@ -14,6 +14,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [cardToUnlock, setCardToUnlock] = useState(null);
+    const [isButtonShaking, setIsButtonShaking] = useState(false);
 
     const [lockedCards, setLockedCards] = useState(items.map((_, index) => index !== 0)); // Первая карточка открыта
 
@@ -47,6 +48,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
 
     const closeModal = () => {
         setShowModal(false);
+        setIsButtonShaking(false);
     };
 
     const unlockCard = () => {
@@ -68,7 +70,8 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                 updateCounts(updatedPoints);
                 closeModal();
             } else {
-                alert('Недостаточно очков для разблокировки этой карточки.');
+                setIsButtonShaking(true); // Активируем эффект вибрации
+                setTimeout(() => setIsButtonShaking(false), 300); 
             }
         }
     };
@@ -96,7 +99,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <h2>Персонаж заблокирован</h2>
                         <p>Для разблокировки персонажа потребуется {items[cardToUnlock].price} очков. Ваши текущие очки: {personalPoints}.</p>
-                        <button onClick={unlockCard}>Освободить</button>
+                        <button onClick={unlockCard} className={isButtonShaking ? 'vibrate' : ''} >Освободить</button>
                     </div>
                 </div>
             )}
