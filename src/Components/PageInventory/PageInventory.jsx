@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './PageInventory.css';
 import { Snake, Gorilla, Croc, Elephant, Tiger, Cage } from '../Pictures/Pictures';
 
-const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoints, updateCounts, updateAnimalStatus }) => {
+const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoints, updateCounts, updateAnimalStatus, playersFavorite }) => {
     const items = [
         { title: 'Snake', image: Snake, price: 0, description: "ohotnik na mishej" }, // Змея открыта по умолчанию и бесплатна
         { title: 'Marin', image: Gorilla, price: 100, description: "monke" },
@@ -65,7 +65,6 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                     localStorage.setItem('lockedCards', JSON.stringify(newLockedCards));
                     return newLockedCards;
                 });
-                const playersFavorite = title;
                 updateAnimalStatus(cardToUnlock, true);
                 setPersonalPoints(updatedPoints);
                 updateCounts(updatedPoints, playersFavorite);
