@@ -119,12 +119,12 @@
     text-align: center;
     max-width: 400px;
     width: 60%;
-    height: 40%;
+    height: 50%;
     transform: translateY(-20%);
 }
 .modal-content .card {
     width: 200px; /* Размер карточки в модальном окне */
-    margin: 5px 5px; /* Центрируем карточку */
+    margin: 10px auto; /* Центрируем карточку */
     pointer-events: none;
 }
 

@@ -7,7 +7,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
         { title: 'Snake', image: Snake, price: 0, description: "ohotnik na mishej" }, // Змея открыта по умолчанию и бесплатна
         { title: 'Marin', image: Gorilla, price: 100, description: "monke" },
         { title: 'Dave', image: Croc, price: 40, description: "aligator" },
-        { title: 'Mic', image: Elephant, price: 30, description: "slon" },
+        { title: 'Mickelangelo og', image: Elephant, price: 30, description: "slon viqgrivat boi. moshnij chel koroche. ochen. smotrite opisanie." },
         { title: 'El Tigro', image: Tiger, price: 40, description: "tigeres" }
     ];
 
