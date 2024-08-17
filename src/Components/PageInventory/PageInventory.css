@@ -124,7 +124,7 @@
 }
 .modal-content .card {
     width: 200px; /* Размер карточки в модальном окне */
-    margin: 10px auto; /* Центрируем карточку */
+    margin: 5px 5px; /* Центрируем карточку */
     pointer-events: none;
 }
 
@@ -146,7 +146,7 @@
 
 .modal-price {
     color: aliceblue;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .modal-content button {
@@ -157,7 +157,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 @keyframes vibrate {
