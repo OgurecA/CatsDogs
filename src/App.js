@@ -639,7 +639,6 @@ function App() {
             />
 
             <OverflowFix
-                className="no-select"
                 harrisImage={displayedImageA}
                 trumpImage={displayedImageB}
                 onHarrisClick={handleHarrisClick}
