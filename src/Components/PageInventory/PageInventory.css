@@ -167,6 +167,7 @@
     height: 10%; /* Кнопка занимает 10% высоты модального окна */
     align-self: center; /* Центрируем кнопку по горизонтали */
     align-content: center;
+    justify-content: center;
 }
 
 @keyframes vibrate {
