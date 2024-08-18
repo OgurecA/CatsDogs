@@ -26,8 +26,7 @@
 .card {
     border: 2px solid #3a3a3a;
     border-radius: 10px;
-    width: calc(100% - 1vw); /* Учитываем gap, чтобы карточки не выходили за края */
-    max-width: 31vw; /* Ограничение максимальной ширины */
+    width: 30vw;
     height: 20vh;
     background-color: rgba(102, 102, 102, 0.5);
     display: flex;
