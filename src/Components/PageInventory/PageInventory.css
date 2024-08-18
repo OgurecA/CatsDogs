@@ -14,7 +14,6 @@
     background-size: cover; /* Изображение будет покрывать всю область */
     background-position: center; /* Центрировать изображение */
     background-repeat: no-repeat;
-    box-sizing: border-box; /* Включаем box-sizing для правильного расчета размеров */
 }
 
 .page-inventory.hidden {
@@ -52,7 +51,7 @@
 }
 
 .card-image {
-    width: 90%;
+    width: 50%;
     height: auto;
     border-radius: 10px;
     pointer-events: none;
