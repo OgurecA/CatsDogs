@@ -26,8 +26,8 @@
 .card {
     border: 2px solid #3a3a3a;
     border-radius: 10px;
-    width: 26vw;
-    height: 18vh;
+    width: 24vw;
+    height: 15vh;
     background-color: rgba(102, 102, 102, 0.5);
     display: flex;
     flex-direction: column;
@@ -129,7 +129,7 @@
     justify-content: space-between;
 }
 .modal-content .card {
-    width: 26vw;
+    width: 28vw;
     height: 18vh;
     pointer-events: none;
 }
