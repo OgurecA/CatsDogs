@@ -4,6 +4,8 @@ import './PageShop.css';
 const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLinks }) => {
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
     const [titleName, setTitleName] = useState("none");
+    const [showModal, setShowModal] = useState(false);
+    const [inputText, setInputText] = useState("");
 
     useEffect(() => {
         if (title === 'Dire Warriors') {
