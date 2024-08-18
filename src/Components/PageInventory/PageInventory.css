@@ -36,7 +36,7 @@
     padding: 0;
     margin: 0 auto; /* Центрирование карточек в колонке */
     transition: transform 0.3s ease-in-out;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .card:active {
     transform: scale(0.98);
@@ -54,7 +54,6 @@
     width: 90%;
     height: auto;
     border-radius: 10px;
-    margin-bottom: -10px;
     pointer-events: none;
 }
 
@@ -62,7 +61,6 @@
     font-size: 1em;
     color: #9c9c9c;
     text-align: center;
-    margin-bottom: -10px;
 }
 .card.chosen .card-title {
     background: url('../Photoes/SteelTexture.jpg') center/cover; /* Используем текстуру золота */
