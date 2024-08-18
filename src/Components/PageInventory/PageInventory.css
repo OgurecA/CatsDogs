@@ -38,7 +38,6 @@
     transition: transform 0.3s ease-in-out;
     justify-content: space-around;
     align-content: space-around;
-    box-sizing: border-box;
 }
 .card:active {
     transform: scale(0.98);
@@ -63,7 +62,6 @@
     font-size: 1em;
     color: #9c9c9c;
     text-align: center;
-    box-sizing: border-box; /* Учитываем padding в ширине */
     margin-top: auto;
 }
 .card.chosen .card-title {
