@@ -29,8 +29,6 @@
     width: 28vw;
     height: 16vh;
     background-color: rgba(102, 102, 102, 0.5);
-    display: flex;
-    flex-direction: column;
     align-items: center;
     padding: 5px;
     margin: 0 auto; /* Центрирование карточек в колонке */
@@ -49,8 +47,9 @@
 }
 
 .card-image {
-    width: 90%;
-    height: auto;
+    top: 5%;
+    width: auto;
+    height: 70%;
     border-radius: 10px;
     margin-bottom: -10px;
     pointer-events: none;
@@ -61,7 +60,8 @@
     font-size: 1em;
     color: #9c9c9c;
     text-align: center;
-    margin-bottom: -10px;
+    bottom: 5%;
+    height: 15%;
 }
 .card.chosen .card-title {
     background: url('../Photoes/SteelTexture.jpg') center/cover; /* Используем текстуру золота */
