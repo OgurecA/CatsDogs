@@ -50,7 +50,7 @@
 }
 
 .card-image {
-    width: 90%;
+    width: 80%;
     height: auto;
     border-radius: 10px;
     pointer-events: none;
@@ -136,7 +136,7 @@
 }
 
 .modal-content .card-image {
-    width: 90%;
+    width: 80%;
     height: auto; /* Подгоняем изображение под размер карточки */
     object-fit: contain;
 }
