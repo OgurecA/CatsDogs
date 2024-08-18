@@ -47,12 +47,11 @@
 }
 
 .card-image {
-    top: 5%;
+    top: 3%;
     align-self: center;
-    width: auto;
-    height: 80%;
+    width: 80%;
+    height: auto;
     border-radius: 10px;
-    margin-bottom: -10px;
     pointer-events: none;
     object-fit: contain;
 }
