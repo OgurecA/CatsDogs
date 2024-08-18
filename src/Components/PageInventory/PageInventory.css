@@ -36,6 +36,7 @@
     padding: 0;
     margin: 0 auto; /* Центрирование карточек в колонке */
     transition: transform 0.3s ease-in-out;
+    justify-content: space-between;
 }
 .card:active {
     transform: scale(0.98);
@@ -115,7 +116,9 @@
 .modal-content {
     background-color: #0C0C0C;
     position: relative;
-    padding: 10px;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
     padding-bottom: 15px;
     border-radius: 10px;
     text-align: center;
