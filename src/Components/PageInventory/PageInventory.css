@@ -131,12 +131,13 @@
     justify-content: space-between;
 }
 .modal-content .card {
-    width: 200px;
+    width: 28vw;
+    height: 15vh;
     pointer-events: none;
 }
 
 .modal-content .card-image {
-    width: 100%;
+    width: 90%;
     height: auto; /* Подгоняем изображение под размер карточки */
 }
 
