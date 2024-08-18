@@ -94,24 +94,6 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                 </div>
             ))}
 
-            {showModal && (
-                <div className="modal-overlay no-select" onClick={closeModal}>
-                <div className="modal-content no-select" onClick={(e) => e.stopPropagation()}>
-                    <h2>{items[cardToUnlock].title} заперт</h2>
-                <div className={`card locked no-select`}>
-                    <img src={items[cardToUnlock].image} alt={items[cardToUnlock].title} className="card-image" />
-                    <div className="lock-overlay">
-                    <img src={Cage} alt="Locked" className="lock-icon" />
-                    </div>
-                </div>
-                    <p className="modal-description">*{items[cardToUnlock].description}</p>
-                    <p className="modal-price">Цена свободы: {items[cardToUnlock].price}</p>
-                <button onClick={unlockCard} className={isButtonShaking ? 'vibrate' : ''}>
-                    Освободить
-                </button>
-                </div>
-                </div>
-            )}
         </div>
     );
 };

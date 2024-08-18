@@ -54,21 +54,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLink
             <button className="buy-button" onClick={handleBuyClick}>
                 Buy
             </button>
-            {showModal && (
-                <div className="modal-overlay" onClick={closeModal}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <h2>Purchase Item</h2>
-                        <p>Please enter the amount you wish to spend:</p>
-                        <input
-                            type="text"
-                            value={inputText}
-                            onChange={handleInputChange}
-                            className="modal-input"
-                        />
-                        <button onClick={handleSubmit}>Submit</button>
-                    </div>
-                </div>
-            )}
+            
         </div>
     );
 };
