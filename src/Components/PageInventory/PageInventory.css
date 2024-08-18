@@ -24,6 +24,7 @@
 }
 
 .card {
+    position: relative;
     border: 2px solid #3a3a3a;
     border-radius: 10px;
     width: 28vw;
