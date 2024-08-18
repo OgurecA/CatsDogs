@@ -166,8 +166,10 @@
     font-size: 18px;
     height: 10%; /* Кнопка занимает 10% высоты модального окна */
     align-self: center; /* Центрируем кнопку по горизонтали */
-    align-content: center;
-    justify-content: center;
+    display: flex; /* Включаем Flexbox */
+    justify-content: center; /* Центрируем содержимое по горизонтали */
+    align-items: center; /* Центрируем содержимое по вертикали */
+    text-align: center;
 }
 
 @keyframes vibrate {
