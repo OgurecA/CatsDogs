@@ -230,7 +230,7 @@
     text-align: center;
     width: 55%;
     height: 45%;
-    transform: translateY(0%);
+    transform: translateY(-20%);
     display: flex;
     flex-direction: column; /* Размещаем элементы вертикально */
     justify-content: space-evenly;
