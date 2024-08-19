@@ -33,6 +33,9 @@
     padding: 0px;
     margin: 0 auto; /* Центрирование карточек в колонке */
     transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Разделяем содержимое по вертикали */
 }
 .card:active {
     transform: scale(0.98);
@@ -47,33 +50,20 @@
 }
 
 .card-image {
-    position: absolute;
-    top: 5%;
-    align-self: center;
-    width: 80%;
-    left: 10%;
+    width: 100%; /* Занимает всю ширину карточки */
     height: auto;
     border-radius: 10px;
     pointer-events: none;
     object-fit: contain;
+    margin-top: 0; /* Изображение в самом верху */
 }
 
 .card-title {
-    position: absolute;
     font-size: 16px;
     color: #9c9c9c;
     text-align: center;
-    bottom: 0; /* Размещаем текст внизу контейнера */
-    height: 15%; /* Высота контейнера */
-    left: 0;
-    width: 100%;
-    display: flex; /* Используем Flexbox для позиционирования текста */
-    align-items: flex-end; /* Выравниваем текст по нижнему краю контейнера */
-    justify-content: center; /* Центрируем текст по горизонтали */
-    padding-bottom: 0; /* Убираем отступы */
-    align-self: flex-end;
-    box-sizing: border-box; /* Включаем box-sizing */
-    margin-top: 5%;
+    padding-bottom: 5px; /* Небольшой отступ от нижнего края карточки */
+    box-sizing: border-box;
 }
 
 .card.chosen .card-title {
