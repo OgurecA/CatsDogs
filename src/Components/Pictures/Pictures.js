@@ -21,5 +21,5 @@ import GorillaBack from "../Photoes/GorillaBack.jpg";
 
 
 
-export { Cage, TrumpImg, TrumpBG, HarrisBG, TrumpH, HarrisH, HarrisImg, HarrisP, TrumpP, bybit, CatBack,
+export { Cage, TrumpImg, TrumpBG, HarrisBG, HarrisImg, HarrisP, TrumpP, bybit, CatBack,
 Gorilla, Tiger, Snake, Croc, Elephant, GorillaBack, TigerBack, SnakeBack, CrocBack, ElephantBack };
