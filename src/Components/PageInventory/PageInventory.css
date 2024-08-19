@@ -10,7 +10,7 @@
     width: 100vw;
     background-color: #5d5d5d;
     z-index: 100;
-    background-image: url('../Photoes/LavaBack.jpg'); /* Укажите путь к вашему изображению */
+    background-image: url('../Photoes/BackLavaNew.jpg'); /* Укажите путь к вашему изображению */
     background-size: cover; /* Изображение будет покрывать всю область */
     background-position: center; /* Центрировать изображение */
     background-repeat: no-repeat;
