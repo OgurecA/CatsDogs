@@ -42,13 +42,13 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLink
             </div>
             <ul className="shop-list">
                 <li className="list-item">
-                    Team Score: {displayedVotes}
+                <span className="WH">WH</span> Score: {votesB}
+                </li>
+                <li className="list-item">
+                <span className="DW">DW</span> Score: {votesA}
                 </li>
                 <li className="list-item">
                     Personal Score: {Math.abs(personalCount)}
-                </li>
-                <li className="list-item">
-                    Daily Tasks: {checkedLinks}/7
                 </li>
             </ul>
             <button className="buy-button" onClick={handleBuyClick}>

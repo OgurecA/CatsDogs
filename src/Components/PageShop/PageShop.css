@@ -85,8 +85,23 @@
     margin-top: 15px;
     background-color: transparent;
     padding-left: 15px;
+    padding-right: 15px;
     font-size: 1.2em;
     color: rgb(255, 255, 255);
+}
+.WH {
+    background: url('../Photoes/WarmSteel.jpg') center/cover; /* Используем текстуру золота */
+    -webkit-background-clip: text;
+    color: transparent;
+    background-clip: text;
+    font-family: 'BreatheFire', sans-serif;
+}
+.DW {
+    background: url('../Photoes/ColdSteel.jpg') center/cover; /* Используем текстуру золота */
+    -webkit-background-clip: text;
+    color: transparent;
+    background-clip: text;
+    font-family: 'AnimalesFantastic', sans-serif;
 }
 
 .buy-button {
