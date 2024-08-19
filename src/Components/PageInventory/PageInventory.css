@@ -52,7 +52,7 @@
 
 .card-image {
     width: auto; /* Занимает всю ширину карточки */
-    height: 55%;
+    height: 65%;
     border-radius: 10px;
     pointer-events: none;
     object-fit: contain;
