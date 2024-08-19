@@ -207,12 +207,12 @@
 }
 
 .modal-content.selected {
-    background-color: #517930;
+    background-color: #0C0C0C;
     position: relative;
-    padding-top: 20px;
+    padding-top: 12px;
     padding-left: 30px;
     padding-right: 30px;
-    padding-bottom: 25px;
+    padding-bottom: 18px;
     border-radius: 10px;
     text-align: center;
     width: 55%;
@@ -220,5 +220,18 @@
     transform: translateY(-20%);
     display: flex;
     flex-direction: column; /* Размещаем элементы вертикально */
-    justify-content: space-between;
+    justify-content: space-evenly;
+}
+.modal-content.selected .card {
+    width: 28vw;
+    height: 18vh;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.modal-content.selected .card-image {
+    width: 95%;
+    height: 95%;
+    pointer-events: none;
+    object-fit: contain; /* Подгоняем изображение под размер карточки */
 }
