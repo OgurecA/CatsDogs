@@ -226,7 +226,8 @@
     width: 28vw;
     height: 18vh;
     pointer-events: none;
-    opacity: 0;
+    background-color: transparent;
+    border: 2px solid transparent;
 }
 
 .modal-content.selected .card-image {
