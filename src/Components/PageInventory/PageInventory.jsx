@@ -85,7 +85,6 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                     onClick={() => handleCardClick(index)}
                 >
                     <img src={item.image} alt={item.title} className="card-image" />
-                    <h3 className="card-title">{item.title} {lockedCards[index]}</h3>
                     {lockedCards[index] && (
                         <div className="lock-overlay">
                             <img src={Cage} alt="Locked" className="lock-icon" />

@@ -3,7 +3,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 10vh; /* Устанавливаем высоту полосы */
+    height: 11vh; /* Устанавливаем высоту полосы */
     background-color: #0C0C0C;
     display: flex;
     justify-content: space-around;
