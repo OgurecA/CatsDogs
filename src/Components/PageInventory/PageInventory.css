@@ -141,13 +141,8 @@
 }
 
 .modal-content .card-image {
-    position: absolute;
-    top: 5%;
-    align-self: center;
-    width: 95%;
-    left: 2.5%;
+    width: auto;
     height: auto;
-    border-radius: 10px;
     pointer-events: none;
     object-fit: contain; /* Подгоняем изображение под размер карточки */
 }
