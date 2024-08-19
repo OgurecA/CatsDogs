@@ -18,7 +18,7 @@ import PageInventory from './Components/PageInventory/PageInventory';
 import PageExchange from './Components/PageExchange/PageExchange';
 
 
-import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack, Snake, Gorilla, Tiger, Elephant, Croc,
+import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack, Snake, Gorilla, Tiger, Elephant, Croc, Rhino,
 TigerBack, CrocBack, ElephantBack, GorillaBack, SnakeBack } from './Components/Pictures/Pictures';
 
 
@@ -134,13 +134,13 @@ function App() {
                 background = GorillaBack;
                 break;
             case 2:
-                image = Croc;
+                image = Rhino;
                 newMaxEnergy = 100;
                 newEnergyRecovery = 1;
                 newEnergyTake = 10;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
-                newName = "Croc";
+                newName = "Rhino";
                 background = CrocBack;
                 break;
             case 3:
