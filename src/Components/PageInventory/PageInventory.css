@@ -70,7 +70,9 @@
     width: 100%;
     overflow: visible;
     display: flex; /* Используем flexbox для позиционирования текста */
-    align-items: flex-end;
+    align-items: end;
+    align-content: end;
+    justify-content: center;
 }
 .card.chosen .card-title {
     background: url('../Photoes/SteelTexture.jpg') center/cover; /* Используем текстуру золота */
@@ -146,10 +148,10 @@
 
 .modal-content .card-image {
     position: absolute;
-    top: 3%;
+    top: 5%;
     align-self: center;
-    width: 80%;
-    left: 10%;
+    width: 95%;
+    left: 2.5%;
     height: auto;
     border-radius: 10px;
     pointer-events: none;
