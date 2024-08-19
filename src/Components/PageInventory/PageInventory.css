@@ -143,7 +143,6 @@
     width: 28vw;
     height: 18vh;
     pointer-events: none;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
 }
 
 .modal-content .card-image {
@@ -242,7 +241,7 @@
     100% { transform: translateY(-20%) scale(1); opacity: 1; }
 }
 
-.modal-content.selected .card.selected {
+.modal-content.selected .card {
     width: 80%;
     height: 50%;
     pointer-events: none;
