@@ -102,7 +102,7 @@
 
 
 /* Модальное окно и затемнение фона */
-.modal-overlay {
+.modal-overlay.locked {
     position: fixed;
     top: 0;
     left: 0;
@@ -115,7 +115,7 @@
     z-index: 1000; /* Модальное окно поверх всего */
 }
 
-.modal-content {
+.modal-content.locked {
     background-color: #0C0C0C;
     position: relative;
     border: 1px solid #212121;
@@ -219,8 +219,9 @@
 }
 
 .modal-content.selected {
-    background-color: #0C0C0C;
+    background: linear-gradient(135deg, #0B1215, #0D1717);
     position: relative;
+    border: 1px solid #4a4a4a;
     padding-top: 12px;
     padding-left: 30px;
     padding-right: 30px;
@@ -233,7 +234,14 @@
     display: flex;
     flex-direction: column; /* Размещаем элементы вертикально */
     justify-content: space-evenly;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Глубокая тень */
+    animation: expand 0.5s ease-out;
 }
+@keyframes expand {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
 .modal-content.selected .card {
     width: 80%;
     height: 50%;

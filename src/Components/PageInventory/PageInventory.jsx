@@ -101,8 +101,8 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
             ))}
 
             {showModal && (
-                <div className="modal-overlay no-select" onClick={closeModal}>
-                <div className="modal-content no-select" onClick={(e) => e.stopPropagation()}>
+                <div className="modal-overlay locked no-select" onClick={closeModal}>
+                <div className="modal-content locked no-select" onClick={(e) => e.stopPropagation()}>
                     <h2>{items[cardToUnlock].title} заперт</h2>
                 <div className={`card locked no-select`}>
                     <img src={items[cardToUnlock].image} alt={items[cardToUnlock].title} className="card-image" />
