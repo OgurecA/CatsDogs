@@ -7,16 +7,19 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLink
     const [titleName, setTitleName] = useState("none");
     const [showModal, setShowModal] = useState(false);
     const [inputText, setInputText] = useState("");
+    const [backgroundImage, setBackgroundImage] = useState('');
 
     useEffect(() => {
         if (title === 'Dire Warriors') {
             setTitleName("DireWarriors");
             setDisplayedVotes(votesA);
             setDisplayedVotesOpponent(votesB);
+            setBackgroundImage('../Photoes/WolfBackCold.jpg')
         } else if (title === 'Wild Hearts') {
             setTitleName("WildHearts");
             setDisplayedVotes(votesB);
             setDisplayedVotesOpponent(votesA);
+            setBackgroundImage('../Photoes/DarkWolfBack.jpg')
         }
     }, [title, votesA, votesB]); // Добавляем зависимости
 
@@ -39,7 +42,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLink
     };
 
     return (
-        <div className={`page-shop ${className}`}>
+        <div className={`page-shop ${className}`} style={{ backgroundImage: `url(${backgroundImage})` }}>
             <div className={`shop-title ${titleName}`}>
                 {title}
             </div>
@@ -51,7 +54,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLink
                     Opponents: {displayedVotesOpponent}
                 </li>
                 <li className="list-item">
-                    Personal Score: {Math.abs(personalCount)}
+                    Personal: {Math.abs(personalCount)}
                 </li>
                 <li className="list-item">
                     Contribution: {Math.abs(personalCount)}

@@ -23,7 +23,6 @@
     width: 100vw;
     background-color: #8f8f8f;
     z-index: 100;
-    background-image: url('../Photoes/DarkWolfBack.jpg'); /* Укажите путь к вашему изображению */
     background-size: cover; /* Изображение будет покрывать всю область */
     background-position: center; /* Центрировать изображение */
     background-repeat: no-repeat;
