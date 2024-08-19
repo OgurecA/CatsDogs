@@ -71,6 +71,7 @@
     align-items: flex-end; /* Выравниваем текст по нижнему краю контейнера */
     justify-content: center; /* Центрируем текст по горизонтали */
     padding-bottom: 0; /* Убираем отступы */
+    align-self: flex-end;
     box-sizing: border-box; /* Включаем box-sizing */
 }
 
