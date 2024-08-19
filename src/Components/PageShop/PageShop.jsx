@@ -3,7 +3,7 @@ import './PageShop.css';
 import DarkWolfBack from '../Photoes/DarkWolfBack.jpg';
 import WolfBackCold from '../Photoes/WolfBackCold.jpg';
 
-const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLinks }) => {
+const PageShop = ({ className, title, votesA, votesB, personalCount, contribution }) => {
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
     const [displayedVotesOpponent, setDisplayedVotesOpponent] = useState("Who will be your enemy?");
     const [titleName, setTitleName] = useState("none");
@@ -59,7 +59,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLink
                     Personal: {Math.abs(personalCount)}
                 </li>
                 <li className="list-item">
-                    Contribution: {Math.abs(personalCount)}
+                    Contribution: {contribution}
                 </li>
             </ul>
             <button className="buy-button" onClick={handleBuyClick}>

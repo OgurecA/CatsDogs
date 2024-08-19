@@ -42,6 +42,7 @@ function App() {
 
     const [isFavoriteSet, setIsFavoriteSet] = useState(false);
 
+    const [contribution, setContribution] = useState(0);
 
     const [userId, setUserId] = useState('');
 
@@ -313,11 +314,13 @@ function App() {
         .then(data => {
             console.log('Fetched counts:', data); // Логирование полученных данных
             const updatedPoints = personalCount;
+            const updatedContribution = contribution;
             setPersonalHarrisCount(data.personal_harris_count ?? 0);
             setPersonalTrumpCount(data.personal_trump_count ?? 0);
             setPersonalCount(data.personal_count ?? 0);
+            setContribution(data.contribution ?? 0)
             setPlayersFavorite(data.favorite ?? 'none');
-            updateCounts(updatedPoints, playersFavorite)
+            updateCounts(updatedPoints, playersFavorite, updatedContribution)
             
         })
         .catch((error) => {
@@ -355,14 +358,16 @@ function App() {
       useEffect(() => {
         if (playersFavorite === 'Dire Warriors') {
           const updatedPoints = personalCount;
+          const updatedContribution = contribution;
           handleClickHarrisB();
           setChoice(true);
-          updateCounts(updatedPoints, playersFavorite);
+          updateCounts(updatedPoints, playersFavorite, updatedContribution);
         } else if (playersFavorite === 'Wild Hearts') {
           const updatedPoints = personalCount;
+          const updatedContribution = contribution;
           handleClickTrumpB();
           setChoice(true);
-          updateCounts(updatedPoints, playersFavorite);
+          updateCounts(updatedPoints, playersFavorite, updatedContribution);
         }
       }, [playersFavorite]);
 
@@ -496,13 +501,15 @@ function App() {
                 setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
 
                 setPersonalTrumpCount(personalTrumpCount + personalDMG);
+                setContribution(contribution + teamDMG);
                 
                 setPersonalCount(personalCount + personalDMG);
                 const updatedPoints = (personalCount + personalDMG);
+                const updatedContribution = (contribution + teamDMG);
 
                 handleVote('Trump', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts(updatedPoints, playersFavorite);
+                updateCounts(updatedPoints, playersFavorite, updatedContribution);
             } else {
                 alert('Недостаточно энергии');
             }
@@ -523,13 +530,15 @@ function App() {
                 setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
             
                 setPersonalHarrisCount(personalHarrisCount + personalDMG);
+                setContribution(contribution + teamDMG);
 
                 setPersonalCount(personalCount + personalDMG);
                 const updatedPoints = (personalCount + personalDMG);
+                const updatedContribution = (contribution + teamDMG);
 
                 handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
-                updateCounts(updatedPoints, playersFavorite);
+                updateCounts(updatedPoints, playersFavorite, updatedContribution);
             } else {
                 alert('Недостаточно энергии');
             }
@@ -556,13 +565,14 @@ function App() {
     };
 
 
-    function updateCounts(updatedPoints, playersFavorite) {
+    function updateCounts(updatedPoints, playersFavorite, updatedContribution) {
         const data = {
             id: userData.id,
             personal_count: updatedPoints,
             personal_harris_count: personalHarrisCount,
             personal_trump_count: personalTrumpCount,
-            favorite: playersFavorite
+            favorite: playersFavorite,
+            contribution: updatedContribution
         };
 
         fetch('https://btc24news.online/update-counts', {
@@ -610,9 +620,9 @@ function App() {
             <ButtonBar onShowSocialPage={handleSocialPage} onShowExchangePage={handleExchangePage} onShowInventoryPage={handleInventoryPage} onOpenShop={handleShopPage} isDisabled={!choice}/>
             
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} updateCheckedCount={setCheckedCount} />
-            <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} playersFavorite={playersFavorite} onCardSelect={handleCardSelect} personalPoints={personalCount}  setPersonalPoints={updatePersonalPoints} updateCounts={updateCounts} updateAnimalStatus={updateAnimalStatus} />
+            <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} playersFavorite={playersFavorite} updatedContribution={contribution} onCardSelect={handleCardSelect} personalPoints={personalCount}  setPersonalPoints={updatePersonalPoints} updateCounts={updateCounts} updateAnimalStatus={updateAnimalStatus} />
             <PageExchange className={isExchangePageVisible ? 'page-exchange' : 'page-exchange hidden'} />
-            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} title={playersFavorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} checkedLinks={checkedCount} />
+            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} title={playersFavorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} contribution={contribution} />
 
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
