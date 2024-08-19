@@ -63,17 +63,17 @@
     font-size: 1em;
     color: #9c9c9c;
     text-align: center;
-    bottom: 0%;
-    height: 15%;
+    bottom: 0; /* Размещаем текст внизу контейнера */
+    height: 15%; /* Высота контейнера */
     left: 0;
     width: 100%;
-    overflow: visible;
-    display: flex; /* Используем flexbox для позиционирования текста */
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 0;
-    box-sizing: border-box;
+    display: flex; /* Используем Flexbox для позиционирования текста */
+    align-items: flex-end; /* Выравниваем текст по нижнему краю контейнера */
+    justify-content: center; /* Центрируем текст по горизонтали */
+    padding-bottom: 0; /* Убираем отступы */
+    box-sizing: border-box; /* Включаем box-sizing */
 }
+
 .card.chosen .card-title {
     background: url('../Photoes/SteelTexture.jpg') center/cover; /* Используем текстуру золота */
     -webkit-background-clip: text;
