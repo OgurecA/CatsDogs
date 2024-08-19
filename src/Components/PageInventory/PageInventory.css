@@ -27,7 +27,7 @@
     position: relative;
     border: 2px solid #3a3a3a;
     border-radius: 10px;
-    width: 28vw;
+    width: 30vw;
     height: 16vh;
     background-color: rgba(102, 102, 102, 0.5);
     padding: 0px;
@@ -50,7 +50,7 @@
 }
 
 .card-image {
-    width: 100%; /* Занимает всю ширину карточки */
+    width: 80%; /* Занимает всю ширину карточки */
     height: auto;
     border-radius: 10px;
     pointer-events: none;
