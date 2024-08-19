@@ -69,6 +69,8 @@
     left: 0;
     width: 100%;
     overflow: visible;
+    display: flex; /* Используем flexbox для позиционирования текста */
+    align-items: flex-end;
 }
 .card.chosen .card-title {
     background: url('../Photoes/SteelTexture.jpg') center/cover; /* Используем текстуру золота */
@@ -143,9 +145,15 @@
 }
 
 .modal-content .card-image {
-    object-fit: contain;
-    width: 100%;
-    height: auto; /* Подгоняем изображение под размер карточки */
+    position: absolute;
+    top: 3%;
+    align-self: center;
+    width: 80%;
+    left: 10%;
+    height: auto;
+    border-radius: 10px;
+    pointer-events: none;
+    object-fit: contain; /* Подгоняем изображение под размер карточки */
 }
 
 .modal-content h2 {
