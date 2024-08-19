@@ -36,7 +36,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between; /* Разделяем содержимое по вертикали */
+    justify-content: center; /* Разделяем содержимое по вертикали */
 }
 .card:active {
     transform: scale(0.98);
