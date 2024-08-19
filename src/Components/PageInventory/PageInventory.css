@@ -72,6 +72,7 @@
     align-items: flex-end;
     justify-content: center;
     padding-bottom: 0;
+    box-sizing: border-box;
 }
 .card.chosen .card-title {
     background: url('../Photoes/SteelTexture.jpg') center/cover; /* Используем текстуру золота */
