@@ -31,7 +31,7 @@
     height: 16vh;
     background-color: rgba(102, 102, 102, 0.5);
     align-items: center;
-    padding: 5px;
+    padding: 0px;
     margin: 0 auto; /* Центрирование карточек в колонке */
     transition: transform 0.3s ease-in-out;
 }
@@ -49,7 +49,7 @@
 
 .card-image {
     position: absolute;
-    top: 3%;
+    top: 5%;
     align-self: center;
     width: 80%;
     left: 10%;
@@ -65,7 +65,7 @@
     color: #9c9c9c;
     text-align: center;
     bottom: 0%;
-    height: 10%;
+    height: 15%;
     left: 0;
     width: 100%;
     overflow: visible;
