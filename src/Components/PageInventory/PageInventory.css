@@ -60,7 +60,7 @@
 
 .card-title {
     position: absolute;
-    font-size: 1em;
+    font-size: 3em;
     color: #9c9c9c;
     text-align: center;
     bottom: 0; /* Размещаем текст внизу контейнера */
