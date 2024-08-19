@@ -28,13 +28,14 @@
     border: 2px solid #3a3a3a;
     border-radius: 10px;
     width: 30vw;
-    height: 16vh;
+    height: 18vh;
     background-color: rgba(102, 102, 102, 0.5);
     padding: 0px;
     margin: 0 auto; /* Центрирование карточек в колонке */
     transition: transform 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between; /* Разделяем содержимое по вертикали */
 }
 .card:active {
@@ -55,10 +56,12 @@
     border-radius: 10px;
     pointer-events: none;
     object-fit: contain;
-    margin-top: 0; /* Изображение в самом верху */
+    margin-top: 5px; /* Изображение в самом верху */
+    margin-bottom: -10px;
 }
 
 .card-title {
+    margin-top: -10px;
     font-size: 16px;
     color: #9c9c9c;
     text-align: center;
