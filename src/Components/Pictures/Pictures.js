@@ -2,8 +2,6 @@ import HarrisImg from "../Photoes/OwlCoin.png";
 import TrumpImg from "../Photoes/SnakeCoin.png";
 import HarrisBG from "../Photoes/FishBack.jpg";
 import TrumpBG from "../Photoes/Skull2.jpg";
-import TrumpH from "../Photoes/TrumpH.png";
-import HarrisH from "../Photoes/HarrisH.png";
 import TrumpP from "../Photoes/Cats.jpg";
 import HarrisP from "../Photoes/Loli.jpg";
 import bybit from "../Photoes/bybit.jpg";
