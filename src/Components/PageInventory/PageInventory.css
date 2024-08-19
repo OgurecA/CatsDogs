@@ -124,9 +124,8 @@
     padding-bottom: 18px;
     border-radius: 10px;
     text-align: center;
-    max-width: 400px;
-    width: 60%;
-    height: 40%;
+    width: 55%;
+    height: 45%;
     transform: translateY(-20%);
     display: flex;
     flex-direction: column; /* Размещаем элементы вертикально */

@@ -13,6 +13,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [showSelectedCardModal, setShowSelectedCardModal] = useState(false);
     const [cardToUnlock, setCardToUnlock] = useState(null);
     const [isButtonShaking, setIsButtonShaking] = useState(false);
 
@@ -37,9 +38,14 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
 
     const handleCardClick = (index) => {
         if (!lockedCards[index]) {
-            setSelectedCardIndex(index);
-            localStorage.setItem('selectedCardIndex', index);
-            onCardSelect(index);
+            if (selectedCardIndex === index) {
+                // Если нажали на выбранную карточку, показываем новое модальное окно
+                setShowSelectedCardModal(true);
+            } else {
+                setSelectedCardIndex(index);
+                localStorage.setItem('selectedCardIndex', index);
+                onCardSelect(index);
+            }
         } else {
             setCardToUnlock(index);
             setShowModal(true);
@@ -49,6 +55,9 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
     const closeModal = () => {
         setShowModal(false);
         setIsButtonShaking(false);
+    };
+    const closeSelectedCardModal = () => {
+        setShowSelectedCardModal(false);
     };
 
     const unlockCard = () => {
@@ -109,6 +118,18 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                     Освободить
                 </button>
                 </div>
+                </div>
+            )}
+            {showSelectedCardModal && (
+                <div className="modal-overlay no-select" onClick={closeSelectedCardModal}>
+                    <div className="modal-content no-select" onClick={(e) => e.stopPropagation()}>
+                        <h2>Вы выбрали {items[selectedCardIndex].title}</h2>
+                        <div className={`card no-select`}>
+                            <img src={items[selectedCardIndex].image} alt={items[selectedCardIndex].title} className="card-image" />
+                        </div>
+                        <p className="modal-description">Описание: {items[selectedCardIndex].description}</p>
+                        <button onClick={closeSelectedCardModal}>Закрыть</button>
+                    </div>
                 </div>
             )}
         </div>
