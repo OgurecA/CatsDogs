@@ -73,6 +73,7 @@
     padding-bottom: 0; /* Убираем отступы */
     align-self: flex-end;
     box-sizing: border-box; /* Включаем box-sizing */
+    margin-top: 5%;
 }
 
 .card.chosen .card-title {
