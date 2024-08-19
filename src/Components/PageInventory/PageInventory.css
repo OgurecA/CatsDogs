@@ -223,8 +223,8 @@
     justify-content: space-evenly;
 }
 .modal-content.selected .card {
-    width: 30vw;
-    height: 22vh;
+    width: 60%;
+    height: 40%;
     pointer-events: none;
     background-color: transparent;
     border: 2px solid transparent;
