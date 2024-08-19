@@ -122,7 +122,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                 <div className="modal-overlay selected no-select" onClick={closeSelectedCardModal}>
                     <div className="modal-content selected no-select" onClick={(e) => e.stopPropagation()}>
                         <h2>Вы выбрали {items[selectedCardIndex].title}</h2>
-                        <div className={`card no-select`}>
+                        <div className={`card selected no-select`}>
                             <img src={items[selectedCardIndex].image} alt={items[selectedCardIndex].title} className="card-image" />
                         </div>
                         <p className="modal-description">Описание: {items[selectedCardIndex].description}</p>
