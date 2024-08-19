@@ -70,9 +70,9 @@
     width: 100%;
     overflow: visible;
     display: flex; /* Используем flexbox для позиционирования текста */
-    align-items: end;
-    align-content: end;
+    align-items: flex-end;
     justify-content: center;
+    padding-bottom: 0;
 }
 .card.chosen .card-title {
     background: url('../Photoes/SteelTexture.jpg') center/cover; /* Используем текстуру золота */
