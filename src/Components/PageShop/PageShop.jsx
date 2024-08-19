@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './PageShop.css';
+import DarkWolfBack from '../Photoes/DarkWolfBack.jpg';
+import WolfBackCold from '../Photoes/WolfBackCold.jpg';
 
 const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLinks }) => {
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
@@ -14,12 +16,12 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLink
             setTitleName("DireWarriors");
             setDisplayedVotes(votesA);
             setDisplayedVotesOpponent(votesB);
-            setBackgroundImage('../Photoes/WolfBackCold.jpg')
+            setBackgroundImage(WolfBackCold)
         } else if (title === 'Wild Hearts') {
             setTitleName("WildHearts");
             setDisplayedVotes(votesB);
             setDisplayedVotesOpponent(votesA);
-            setBackgroundImage('../Photoes/DarkWolfBack.jpg')
+            setBackgroundImage(DarkWolfBack)
         }
     }, [title, votesA, votesB]); // Добавляем зависимости
 
