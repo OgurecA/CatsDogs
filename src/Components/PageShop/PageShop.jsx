@@ -3,17 +3,20 @@ import './PageShop.css';
 
 const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLinks }) => {
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
+    const [displayedVotesOpponent, setDisplayedVotesOpponent] = useState("Who will be your enemy?");
     const [titleName, setTitleName] = useState("none");
     const [showModal, setShowModal] = useState(false);
     const [inputText, setInputText] = useState("");
 
     useEffect(() => {
         if (title === 'Dire Warriors') {
-            setTitleName("DireWarriors")
+            setTitleName("DireWarriors");
             setDisplayedVotes(votesA);
+            setDisplayedVotesOpponent(votesB);
         } else if (title === 'Wild Hearts') {
+            setTitleName("WildHearts");
             setDisplayedVotes(votesB);
-            setTitleName("WildHearts")
+            setDisplayedVotesOpponent(votesA);
         }
     }, [title, votesA, votesB]); // Добавляем зависимости
 
@@ -42,13 +45,16 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, checkedLink
             </div>
             <ul className="shop-list">
                 <li className="list-item">
-                <span className="WH">WH</span> Score: {votesB}
+                    Team: {displayedVotes}
                 </li>
                 <li className="list-item">
-                <span className="DW">DW</span> Score: {votesA}
+                    Opponents: {displayedVotesOpponent}
                 </li>
                 <li className="list-item">
                     Personal Score: {Math.abs(personalCount)}
+                </li>
+                <li className="list-item">
+                    Contribution: {Math.abs(personalCount)}
                 </li>
             </ul>
             <button className="buy-button" onClick={handleBuyClick}>
