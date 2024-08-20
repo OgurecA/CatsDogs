@@ -7,9 +7,27 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
     const [displayedVotesOpponent, setDisplayedVotesOpponent] = useState("Who will be your enemy?");
     const [titleName, setTitleName] = useState("none");
-    const [showModal, setShowModal] = useState(false);
     const [inputText, setInputText] = useState("");
     const [backgroundImage, setBackgroundImage] = useState('');
+
+    const [showPromoModal, setShowPromoModal] = useState(false);
+    const [showDonateModal, setShowDonateModal] = useState(false);
+
+    const handlePromoClick = () => {
+        setShowPromoModal(true);
+    };
+
+    const handleDonateClick = () => {
+        setShowDonateModal(true);
+    };
+
+    const closePromoModal = () => {
+        setShowPromoModal(false);
+    };
+
+    const closeDonateModal = () => {
+        setShowDonateModal(false);
+    };
 
     useEffect(() => {
         if (title === 'Dire Warriors') {
@@ -25,23 +43,11 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         }
     }, [title, votesA, votesB]); // Добавляем зависимости
 
-    const handleBuyClick = () => {
-        setShowModal(true); // Показываем модальное окно при нажатии на кнопку "Buy"
-    };
-
-    const closeModal = () => {
-        setShowModal(false); // Закрываем модальное окно
-    };
 
     const handleInputChange = (e) => {
         setInputText(e.target.value); // Обновляем состояние inputText при изменении текста в поле ввода
     };
 
-    const handleSubmit = () => {
-        // Логика обработки данных из модального окна
-        console.log("Submitted text:", inputText);
-        closeModal(); // Закрываем модальное окно после отправки данных
-    };
 
     return (
         <div className={`page-shop ${className}`} style={{ backgroundImage: `url(${backgroundImage})` }}>
@@ -63,24 +69,42 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 </li>
             </ul>
             <div className="button-container">
-                <button className="promo-button">Button 1</button>
-                <button className="donate-button">Button 2</button>
+                <button className="promo-button">Promo</button>
+                <button className="donate-button">Donate</button>
             </div>
-            {showModal && (
-                <div className="modal-overlay" onClick={closeModal}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <h2>Purchase Item</h2>
-                        <p>Please enter the amount you wish to spend:</p>
+
+            {showPromoModal && (
+                <div className="modal-overlay promo" onClick={closePromoModal}>
+                    <div className="modal-content promo" onClick={(e) => e.stopPropagation()}>
+                        <h2>Promo Purchase</h2>
+                        <p>Please enter the amount for the promo:</p>
                         <input
                             type="text"
                             value={inputText}
                             onChange={handleInputChange}
                             className="modal-input"
                         />
-                        <button onClick={handleSubmit}>Submit</button>
+                        <button onClick={handleSubmitPromo}>Submit</button>
                     </div>
                 </div>
             )}
+
+            {showDonateModal && (
+                <div className="modal-overlay donate" onClick={closeDonateModal}>
+                    <div className="modal-content donate" onClick={(e) => e.stopPropagation()}>
+                        <h2>Donate</h2>
+                        <p>Please enter the donation amount:</p>
+                        <input
+                            type="text"
+                            value={inputText}
+                            onChange={handleInputChange}
+                            className="modal-input"
+                        />
+                        <button onClick={handleSubmitDonate}>Submit</button>
+                    </div>
+                </div>
+            )}
+
         </div>
     );
 };
