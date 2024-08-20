@@ -62,9 +62,6 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                     Contribution: {contribution}
                 </li>
             </ul>
-            <button className="buy-button" onClick={handleBuyClick}>
-                Buy
-            </button>
             {showModal && (
                 <div className="modal-overlay" onClick={closeModal}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>

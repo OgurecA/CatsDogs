@@ -1,9 +1,4 @@
-@font-face {
-    font-family: 'LeagueGothic';
-    src: url('../Fonts/LeagueGothic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
+
 .page-inventory {
     position: absolute;
     display: grid;
@@ -155,7 +150,6 @@
 }
 
 .modal-content h2 {
-    font-family: 'LeagueGothic', Helvetica, sans-serif;
     color: #e0e0e0;
     margin: 0; /* Убираем отступы сверху и снизу */
     font-size: 18px;
