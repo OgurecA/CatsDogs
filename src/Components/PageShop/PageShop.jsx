@@ -50,16 +50,16 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             </div>
             <ul className="shop-list">
                 <li className="list-item">
-                    Comrades: {displayedVotes}
+                    Comrade points: {displayedVotes}
                 </li>
                 <li className="list-item">
-                    Enemy: {displayedVotesOpponent}
+                    Enemy points: {displayedVotesOpponent}
                 </li>
                 <li className="list-item">
-                    Personal: {Math.abs(personalCount)}
+                    Personal points: {Math.abs(personalCount)}
                 </li>
                 <li className="list-item">
-                    Contribution: {contribution}
+                    Contribution points: {contribution}
                 </li>
             </ul>
             {showModal && (
