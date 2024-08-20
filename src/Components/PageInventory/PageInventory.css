@@ -136,8 +136,8 @@
     animation-delay: 0s, 0.5s;
 }
 @keyframes slightShake {
-    0%, 100% { transform: translateY(-10%) rotate(-1deg); }
-    50% { transform: translateY(-12%) rotate(1deg); }
+    0%, 100% { transform: translateY(-20%) rotate(-1deg); }
+    50% { transform: translateY(-22%) rotate(1deg); }
 }
 
 .modal-content .card {
