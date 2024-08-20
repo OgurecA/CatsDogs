@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './LoadScreenContainer.css'
 import LoadScreen from '../LoadScreen/LoadScreen';
-import { CatBack } from '../Pictures/Pictures';
+import { SkullFon } from '../Pictures/Pictures';
 
 function LoadScreenContainer() {
     useEffect(() => {
@@ -16,7 +16,7 @@ function LoadScreenContainer() {
       }, []);
   return (
     <div className='load-screen-container'>
-        <LoadScreen src={CatBack}/>
+        <LoadScreen src={SkullFon}/>
     </div>
   )
 }
