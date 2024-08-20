@@ -187,7 +187,7 @@
     padding-bottom: 18px;
     border-radius: 10px;
     text-align: center;
-    width: 220px;
+    width: 200px;
     height: 160px;
     transform: translateY(-15%);
     display: flex;
@@ -228,7 +228,8 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 18px;
-    height: 14%; /* Кнопка занимает 10% высоты модального окна */
+    height: 20%; /* Кнопка занимает 10% высоты модального окна */
+    width: 30%;
     align-self: center; /* Центрируем кнопку по горизонтали */
     display: flex; /* Включаем Flexbox */
     justify-content: center; /* Центрируем содержимое по горизонтали */
