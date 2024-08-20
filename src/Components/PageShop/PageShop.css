@@ -178,6 +178,10 @@
     animation: expand 0.3s ease-out;
 }
 .modal-content.promo {
+    background-image: url('../Photoes/FonWolfWarm1.png'); /* Укажите путь к вашему изображению */
+    background-size: cover; /* Изображение будет покрывать всю область */
+    background-position: center; /* Центрировать изображение */
+    background-repeat: no-repeat;
     background: #0B1215;
     position: relative;
     border: 1px solid #4a4a4a;

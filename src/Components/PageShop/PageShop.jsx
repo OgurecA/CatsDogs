@@ -76,7 +76,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             {showPromoModal && (
                 <div className="modal-overlay promo" onClick={closePromoModal}>
                     <div className="modal-content promo" onClick={(e) => e.stopPropagation()}>
-                        <h2>Promo Purchase</h2>
+                        <h2>Gift Code</h2>
                         <input
                             type="text"
                             value={inputText}
