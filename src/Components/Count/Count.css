@@ -18,8 +18,10 @@
 .count-container.TR {
     right: 3%;
     text-align: right;
+    line-height: 1;
 }
 .count-container.HS {
     left: 3%;
     text-align: left;
+    line-height: 1;
 }
