@@ -96,50 +96,6 @@
     color: rgb(255, 255, 255);
 }
 
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(255, 255, 255, 0.7); /* Затемнение фона */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
-
-.modal-content {
-    background-color: #0C0C0C;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    max-width: 400px;
-    width: 60%;
-    height: 40%;
-    transform: translateY(-20%);
-    display: flex;
-    flex-direction: column; /* Размещаем элементы вертикально */
-    justify-content: space-between;
-}
-
-.modal-input {
-    width: 50%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.modal-content button {
-    padding: 10px 20px;
-    background-color: #919191;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
 
 
 
@@ -158,6 +114,7 @@
 .promo-button, .donate-button {
     background-color: rgba(0, 0, 0, 0.2); /* Цвет кнопок */
     color: white;
+    font-family: 'LeagueGothic', Helvetica, sans-serif;
     border: none;
     border-radius: 8px;
     padding: 10px 20px;
@@ -211,9 +168,10 @@
     border-radius: 10px;
     text-align: center;
     width: 220px;
-    height: 200px;
+    height: 180px;
     transform: translateY(-15%);
     display: flex;
+    align-items: center;
     flex-direction: column; /* Размещаем элементы вертикально */
     justify-content: space-evenly;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Глубокая тень */
@@ -223,4 +181,37 @@
 @keyframes expand {
     0% { transform: translateY(0%) scale(0.8); opacity: 0.5; }
     100% { transform: translateY(-15%) scale(1); opacity: 1; }
+}
+@keyframes vibrate {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-4px); }
+    40%, 80% { transform: translateX(4px); }
+}
+
+.vibrate {
+    animation: vibrate 0.3s linear;
+}
+
+
+.modal-input {
+    width: 50%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin: 0 auto; /* Центрирование по горизонтали */
+}
+
+.modal-button.donate, .modal-button.promo {
+    background-color: #333; /* Темная кнопка */
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    height: 14%; /* Кнопка занимает 10% высоты модального окна */
+    align-self: center; /* Центрируем кнопку по горизонтали */
+    display: flex; /* Включаем Flexbox */
+    justify-content: center; /* Центрируем содержимое по горизонтали */
+    align-items: center; /* Центрируем содержимое по вертикали */
+    text-align: center;
 }

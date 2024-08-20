@@ -77,13 +77,13 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 <div className="modal-overlay promo" onClick={closePromoModal}>
                     <div className="modal-content promo" onClick={(e) => e.stopPropagation()}>
                         <h2>Promo Purchase</h2>
-                        <p>Please enter the amount for the promo:</p>
                         <input
                             type="text"
                             value={inputText}
                             onChange={handleInputChange}
                             className="modal-input"
                         />
+                        <button className="button">Submit</button>
                     </div>
                 </div>
             )}
@@ -99,6 +99,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                             onChange={handleInputChange}
                             className="modal-input"
                         />
+                        <button className="button">Submit</button>
                     </div>
                 </div>
             )}
