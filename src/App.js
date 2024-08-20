@@ -299,31 +299,29 @@ function App() {
                 throw new Error('Login request failed');
             }
             console.log('Login successful');
+            
+            // После успешного логина выполняем второй fetch
+            return fetch(`https://btc24news.online/get-counts?id=${WebApp.initDataUnsafe.user.id}`);
         })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-
-        fetch(`https://btc24news.online/get-counts?id=${WebApp.initDataUnsafe.user.id}`)
-        .then(response => {
-            if (!response.ok) {
+        .then(fetchResponse => {
+            if (!fetchResponse.ok) {
                 throw new Error('Get counts request failed');
             }
-            return response.json();
+            return fetchResponse.json();
         })
         .then(data => {
-            console.log('Fetched counts:', data); // Логирование полученных данных
+            console.log('Fetched counts:', data);
+            
             const updatedPoints = personalCount;
             const updatedContribution = contribution;
             setPersonalHarrisCount(data.personal_harris_count ?? 0);
             setPersonalTrumpCount(data.personal_trump_count ?? 0);
             setPersonalCount(data.personal_count ?? 0);
-            setContribution(data.contribution ?? 0)
+            setContribution(data.contribution ?? 0);
             setPlayersFavorite(data.favorite ?? 'none');
-            updateCounts(updatedPoints, playersFavorite, updatedContribution)
-            
+            updateCounts(updatedPoints, playersFavorite, updatedContribution);
         })
-        .catch((error) => {
+        .catch(error => {
             console.error('Error:', error);
         });
 
