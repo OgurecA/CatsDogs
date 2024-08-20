@@ -10,7 +10,7 @@ const ButtonBar = ({ onOpenShop, onShowSocialPage, onShowInventoryPage, onShowEx
         if (callback) callback();
     };
 
-    const targetDate = new Date('2024-08-20T12:00:00'); // 20 августа 2024 года в 12:00
+    const targetDate = new Date('2024-09-01T12:00:00'); // 20 августа 2024 года в 12:00
 
     useEffect(() => {
         const calculateTimeLeft = () => {
