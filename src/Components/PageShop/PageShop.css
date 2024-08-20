@@ -16,6 +16,12 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'LeagueGothic';
+    src: url('../Fonts/LeagueGothic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .page-shop {
     position: absolute;
@@ -77,6 +83,7 @@
 }
 
 .list-item {
+    font-family: 'LeagueGothic', Helvetica, sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
