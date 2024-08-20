@@ -296,20 +296,9 @@ function App() {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Login request failed');
+                throw new Error('Request failed');
             }
-            console.log('Login successful');
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-
-        fetch(`https://btc24news.online/get-counts?id=${WebApp.initDataUnsafe.user.id}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Get counts request failed');
-            }
-            return response.json();
+            return response.json(); // Получаем ответ от сервера
         })
         .then(data => {
             console.log('Fetched counts:', data); // Логирование полученных данных
@@ -321,11 +310,11 @@ function App() {
             setContribution(data.contribution ?? 0)
             setPlayersFavorite(data.favorite ?? 'none');
             updateCounts(updatedPoints, playersFavorite, updatedContribution)
-            
         })
         .catch((error) => {
             console.error('Error:', error);
         });
+
 
         }
     
