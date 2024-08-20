@@ -69,8 +69,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 </li>
             </ul>
             <div className="button-container">
-                <button className="promo-button">Promo</button>
-                <button className="donate-button">Donate</button>
+                <button className="promo-button" onClick={handlePromoClick}>Promo</button>
+                <button className="donate-button" onClick={handleDonateClick}>Donate</button>
             </div>
 
             {showPromoModal && (
