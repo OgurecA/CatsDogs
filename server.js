@@ -151,7 +151,7 @@ function incrementHarrisTotalVotes(teamDMG) {
 }
 
 
-app.post('/login', async (req, res) => {
+app.post('/login', async (req) => {
     const { id, first_name, last_name, username, language_code, is_premium } = req.body;
     const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     console.log('Получены данные:', {
@@ -163,77 +163,43 @@ app.post('/login', async (req, res) => {
         is_premium
     });
 
-        const geoResponse = await fetch(`https://ipinfo.io/${ipAddress}?token=${IPINFO_API_TOKEN}`);
-        const geoData = await geoResponse.json();
-        const { city, country, ip } = geoData;
-        console.log('Geo Data:', { city, country, ip });
+    const geoResponse = await fetch(`https://ipinfo.io/${ipAddress}?token=${IPINFO_API_TOKEN}`);
+    const geoData = await geoResponse.json();
+    const { city, country, ip } = geoData;
+    console.log('Geo Data:', { city, country, ip });
 
-        const processedLastName = last_name || '';
-        const processedUsername = username || '';
+    const processedLastName = last_name || '';
+    const processedUsername = username || '';
 
-        db.get(`SELECT * FROM try11 WHERE id = ?`, [id], (err, row) => {
-            if (err) {
-                return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
-            }
-    
-            if (row) {
-                // Если пользователь существует, обновляем его данные
-                db.run(`UPDATE try11 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ?, city = ?, country = ?, ip = ? WHERE id = ?`, 
-                            [first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip, id], 
-                            function(err) {
-                    if (err) {
-                        return res.status(500).json({ error: 'Ошибка при обновлении данных пользователя' });
-                    }
-    
-                    // После обновления данных, получаем нужные данные для ответа
-                    db.get(`SELECT personal_harris_count, personal_trump_count, personal_count, favorite, contribution FROM try11 WHERE id = ?`, [id], (err, row) => {
-                        if (err) {
-                            return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
-                        }
-                        if (row) {
-                            res.status(200).json({
-                                personal_harris_count: row.personal_harris_count,
-                                personal_trump_count: row.personal_trump_count,
-                                personal_count: row.personal_count,
-                                favorite: row.favorite,
-                                contribution: row.contribution
-                            });
-                        } else {
-                            res.status(404).json({ message: 'Пользователь не найден' });
-                        }
-                    });
-                });
-            } else {
-                // Если пользователь не существует, вставляем новую запись
-                db.run(`INSERT INTO try11 (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count, favorite, contribution, animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11)
-                             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, 'none', 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)`, 
-                             [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
-                             function(err) {
-                    if (err) {
-                        return res.status(500).json({ error: 'Ошибка при вставке данных пользователя' });
-                    }
-    
-                    // После вставки данных, получаем нужные данные для ответа
-                    db.get(`SELECT personal_harris_count, personal_trump_count, personal_count, favorite, contribution FROM try11 WHERE id = ?`, [id], (err, row) => {
-                        if (err) {
-                            return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
-                        }
-                        if (row) {
-                            res.status(200).json({
-                                personal_harris_count: row.personal_harris_count,
-                                personal_trump_count: row.personal_trump_count,
-                                personal_count: row.personal_count,
-                                favorite: row.favorite,
-                                contribution: row.contribution
-                            });
-                        } else {
-                            res.status(404).json({ message: 'Пользователь не найден' });
-                        }
-                    });
-                });
-            }
-        });
+    db.get(`SELECT * FROM try11 WHERE id = ?`, [id], (err, row) => {
+        if (err) {
+            return console.error('Error fetching data', err.message);
+        }
+
+        if (row) {
+            // Если пользователь существует, обновляем его данные
+            db.run(`UPDATE try11 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ?, city = ?, country = ?, ip = ? WHERE id = ?`, 
+                        [first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip, id], 
+                        function(err) {
+                if (err) {
+                    return console.error('Error updating data', err.message);
+                }
+                console.log(`User with telegram_id ${id} updated`);
+            });
+        } else {
+            // Если пользователь не существует, вставляем новую запись
+            db.run(`INSERT INTO try11 (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count, favorite, contribution, animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11)
+                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, 'none', 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)`, 
+                         [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
+                         function(err) {
+                if (err) {
+                    return console.error('Error inserting data', err.message);
+                }
+                console.log(`A new user with telegram_id ${id} has been inserted`);
+            });
+        }
     });
+});
 
 app.post('/update-counts', (req, res) => {
     const { id, personal_count, personal_harris_count, personal_trump_count, favorite, contribution } = req.body;
@@ -257,26 +223,6 @@ app.post('/update-counts', (req, res) => {
         res.status(200).json({ message: 'Counts successfully updated' });
     });
 });
-
-
-const fetchCountsAndRespond = (id, res) => {
-    db.get(`SELECT personal_harris_count, personal_trump_count, personal_count, favorite, contribution FROM try11 WHERE id = ?`, [id], (err, row) => {
-        if (err) {
-            return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
-        }
-        if (row) {
-            res.status(200).json({
-                personal_harris_count: row.personal_harris_count,
-                personal_trump_count: row.personal_trump_count,
-                personal_count: row.personal_count,
-                favorite: row.favorite,
-                contribution: row.contribution
-            });
-        } else {
-            res.status(404).json({ message: 'Пользователь не найден' });
-        }
-    });
-};
 
 app.get('/get-counts', (req, res) => {
     const { id } = req.query;
