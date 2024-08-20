@@ -187,7 +187,7 @@
     transform: translateY(3px); /* Сдвиг при нажатии для эффекта нажатия */
 }
 
-.modal-overlay.promo {
+.modal-overlay.promo, .modal-overlay.donate {
     position: fixed;
     top: 0;
     left: 0;
@@ -200,7 +200,7 @@
     z-index: 1000; /* Модальное окно поверх всего */
 }
 
-.modal-content.promo {
+.modal-content.promo, .modal-content.donate {
     background: #0B1215;
     position: relative;
     border: 1px solid #4a4a4a;
@@ -210,47 +210,16 @@
     padding-bottom: 18px;
     border-radius: 10px;
     text-align: center;
-    width: 55%;
-    height: 45%;
+    width: 60%;
+    height: 25%;
     transform: translateY(-15%);
     display: flex;
     flex-direction: column; /* Размещаем элементы вертикально */
     justify-content: space-evenly;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Глубокая тень */
-    animation: expand 0.5s ease-out;
-}
-.modal-overlay.donate {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.7); /* Затемнение фона */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000; /* Модальное окно поверх всего */
+    animation: expand 0.3s ease-out;
 }
 
-.modal-content.donate {
-    background: #0B1215;
-    position: relative;
-    border: 1px solid #4a4a4a;
-    padding-top: 12px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 18px;
-    border-radius: 10px;
-    text-align: center;
-    width: 55%;
-    height: 45%;
-    transform: translateY(-15%);
-    display: flex;
-    flex-direction: column; /* Размещаем элементы вертикально */
-    justify-content: space-evenly;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Глубокая тень */
-    animation: expand 0.5s ease-out;
-}
 @keyframes expand {
     0% { transform: translateY(0%) scale(0.8); opacity: 0.5; }
     100% { transform: translateY(-15%) scale(1); opacity: 1; }
