@@ -154,3 +154,26 @@
     cursor: pointer;
     font-size: 16px;
 }
+
+
+
+
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Расположите кнопки по краям */
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+.promo-button, .donate-button {
+    background-color: #ff3ef9; /* Цвет кнопок */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    flex-grow: 1; /* Кнопки будут равной ширины */
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+}

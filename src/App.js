@@ -131,7 +131,7 @@ function App() {
                 newTeamDMG = 5;
                 newPersonalDMG = 1;
                 newName = "Gorilla";
-                background = FonTap2;
+                background = FonTap1;
                 break;
             case 2:
                 image = Rhino;
@@ -151,7 +151,7 @@ function App() {
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
                 newName = "Elephant";
-                background = ElephantBack;
+                background = FonTap1;
                 break;
             case 4:
                 image = Tiger;
@@ -161,7 +161,7 @@ function App() {
                 newTeamDMG = 1;
                 newPersonalDMG = 5;
                 newName = "Tiger";
-                background = TigerBack;
+                background = FonTap1;
                 break;
             default:
                 image = null;
@@ -448,8 +448,8 @@ function App() {
     
 
     const totalVotes = votes.Trump + votes.Harris;
-    const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(2) : 0;
-    const trumpPercentage = totalVotes > 0 ? (votes.Trump / totalVotes * 100).toFixed(2) : 0;
+    const harrisPercentage = totalVotes > 0 ? (votes.Harris / totalVotes * 100).toFixed(1) : 0;
+    const trumpPercentage = totalVotes > 0 ? (votes.Trump / totalVotes * 100).toFixed(1) : 0;
 
 
     function updateBar() {

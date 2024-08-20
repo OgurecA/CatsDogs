@@ -62,6 +62,10 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                     Contribution: {contribution}
                 </li>
             </ul>
+            <div className="button-container">
+                <button className="promo-button">Button 1</button>
+                <button className="donate-button">Button 2</button>
+            </div>
             {showModal && (
                 <div className="modal-overlay" onClick={closeModal}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
