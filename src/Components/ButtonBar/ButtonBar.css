@@ -1,4 +1,10 @@
 /* src/Components/ButtonBar/ButtonBar.css */
+@font-face {
+  font-family: 'LeagueGothic';
+  src: url('../Fonts/LeagueGothic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 .button-bar {
     position: absolute;
     bottom: 0;
@@ -18,6 +24,7 @@
     height: 92%; /* Высота кнопки с учетом отступов */
     margin: 0 1vw; /* Отступы между кнопками */
     color: white;
+    font-family: 'LeagueGothic', Helvetica, sans-serif;
     border: 1px solid #ccc;
     position: relative;
     border-radius: 10px; /* Скругляем углы кнопок */

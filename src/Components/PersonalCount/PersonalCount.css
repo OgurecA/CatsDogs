@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'GTA';
-    src: url('../Fonts/GTA.ttf') format('truetype');
+    font-family: 'LeagueGothic';
+    src: url('../Fonts/LeagueGothic.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -13,7 +13,7 @@
     width: 97%;
     height: 10%;
     color: rgb(255, 255, 255);
-    font-family: 'GTA', sans-serif;
+    font-family: 'LeagueGothic', Helvetica, sans-serif;
     font-size: 24px;
     z-index: -1;
 }

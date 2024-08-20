@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'LeagueGothic';
+    src: url('../Fonts/LeagueGothic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 .page-inventory {
     position: absolute;
     display: grid;
@@ -56,21 +62,6 @@
     border-radius: 10px;
     pointer-events: none;
     object-fit: contain;
-}
-
-.card-title {
-    font-size: 16px;
-    color: #9c9c9c;
-    text-align: center;
-    padding-bottom: 5px; /* Небольшой отступ от нижнего края карточки */
-    box-sizing: border-box;
-}
-
-.card.chosen .card-title {
-    background: url('../Photoes/SteelTexture.jpg') center/cover; /* Используем текстуру золота */
-    -webkit-background-clip: text;
-    color: transparent;
-    background-clip: text;
 }
 
 
@@ -164,6 +155,7 @@
 }
 
 .modal-content h2 {
+    font-family: 'LeagueGothic', Helvetica, sans-serif;
     color: #e0e0e0;
     margin: 0; /* Убираем отступы сверху и снизу */
     font-size: 18px;
