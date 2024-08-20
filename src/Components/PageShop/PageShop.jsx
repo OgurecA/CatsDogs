@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './PageShop.css';
-import DarkWolfBack from '../Photoes/FonWolfWarm.jpeg';
-import WolfBackCold from '../Photoes/FonWolfCold.jpeg';
+import DarkWolfBack from '../Photoes/FonWolfWarm1.jpeg';
+import WolfBackCold from '../Photoes/FonWolfCold1.jpeg';
 
 const PageShop = ({ className, title, votesA, votesB, personalCount, contribution }) => {
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
