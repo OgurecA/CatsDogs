@@ -32,8 +32,7 @@
     text-align: center;
     width: 90vw; /* Увеличиваем ширину контейнеров */
     height: 7vh; /* Устанавливаем высоту контейнеров */
-    margin-top: 4px;
-    margin: 2px 0;
+    margin-top: 10px;
     padding: 10px; /* Увеличиваем внутренние отступы */
     background-color: rgba(77, 77, 77, 0.2);
     border: 3px solid #2e2e2e;
