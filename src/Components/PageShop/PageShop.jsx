@@ -84,7 +84,6 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                             onChange={handleInputChange}
                             className="modal-input"
                         />
-                        <button onClick={handleSubmitPromo}>Submit</button>
                     </div>
                 </div>
             )}
@@ -100,7 +99,6 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                             onChange={handleInputChange}
                             className="modal-input"
                         />
-                        <button onClick={handleSubmitDonate}>Submit</button>
                     </div>
                 </div>
             )}

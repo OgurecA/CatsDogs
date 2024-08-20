@@ -512,8 +512,6 @@ function App() {
                 handleVote('Trump', teamDMG);
                 setEnergy(energy - energyTake);
                 updateCounts(updatedPoints, playersFavorite, updatedContribution);
-            } else {
-                alert('Недостаточно энергии');
             }
         }  
     }
@@ -541,8 +539,6 @@ function App() {
                 handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
                 updateCounts(updatedPoints, playersFavorite, updatedContribution);
-            } else {
-                alert('Недостаточно энергии');
             }
         }
     }
