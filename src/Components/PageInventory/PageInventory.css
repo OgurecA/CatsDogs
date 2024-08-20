@@ -132,8 +132,8 @@
     flex-direction: column; /* Размещаем элементы вертикально */
     justify-content: space-evenly;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.9); /* Глубокая тень */
-    animation: expand 0.5s ease-out;
-    animation: slightShake 3s infinite ease-in-out;
+    animation: expand 0.5s ease-out, slightShake 3s infinite ease-in-out;
+    animation-delay: 0s, 0.5s;
 }
 @keyframes slightShake {
     0%, 100% { transform: translateY(-10%) rotate(-1deg); }
