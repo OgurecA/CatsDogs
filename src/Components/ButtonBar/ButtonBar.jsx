@@ -40,7 +40,7 @@ const ButtonBar = ({ onOpenShop, onShowSocialPage, onShowInventoryPage, onShowEx
     return (
         <div className={`button-bar ${isDisabled ? 'disabled' : ''}`}>
             <button className={`button-bar-button ${chosenButton === 0 ? 'chosen' : ''}`} onClick={() => handleButtonClick(0, onOpenShop)} disabled={isDisabled} >
-                LAYER
+                LAIR
             </button>
             <button className={`button-bar-button ${chosenButton === 1 ? 'chosen' : ''}`} onClick={() => handleButtonClick(1, onShowSocialPage)} disabled={isDisabled} >
                 TRIBE

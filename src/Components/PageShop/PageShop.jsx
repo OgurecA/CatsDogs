@@ -50,10 +50,10 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             </div>
             <ul className="shop-list">
                 <li className="list-item">
-                    Team: {displayedVotes}
+                    Comrades: {displayedVotes}
                 </li>
                 <li className="list-item">
-                    Opponents: {displayedVotesOpponent}
+                    Enemy: {displayedVotesOpponent}
                 </li>
                 <li className="list-item">
                     Personal: {Math.abs(personalCount)}
