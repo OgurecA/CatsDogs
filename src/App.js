@@ -304,6 +304,7 @@ function App() {
             console.error('Error:', error);
         });
 
+    setTimeout(() => {
         fetch(`https://btc24news.online/get-counts?id=${WebApp.initDataUnsafe.user.id}`)
         .then(response => {
             if (!response.ok) {
@@ -326,7 +327,8 @@ function App() {
         .catch((error) => {
             console.error('Error:', error);
         });
-
+    }, 2000);
+    
         }
     
         return () => clearInterval(intervalId);
