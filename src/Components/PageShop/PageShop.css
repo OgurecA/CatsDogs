@@ -163,12 +163,16 @@
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
-    flex-grow: 1; /* Кнопки будут равной ширины */
+    width: 40%; /* Кнопки будут равной ширины */
     margin: 0 5px;
     transition: background-color 0.3s ease;
     height: 100%; /* Кнопки будут иметь ту же высоту, что и контейнер */
     display: flex;
     align-items: center; /* Центрирование текста по вертикали */
     justify-content: center; /* Центрирование текста по горизонтали */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.5), 8px 16px 24px rgba(0, 0, 0, 0.3);
+}
+.promo-button:active, .donate-button:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Меньшая тень при нажатии */
+    transform: translateY(2px); /* Сдвиг при нажатии для эффекта нажатия */
 }
