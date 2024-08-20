@@ -156,7 +156,7 @@
 
 
 .promo-button, .donate-button {
-    background-color: transparent; /* Цвет кнопок */
+    background-color: rgba(0, 0, 0, 0.1); /* Цвет кнопок */
     color: white;
     border: none;
     border-radius: 5px;
@@ -173,6 +173,6 @@
     box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.5), 8px 16px 24px rgba(0, 0, 0, 0.3);
 }
 .promo-button:active, .donate-button:active {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Меньшая тень при нажатии */
+    box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.3); /* Меньшая тень при нажатии */
     transform: translateY(2px); /* Сдвиг при нажатии для эффекта нажатия */
 }
