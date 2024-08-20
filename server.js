@@ -226,6 +226,7 @@ app.post('/update-counts', (req, res) => {
 
 app.get('/get-counts', (req, res) => {
     const { id } = req.query;
+    console.log('get-counts получил запрос')
     db.get(`SELECT personal_harris_count, personal_trump_count, personal_count, favorite, contribution FROM try11 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
