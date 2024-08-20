@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'LeagueGothic';
+    src: url('../Fonts/LeagueGothic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 .stats-container {
     top: 15vh;
     height: 20vh;
@@ -6,7 +12,9 @@
 }
 .head-bar.TR {
     text-align: right;
+    font-family: 'LeagueGothic', Helvetica, sans-serif;
 }
 .head-bar.HS {
     text-align: left;
+    font-family: 'LeagueGothic', Helvetica, sans-serif;
 }

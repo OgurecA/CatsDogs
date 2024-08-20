@@ -5,8 +5,8 @@ function Energy({ energy, maxEnergy }) {
 
     return (
         <div className="energy">
-            <p>{energy}/{maxEnergy}</p>
             <p>Energy</p>
+            <p>{energy}/{maxEnergy}</p>
         </div>
     );
 }

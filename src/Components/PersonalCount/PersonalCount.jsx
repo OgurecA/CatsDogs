@@ -5,8 +5,8 @@ function PersonalCount({ name, personalCount }) {
 
     return (
         <div className="personal-count">
+            <p>{name}</p>
             <p>Score: {Math.abs(personalCount)}</p>
-            <p>Character: {name}</p>
         </div>
     );
 }
