@@ -212,9 +212,15 @@
     animation: vibrate 0.3s linear;
 }
 
+.modal-content.promo h2 {
+    color: #e0e0e0;
+    margin: 0; /* Убираем отступы сверху и снизу */
+    font-size: 22px;
+    text-shadow: 1px 1px 5px #000;
+}
 
 .modal-input {
-    width: 50%;
+    width: 60%;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -228,8 +234,8 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 18px;
-    height: 20%; /* Кнопка занимает 10% высоты модального окна */
-    width: 30%;
+    height: 25%; /* Кнопка занимает 10% высоты модального окна */
+    width: 50%;
     align-self: center; /* Центрируем кнопку по горизонтали */
     display: flex; /* Включаем Flexbox */
     justify-content: center; /* Центрируем содержимое по горизонтали */
