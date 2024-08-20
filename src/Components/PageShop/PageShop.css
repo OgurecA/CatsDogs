@@ -157,7 +157,7 @@
     z-index: 1000; /* Модальное окно поверх всего */
 }
 
-.modal-content.promo, .modal-content.donate {
+.modal-content.donate {
     background: #0B1215;
     position: relative;
     border: 1px solid #4a4a4a;
@@ -174,6 +174,26 @@
     align-items: center;
     flex-direction: column; /* Размещаем элементы вертикально */
     justify-content: space-evenly;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Глубокая тень */
+    animation: expand 0.3s ease-out;
+}
+.modal-content.promo {
+    background: #0B1215;
+    position: relative;
+    border: 1px solid #4a4a4a;
+    padding-top: 12px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 18px;
+    border-radius: 10px;
+    text-align: center;
+    width: 220px;
+    height: 180px;
+    transform: translateY(-15%);
+    display: flex;
+    align-items: center;
+    flex-direction: column; /* Размещаем элементы вертикально */
+    justify-content: space-around;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Глубокая тень */
     animation: expand 0.3s ease-out;
 }
