@@ -19,7 +19,7 @@ import PageExchange from './Components/PageExchange/PageExchange';
 
 
 import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack, Snake, Gorilla, Tiger, Elephant, Croc, Rhino,
-TigerBack, CrocBack, ElephantBack, GorillaBack, SnakeBack } from './Components/Pictures/Pictures';
+TigerBack, CrocBack, ElephantBack, GorillaBack, SnakeBack, FonTap1, FonTap2 } from './Components/Pictures/Pictures';
 
 
 function App() {
@@ -121,7 +121,7 @@ function App() {
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
                 newName = "Snake";
-                background = SnakeBack;
+                background = FonTap1;
                 break;
             case 1:
                 image = Gorilla;
@@ -131,7 +131,7 @@ function App() {
                 newTeamDMG = 5;
                 newPersonalDMG = 1;
                 newName = "Gorilla";
-                background = GorillaBack;
+                background = FonTap2;
                 break;
             case 2:
                 image = Rhino;
@@ -141,7 +141,7 @@ function App() {
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
                 newName = "Rhino";
-                background = CrocBack;
+                background = FonTap1;
                 break;
             case 3:
                 image = Elephant;
@@ -328,7 +328,7 @@ function App() {
             console.error('Error:', error);
         });
     }, 2000);
-    
+
         }
     
         return () => clearInterval(intervalId);
