@@ -156,7 +156,7 @@
 
 
 .promo-button, .donate-button {
-    background-color: rgba(0, 0, 0, 0.1); /* Цвет кнопок */
+    background-color: rgba(0, 0, 0, 0.2); /* Цвет кнопок */
     color: white;
     border: none;
     border-radius: 5px;
@@ -170,9 +170,18 @@
     display: flex;
     align-items: center; /* Центрирование текста по вертикали */
     justify-content: center; /* Центрирование текста по горизонтали */
-    box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.5), 8px 16px 24px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        4px 8px 12px rgba(0, 0, 0, 0.5),   /* Нижняя тень */
+        8px 16px 24px rgba(0, 0, 0, 0.3),  /* Более размытая нижняя тень */
+        -4px -8px 12px rgba(0, 0, 0, 0.5), /* Верхняя тень */
+        -8px -16px 24px rgba(0, 0, 0, 0.3); 
 }
 .promo-button:active, .donate-button:active {
-    box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.3); /* Меньшая тень при нажатии */
-    transform: translateY(2px); /* Сдвиг при нажатии для эффекта нажатия */
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 
+        2px 4px 6px rgba(0, 0, 0, 0.6), 
+        4px 8px 10px rgba(0, 0, 0, 0.4),
+        -2px -4px 6px rgba(0, 0, 0, 0.6), 
+        -4px -8px 10px rgba(0, 0, 0, 0.4); /* Меньшая тень при нажатии */
+    transform: translateY(3px); /* Сдвиг при нажатии для эффекта нажатия */
 }
