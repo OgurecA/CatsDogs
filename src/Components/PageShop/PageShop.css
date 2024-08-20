@@ -145,18 +145,18 @@
 
 .button-container {
     position: absolute;
-    top: 40vh;
+    top: 50vh;
     height: 10vh;
     width: 100vw;
     display: flex;
-    justify-content: space-between; /* Расположите кнопки по краям */
-    padding: 10px 0;
+    justify-content: space-evenly; /* Расположите кнопки по краям */
+    padding: 20px 0px;
     margin-top: 20px;
 }
 
 
 .promo-button, .donate-button {
-    background-color: #ff3ef9; /* Цвет кнопок */
+    background-color: transparent; /* Цвет кнопок */
     color: white;
     border: none;
     border-radius: 5px;
@@ -170,4 +170,5 @@
     display: flex;
     align-items: center; /* Центрирование текста по вертикали */
     justify-content: center; /* Центрирование текста по горизонтали */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
