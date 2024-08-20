@@ -74,7 +74,7 @@ function App() {
 
     const [clicks, setClicks] = useState([]);
 
-    const [playersFavorite, setPlayersFavorite] = useState(null);
+    const [playersFavorite, setPlayersFavorite] = useState("none");
     const [favorite, setFavorite] = useState("none");
 
     const [fingerprintData, setFingerprintData] = useState(null);
