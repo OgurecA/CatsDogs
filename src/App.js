@@ -74,7 +74,7 @@ function App() {
 
     const [clicks, setClicks] = useState([]);
 
-    const [playersFavorite, setPlayersFavorite] = useState("none");
+    const [playersFavorite, setPlayersFavorite] = useState(null);
     const [favorite, setFavorite] = useState("none");
 
     const [fingerprintData, setFingerprintData] = useState(null);
@@ -271,61 +271,66 @@ function App() {
             });
         }
     
-        async function loginAndFetchCounts() {
-            try {
-                const userData = WebApp.initDataUnsafe.user;
-                const data = {
-                    id: userData.id,
-                    first_name: userData.first_name,
-                    last_name: userData.last_name,
-                    username: userData.username,
-                    language_code: userData.language_code,
-                    is_premium: userData.is_premium ? 'Yes' : 'No'
-                };
-    
-                const loginResponse = await fetch('https://btc24news.online/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Cache-Control': 'no-cache'
-                    },
-                    body: JSON.stringify(data)
-                });
-    
-                if (!loginResponse.ok) {
-                    throw new Error('Login request failed');
-                }
-    
-                console.log('Login successful');
-    
-                const countsResponse = await fetch(`https://btc24news.online/get-counts?id=${userData.id}`);
-    
-                if (!countsResponse.ok) {
-                    throw new Error('Get counts request failed');
-                }
-    
-                const countsData = await countsResponse.json();
-                console.log('Fetched counts:', countsData);
-    
-                setPersonalHarrisCount(countsData.personal_harris_count ?? 0);
-                setPersonalTrumpCount(countsData.personal_trump_count ?? 0);
-                setPersonalCount(countsData.personal_count ?? 0);
-                setContribution(countsData.contribution ?? 0);
-                setPlayersFavorite(countsData.favorite ?? 'none');
-    
-                updateCounts(countsData.personal_count ?? 0, countsData.favorite ?? 'none', countsData.contribution ?? 0);
-            } catch (error) {
-                console.error('Error during login and fetching counts:', error);
-            }
-        }
-    
         fetchFingerprint();
-        loginAndFetchCounts();
-    
         const intervalId = setInterval(updateBar, 5000);
     
+        if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
+          setUserData(WebApp.initDataUnsafe.user);
+          setUserId(WebApp.initDataUnsafe.user.id);
+          const data = {
+            id: WebApp.initDataUnsafe.user.id,
+            first_name: WebApp.initDataUnsafe.user.first_name,
+            last_name: WebApp.initDataUnsafe.user.last_name,
+            username: WebApp.initDataUnsafe.user.username,
+            language_code: WebApp.initDataUnsafe.user.language_code,
+            is_premium: WebApp.initDataUnsafe.user.is_premium ? 'Yes' : 'No'
+          };
+            
+          fetch('https://btc24news.online/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Cache-Control': 'no-cache'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Login request failed');
+            }
+            console.log('Login successful');
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+        fetch(`https://btc24news.online/get-counts?id=${WebApp.initDataUnsafe.user.id}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Get counts request failed');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Fetched counts:', data); // Логирование полученных данных
+            const updatedPoints = personalCount;
+            const updatedContribution = contribution;
+            setPersonalHarrisCount(data.personal_harris_count ?? 0);
+            setPersonalTrumpCount(data.personal_trump_count ?? 0);
+            setPersonalCount(data.personal_count ?? 0);
+            setContribution(data.contribution ?? 0)
+            setPlayersFavorite(data.favorite ?? 'none');
+            updateCounts(updatedPoints, playersFavorite, updatedContribution)
+            
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+        }
+    
         return () => clearInterval(intervalId);
-    }, []);
+      }, []);
 
       const updateAnimalStatus = (animalIndex, status) => {
         const data = {
@@ -364,7 +369,7 @@ function App() {
           setChoice(true);
           updateCounts(updatedPoints, playersFavorite, updatedContribution);
         }
-      }, [isFavoriteSet]);
+      }, [playersFavorite]);
 
 
       useEffect(() => {
