@@ -14,8 +14,8 @@ import Gorilla from "../Photoes/Gorilla.png";
 import Rhino from "../Photoes/Rhino.png"
 import Cage from "../Photoes/Cage.png";
 
-import FonTap1 from "../Photoes/FonTap (1).jpeg"
-import FonTap2 from "../Photoes/FonTap (2).jpeg"
+import FonTap1 from "../Photoes/FonTap1.jpeg"
+import FonTap2 from "../Photoes/FonTap2.jpeg"
 
 import TigerBack from "../Photoes/TigerBack.jpg";
 import SnakeBack from "../Photoes/SnakeBack.jpg";
