@@ -304,38 +304,33 @@ function App() {
             console.error('Error:', error);
         });
 
+        fetch(`https://btc24news.online/get-counts?id=${WebApp.initDataUnsafe.user.id}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Get counts request failed');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Fetched counts:', data); // Логирование полученных данных
+            const updatedPoints = personalCount;
+            const updatedContribution = contribution;
+            setPersonalHarrisCount(data.personal_harris_count ?? 0);
+            setPersonalTrumpCount(data.personal_trump_count ?? 0);
+            setPersonalCount(data.personal_count ?? 0);
+            setContribution(data.contribution ?? 0)
+            setPlayersFavorite(data.favorite ?? 'none');
+            updateCounts(updatedPoints, playersFavorite, updatedContribution)
+            
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
         }
     
         return () => clearInterval(intervalId);
       }, []);
-
-
-      useEffect(() => {
-        fetch(`https://btc24news.online/get-counts?id=${userId}`)
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Get counts request failed');
-          }
-          return response.json();
-      })
-      .then(data => {
-          console.log('Fetched counts:', data); // Логирование полученных данных
-          const updatedPoints = personalCount;
-          const updatedContribution = contribution;
-          setPersonalHarrisCount(data.personal_harris_count ?? 0);
-          setPersonalTrumpCount(data.personal_trump_count ?? 0);
-          setPersonalCount(data.personal_count ?? 0);
-          setContribution(data.contribution ?? 0)
-          setPlayersFavorite(data.favorite ?? 'none');
-          updateCounts(updatedPoints, playersFavorite, updatedContribution)
-          
-      })
-      .catch((error) => {
-          console.error('Error:', error);
-      });
-      }, [userId]);
-
-
 
       const updateAnimalStatus = (animalIndex, status) => {
         const data = {
