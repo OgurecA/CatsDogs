@@ -25,7 +25,7 @@
     margin: 0 1vw; /* Отступы между кнопками */
     color: white;
     font-family: 'LeagueGothic', Helvetica, sans-serif;
-    font-size: 12px;
+    font-size: 20px;
     border: 1px solid #ccc;
     position: relative;
     border-radius: 10px; /* Скругляем углы кнопок */

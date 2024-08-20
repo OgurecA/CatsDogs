@@ -1,10 +1,10 @@
 /* Count.css */
 @font-face {
-    font-family: 'GTA';
-    src: url('../Fonts/GTA.ttf') format('truetype');
+    font-family: 'LeagueGothic';
+    src: url('../Fonts/LeagueGothic.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-}
+  }
 
 .count-container {
     position: absolute;
@@ -13,7 +13,7 @@
     width: 50%;
     font-size: 24px;
     top: 15px;
-    font-family: 'GTA', sans-serif;
+    font-family: 'LeagueGothic', Helvetica, sans-serif;
 }
 .count-container.TR {
     right: 3%;
