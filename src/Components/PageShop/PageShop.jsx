@@ -13,6 +13,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
 
     const [showPromoModal, setShowPromoModal] = useState(false);
     const [showDonateModal, setShowDonateModal] = useState(false);
+    
+    const [isButtonShaking, setIsButtonShaking] = useState(false);
 
     const correctPromoCode = "PROMO2024";
 
@@ -55,8 +57,10 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         // Проверяем, соответствует ли введенный код правильному промокоду
         if (promoInput === correctPromoCode) {
             alert("Промокод введен верно!");
+            setPromoInput("");
         } else {
-            alert("Неверный промокод, попробуйте еще раз.");
+            setIsShaking(true);
+            setTimeout(() => setIsShaking(false), 300);
         }
     };
 
@@ -99,7 +103,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                             onChange={handlePromoInputChange}
                             className="modal-input"
                         />
-                        <button className="modal-button promo" onClick={handlePromoSubmit}>Submit</button>
+                        <button className={`modal-button promo ${isShaking ? 'vibrate' : ''}`} onClick={handlePromoSubmit}>Submit</button>
                     </div>
                 </div>
             )}
