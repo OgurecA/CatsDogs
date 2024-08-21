@@ -3,7 +3,7 @@ import './PageShop.css';
 import DarkWolfBack from '../Photoes/FonWolfWarm1.png';
 import WolfBackCold from '../Photoes/FonWolfCold1.png';
 import PromoIceBack from '../Photoes/PromoIce.png'
-import PromoLavaBack from '../Photoes/FonZoo1.png'
+import PromoLavaBack from '../Photoes/PromoFire.jpg'
 
 const PageShop = ({ className, title, votesA, votesB, personalCount, contribution, updateCounts, setPersonalPoints }) => {
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
