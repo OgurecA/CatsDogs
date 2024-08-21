@@ -20,11 +20,18 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     const [isButtonShaking, setIsButtonShaking] = useState(false);
 
     const promoCodes = [
-        { code: "PROMO2024", points: 1000, expiry: new Date('2024-12-31') },
-        { code: "WINTER2024", points: 500, expiry: new Date('2024-08-21') },
-        { code: "SUMMER2024", points: 2000, expiry: new Date('2024-08-20') },
+        { code: "PROMO2024", points: 1000, start: new Date('2024-01-01'), expiry: new Date('2024-12-31') },
+        { code: "WINTER2024", points: 500, start: new Date('2024-01-01'), expiry: new Date('2024-02-28') },
+        { code: "SUMMER2024", points: 2000, start: new Date('2024-06-01'), expiry: new Date('2024-08-31') },
         // Добавьте больше промокодов по необходимости
     ];
+    const [usedPromoCodes, setUsedPromoCodes] = useState([]);
+
+    useEffect(() => {
+        // Загружаем использованные промокоды из локального хранилища
+        const storedUsedPromoCodes = JSON.parse(localStorage.getItem('usedPromoCodes')) || [];
+        setUsedPromoCodes(storedUsedPromoCodes);
+    }, []);
 
     const handlePromoClick = () => {
         setShowPromoModal(true);
@@ -64,15 +71,27 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         const currentDate = new Date();
 
         const matchedPromo = promoCodes.find(promo => 
-            promo.code === promoInput && promo.expiry >= currentDate
+            promo.code === promoInput && 
+            promo.start <= currentDate && 
+            promo.expiry >= currentDate
         );
         // Проверяем, соответствует ли введенный код правильному промокоду
         if (matchedPromo) {
-            const updatedPoints = personalCount + 1000;
-            setPersonalPoints(updatedPoints);
-            updateCounts(updatedPoints, playersFavorite, updatedContribution);
-            setShowPromoModal(false);
-            setPromoInput("");
+            if (usedPromoCodes.includes(matchedPromo.code)) {
+                setIsShaking(true);
+                setTimeout(() => setIsShaking(false), 300);
+                alert('Этот промокод уже был использован.');
+            } else {
+                const updatedPoints = personalCount + 1000;
+                setPersonalPoints(updatedPoints);
+                updateCounts(updatedPoints, playersFavorite, updatedContribution);
+                setShowPromoModal(false);
+                setPromoInput("");
+
+                const newUsedPromoCodes = [...usedPromoCodes, matchedPromo.code];
+                setUsedPromoCodes(newUsedPromoCodes);
+                localStorage.setItem('usedPromoCodes', JSON.stringify(newUsedPromoCodes));
+            }
         } else {
             setIsButtonShaking(true);
             setTimeout(() => setIsButtonShaking(false), 300);
