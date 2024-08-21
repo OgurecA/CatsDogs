@@ -5,7 +5,7 @@ import WolfBackCold from '../Photoes/FonWolfCold1.png';
 import PromoIceBack from '../Photoes/PromoIce.png'
 import PromoLavaBack from '../Photoes/PromoFire.jpg'
 
-const PageShop = ({ className, title, votesA, votesB, personalCount, contribution, updateCounts, setPersonalPoints }) => {
+const PageShop = ({ className, title, votesA, votesB, personalCount, contribution, updateCounts, setPersonalPoints, userId }) => {
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
     const [displayedVotesOpponent, setDisplayedVotesOpponent] = useState("Who will be your enemy?");
     const [titleName, setTitleName] = useState("none");
@@ -154,7 +154,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 <div className="modal-overlay donate" onClick={closeDonateModal}>
                     <div className="modal-content donate" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${backgroundPromoImage})` }} >
                         <h2>Donate</h2>
-                        <p>Your ID to recieve donations:</p>
+                        <p>Your ID to recieve donations: {userId}</p>
                         <input
                             type="text"
                             value={donateInputId}
