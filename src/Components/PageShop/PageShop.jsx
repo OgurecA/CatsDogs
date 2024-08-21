@@ -78,9 +78,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         // Проверяем, соответствует ли введенный код правильному промокоду
         if (matchedPromo) {
             if (usedPromoCodes.includes(matchedPromo.code)) {
-                setIsShaking(true);
-                setTimeout(() => setIsShaking(false), 300);
-                alert('Этот промокод уже был использован.');
+                setIsButtonShaking(true);
+                setTimeout(() => setIsButtonShaking(false), 300);
             } else {
                 const updatedPoints = personalCount + 1000;
                 setPersonalPoints(updatedPoints);
