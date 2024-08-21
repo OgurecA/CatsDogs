@@ -228,18 +228,26 @@ app.post('/update-counts', (req, res) => {
 app.get('/get-counts', (req, res) => {
     const { id } = req.query;
     console.log('get-counts получил запрос')
-    db.get(`SELECT personal_harris_count, personal_trump_count, personal_count, favorite, contribution FROM try12 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT personal_harris_count, personal_trump_count, personal_count, favorite, contribution, awaitingpoints FROM try12 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
         }
         if (row) {
+            const updatedPersonalCount = row.personal_count + row.awaitingpoints;
+            
+            db.run(`UPDATE try12 SET awaitingpoints = 0, personal_count = ? WHERE id = ?`, [updatedPersonalCount, id], function(err) {
+                if (err) {
+                    return res.status(500).json({ error: 'Ошибка при обновлении данных пользователя' });
+                }
 
-            res.status(200).json({
-                personal_harris_count: row.personal_harris_count,
-                personal_trump_count: row.personal_trump_count,
-                personal_count: row.personal_count,
-                favorite: row.favorite,
-                contribution: row.contribution
+                // Возвращаем обновленные данные клиенту
+                res.status(200).json({
+                    personal_harris_count: row.personal_harris_count,
+                    personal_trump_count: row.personal_trump_count,
+                    personal_count: updatedPersonalCount,
+                    favorite: row.favorite,
+                    contribution: row.contribution
+                });
             });
         } else {
             res.status(404).json({ message: 'Пользователь не найден' });
