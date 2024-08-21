@@ -131,7 +131,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 </li>
             </ul>
             <div className="button-container">
-                <button className="promo-button" onClick={handlePromoClick}>Promo</button>
+                <button className="promo-button" onClick={handlePromoClick}>Gift Code</button>
                 <button className="donate-button" onClick={handleDonateClick}>Donate</button>
             </div>
 
@@ -154,19 +154,20 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 <div className="modal-overlay donate" onClick={closeDonateModal}>
                     <div className="modal-content donate" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${backgroundPromoImage})` }} >
                         <h2>Donate</h2>
+                        <p>Your ID to recieve donations:</p>
                         <input
                             type="text"
                             value={donateInputId}
                             onChange={handleDonateInputChangeId}
                             className="modal-input"
-                            placeholder="Enter recievers ID"
+                            placeholder="Recievers ID"
                         />
                         <input
                             type="text"
                             value={donateInputAmount}
                             onChange={handleDonateInputChangeAmount}
                             className="modal-input"
-                            placeholder="Enter donation amount" 
+                            placeholder="Donation amount" 
                         />
                         <button className="modal-button donate">Submit</button>
                     </div>

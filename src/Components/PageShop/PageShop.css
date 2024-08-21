@@ -158,7 +158,9 @@
 }
 
 .modal-content.donate {
-    background: #0B1215;
+    background-size: cover; /* Изображение будет покрывать всю область */
+    background-position: center; /* Центрировать изображение */
+    background-repeat: no-repeat;
     position: relative;
     border: 1px solid #4a4a4a;
     padding-top: 12px;
@@ -167,8 +169,8 @@
     padding-bottom: 18px;
     border-radius: 10px;
     text-align: center;
-    width: 220px;
-    height: 240px;
+    width: 200px;
+    height: 260px;
     transform: translateY(-15%);
     display: flex;
     align-items: center;
@@ -177,6 +179,15 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Глубокая тень */
     animation: expand 0.3s ease-out;
 }
+.modal-content.donate p {
+    color: #e0e0e0; /* Цвет текста */
+    font-size: 16px; /* Размер шрифта */
+    margin-bottom: 10px; /* Отступ снизу */
+    text-align: center; /* Центрирование текста */
+    font-weight: 500; /* Полужирный шрифт */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Теневой эффект */
+}
+
 .modal-content.promo {
     background-size: cover; /* Изображение будет покрывать всю область */
     background-position: center; /* Центрировать изображение */
