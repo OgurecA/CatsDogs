@@ -68,10 +68,11 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         );
         // Проверяем, соответствует ли введенный код правильному промокоду
         if (matchedPromo) {
-            const updatedPoints = personalCount + matchedPromo.points;
+            const updatedPoints = personalCount + 1000;
+            setPersonalPoints(updatedPoints);
             updateCounts(updatedPoints, playersFavorite, updatedContribution);
-            closeModal(); // Закрываем модальное окно
-            setPromoInput(""); // Очищаем поле ввода
+            setShowPromoModal(false);
+            setPromoInput("");
         } else {
             setIsButtonShaking(true);
             setTimeout(() => setIsButtonShaking(false), 300);
