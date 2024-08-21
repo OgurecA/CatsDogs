@@ -59,8 +59,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             alert("Промокод введен верно!");
             setPromoInput("");
         } else {
-            setIsShaking(true);
-            setTimeout(() => setIsShaking(false), 300);
+            setIsButtonShaking(true);
+            setTimeout(() => setIsButtonShaking(false), 300);
         }
     };
 
@@ -103,7 +103,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                             onChange={handlePromoInputChange}
                             className="modal-input"
                         />
-                        <button className={`modal-button promo ${isShaking ? 'vibrate' : ''}`} onClick={handlePromoSubmit}>Submit</button>
+                        <button className={`modal-button promo ${isButtonShaking ? 'vibrate' : ''}`} onClick={handlePromoSubmit}>Submit</button>
                     </div>
                 </div>
             )}
