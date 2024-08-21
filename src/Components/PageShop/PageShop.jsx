@@ -11,6 +11,10 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     const [donateInput, setDonateInput] = useState('');
     const [backgroundImage, setBackgroundImage] = useState('');
 
+    const updatedPoints = personalCount;
+    const updatedContribution = contribution;
+    const playersFavorite = title;
+
     const [showPromoModal, setShowPromoModal] = useState(false);
     const [showDonateModal, setShowDonateModal] = useState(false);
     
@@ -50,13 +54,15 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
 
 
     const handlePromoInputChange = (event) => {
-        const input = event.target.value;
+        setPromoInput(event.target.value);
         setPromoInput(input);
     };
     const handlePromoSubmit = () => {
         // Проверяем, соответствует ли введенный код правильному промокоду
         if (promoInput === correctPromoCode) {
-            alert("Промокод введен верно!");
+            const updatedPoints = personalCount + 1000;
+            updateCounts(updatedPoints, playersFavorite, updatedContribution);
+            closeModal();
             setPromoInput("");
         } else {
             setIsButtonShaking(true);
