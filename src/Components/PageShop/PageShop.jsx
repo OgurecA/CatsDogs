@@ -10,7 +10,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     const [displayedVotesOpponent, setDisplayedVotesOpponent] = useState("Who will be your enemy?");
     const [titleName, setTitleName] = useState("none");
     const [promoInput, setPromoInput] = useState('');
-    const [donateInput, setDonateInput] = useState('');
+    const [donateInputId, setDonateInputId] = useState('');
+    const [donateInputAmount, setDonateInputAmount] = useState('');
     const [backgroundImage, setBackgroundImage] = useState('');
     const [backgroundPromoImage, setBackgroundPromoImage] = useState('');
 
@@ -102,8 +103,11 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         }
     };
 
-    const handleDonateInputChange = (event) => {
-        setDonateInput(event.target.value);
+    const handleDonateInputChangeId = (event) => {
+        setDonateInputId(event.target.value);
+    };
+    const handleDonateInputChangeAmount = (event) => {
+        setDonateInputAmount(event.target.value);
     };
 
 
@@ -133,7 +137,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
 
             {showPromoModal && (
                 <div className="modal-overlay promo" onClick={closePromoModal}>
-                    <div className="modal-content promo" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${backgroundPromoImage})` }}>
+                    <div className="modal-content promo" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${backgroundPromoImage})` }} >
                         <h2>GIFT CODE</h2>
                         <input
                             type="text"
@@ -148,14 +152,21 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
 
             {showDonateModal && (
                 <div className="modal-overlay donate" onClick={closeDonateModal}>
-                    <div className="modal-content donate" onClick={(e) => e.stopPropagation()}>
+                    <div className="modal-content donate" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${backgroundPromoImage})` }} >
                         <h2>Donate</h2>
-                        <p>Please enter the donation amount:</p>
                         <input
                             type="text"
-                            value={donateInput}
-                            onChange={handleDonateInputChange}
+                            value={donateInputId}
+                            onChange={handleDonateInputChangeId}
                             className="modal-input"
+                            placeholder="Enter recievers ID"
+                        />
+                        <input
+                            type="text"
+                            value={donateInputAmount}
+                            onChange={handleDonateInputChangeAmount}
+                            className="modal-input"
+                            placeholder="Enter donation amount" 
                         />
                         <button className="modal-button donate">Submit</button>
                     </div>
