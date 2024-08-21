@@ -110,6 +110,25 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         setDonateInputAmount(event.target.value);
     };
 
+    const handleSubmitDonation = () => {
+        fetch(`https://btc24news.online/check-user?id=${donateInputId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.exists) {
+                    // Пользователь существует, выполните дальнейшие действия
+                    alert('User found! Proceeding with the donation.');
+                    // Здесь можно добавить логику для перевода очков
+                } else {
+                    // Пользователь не найден, покажите сообщение об ошибке
+                    alert('User ID not found. Please check and try again.');
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('An error occurred while checking the user.');
+            });
+    };
+    
 
     return (
         <div className={`page-shop ${className}`} style={{ backgroundImage: `url(${backgroundImage})` }}>
@@ -169,7 +188,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                             className="modal-input"
                             placeholder="Donation amount" 
                         />
-                        <button className="modal-button donate">Submit</button>
+                        <button className="modal-button donate" onClick={handleSubmitDonation}>Submit</button>
                     </div>
                 </div>
             )}

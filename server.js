@@ -333,6 +333,22 @@ app.post('/update-animal-status', (req, res) => {
     });
 });
 
+app.get('/check-user', (req, res) => {
+    const { id } = req.query;
+    
+    db.get(`SELECT id FROM try11 WHERE id = ?`, [id], (err, row) => {
+        if (err) {
+            return res.status(500).json({ error: 'Ошибка при проверке пользователя' });
+        }
+        if (row) {
+            res.status(200).json({ exists: true });
+        } else {
+            res.status(404).json({ exists: false });
+        }
+    });
+});
+
+
 
 
 
