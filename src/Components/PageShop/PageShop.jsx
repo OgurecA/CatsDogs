@@ -111,23 +111,45 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     };
 
     const handleSubmitDonation = () => {
-        fetch(`https://btc24news.online/check-user?id=${donateInputId}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.exists) {
-                    // Пользователь существует, выполните дальнейшие действия
-                    alert('User found! Proceeding with the donation.');
-                    // Здесь можно добавить логику для перевода очков
-                } else {
-                    // Пользователь не найден, покажите сообщение об ошибке
-                    alert('User ID not found. Please check and try again.');
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert('An error occurred while checking the user.');
-            });
-    };
+    fetch(`https://btc24news.online/check-user?id=${donateInputId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.exists) {
+                // Пользователь существует, отправляем запрос на перевод доната
+                fetch('https://btc24news.online/donate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: donateInputId,
+                        amount: donateInputAmount
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message === 'Donation successful') {
+                        alert('Donation successful!');
+                        // Обновляем состояние или делаем что-то еще
+                        closeDonateModal();
+                    } else {
+                        alert('Error during donation.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('An error occurred while processing the donation.');
+                });
+            } else {
+                setIsButtonShaking(true);
+                setTimeout(() => setIsButtonShaking(false), 300);
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('An error occurred while checking the user.');
+        });
+};
     
 
     return (
@@ -188,7 +210,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                             className="modal-input"
                             placeholder="Donation amount" 
                         />
-                        <button className="modal-button donate" onClick={handleSubmitDonation}>Submit</button>
+                        <button className={`modal-button donate ${isButtonShaking ? 'vibrate' : ''}`} onClick={handleSubmitDonation}>Submit</button>
                     </div>
                 </div>
             )}
