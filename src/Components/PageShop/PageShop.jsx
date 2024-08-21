@@ -111,6 +111,17 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     };
 
     const handleSubmitDonation = () => {
+
+    const donationAmount = parseInt(donateInputAmount, 10);
+
+    // Проверяем, что сумма доната - это целое положительное число и оно не содержит букв
+    if (isNaN(donationAmount) || donationAmount <= 0 || donationAmount.toString() !== donateInputAmount.trim()) {
+        setIsButtonShaking(true);
+        setTimeout(() => setIsButtonShaking(false), 300);
+        return;
+    }
+
+
     fetch(`https://btc24news.online/check-user?id=${donateInputId}`)
         .then(response => response.json())
         .then(data => {
