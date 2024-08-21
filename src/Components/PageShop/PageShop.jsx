@@ -7,11 +7,14 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
     const [displayedVotesOpponent, setDisplayedVotesOpponent] = useState("Who will be your enemy?");
     const [titleName, setTitleName] = useState("none");
-    const [inputText, setInputText] = useState("");
+    const [promoInput, setPromoInput] = useState('');
+    const [donateInput, setDonateInput] = useState('');
     const [backgroundImage, setBackgroundImage] = useState('');
 
     const [showPromoModal, setShowPromoModal] = useState(false);
     const [showDonateModal, setShowDonateModal] = useState(false);
+
+    const correctPromoCode = "PROMO2024";
 
     const handlePromoClick = () => {
         setShowPromoModal(true);
@@ -44,8 +47,21 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     }, [title, votesA, votesB]); // Добавляем зависимости
 
 
-    const handleInputChange = (e) => {
-        setInputText(e.target.value); // Обновляем состояние inputText при изменении текста в поле ввода
+    const handlePromoInputChange = (event) => {
+        const input = event.target.value;
+        setPromoInput(input);
+    };
+    const handlePromoSubmit = () => {
+        // Проверяем, соответствует ли введенный код правильному промокоду
+        if (promoInput === correctPromoCode) {
+            alert("Промокод введен верно!");
+        } else {
+            alert("Неверный промокод, попробуйте еще раз.");
+        }
+    };
+
+    const handleDonateInputChange = (event) => {
+        setDonateInput(event.target.value);
     };
 
 
@@ -79,11 +95,11 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                         <h2>GIFT CODE</h2>
                         <input
                             type="text"
-                            value={inputText}
-                            onChange={handleInputChange}
+                            value={promoInput}
+                            onChange={handlePromoInputChange}
                             className="modal-input"
                         />
-                        <button className="modal-button promo">Submit</button>
+                        <button className="modal-button promo" onClick={handlePromoSubmit}>Submit</button>
                     </div>
                 </div>
             )}
@@ -95,8 +111,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                         <p>Please enter the donation amount:</p>
                         <input
                             type="text"
-                            value={inputText}
-                            onChange={handleInputChange}
+                            value={donateInput}
+                            onChange={handleDonateInputChange}
                             className="modal-input"
                         />
                         <button className="modal-button donate">Submit</button>
