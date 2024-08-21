@@ -90,7 +90,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 const updatedPoints = personalCount + 1000;
                 setPersonalPoints(updatedPoints);
                 updateCounts(updatedPoints, playersFavorite, updatedContribution);
-                setShowPromoModal(false);
+                closePromoModal();
                 setPromoInput("");
 
                 const newUsedPromoCodes = [...usedPromoCodes, matchedPromo.code];
@@ -120,7 +120,11 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         setTimeout(() => setIsButtonShaking(false), 300);
         return;
     }
-
+    if (donationAmount > personalCount) {
+        setIsButtonShaking(true);
+        setTimeout(() => setIsButtonShaking(false), 300);
+        return;
+    }
 
     fetch(`https://btc24news.online/check-user?id=${donateInputId}`)
         .then(response => response.json())
@@ -140,8 +144,11 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 .then(response => response.json())
                 .then(data => {
                     if (data.message === 'Donation successful') {
-                        alert('Donation successful!');
-                        // Обновляем состояние или делаем что-то еще
+                        const updatedPoints = personalCount - donateInputAmount;
+                        setPersonalPoints(updatedPoints);
+                        updateCounts(updatedPoints, playersFavorite, updatedContribution);
+                        setDonateInputId("");
+                        setDonateInputAmount("");
                         closeDonateModal();
                     } else {
                         alert('Error during donation.');
