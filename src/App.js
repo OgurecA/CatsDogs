@@ -620,7 +620,7 @@ function App() {
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} updateCheckedCount={setCheckedCount} />
             <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} playersFavorite={playersFavorite} updatedContribution={contribution} onCardSelect={handleCardSelect} personalPoints={personalCount}  setPersonalPoints={updatePersonalPoints} updateCounts={updateCounts} updateAnimalStatus={updateAnimalStatus} />
             <PageExchange className={isExchangePageVisible ? 'page-exchange' : 'page-exchange hidden'} />
-            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} title={playersFavorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} contribution={contribution} updateCounts={updateCounts} />
+            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} title={playersFavorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} contribution={contribution} updateCounts={updateCounts} setPersonalPoints={updatePersonalPoints} />
 
             <BGcontainer src={backgroundImage} />
             <PersonalCount 

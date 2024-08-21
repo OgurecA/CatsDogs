@@ -3,7 +3,7 @@ import './PageShop.css';
 import DarkWolfBack from '../Photoes/FonWolfWarm1.png';
 import WolfBackCold from '../Photoes/FonWolfCold1.png';
 
-const PageShop = ({ className, title, votesA, votesB, personalCount, contribution, updateCounts }) => {
+const PageShop = ({ className, title, votesA, votesB, personalCount, contribution, updateCounts, setPersonalPoints }) => {
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
     const [displayedVotesOpponent, setDisplayedVotesOpponent] = useState("Who will be your enemy?");
     const [titleName, setTitleName] = useState("none");
@@ -11,7 +11,6 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     const [donateInput, setDonateInput] = useState('');
     const [backgroundImage, setBackgroundImage] = useState('');
 
-    const updatedPoints = personalCount;
     const updatedContribution = contribution;
     const playersFavorite = title;
 
@@ -60,6 +59,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         // Проверяем, соответствует ли введенный код правильному промокоду
         if (promoInput === correctPromoCode) {
             const updatedPoints = personalCount + 1000;
+            setPersonalPoints(updatedPoints);
             updateCounts(updatedPoints, playersFavorite, updatedContribution);
             setShowPromoModal(false);
             setPromoInput("");
