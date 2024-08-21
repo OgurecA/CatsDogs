@@ -175,14 +175,13 @@
     display: flex;
     align-items: center;
     flex-direction: column; /* Размещаем элементы вертикально */
-    justify-content: space-evenly;
+    justify-content: space-around;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Глубокая тень */
     animation: expand 0.3s ease-out;
 }
 .modal-content.donate p {
     color: #e0e0e0; /* Цвет текста */
     font-size: 16px; /* Размер шрифта */
-    margin-bottom: 10px; /* Отступ снизу */
     text-align: center; /* Центрирование текста */
     font-weight: 500; /* Полужирный шрифт */
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Теневой эффект */
