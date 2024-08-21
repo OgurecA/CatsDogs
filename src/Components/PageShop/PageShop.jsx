@@ -3,7 +3,7 @@ import './PageShop.css';
 import DarkWolfBack from '../Photoes/FonWolfWarm1.png';
 import WolfBackCold from '../Photoes/FonWolfCold1.png';
 
-const PageShop = ({ className, title, votesA, votesB, personalCount, contribution }) => {
+const PageShop = ({ className, title, votesA, votesB, personalCount, contribution, updateCounts }) => {
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
     const [displayedVotesOpponent, setDisplayedVotesOpponent] = useState("Who will be your enemy?");
     const [titleName, setTitleName] = useState("none");
@@ -55,14 +55,13 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
 
     const handlePromoInputChange = (event) => {
         setPromoInput(event.target.value);
-        setPromoInput(input);
     };
     const handlePromoSubmit = () => {
         // Проверяем, соответствует ли введенный код правильному промокоду
         if (promoInput === correctPromoCode) {
             const updatedPoints = personalCount + 1000;
             updateCounts(updatedPoints, playersFavorite, updatedContribution);
-            closeModal();
+            setShowPromoModal(false);
             setPromoInput("");
         } else {
             setIsButtonShaking(true);
