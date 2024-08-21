@@ -19,7 +19,12 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     
     const [isButtonShaking, setIsButtonShaking] = useState(false);
 
-    const correctPromoCode = "PROMO2024";
+    const promoCodes = [
+        { code: "PROMO2024", points: 1000, expiry: new Date('2024-12-31') },
+        { code: "WINTER2024", points: 500, expiry: new Date('2024-08-21') },
+        { code: "SUMMER2024", points: 2000, expiry: new Date('2024-08-20') },
+        // Добавьте больше промокодов по необходимости
+    ];
 
     const handlePromoClick = () => {
         setShowPromoModal(true);
@@ -56,13 +61,17 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         setPromoInput(event.target.value);
     };
     const handlePromoSubmit = () => {
+        const currentDate = new Date();
+
+        const matchedPromo = promoCodes.find(promo => 
+            promo.code === promoInput && promo.expiry >= currentDate
+        );
         // Проверяем, соответствует ли введенный код правильному промокоду
-        if (promoInput === correctPromoCode) {
-            const updatedPoints = personalCount + 1000;
-            setPersonalPoints(updatedPoints);
+        if (matchedPromo) {
+            const updatedPoints = personalCount + matchedPromo.points;
             updateCounts(updatedPoints, playersFavorite, updatedContribution);
-            setShowPromoModal(false);
-            setPromoInput("");
+            closeModal(); // Закрываем модальное окно
+            setPromoInput(""); // Очищаем поле ввода
         } else {
             setIsButtonShaking(true);
             setTimeout(() => setIsButtonShaking(false), 300);
