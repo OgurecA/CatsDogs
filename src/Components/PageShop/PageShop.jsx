@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './PageShop.css';
 import DarkWolfBack from '../Photoes/FonWolfWarm1.png';
 import WolfBackCold from '../Photoes/FonWolfCold1.png';
+import PromoIceBack from '../Photoes/PromoIce.png'
+import PromoLavaBack from '../Photoes/FonZoo1.png'
 
 const PageShop = ({ className, title, votesA, votesB, personalCount, contribution, updateCounts, setPersonalPoints }) => {
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
@@ -10,6 +12,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     const [promoInput, setPromoInput] = useState('');
     const [donateInput, setDonateInput] = useState('');
     const [backgroundImage, setBackgroundImage] = useState('');
+    const [backgroundPromoImage, setBackgroundPromoImage] = useState('');
 
     const updatedContribution = contribution;
     const playersFavorite = title;
@@ -54,12 +57,14 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             setTitleName("DireWarriors");
             setDisplayedVotes(votesA);
             setDisplayedVotesOpponent(votesB);
-            setBackgroundImage(WolfBackCold)
+            setBackgroundImage(WolfBackCold);
+            setBackgroundPromoImage(PromoIceBack);
         } else if (title === 'Wild Hearts') {
             setTitleName("WildHearts");
             setDisplayedVotes(votesB);
             setDisplayedVotesOpponent(votesA);
-            setBackgroundImage(DarkWolfBack)
+            setBackgroundImage(DarkWolfBack);
+            setBackgroundPromoImage(PromoLavaBack);
         }
     }, [title, votesA, votesB]); // Добавляем зависимости
 
@@ -128,7 +133,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
 
             {showPromoModal && (
                 <div className="modal-overlay promo" onClick={closePromoModal}>
-                    <div className="modal-content promo" onClick={(e) => e.stopPropagation()}>
+                    <div className="modal-content promo" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${backgroundPromoImage})` }}>
                         <h2>GIFT CODE</h2>
                         <input
                             type="text"
