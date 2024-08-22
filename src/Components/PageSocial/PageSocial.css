@@ -35,11 +35,7 @@
     margin-top: 10px;
     padding: 10px; /* Увеличиваем внутренние отступы */
     background-color: rgba(77, 77, 77, 0.2);
-    border-image-slice: 1; 
-    border-width: 3px;
-    border-image-repeat: round;
-    border-image-source: url('../Photoes/SteelTexture.jpg'); /* Простое изображение для теста */
-    border-image-outset: 0;
+    border: 3px solid #2e2e2e;
     color: aliceblue;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -78,18 +74,7 @@
 }
 
 .social-item.checked {
-    border-image-slice: 1; 
-    border-width: 3px;
-    border-image-repeat: round;
-    border-image-source: url('../Photoes/SteelTexture.jpg'); /* Простое изображение для теста */
-    border-image-outset: 0;
-    
-    /* Текстура для текста */
-    background: url('../Photoes/SteelTexture.jpg') center/cover no-repeat;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent; /* Делаем текст прозрачным, чтобы был виден фон */
-    -webkit-text-fill-color: transparent; /* Применяем для WebKit браузеров */
+    border: 3px solid #2e2e2e;
 }
 
 .page-social.hidden {
