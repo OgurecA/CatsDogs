@@ -381,7 +381,7 @@ app.post('/donate', (req, res) => {
             console.log('Попытка вставки записи в таблицу транзакций:', { from_id: id_from, to_id: id, amount });
 
             // Сначала вставляем данные в таблицу транзакций
-            db.run(`INSERT INTO transactions (from_id, to_id, amount, date) VALUES (?, ?, ?, ?)`, 
+            db.run(`INSERT INTO donations (from_id, to_id, amount, date) VALUES (?, ?, ?, ?)`, 
                 [id_from, id, amount, new Date().toISOString()], 
                 function(err) {
                     if (err) {
