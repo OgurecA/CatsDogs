@@ -374,29 +374,28 @@ app.post('/donate', (req, res) => {
         if (row) {
             const newAwaitingPoints = row.awaitingpoints + parseInt(amount);
 
-
-            db.run(`INSERT INTO transactions (from_id, to_id, amount, date) VALUES (?, ?, ?, ?)`, 
-                    [id_from, id, amount, new Date().toISOString()], 
-                    function(err) {
-                        if (err) {
-                            return res.status(500).json({ error: 'Ошибка при записи' });
-                        }
-                    });
-
             db.run(`UPDATE try12 SET awaitingpoints = ? WHERE id = ?`, [newAwaitingPoints, id], function(err) {
                 if (err) {
                     return res.status(500).json({ error: 'Ошибка при обновлении данных пользователя' });
                 }
-                res.status(200).json({ message: 'Donation successful', newAwaitingPoints });
+
+                // После успешного обновления продолжаем с вставкой в транзакции
+                db.run(`INSERT INTO transactions (from_id, to_id, amount, date) VALUES (?, ?, ?, ?)`, 
+                    [id_from, id, amount, new Date().toISOString()], 
+                    function(err) {
+                        if (err) {
+                            return res.status(500).json({ error: 'Ошибка при записи транзакции' });
+                        }
+                        // Отправляем ответ только один раз после успешного завершения всех операций
+                        res.status(200).json({ message: 'Donation successful', newAwaitingPoints });
+                    });
             });
-
-
-            
         } else {
             res.status(404).json({ error: 'Пользователь не найден' });
         }
     });
 });
+
 
 
 
