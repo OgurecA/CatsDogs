@@ -121,9 +121,7 @@ img:active, button:active, .image-container:active {
   z-index: 1000; /* Модальное окно поверх всего */
 }
 .modal-content.add {
-  background-size: cover; /* Изображение будет покрывать всю область */
-  background-position: center; /* Центрировать изображение */
-  background-repeat: no-repeat;
+  background-color: #0C0C0C;
   position: relative;
   border: 1px solid #4a4a4a;
   padding-top: 12px;
@@ -132,9 +130,9 @@ img:active, button:active, .image-container:active {
   padding-bottom: 18px;
   border-radius: 10px;
   text-align: center;
-  width: 200px;
-  height: 260px;
-  transform: translateY(-15%);
+  width: 80vw;
+  height: 50vh;
+  transform: translateY(-10%);
   display: flex;
   align-items: center;
   flex-direction: column; /* Размещаем элементы вертикально */
