@@ -108,3 +108,71 @@ img:active, button:active, .image-container:active {
     box-shadow: none;
 }
 
+.modal-overlay.add {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7); /* Затемнение фона */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Модальное окно поверх всего */
+}
+.modal-content.add {
+  background-size: cover; /* Изображение будет покрывать всю область */
+  background-position: center; /* Центрировать изображение */
+  background-repeat: no-repeat;
+  position: relative;
+  border: 1px solid #4a4a4a;
+  padding-top: 12px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 18px;
+  border-radius: 10px;
+  text-align: center;
+  width: 200px;
+  height: 260px;
+  transform: translateY(-15%);
+  display: flex;
+  align-items: center;
+  flex-direction: column; /* Размещаем элементы вертикально */
+  justify-content: space-around;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Глубокая тень */
+  animation: expand 0.3s ease-out;
+}
+.modal-content.add h2 {
+  color: #e0e0e0;
+  margin: 0; /* Убираем отступы сверху и снизу */
+  font-size: 22px;
+  text-shadow: 1px 1px 5px #000;
+}
+.modal-content.add p {
+  color: #e0e0e0; /* Цвет текста */
+  font-size: 16px; /* Размер шрифта */
+  text-align: center; /* Центрирование текста */
+  font-weight: 500; /* Полужирный шрифт */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Теневой эффект */
+}
+.modal-content.add button {
+  background-color: transparent; /* Темная кнопка */
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  height: 20%; /* Кнопка занимает 10% высоты модального окна */
+  width: 60%;
+  align-self: center; /* Центрируем кнопку по горизонтали */
+  display: flex; /* Включаем Flexbox */
+  justify-content: center; /* Центрируем содержимое по горизонтали */
+  align-items: center; /* Центрируем содержимое по вертикали */
+  text-align: center;
+  backdrop-filter: blur(1px);
+  box-shadow: 
+      2px 4px 6px rgba(0, 0, 0, 0.4),   /* Нижняя тень */
+      4px 8px 12px rgba(0, 0, 0, 0.2),  /* Более размытая нижняя тень */
+      -2px -4px 6px rgba(0, 0, 0, 0.4), /* Верхняя тень */
+      -4px -8px 12px rgba(0, 0, 0, 0.2); 
+}
