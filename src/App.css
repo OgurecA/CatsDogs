@@ -124,7 +124,7 @@ img:active, button:active, .image-container:active {
   background-size: cover; /* Изображение будет покрывать всю область */
   background-position: center; /* Центрировать изображение */
   background-repeat: no-repeat;
-  background-image: url("./Components/Photoes/EnergyBack.jpg");
+  background-image: url("./Components/Photoes/Ziraf.png");
   position: relative;
   border: 1px solid #4a4a4a;
   padding-top: 12px;

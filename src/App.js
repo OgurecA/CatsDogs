@@ -421,7 +421,7 @@ function App() {
     
                 console.log("Time elapsed since last active (ms):", timeElapsed);
     
-                const energyRecovered = Math.floor(timeElapsed / 10000) * 1;
+                const energyRecovered = Math.floor(timeElapsed / 10000000) * 1;
     
                 console.log("Energy recovered:", energyRecovered);
     
@@ -455,7 +455,7 @@ function App() {
     
         loadEnergy();
     
-        const energyRecoveryInterval = setInterval(updateEnergy, 10000);
+        const energyRecoveryInterval = setInterval(updateEnergy, 10000000);
     
         return () => clearInterval(energyRecoveryInterval);
     }, []);
