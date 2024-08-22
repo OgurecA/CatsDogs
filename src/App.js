@@ -655,13 +655,9 @@ const getTopPlayer = (favorite) => {
 };
 
 
-function redirectToLink() {
-    window.location.href = "https://www.youtube.com/watch?v=42bqsjVWwXg&list=RD42bqsjVWwXg&index=1";
-}
-
 const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
-    const handleClick = (event) => {
+    const handleClickAdd = (event) => {
         // Отключаем кнопку
         event.preventDefault();
 
@@ -673,6 +669,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
         setTimeout(() => {
             setIsButtonDisabled(false);
             setEnergy(energy + 50);
+            closeModal();
         }, 10000);
     };
     
@@ -726,7 +723,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
                     <h2>Energy Low</h2>
                     <p>You don't have enough energy to perform this action.</p>
                     <button
-                        onClick={handleClick}
+                        onClick={handleClickAdd}
                         className="modal-button"
                         disabled={isButtonDisabled}
                         style={{
