@@ -661,8 +661,13 @@ function redirectToLink() {
 
 const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
-    const handleClick = () => {
+    const handleClick = (event) => {
         // Отключаем кнопку
+
+        window.open(event.target.href, '_blank');
+
+        event.preventDefault();
+
         setIsButtonDisabled(true);
         window.location.href = "https://www.youtube.com/watch?v=42bqsjVWwXg&list=RD42bqsjVWwXg&index=1";
 
@@ -734,7 +739,9 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
                         {isButtonDisabled ? (
                             <div className="loader"></div>
                         ) : (
-                            "restore"
+                            <a href="https://www.youtube.com/watch?v=42bqsjVWwXg&list=RD42bqsjVWwXg&index=1" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                                Open YouTube Link
+                            </a>
                         )}
                     </button>
                 </div>
