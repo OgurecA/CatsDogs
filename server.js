@@ -99,6 +99,14 @@ db.serialize(() => {
     animal11 INTEGER DEFAULT 0
 )`);
 
+db.run(`
+    CREATE TABLE IF NOT EXISTS donations (
+        from_id TEXT NOT NULL,
+        to_id TEXT NOT NULL,
+        amount INTEGER NOT NULL,
+        date TEXT NOT NULL
+    )`);
+
   });
 
 
@@ -357,7 +365,7 @@ app.get('/check-user', (req, res) => {
     });
 });
 app.post('/donate', (req, res) => {
-    const { id, amount } = req.body;
+    const { id_from, id, amount } = req.body;
 
     db.get(`SELECT awaitingpoints FROM try12 WHERE id = ?`, [id], (err, row) => {
         if (err) {
@@ -371,7 +379,19 @@ app.post('/donate', (req, res) => {
                     return res.status(500).json({ error: 'Ошибка при обновлении данных пользователя' });
                 }
                 res.status(200).json({ message: 'Donation successful', newAwaitingPoints });
+            
+            db.run(`INSERT INTO transactions (from_id, to_id, amount, date) VALUES (?, ?, ?, ?)`, 
+                    [id_from, id, amount, new Date().toISOString()], 
+                    function(err) {
+                        if (err) {
+                            return res.status(500).json({ error: 'Ошибка при записи' });
+                        }
+                        res.status(200).json({ message: 'Donation successful', newAwaitingPoints });
+                    });
             });
+
+
+            
         } else {
             res.status(404).json({ error: 'Пользователь не найден' });
         }

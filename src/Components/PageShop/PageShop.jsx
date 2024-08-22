@@ -137,6 +137,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
+                        id_from: userId,
                         id: donateInputId,
                         amount: donateInputAmount
                     })
