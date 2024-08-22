@@ -157,6 +157,7 @@ img:active, button:active, .image-container:active {
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Теневой эффект */
 }
 .modal-content.add button {
+  background-color: transparent;
   color: #fff;
   border: 1px solid #555;
   border-radius: 5px;
