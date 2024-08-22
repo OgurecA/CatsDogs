@@ -372,10 +372,13 @@ app.post('/donate', (req, res) => {
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
         }
         if (row) {
+            console.log('Попытка вставки записи в таблицу транзакций:', { from_id: id_from, to_id: id, amount });
+
             const newAwaitingPoints = row.awaitingpoints + parseInt(amount);
 
             db.run(`UPDATE try12 SET awaitingpoints = ? WHERE id = ?`, [newAwaitingPoints, id], function(err) {
                 if (err) {
+                    console.error('Ошибка при записи транзакции:', err);
                     return res.status(500).json({ error: 'Ошибка при обновлении данных пользователя' });
                 }
 
