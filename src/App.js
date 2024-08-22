@@ -654,6 +654,13 @@ const getTopPlayer = (favorite) => {
         });
 };
 
+const links = [
+    "https://www.youtube.com/watch?v=42bqsjVWwXg&list=RD42bqsjVWwXg&index=1",
+    "https://www.youtube.com/watch?v=r1rVlXi1fb0&list=RD42bqsjVWwXg&index=4",
+    "https://www.youtube.com/watch?v=NvnCJK-cJ7Y&list=RD42bqsjVWwXg&index=10",
+    "https://www.youtube.com/watch?v=-wpTY3LM5bc&list=RD42bqsjVWwXg&index=9",
+    "https://www.youtube.com/watch?v=Qxw5xNqATko&list=RD42bqsjVWwXg&index=8"
+];
 
 const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
@@ -661,7 +668,9 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
         // Отключаем кнопку
         event.preventDefault();
 
-        window.open(event.target.href, '_blank');
+        const randomLink = links[Math.floor(Math.random() * links.length)];
+
+        window.open(randomLink, '_blank', 'noopener,noreferrer');
 
 
         setIsButtonDisabled(true);
@@ -734,9 +743,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
                         {isButtonDisabled ? (
                             <div className="loader"></div>
                         ) : (
-                            <a href="https://www.youtube.com/watch?v=42bqsjVWwXg&list=RD42bqsjVWwXg&index=1" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
-                                Open YouTube Link
-                            </a>
+                            'Open Link'
                         )}
                     </button>
                 </div>
