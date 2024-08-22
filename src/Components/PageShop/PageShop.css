@@ -101,7 +101,7 @@
 
 .button-container {
     position: absolute;
-    bottom: 25vh;
+    bottom: 20vh;
     height: 10vh;
     width: 100vw;
     display: flex;
@@ -248,7 +248,7 @@
 }
 
 .modal-button.promo {
-    background-color: #333; /* Темная кнопка */
+    background-color: transparent; /* Темная кнопка */
     color: #fff;
     border: 1px solid #555;
     border-radius: 5px;
@@ -261,9 +261,16 @@
     justify-content: center; /* Центрируем содержимое по горизонтали */
     align-items: center; /* Центрируем содержимое по вертикали */
     text-align: center;
+    backdrop-filter: blur(1px);
+    box-shadow: 
+        4px 8px 12px rgba(0, 0, 0, 0.5),   /* Нижняя тень */
+        8px 16px 24px rgba(0, 0, 0, 0.3),  /* Более размытая нижняя тень */
+        -4px -8px 12px rgba(0, 0, 0, 0.5), /* Верхняя тень */
+        -8px -16px 24px rgba(0, 0, 0, 0.3); 
 }
+
 .modal-button.donate {
-    background-color: #333; /* Темная кнопка */
+    background-color: transparent; /* Темная кнопка */
     color: #fff;
     border: 1px solid #555;
     border-radius: 5px;
@@ -276,4 +283,10 @@
     justify-content: center; /* Центрируем содержимое по горизонтали */
     align-items: center; /* Центрируем содержимое по вертикали */
     text-align: center;
+    backdrop-filter: blur(1px);
+    box-shadow: 
+        4px 8px 12px rgba(0, 0, 0, 0.5),   /* Нижняя тень */
+        8px 16px 24px rgba(0, 0, 0, 0.3),  /* Более размытая нижняя тень */
+        -4px -8px 12px rgba(0, 0, 0, 0.5), /* Верхняя тень */
+        -8px -16px 24px rgba(0, 0, 0, 0.3); 
 }

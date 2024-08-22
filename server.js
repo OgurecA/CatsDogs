@@ -50,7 +50,7 @@ db.serialize(() => {
     // Добавление начальных данных
     db.run(`INSERT OR IGNORE INTO total_votes (candidate, votes) VALUES ('Trump', 0), ('Harris', 0)`);
   
-    db.run(`CREATE TABLE IF NOT EXISTS try13 (
+    db.run(`CREATE TABLE IF NOT EXISTS try14 (
         id INTEGER,
         first_name TEXT,
         last_name TEXT,
@@ -63,6 +63,7 @@ db.serialize(() => {
         personal_count INTEGER DEFAULT 0,
         personal_harris_count INTEGER DEFAULT 0,
         personal_trump_count INTEGER DEFAULT 0,
+        count_summ INTEGER DEFAULT 0,
         best_summ INTEGER DEFAULT 0,
         favorite TEXT DEFAULT 'none',
         contribution INTEGER DEFAULT 0,
@@ -181,14 +182,14 @@ app.post('/login', async (req) => {
     const processedLastName = last_name || '';
     const processedUsername = username || '';
 
-    db.get(`SELECT * FROM try13 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT * FROM try14 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return console.error('Error fetching data', err.message);
         }
 
         if (row) {
             // Если пользователь существует, обновляем его данные
-            db.run(`UPDATE try13 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ?, city = ?, country = ?, ip = ? WHERE id = ?`, 
+            db.run(`UPDATE try14 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ?, city = ?, country = ?, ip = ? WHERE id = ?`, 
                         [first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip, id], 
                         function(err) {
                 if (err) {
@@ -198,7 +199,7 @@ app.post('/login', async (req) => {
             });
         } else {
             // Если пользователь не существует, вставляем новую запись
-            db.run(`INSERT INTO try13 (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count, best_summ, favorite, contribution, awaitingpoints, animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11)
+            db.run(`INSERT INTO try14 (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count, best_summ, favorite, contribution, awaitingpoints, animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11)
                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, 0, 'none', 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)`, 
                          [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip], 
                          function(err) {
@@ -212,7 +213,7 @@ app.post('/login', async (req) => {
 });
 
 app.post('/update-counts', (req, res) => {
-    const { id, personal_count, personal_harris_count, personal_trump_count, favorite, contribution } = req.body;
+    const { id, personal_count, personal_harris_count, personal_trump_count, favorite, contribution, count_summ } = req.body;
 
     console.log('Получены данные для обновления:', {
         id,
@@ -220,11 +221,12 @@ app.post('/update-counts', (req, res) => {
         personal_harris_count,
         personal_trump_count,
         favorite,
-        contribution
+        contribution,
+        count_summ
     });
 
-    db.run(`UPDATE try13 SET personal_count = ?, personal_harris_count = ?, personal_trump_count = ?, favorite = ?, contribution = ? WHERE id = ?`, 
-                [personal_count, personal_harris_count, personal_trump_count, favorite, contribution, id], 
+    db.run(`UPDATE try14 SET personal_count = ?, personal_harris_count = ?, personal_trump_count = ?, favorite = ?, contribution = ?, count_summ = ? WHERE id = ?`, 
+                [personal_count, personal_harris_count, personal_trump_count, favorite, contribution, count_summ, id], 
                 function(err) {
         if (err) {
             return console.error('Error updating counts', err.message);
@@ -237,15 +239,16 @@ app.post('/update-counts', (req, res) => {
 app.get('/get-counts', (req, res) => {
     const { id } = req.query;
     console.log('get-counts получил запрос')
-    db.get(`SELECT personal_harris_count, personal_trump_count, personal_count, favorite, contribution, awaitingpoints FROM try13 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT personal_harris_count, personal_trump_count, count_summ, personal_count, favorite, contribution, awaitingpoints FROM try14 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
         }
         if (row) {
             const updatedPersonalCount = row.personal_count + row.awaitingpoints;
-            const bestSumm = updatedPersonalCount + row.contribution;
+            const updatedCountSumm = row.count_summ + row.awaitingpoints;
+            const bestSumm = updatedCountSumm + row.contribution;
             
-            db.run(`UPDATE try13 SET awaitingpoints = 0, personal_count = ?, best_summ = ? WHERE id = ?`, [updatedPersonalCount, bestSumm, id], function(err) {
+            db.run(`UPDATE try14 SET awaitingpoints = 0, personal_count = ?, count_summ = ?, best_summ = ? WHERE id = ?`, [updatedPersonalCount, updatedCountSumm, bestSumm, id], function(err) {
                 if (err) {
                     return res.status(500).json({ error: 'Ошибка при обновлении данных пользователя' });
                 }            
@@ -256,7 +259,8 @@ app.get('/get-counts', (req, res) => {
                     personal_trump_count: row.personal_trump_count,
                     personal_count: updatedPersonalCount,
                     favorite: row.favorite,
-                    contribution: row.contribution
+                    contribution: row.contribution,
+                    count_summ: row.count_summ
                 });
             });
         } else {
@@ -268,7 +272,7 @@ app.get('/get-counts', (req, res) => {
 app.get('/get-top-player', (req, res) => {
     const { favorite } = req.query;
 
-    db.get(`SELECT first_name, username, best_summ FROM try13 WHERE favorite = ? ORDER BY best_summ DESC LIMIT 1`, [favorite], (err, row) => {
+    db.get(`SELECT first_name, username, best_summ FROM try14 WHERE favorite = ? ORDER BY best_summ DESC LIMIT 1`, [favorite], (err, row) => {
         if (err) {
             return res.status(500).json({ error: 'Ошибка при получении данных' });
         }
@@ -303,7 +307,7 @@ app.post('/api/save-fingerprint', (req, res) => {
     console.log('Screen Resolution:', screenResolution);
     console.log('Device:', device);
   
-    db.run(`UPDATE try13 SET visitor_id = ?, screen_resolution = ?, device = ?, raw_data = ? WHERE id = ?`,
+    db.run(`UPDATE try14 SET visitor_id = ?, screen_resolution = ?, device = ?, raw_data = ? WHERE id = ?`,
       [visitorId, screenResolution, device, rawData, id],
       function(err) {
         if (err) {
@@ -350,7 +354,7 @@ app.post('/update-animal-status', (req, res) => {
 
     // Формируем правильное название колонки на основе переданного индекса
     const columnName = `animal${animalIndex}`;
-    const userUpdateQuery = `UPDATE try13 SET ${columnName} = ? WHERE id = ?`;
+    const userUpdateQuery = `UPDATE try14 SET ${columnName} = ? WHERE id = ?`;
     const amountUpdateQuery = `UPDATE animalamount SET ${columnName} = ${columnName} + 1`;
 
     // Обновляем статус животного в таблице пользователя
@@ -375,7 +379,7 @@ app.post('/update-animal-status', (req, res) => {
 app.get('/check-user', (req, res) => {
     const { id } = req.query;
     
-    db.get(`SELECT id FROM try13 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT id FROM try14 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return res.status(500).json({ error: 'Ошибка при проверке пользователя' });
         }
@@ -389,7 +393,7 @@ app.get('/check-user', (req, res) => {
 app.post('/donate', (req, res) => {
     const { id_from, id, amount } = req.body;
 
-    db.get(`SELECT awaitingpoints FROM try13 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT awaitingpoints FROM try14 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             console.error('Ошибка при получении данных пользователя:', err);
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
@@ -408,7 +412,7 @@ app.post('/donate', (req, res) => {
 
                     // Если транзакция успешно записана, обновляем awaitingpoints
                     console.log('Попытка обновления awaitingpoints для пользователя с id:', id);
-                    db.run(`UPDATE try13 SET awaitingpoints = ? WHERE id = ?`, [newAwaitingPoints, id], function(err) {
+                    db.run(`UPDATE try14 SET awaitingpoints = ? WHERE id = ?`, [newAwaitingPoints, id], function(err) {
                         if (err) {
                             console.error('Ошибка при обновлении данных пользователя:', err);
                             return res.status(500).json({ error: 'Ошибка при обновлении данных пользователя' });

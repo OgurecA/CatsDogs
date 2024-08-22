@@ -70,6 +70,8 @@ function App() {
 
     const [userData, setUserData] = useState(null);
 
+    const [countSumm, setCountSumm] = useState(0);
+
     const [choice, setChoice] = useState(false);
 
     const [checkedCount, setCheckedCount] = useState(0);
@@ -318,6 +320,7 @@ function App() {
             console.log('Fetched counts:', data); // Логирование полученных данных
             const updatedPoints = personalCount;
             const updatedContribution = contribution;
+            setCountSumm(data.count_summ ?? 0);
             setPersonalHarrisCount(data.personal_harris_count ?? 0);
             setPersonalTrumpCount(data.personal_trump_count ?? 0);
             setPersonalCount(data.personal_count ?? 0);
@@ -508,6 +511,7 @@ function App() {
 
                 setPersonalTrumpCount(personalTrumpCount + personalDMG);
                 setContribution(contribution + teamDMG);
+                setCountSumm(countSumm + personalDMG);
                 
                 setPersonalCount(personalCount + personalDMG);
                 const updatedPoints = (personalCount + personalDMG);
@@ -535,6 +539,7 @@ function App() {
             
                 setPersonalHarrisCount(personalHarrisCount + personalDMG);
                 setContribution(contribution + teamDMG);
+                setCountSumm(countSumm + personalDMG);
 
                 setPersonalCount(personalCount + personalDMG);
                 const updatedPoints = (personalCount + personalDMG);
@@ -574,7 +579,8 @@ function App() {
             personal_harris_count: personalHarrisCount,
             personal_trump_count: personalTrumpCount,
             favorite: playersFavorite,
-            contribution: updatedContribution
+            contribution: updatedContribution,
+            count_summ: countSumm
         };
 
         fetch('https://btc24news.online/update-counts', {

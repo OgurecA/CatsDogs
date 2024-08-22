@@ -219,7 +219,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             {showDonateModal && (
                 <div className="modal-overlay donate" onClick={closeDonateModal}>
                     <div className="modal-content donate" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${backgroundPromoImage})` }} >
-                        <h2>Donate</h2>
+                        <h2>DONATE</h2>
                         <p>Your ID to recieve donations: {userId}</p>
                         <input
                             type="text"
