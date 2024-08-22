@@ -90,6 +90,9 @@ function App() {
     const [displayedImageA, setDisplayedImageA] = useState(HarrisImg);
     const [displayedImageB, setDisplayedImageB] = useState(TrumpImg);
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+
     // Восстанавливаем данные из локального хранилища при загрузке приложения
     useEffect(() => {
         const savedIndex = localStorage.getItem('selectedCardIndex');
@@ -237,6 +240,13 @@ function App() {
           }
     };
 
+    function modalAdd() {
+        setIsModalOpen(true);
+    }
+    function closeModal() {
+        setIsModalOpen(false);
+    }
+        
 
     useEffect(() => {
         WebApp.setHeaderColor('#0C0C0C');
@@ -517,6 +527,10 @@ function App() {
                 setEnergy(energy - energyTake);
                 updateCounts(updatedPoints, playersFavorite, updatedContribution);
             }
+            else {
+                // Если условия не выполняются, вызываем modalAdd
+                modalAdd(); // Вызов вашей функции для отображения модального окна
+            }
         }  
     }
 
@@ -543,6 +557,10 @@ function App() {
                 handleVote('Harris', teamDMG);
                 setEnergy(energy - energyTake);
                 updateCounts(updatedPoints, playersFavorite, updatedContribution);
+            }
+            else {
+                // Если условия не выполняются, вызываем modalAdd
+                modalAdd(); // Вызов вашей функции для отображения модального окна
             }
         }
     }
@@ -684,6 +702,15 @@ const getTopPlayer = (favorite) => {
                 isSelectedHarris={isSelectedHarris}
                 isSelectedTrump={isSelectedTrump}
             />
+            {isModalOpen && (
+                <div className="modal-overlay add" onClick={closeModal}>
+                <div className="modal-content add" onClick={(e) => e.stopPropagation()}>
+                    <h2>Energy Low</h2>
+                    <p>You don't have enough energy to perform this action.</p>
+                    <button onClick={closeModal}>Close</button>
+                </div>
+                </div>
+            )}
 
             {clicks.map((click) => (
                 <div

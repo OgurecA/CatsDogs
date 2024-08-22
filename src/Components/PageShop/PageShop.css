@@ -263,10 +263,10 @@
     text-align: center;
     backdrop-filter: blur(1px);
     box-shadow: 
-        4px 8px 12px rgba(0, 0, 0, 0.5),   /* Нижняя тень */
-        8px 16px 24px rgba(0, 0, 0, 0.3),  /* Более размытая нижняя тень */
-        -4px -8px 12px rgba(0, 0, 0, 0.5), /* Верхняя тень */
-        -8px -16px 24px rgba(0, 0, 0, 0.3); 
+        2px 4px 6px rgba(0, 0, 0, 0.4),   /* Нижняя тень */
+        4px 8px 12px rgba(0, 0, 0, 0.2),  /* Более размытая нижняя тень */
+        -2px -4px 6px rgba(0, 0, 0, 0.4), /* Верхняя тень */
+        -4px -8px 12px rgba(0, 0, 0, 0.2); 
 }
 
 .modal-button.donate {
@@ -285,8 +285,8 @@
     text-align: center;
     backdrop-filter: blur(1px);
     box-shadow: 
-        4px 8px 12px rgba(0, 0, 0, 0.5),   /* Нижняя тень */
-        8px 16px 24px rgba(0, 0, 0, 0.3),  /* Более размытая нижняя тень */
-        -4px -8px 12px rgba(0, 0, 0, 0.5), /* Верхняя тень */
-        -8px -16px 24px rgba(0, 0, 0, 0.3); 
+        2px 4px 6px rgba(0, 0, 0, 0.4),   /* Нижняя тень */
+        4px 8px 12px rgba(0, 0, 0, 0.2),  /* Более размытая нижняя тень */
+        -2px -4px 6px rgba(0, 0, 0, 0.4), /* Верхняя тень */
+        -4px -8px 12px rgba(0, 0, 0, 0.2); 
 }
