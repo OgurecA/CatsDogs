@@ -729,7 +729,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
             {isModalOpen && (
                 <div className="modal-overlay add" onClick={closeModal}>
                 <div className="modal-content add" onClick={(e) => e.stopPropagation()}>
-                    <h2>Energy Low</h2>
+                    <h2>Your Energy Is Low!</h2>
                     <p>You don't have enough energy to perform this action.</p>
                     <button
                         onClick={handleClickAdd}
@@ -743,7 +743,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
                         {isButtonDisabled ? (
                             <div className="loader"></div>
                         ) : (
-                            'Open Link'
+                            'Restore'
                         )}
                     </button>
                 </div>

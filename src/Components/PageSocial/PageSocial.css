@@ -35,7 +35,11 @@
     margin-top: 10px;
     padding: 10px; /* Увеличиваем внутренние отступы */
     background-color: rgba(77, 77, 77, 0.2);
-    border: 3px solid #2e2e2e;
+    border-image-slice: 1; 
+    border-width: 3px;
+    border-image-repeat: round;
+    border-image-source: url('../Photoes/SteelTexture.jpg'); /* Простое изображение для теста */
+    border-image-outset: 0;
     color: aliceblue;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

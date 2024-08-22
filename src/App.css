@@ -121,7 +121,7 @@ img:active, button:active, .image-container:active {
   z-index: 1000; /* Модальное окно поверх всего */
 }
 .modal-content.add {
-  background-color: #0C0C0C;
+  background-image: url("./Components/Photoes/Ящик.jpeg");
   position: relative;
   border: 1px solid #4a4a4a;
   padding-top: 12px;
@@ -130,7 +130,7 @@ img:active, button:active, .image-container:active {
   padding-bottom: 18px;
   border-radius: 10px;
   text-align: center;
-  width: 70vw;
+  width: 60vw;
   height: 50vh;
   transform: translateY(-10%);
   display: flex;
