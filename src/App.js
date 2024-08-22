@@ -663,14 +663,12 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
     const handleClick = (event) => {
         // Отключаем кнопку
+        event.preventDefault();
 
         window.open(event.target.href, '_blank');
 
-        event.preventDefault();
 
         setIsButtonDisabled(true);
-        window.location.href = "https://www.youtube.com/watch?v=42bqsjVWwXg&list=RD42bqsjVWwXg&index=1";
-
         // Запускаем таймер на 30 секунд
         setTimeout(() => {
             setIsButtonDisabled(false);
