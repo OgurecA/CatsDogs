@@ -65,6 +65,8 @@ function App() {
     const [teamDMG, setTeamDMG] = useState(1);
 
     const [name, setName] = useState("none");
+    const [topPlayerUserName, setTopPlayerUserName] = useState("none");
+    const [topPlayerName, setTopPlayerName] = useState("none");
 
     const [userData, setUserData] = useState(null);
 
@@ -364,12 +366,14 @@ function App() {
           handleClickHarrisB();
           setChoice(true);
           updateCounts(updatedPoints, playersFavorite, updatedContribution);
+          getTopPlayer('Dire Warriors');
         } else if (playersFavorite === 'Wild Hearts') {
           const updatedPoints = personalCount;
           const updatedContribution = contribution;
           handleClickTrumpB();
           setChoice(true);
           updateCounts(updatedPoints, playersFavorite, updatedContribution);
+          getTopPlayer('Wild Hearts');
         }
       }, [playersFavorite]);
 
@@ -609,6 +613,32 @@ function App() {
     }
 
 
+    // Функция для получения самого сильного игрока
+const getTopPlayer = (favorite) => {
+    fetch(`https://btc24news.online/get-top-player?favorite=${favorite}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch top player');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.message === 'Игрок не найден') {
+                console.log('Player not found');
+            } else {
+                // Пример: обновление элемента на странице
+                setTopPlayerName(data.first_name);
+                setTopPlayerUserName(data.username);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching top player:', error);
+        });
+};
+
+
+
+
     
 
   return (
@@ -620,7 +650,7 @@ function App() {
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} updateCheckedCount={setCheckedCount} />
             <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} playersFavorite={playersFavorite} updatedContribution={contribution} onCardSelect={handleCardSelect} personalPoints={personalCount}  setPersonalPoints={updatePersonalPoints} updateCounts={updateCounts} updateAnimalStatus={updateAnimalStatus} />
             <PageExchange className={isExchangePageVisible ? 'page-exchange' : 'page-exchange hidden'} />
-            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} userId={userId} title={playersFavorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} contribution={contribution} updateCounts={updateCounts} setPersonalPoints={updatePersonalPoints} />
+            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} userId={userId} title={playersFavorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} contribution={contribution} updateCounts={updateCounts} setPersonalPoints={updatePersonalPoints} topPlayerName={topPlayerName} topPlayerUserName={topPlayerUserName} />
 
             <BGcontainer src={backgroundImage} />
             <PersonalCount 

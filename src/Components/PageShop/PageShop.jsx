@@ -5,7 +5,7 @@ import WolfBackCold from '../Photoes/FonWolfCold1.png';
 import PromoIceBack from '../Photoes/PromoIce.png'
 import PromoLavaBack from '../Photoes/PromoFire.jpg'
 
-const PageShop = ({ className, title, votesA, votesB, personalCount, contribution, updateCounts, setPersonalPoints, userId }) => {
+const PageShop = ({ className, title, votesA, votesB, personalCount, contribution, updateCounts, setPersonalPoints, userId, topPlayerName, topPlayerUserName }) => {
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
     const [displayedVotesOpponent, setDisplayedVotesOpponent] = useState("Who will be your enemy?");
     const [titleName, setTitleName] = useState("none");
@@ -14,6 +14,9 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     const [donateInputAmount, setDonateInputAmount] = useState('');
     const [backgroundImage, setBackgroundImage] = useState('');
     const [backgroundPromoImage, setBackgroundPromoImage] = useState('');
+    
+    const displayedTopName = topPlayerUserName && topPlayerUserName.trim() !== "" ? topPlayerUserName : topPlayerName;
+
 
     const updatedContribution = contribution;
     const playersFavorite = title;
@@ -188,6 +191,9 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 </li>
                 <li className="list-item">
                     Contribution: {contribution}
+                </li>
+                <li className="list-item">
+                    Alpha Predator: {displayedTopName}
                 </li>
             </ul>
             <div className="button-container">
