@@ -101,7 +101,7 @@
 
 .button-container {
     position: absolute;
-    top: 50vh;
+    bottom: 25vh;
     height: 10vh;
     width: 100vw;
     display: flex;
@@ -230,6 +230,12 @@
     font-size: 22px;
     text-shadow: 1px 1px 5px #000;
 }
+.modal-content.donate h2 {
+    color: #e0e0e0;
+    margin: 0; /* Убираем отступы сверху и снизу */
+    font-size: 22px;
+    text-shadow: 1px 1px 5px #000;
+}
 
 .modal-input {
     width: 60%;
@@ -248,8 +254,8 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 18px;
-    height: 25%; /* Кнопка занимает 10% высоты модального окна */
-    width: 50%;
+    height: 20%; /* Кнопка занимает 10% высоты модального окна */
+    width: 60%;
     align-self: center; /* Центрируем кнопку по горизонтали */
     display: flex; /* Включаем Flexbox */
     justify-content: center; /* Центрируем содержимое по горизонтали */
