@@ -173,3 +173,22 @@ img:active, button:active, .image-container:active {
       -2px -4px 6px rgba(0, 0, 0, 0.4), /* Верхняя тень */
       -4px -8px 12px rgba(0, 0, 0, 0.2); 
 }
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #000;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+

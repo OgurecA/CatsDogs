@@ -668,7 +668,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
         // Запускаем таймер на 30 секунд
         setTimeout(() => {
             setIsButtonDisabled(false);
-        }, 30000);
+        }, 10000);
     };
 
   return (
@@ -719,11 +719,20 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
                 <div className="modal-content add" onClick={(e) => e.stopPropagation()}>
                     <h2>Energy Low</h2>
                     <p>You don't have enough energy to perform this action.</p>
-                    <button 
+                    <button
                         onClick={handleClick}
+                        className="modal-button"
                         disabled={isButtonDisabled}
-                        style={{backgroundColor: isButtonDisabled ? '#d3d3d3' : '#ff3ef9'}}>
-                        Restore
+                        style={{
+                            backgroundColor: isButtonDisabled ? '#d3d3d3' : '#ff3ef9',    // Изменение курсора
+                            position: 'relative', // Для центровки анимации
+                        }}
+                    >
+                        {isButtonDisabled ? (
+                            <div className="loader"></div>
+                        ) : (
+                            "restore"
+                        )}
                     </button>
                 </div>
                 </div>
