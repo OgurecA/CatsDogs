@@ -124,7 +124,7 @@ img:active, button:active, .image-container:active {
   background-size: cover; /* Изображение будет покрывать всю область */
   background-position: center; /* Центрировать изображение */
   background-repeat: no-repeat;
-  background-image: url("./Components/Photoes/Ящик.jpeg");
+  background-image: url("./Components/Photoes/EnergyBack.jpg");
   position: relative;
   border: 1px solid #4a4a4a;
   padding-top: 12px;
@@ -162,8 +162,8 @@ img:active, button:active, .image-container:active {
   border-radius: 5px;
   cursor: pointer;
   font-size: 18px;
-  height: 20%; /* Кнопка занимает 10% высоты модального окна */
-  width: 60%;
+  height: 52px; /* Кнопка занимает 10% высоты модального окна */
+  width: 120px;
   align-self: center; /* Центрируем кнопку по горизонтали */
   display: flex; /* Включаем Flexbox */
   justify-content: center; /* Центрируем содержимое по горизонтали */

@@ -736,7 +736,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
                         className="modal-button"
                         disabled={isButtonDisabled}
                         style={{
-                            backgroundColor: isButtonDisabled ? '#d3d3d3' : '#ff3ef9',    // Изменение курсора
+                            backgroundColor: isButtonDisabled ? '#d3d3d3' : '#d1aa3f',    // Изменение курсора
                             position: 'relative', // Для центровки анимации
                         }}
                     >
