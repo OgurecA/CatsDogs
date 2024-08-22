@@ -367,33 +367,45 @@ app.get('/check-user', (req, res) => {
 app.post('/donate', (req, res) => {
     const { id_from, id, amount } = req.body;
 
+    console.log('Получен запрос на донат:', { id_from, id, amount });
+
     db.get(`SELECT awaitingpoints FROM try12 WHERE id = ?`, [id], (err, row) => {
         if (err) {
+            console.error('Ошибка при получении данных пользователя:', err);
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
         }
         if (row) {
-            console.log('Попытка вставки записи в таблицу транзакций:', { from_id: id_from, to_id: id, amount });
-
+            console.log('Текущие данные пользователя получены:', row);
             const newAwaitingPoints = row.awaitingpoints + parseInt(amount);
 
-            db.run(`UPDATE try12 SET awaitingpoints = ? WHERE id = ?`, [newAwaitingPoints, id], function(err) {
-                if (err) {
-                    console.error('Ошибка при записи транзакции:', err);
-                    return res.status(500).json({ error: 'Ошибка при обновлении данных пользователя' });
-                }
+            console.log('Попытка вставки записи в таблицу транзакций:', { from_id: id_from, to_id: id, amount });
 
-                // После успешного обновления продолжаем с вставкой в транзакции
-                db.run(`INSERT INTO transactions (from_id, to_id, amount, date) VALUES (?, ?, ?, ?)`, 
-                    [id_from, id, amount, new Date().toISOString()], 
-                    function(err) {
+            // Сначала вставляем данные в таблицу транзакций
+            db.run(`INSERT INTO transactions (from_id, to_id, amount, date) VALUES (?, ?, ?, ?)`, 
+                [id_from, id, amount, new Date().toISOString()], 
+                function(err) {
+                    if (err) {
+                        console.error('Ошибка при записи транзакции:', err);
+                        return res.status(500).json({ error: 'Ошибка при записи транзакции' });
+                    }
+
+                    console.log('Транзакция успешно записана.');
+
+                    // Если транзакция успешно записана, обновляем awaitingpoints
+                    console.log('Попытка обновления awaitingpoints для пользователя с id:', id);
+                    db.run(`UPDATE try12 SET awaitingpoints = ? WHERE id = ?`, [newAwaitingPoints, id], function(err) {
                         if (err) {
-                            return res.status(500).json({ error: 'Ошибка при записи транзакции' });
+                            console.error('Ошибка при обновлении данных пользователя:', err);
+                            return res.status(500).json({ error: 'Ошибка при обновлении данных пользователя' });
                         }
-                        // Отправляем ответ только один раз после успешного завершения всех операций
+                        console.log('awaitingpoints успешно обновлены для пользователя с id:', id);
+                        // Отправляем успешный ответ только после успешного завершения всех операций
                         res.status(200).json({ message: 'Donation successful', newAwaitingPoints });
                     });
-            });
+                }
+            );
         } else {
+            console.warn('Пользователь не найден:', id);
             res.status(404).json({ error: 'Пользователь не найден' });
         }
     });
