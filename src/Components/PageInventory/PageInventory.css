@@ -121,8 +121,8 @@
     flex-direction: column; /* Размещаем элементы вертикально */
     justify-content: space-evenly;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.9); /* Глубокая тень */
-    animation: expand 0.5s ease-out, slightShake 3s infinite linear;
-    animation-delay: 0s, 0.5s;
+    animation: expand 0.8s ease-out, slightShake 3s infinite linear;
+    animation-delay: 0s, 0.8s;
 }
 @keyframes slightShake {
     0%, 100% { 
@@ -237,7 +237,7 @@
     flex-direction: column; /* Размещаем элементы вертикально */
     justify-content: space-evenly;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Глубокая тень */
-    animation: expand 0.5s ease-out;
+    animation: expand 0.8s ease-out;
 }
 @keyframes expand {
     0% { transform: translateY(0%) scale(0.8); opacity: 0.5; }
