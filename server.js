@@ -426,6 +426,27 @@ app.post('/donate', (req, res) => {
     });
 });
 
+app.post('/add-points-promo-id', (req, res) => {
+    const { id, points } = req.body;
+
+    db.get(`SELECT awaitingpoints FROM try15 WHERE id = ?`, [id], (err, row) => {
+        if (err) {
+            return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
+        }
+        if (row) {
+            const newPersonalCount = row.awaitingpoints + parseInt(points);
+
+            db.run(`UPDATE try15 SET awaitingpoints = ? WHERE id = ?`, [newPersonalCount, id], function(err) {
+                if (err) {
+                    return res.status(500).json({ error: 'Ошибка при обновлении данных пользователя' });
+                }
+                res.status(200).json({ message: 'Points added successfully', newPersonalCount });
+            });
+        } else {
+            res.status(404).json({ error: 'Пользователь не найден' });
+        }
+    });
+});
 
 
 

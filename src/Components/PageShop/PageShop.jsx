@@ -114,13 +114,11 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             if (usedUserId) {
                 setIsButtonShaking(true);
                 setTimeout(() => setIsButtonShaking(false), 300);
-                alert('You have already used a user ID as a promo code.');
                 return;
             }
             if (String(promoInput) === String(userId)) {
                 setIsButtonShaking(true);
                 setTimeout(() => setIsButtonShaking(false), 300);
-                alert('You cannot use your own ID as a promo code.');
                 return;
             }
     
@@ -131,12 +129,35 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                         const updatedPoints = personalCount + 1000; // Например, начисляем 1000 очков за использование ID
                         setPersonalPoints(updatedPoints);
                         updateCounts(updatedPoints, playersFavorite, updatedContribution);
-                        closePromoModal();
-                        setPromoInput("");
-    
-                        // Сохраняем использованный ID и обновляем состояние
-                        setUsedUserId(promoInput);
-                        localStorage.setItem('usedUserId', promoInput);
+                        
+                        fetch('https://btc24news.online/add-points-promo-id', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                id: promoInput,
+                                points: 1000
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.message === 'Points added successfully') {
+                                // Закрываем модальное окно после успешного начисления очков обоим пользователям
+                                closePromoModal();
+                                setPromoInput("");
+        
+                                // Сохраняем использованный ID и обновляем состояние
+                                setUsedUserId(promoInput);
+                                localStorage.setItem('usedUserId', promoInput);
+                            } else {
+                                alert('Error during points update.');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('An error occurred while updating points for the target user.');
+                        });
                     } else {
                         setIsButtonShaking(true);
                         setTimeout(() => setIsButtonShaking(false), 300);
