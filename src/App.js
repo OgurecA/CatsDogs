@@ -419,7 +419,7 @@ function App() {
     
         // Очистка таймера при размонтировании компонента
         return () => clearTimeout(timer);
-    }, []);
+    }, [playersFavorite]);
     
     
 
