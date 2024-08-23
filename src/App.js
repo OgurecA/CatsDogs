@@ -487,7 +487,7 @@ function App() {
         document.querySelector('.harris-image').classList.remove('unselected');
         setIsSelectedHarris(true);
         setIsSelectedTrump(false);
-        setDisplayedImageA(Snake);
+        setDisplayedImageA(Gorilla);
         setSelectedCardIndex(0);
         setFavorite("Dire Warriors");
         console.log("Harris was elected");
@@ -498,7 +498,7 @@ function App() {
         document.querySelector('.harris-image').classList.add('unselected');
         setIsSelectedTrump(true);
         setIsSelectedHarris(false);
-        setDisplayedImageB(Snake);
+        setDisplayedImageB(Gorilla);
         setSelectedCardIndex(0);
         setFavorite("Wild Hearts");
         console.log("Trump was elected");
