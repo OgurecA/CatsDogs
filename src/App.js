@@ -17,10 +17,10 @@ import PageShop from './Components/PageShop/PageShop';
 import PageInventory from './Components/PageInventory/PageInventory';
 import PageExchange from './Components/PageExchange/PageExchange';
 
-import PromoIceBack from '../Photoes/PromoIce.png';
-import PromoLavaBack from '../Photoes/PromoFire.jpg';
-import FonTap1Dark from '../Photoes/FonTap1Dark.jpeg';
-import Lava1 from '../Photoes/Lava1.jpeg';
+import PromoIceBack from './Components/Photoes/PromoIce.png';
+import PromoLavaBack from './Components/Photoes/PromoFire.jpg';
+import FonTap1Dark from './Components/FonTap1Dark.jpeg';
+import Lava1 from './Components/Photoes/Lava1.jpeg';
 
 
 
