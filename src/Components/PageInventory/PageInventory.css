@@ -218,7 +218,10 @@
 }
 
 .modal-content.selected {
-    background: #0B1215;
+    background-image: url("../Photoes/FonTap1Dark.jpeg");
+    background-size: cover; /* Изображение будет покрывать всю область */
+    background-position: center; /* Центрировать изображение */
+    background-repeat: no-repeat;
     position: relative;
     border: 1px solid #4a4a4a;
     padding-top: 12px;

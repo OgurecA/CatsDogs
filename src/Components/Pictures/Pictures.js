@@ -16,7 +16,7 @@ import Cage from "../Photoes/Cage.png";
 import Krisa from "../Photoes/Krisa.png"
 import Bik from "../Photoes/Bik.png"
 
-import FonTap1 from "../Photoes/FonTap1.jpeg"
+import FonTap1 from "../Photoes/FonTap1Dark.jpeg"
 import FonTap2 from "../Photoes/FonTap2.jpeg"
 
 import TigerBack from "../Photoes/TigerBack.jpg";
