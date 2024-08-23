@@ -117,7 +117,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 alert('You have already used a user ID as a promo code.');
                 return;
             }
-            if (promoInput === userId) {
+            if (String(promoInput) === String(userId)) {
                 setIsButtonShaking(true);
                 setTimeout(() => setIsButtonShaking(false), 300);
                 alert('You cannot use your own ID as a promo code.');
