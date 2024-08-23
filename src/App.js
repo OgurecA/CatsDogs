@@ -51,7 +51,7 @@ function App() {
     const [personalDMG, setPersonalDMG] = useState(1);
     const [teamDMG, setTeamDMG] = useState(1);
 
-    const [name, setName] = useState("none");
+    const [name, setName] = useState("");
     const [topPlayerUserName, setTopPlayerUserName] = useState("none");
     const [topPlayerName, setTopPlayerName] = useState("none");
 
@@ -436,7 +436,7 @@ function App() {
                     console.log("Energy is already at or above max, no recovery applied.");
                 }
             } else {
-                setEnergy(100); // Если данных нет, устанавливаем начальное значение энергии в maxEnergy
+                setEnergy(0); // Если данных нет, устанавливаем начальное значение энергии в maxEnergy
             }
         };
     
