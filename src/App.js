@@ -26,18 +26,18 @@ function App() {
 
 
 
-   // useEffect(() => {
-        // Очищаем локальное хранилище при закрытии/перезагрузке страницы
-    //    const handleUnload = () => {
-    //        localStorage.clear(); // Очищаем все данные из локального хранилища
-    //    };
+    useEffect(() => {
+ // Очищаем локальное хранилище при закрытии/перезагрузке страницы
+     const handleUnload = () => {
+         localStorage.clear(); // Очищаем все данные из локального хранилища
+     };
 
-    //    window.addEventListener('beforeunload', handleUnload);
+     window.addEventListener('beforeunload', handleUnload);
 
-    //    return () => {
-    //        window.removeEventListener('beforeunload', handleUnload);
-    //    };
- //   }, []);
+     return () => {
+         window.removeEventListener('beforeunload', handleUnload);
+     };
+    }, []);
 
 
     const [isFavoriteSet, setIsFavoriteSet] = useState(false);
