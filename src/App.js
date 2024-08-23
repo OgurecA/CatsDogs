@@ -17,6 +17,12 @@ import PageShop from './Components/PageShop/PageShop';
 import PageInventory from './Components/PageInventory/PageInventory';
 import PageExchange from './Components/PageExchange/PageExchange';
 
+import PromoIceBack from '../Photoes/PromoIce.png';
+import PromoLavaBack from '../Photoes/PromoFire.jpg';
+import FonTap1Dark from '../Photoes/FonTap1Dark.jpeg';
+import Lava1 from '../Photoes/Lava1.jpeg';
+
+
 
 import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack, Snake, Gorilla, Tiger, Elephant, Croc, Rhino,
 TigerBack, Bik, Krisa, FonTap1, FonTap2 } from './Components/Pictures/Pictures';
@@ -79,6 +85,13 @@ function App() {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    useEffect(() => {
+        const images = [PromoIceBack, PromoLavaBack, FonTap1Dark, Lava1];
+        images.forEach((src) => {
+            const img = new Image();
+            img.src = src;
+        });
+    }, []);
 
     // Восстанавливаем данные из локального хранилища при загрузке приложения
     useEffect(() => {
