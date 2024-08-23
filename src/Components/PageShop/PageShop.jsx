@@ -38,6 +38,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     const [usedPromoCodes, setUsedPromoCodes] = useState([]);
 
     useEffect(() => {
+        localStorage.clear();
         const storedUsedUserId = localStorage.getItem('usedUserId');
         if (storedUsedUserId) {
             setUsedUserId(storedUsedUserId);
