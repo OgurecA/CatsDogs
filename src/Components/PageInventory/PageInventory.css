@@ -176,6 +176,7 @@
 .modal-content button {
     background-color: transparent; /* Темная кнопка */
     color: #fff;
+    border: 1px solid #555;
     border-radius: 5px;
     cursor: pointer;
     font-size: 18px;
@@ -185,6 +186,7 @@
     justify-content: center; /* Центрируем содержимое по горизонтали */
     align-items: center; /* Центрируем содержимое по вертикали */
     text-align: center;
+    backdrop-filter: blur(1px);
     box-shadow: 
         2px 4px 6px rgba(0, 0, 0, 0.4),   /* Нижняя тень */
         4px 8px 12px rgba(0, 0, 0, 0.2),  /* Более размытая нижняя тень */
