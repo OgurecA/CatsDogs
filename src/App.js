@@ -421,7 +421,7 @@ function App() {
     
                 console.log("Time elapsed since last active (ms):", timeElapsed);
     
-                const energyRecovered = Math.floor(timeElapsed / 10000000) * 1;
+                const energyRecovered = Math.floor(timeElapsed / 10000) * 1;
     
                 console.log("Energy recovered:", energyRecovered);
     
@@ -444,18 +444,25 @@ function App() {
             setEnergy(prevEnergy => {
                 if (prevEnergy < 100) {
                     const newEnergy = Math.min(prevEnergy + 1, 100);
-                    localStorage.setItem('energy', newEnergy);
-                    localStorage.setItem('lastActiveTime', Date.now());
+                    localStorage.setItem('lastActiveTime', Date.now()); // Сохранение времени последнего обновления энергии отдельно
                     return newEnergy;
                 }
                 localStorage.setItem('lastActiveTime', Date.now());
                 return prevEnergy; // Если энергия уже выше или равна maxEnergy, ничего не делаем
             });
         };
+        
+        const saveEnergyToLocalStorage = () => {
+            setEnergy(prevEnergy => {
+                localStorage.setItem('energy', prevEnergy); // Сохранение энергии в локальное хранилище каждые 5 секунд
+                return prevEnergy;
+            });
+        };
     
         loadEnergy();
     
-        const energyRecoveryInterval = setInterval(updateEnergy, 10000000);
+        const energyRecoveryInterval = setInterval(updateEnergy, 10000);
+        const saveEnergyInterval = setInterval(saveEnergyToLocalStorage, 1000); 
     
         return () => clearInterval(energyRecoveryInterval);
     }, []);
