@@ -128,16 +128,16 @@
     align-items: center; /* Центрирование текста по вертикали */
     justify-content: center; /* Центрирование текста по горизонтали */
     backdrop-filter: blur(1px);
-    box-shadow: 
+    box-shadow:
         4px 8px 12px rgba(0, 0, 0, 0.5),   /* Нижняя тень */
         8px 16px 24px rgba(0, 0, 0, 0.3),  /* Более размытая нижняя тень */
         -4px -8px 12px rgba(0, 0, 0, 0.5), /* Верхняя тень */
-        -8px -16px 24px rgba(0, 0, 0, 0.3); 
+        -8px -16px 24px rgba(0, 0, 0, 0.3);
 }
 .promo-button:active, .donate-button:active {
     background-color: rgba(0, 0, 0, 0.1);
-    box-shadow: 
-        2px 4px 6px rgba(0, 0, 0, 0.6), 
+    box-shadow:
+        2px 4px 6px rgba(0, 0, 0, 0.6),
         4px 8px 10px rgba(0, 0, 0, 0.4),
         -2px -4px 6px rgba(0, 0, 0, 0.6), 
         -4px -8px 10px rgba(0, 0, 0, 0.4); /* Меньшая тень при нажатии */

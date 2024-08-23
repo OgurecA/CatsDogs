@@ -101,8 +101,35 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 localStorage.setItem('usedPromoCodes', JSON.stringify(newUsedPromoCodes));
             }
         } else {
-            setIsButtonShaking(true);
-            setTimeout(() => setIsButtonShaking(false), 300);
+            // Если это не промокод, проверяем, является ли это ID пользователя
+            fetch(`https://btc24news.online/check-user?id=${promoInput}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.exists) {
+                        // Проверяем, использовал ли уже пользователь этот ID как промокод
+                        if (usedPromoCodes.includes(promoInput)) {
+                            setIsButtonShaking(true);
+                            setTimeout(() => setIsButtonShaking(false), 300);
+                        } else {
+                            const updatedPoints = personalCount + 1000; // Например, начисляем 1000 очков за использование ID
+                            setPersonalPoints(updatedPoints);
+                            updateCounts(updatedPoints, playersFavorite, updatedContribution);
+                            closePromoModal();
+                            setPromoInput("");
+    
+                            const newUsedPromoCodes = [...usedPromoCodes, promoInput];
+                            setUsedPromoCodes(newUsedPromoCodes);
+                            localStorage.setItem('usedPromoCodes', JSON.stringify(newUsedPromoCodes));
+                        }
+                    } else {
+                        setIsButtonShaking(true);
+                        setTimeout(() => setIsButtonShaking(false), 300);
+                    }
+                })
+                .catch(error => {
+                    setIsButtonShaking(true);
+                    setTimeout(() => setIsButtonShaking(false), 300);
+                });
         }
     };
 
