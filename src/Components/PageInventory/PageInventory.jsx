@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './PageInventory.css';
-import { Snake, Gorilla, Croc, Elephant, Tiger, Rhino, Cage } from '../Pictures/Pictures';
+import { Snake, Gorilla, Croc, Elephant, Tiger, Rhino, Cage, Krisa, Bik } from '../Pictures/Pictures';
 
 const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoints, updateCounts, updateAnimalStatus, playersFavorite, updatedContribution }) => {
     const items = [
-        { title: 'Snake', image: Snake, price: 0, description: "ohotnik na mishej" }, // Змея открыта по умолчанию и бесплатна
-        { title: 'Marin', image: Gorilla, price: 100, description: "monke" },
-        { title: 'Dave', image: Rhino, price: 40, description: "aligato jhfjfjnf jdjdbdijbdij ibdjijdijbdij ijjdbdr" }
+        { title: 'Monke', image: Gorilla, price: 0, description: "ohotnik na mishej" }, // Змея открыта по умолчанию и бесплатна
+        { title: 'Oliv', image: Krisa, price: 100, description: "monke" },
+        { title: 'Bernard', image: Bik, price: 40, description: "aligato jhfjfjnf jdjdbdijbdij ibdjijdijbdij ijjdbdr" }
     ];
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
@@ -19,7 +19,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
 
     useEffect(() => {
 
-        //localStorage.clear();
+        localStorage.clear();
 
         const savedLockedCards = JSON.parse(localStorage.getItem('lockedCards'));
         if (savedLockedCards) {

@@ -404,7 +404,7 @@ app.post('/donate', (req, res) => {
                     if (err) {
                         console.error('Ошибка при записи транзакции:', err);
                         return res.status(500).json({ error: 'Ошибка при записи транзакции' });
-                    }
+                    } else {
 
                     // Если транзакция успешно записана, обновляем awaitingpoints
                     console.log('Попытка обновления awaitingpoints для пользователя с id:', id);
@@ -416,6 +416,7 @@ app.post('/donate', (req, res) => {
                         // Отправляем успешный ответ только после успешного завершения всех операций
                         res.status(200).json({ message: 'Donation successful', newAwaitingPoints });
                     });
+                    }
                 }
             );
         } else {

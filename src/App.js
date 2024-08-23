@@ -19,7 +19,7 @@ import PageExchange from './Components/PageExchange/PageExchange';
 
 
 import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack, Snake, Gorilla, Tiger, Elephant, Croc, Rhino,
-TigerBack, CrocBack, ElephantBack, GorillaBack, SnakeBack, FonTap1, FonTap2 } from './Components/Pictures/Pictures';
+TigerBack, Bik, Krisa, FonTap1, FonTap2 } from './Components/Pictures/Pictures';
 
 
 function App() {
@@ -87,8 +87,8 @@ function App() {
     const [isExchangePageVisible, setIsExchangePageVisible] = useState(false);
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
-    const [displayedImageA, setDisplayedImageA] = useState(HarrisImg);
-    const [displayedImageB, setDisplayedImageB] = useState(TrumpImg);
+    const [displayedImageA, setDisplayedImageA] = useState(Gorilla);
+    const [displayedImageB, setDisplayedImageB] = useState(Gorilla);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -119,33 +119,33 @@ function App() {
 
         switch (index) {
             case 0:
-                image = Snake;
+                image = Gorilla;
                 newMaxEnergy = 100;
                 newEnergyRecovery = 1;
                 newEnergyTake = 1;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
-                newName = "Snake";
+                newName = "Monke";
                 background = FonTap1;
                 break;
             case 1:
-                image = Gorilla;
+                image = Krisa;
                 newMaxEnergy = 100;
                 newEnergyRecovery = 1;
                 newEnergyTake = 1;
                 newTeamDMG = 5;
                 newPersonalDMG = 1;
-                newName = "Gorilla";
+                newName = "Oliv";
                 background = FonTap1;
                 break;
             case 2:
-                image = Rhino;
+                image = Bik;
                 newMaxEnergy = 100;
                 newEnergyRecovery = 1;
                 newEnergyTake = 10;
                 newTeamDMG = 1;
                 newPersonalDMG = 1;
-                newName = "Rhino";
+                newName = "Bernard";
                 background = FonTap1;
                 break;
             case 3:
@@ -339,7 +339,7 @@ function App() {
         .catch((error) => {
             console.error('Error:', error);
         });
-    }, 2000);
+    }, 4000);
 
         }
     
@@ -464,7 +464,10 @@ function App() {
         const energyRecoveryInterval = setInterval(updateEnergy, 10000);
         const saveEnergyInterval = setInterval(saveEnergyToLocalStorage, 1000); 
     
-        return () => clearInterval(energyRecoveryInterval);
+        return () => {
+            clearInterval(energyRecoveryInterval); // Очистка интервала обновления энергии
+            clearInterval(saveEnergyInterval); // Очистка интервала сохранения энергии
+        };
     }, []);
     
 
@@ -481,12 +484,9 @@ function App() {
 
     function handleClickHarrisB() {
         document.querySelector('.trump-image').classList.add('unselected');
-        document.querySelector('.trump-image').classList.remove('selected');
         document.querySelector('.harris-image').classList.remove('unselected');
-        document.querySelector('.harris-image').classList.add('selected');
         setIsSelectedHarris(true);
         setIsSelectedTrump(false);
-        changeBackgroundImage(HarrisBG);
         setDisplayedImageA(Snake);
         setSelectedCardIndex(0);
         setFavorite("Dire Warriors");
@@ -494,22 +494,16 @@ function App() {
     }
     
     function handleClickTrumpB() {
-        document.querySelector('.trump-image').classList.add('selected');
         document.querySelector('.trump-image').classList.remove('unselected');
-        document.querySelector('.harris-image').classList.remove('selected');
         document.querySelector('.harris-image').classList.add('unselected');
         setIsSelectedTrump(true);
         setIsSelectedHarris(false);
-        changeBackgroundImage(TrumpBG);
         setDisplayedImageB(Snake);
         setSelectedCardIndex(0);
         setFavorite("Wild Hearts");
         console.log("Trump was elected");
     }
 
-    function changeBackgroundImage(imageUrl) {
-        setBackgroundImage(imageUrl);
-    }
 
     function incrementTrumpCount(e) {
         if (isSelectedTrump) {

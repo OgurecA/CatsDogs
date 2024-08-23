@@ -11,17 +11,6 @@ body, html {
   height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -48,10 +37,10 @@ body, html {
   }
 }
 body {
-  background-color: #3a3a3a; /* Светло-серый цвет фона */
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+  background-image: url("../src/Components/Photoes/FonTap1.jpeg");
   height: 100vh;
   width: 100vw;
   overflow: hidden;

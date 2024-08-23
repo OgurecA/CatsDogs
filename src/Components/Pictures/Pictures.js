@@ -10,9 +10,11 @@ import Tiger from "../Photoes/Tiger.png";
 import Snake from "../Photoes/Snake.png";
 import Croc from "../Photoes/Croc.png";
 import Elephant from "../Photoes/Elephant.png";
-import Gorilla from "../Photoes/Gorilla.png";
+import Gorilla from "../Photoes/Monke.png";
 import Rhino from "../Photoes/Rhino.png"
 import Cage from "../Photoes/Cage.png";
+import Krisa from "../Photoes/Krisa.png"
+import Bik from "../Photoes/Bik.png"
 
 import FonTap1 from "../Photoes/FonTap1.jpeg"
 import FonTap2 from "../Photoes/FonTap2.jpeg"
@@ -25,5 +27,5 @@ import GorillaBack from "../Photoes/GorillaBack.jpg";
 
 
 
-export { Cage, TrumpImg, TrumpBG, HarrisBG, HarrisImg, HarrisP, TrumpP, bybit, SkullFon, Rhino,
+export { Cage, TrumpImg, TrumpBG, HarrisBG, HarrisImg, HarrisP, TrumpP, bybit, SkullFon, Rhino, Bik, Krisa,
 Gorilla, Tiger, Snake, Croc, Elephant, GorillaBack, TigerBack, SnakeBack, CrocBack, ElephantBack, FonTap1, FonTap2 };

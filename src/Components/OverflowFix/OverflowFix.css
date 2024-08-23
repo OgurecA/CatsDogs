@@ -7,8 +7,8 @@
     height: 100vh;
 }
 .image-container {
-    width: var(--image-width, 35vw);
-    height: var(--image-height, 35vw);
+    width: 70vw;
+    height: 70vw;
     overflow: visible;
     background: none;
     border: none;
@@ -26,36 +26,24 @@
 .image-container.harris-image {
     overflow: visible;
     position: absolute;
-    left: var(--harris-left, 10vw);
-    bottom: var(--harris-bottom, 40vh);
+    left: 15vw;
+    bottom: 30vh;
   }
 
   .image-container.trump-image {
     overflow: visible;
     position: absolute;
-    right: var(--trump-left, 10vw);
-    bottom: var(--trump-bottom, 40vh);
-  }
-  
-
-  .image-container.selected.harris-image {
-    --image-width: 70vw; /* Новая ширина при выборе */
-    --image-height: 70vw;
-    left: 15vw;
-    bottom: 30vh;
-}
-
-.image-container.selected.trump-image {
-    --image-width: 70vw; /* Новая ширина при выборе */
-    --image-height: 70vw;
     right: 15vw;
     bottom: 30vh;
-}
+  }
+  
 .image-container.unselected.trump-image {
-    right: -50vw;
+  opacity: 0;
+  pointer-events: none;
 }
 .image-container.unselected.harris-image {
-    left: -50vw;
+  opacity: 0;
+  pointer-events: none;
 }
 
   .image-container.selected:active {
