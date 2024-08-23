@@ -408,6 +408,19 @@ function App() {
             }
         }
     }, [isFavoriteSet]);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (playersFavorite === undefined || playersFavorite === null) {
+                console.log("playersFavorite is undefined or null, reloading the page...");
+                window.location.reload();
+            }
+        }, 6000); // 6000 миллисекунд = 6 секунд
+    
+        // Очистка таймера при размонтировании компонента
+        return () => clearTimeout(timer);
+    }, []);
+    
     
 
       useEffect(() => {
