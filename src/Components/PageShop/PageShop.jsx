@@ -26,6 +26,9 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     
     const [isButtonShaking, setIsButtonShaking] = useState(false);
 
+    const [usedUserId, setUsedUserId] = useState(null);
+
+
     const promoCodes = [
         { code: "PROMO2024", points: 1000, start: new Date('2024-01-01'), expiry: new Date('2024-12-31') },
         { code: "WINTER2024", points: 500, start: new Date('2024-01-01'), expiry: new Date('2024-02-28') },
@@ -35,10 +38,15 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     const [usedPromoCodes, setUsedPromoCodes] = useState([]);
 
     useEffect(() => {
-        // Загружаем использованные промокоды из локального хранилища
+        const storedUsedUserId = localStorage.getItem('usedUserId');
+        if (storedUsedUserId) {
+            setUsedUserId(storedUsedUserId);
+        }
+    
         const storedUsedPromoCodes = JSON.parse(localStorage.getItem('usedPromoCodes')) || [];
         setUsedPromoCodes(storedUsedPromoCodes);
     }, []);
+    
 
     const handlePromoClick = () => {
         setShowPromoModal(true);
@@ -102,25 +110,26 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             }
         } else {
             // Если это не промокод, проверяем, является ли это ID пользователя
+            if (usedUserId) {
+                setIsButtonShaking(true);
+                setTimeout(() => setIsButtonShaking(false), 300);
+                alert('You have already used a user ID as a promo code.');
+                return;
+            }
+    
             fetch(`https://btc24news.online/check-user?id=${promoInput}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.exists) {
-                        // Проверяем, использовал ли уже пользователь этот ID как промокод
-                        if (usedPromoCodes.includes(promoInput)) {
-                            setIsButtonShaking(true);
-                            setTimeout(() => setIsButtonShaking(false), 300);
-                        } else {
-                            const updatedPoints = personalCount + 1000; // Например, начисляем 1000 очков за использование ID
-                            setPersonalPoints(updatedPoints);
-                            updateCounts(updatedPoints, playersFavorite, updatedContribution);
-                            closePromoModal();
-                            setPromoInput("");
+                        const updatedPoints = personalCount + 1000; // Например, начисляем 1000 очков за использование ID
+                        setPersonalPoints(updatedPoints);
+                        updateCounts(updatedPoints, playersFavorite, updatedContribution);
+                        closePromoModal();
+                        setPromoInput("");
     
-                            const newUsedPromoCodes = [...usedPromoCodes, promoInput];
-                            setUsedPromoCodes(newUsedPromoCodes);
-                            localStorage.setItem('usedPromoCodes', JSON.stringify(newUsedPromoCodes));
-                        }
+                        // Сохраняем использованный ID и обновляем состояние
+                        setUsedUserId(promoInput);
+                        localStorage.setItem('usedUserId', promoInput);
                     } else {
                         setIsButtonShaking(true);
                         setTimeout(() => setIsButtonShaking(false), 300);
