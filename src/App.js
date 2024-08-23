@@ -19,7 +19,7 @@ import PageExchange from './Components/PageExchange/PageExchange';
 
 import PromoIceBack from './Components/Photoes/PromoIce.png';
 import PromoLavaBack from './Components/Photoes/PromoFire.jpg';
-import FonTap1Dark from './Components/FonTap1Dark.jpeg';
+import FonTap1Dark from './Components/Photoes/FonTap1Dark.jpeg';
 import Lava1 from './Components/Photoes/Lava1.jpeg';
 
 
