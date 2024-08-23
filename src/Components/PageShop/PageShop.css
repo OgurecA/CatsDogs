@@ -177,7 +177,7 @@
     flex-direction: column; /* Размещаем элементы вертикально */
     justify-content: space-around;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Глубокая тень */
-    animation: expand 0.8s ease-out;
+    animation: expand 0.5s ease-out;
 }
 .modal-content.donate p {
     color: #e0e0e0; /* Цвет текста */
@@ -207,7 +207,7 @@
     flex-direction: column; /* Размещаем элементы вертикально */
     justify-content: space-around;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Глубокая тень */
-    animation: expand 0.8s ease-out;
+    animation: expand 0.5s ease-out;
 }
 
 @keyframes expand {
