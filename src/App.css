@@ -124,7 +124,6 @@ img:active, button:active, .image-container:active {
   text-align: center;
   width: 60vw;
   height: 50vh;
-  transform: translateY(-10%);
   display: flex;
   align-items: center;
   flex-direction: column; /* Размещаем элементы вертикально */
@@ -133,8 +132,8 @@ img:active, button:active, .image-container:active {
   animation: expand 0.3s ease-out;
 }
 @keyframes expand {
-  0% { transform: translateY(0%) scale(0.8); opacity: 0.5; }
-  100% { transform: translateY(-10%) scale(1); opacity: 1; }
+  0% { transform: scale(0.8); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 1; }
 }
 .modal-content.add h2 {
   color: #e0e0e0;

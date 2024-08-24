@@ -371,6 +371,21 @@ app.post('/update-animal-status', (req, res) => {
         });
     });
 });
+app.get('/get-animal-status', (req, res) => {
+    const { id } = req.query;
+
+    db.get(`SELECT animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11 FROM try15 WHERE id = ?`, [id], (err, row) => {
+        if (err) {
+            return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
+        }
+        if (row) {
+            res.status(200).json(row);
+        } else {
+            res.status(404).json({ error: 'Пользователь не найден' });
+        }
+    });
+});
+
 
 app.get('/check-user', (req, res) => {
     const { id } = req.query;

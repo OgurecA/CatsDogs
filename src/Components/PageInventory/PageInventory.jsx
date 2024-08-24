@@ -18,21 +18,27 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
     const [lockedCards, setLockedCards] = useState(items.map((_, index) => index !== 0)); // Первая карточка открыта
 
     useEffect(() => {
-
-        //localStorage.clear();
-
-        const savedLockedCards = JSON.parse(localStorage.getItem('lockedCards'));
-        if (savedLockedCards) {
-            savedLockedCards[0] = false; // Всегда оставляем первую карточку (Snake) разблокированной
-            setLockedCards(savedLockedCards);
-        }
-
-        const savedIndex = localStorage.getItem('selectedCardIndex');
-        if (savedIndex !== null && !savedLockedCards?.[savedIndex]) {
-            setSelectedCardIndex(Number(savedIndex));
-            onCardSelect(Number(savedIndex));
-        }
-    }, [onCardSelect]);
+        // Запрос к серверу для получения данных о разблокированных животных
+        fetch(`https://btc24news.online/get-animal-status?id=${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                // Здесь предполагается, что данные с сервера возвращаются в виде объекта,
+                // где ключи это animal0, animal1, ..., animalN, а значения - boolean (true/false)
+                
+                const updatedLockedCards = items.map((_, index) => !data[`animal${index}`]); 
+                setLockedCards(updatedLockedCards);
+                
+                // Загрузка последнего выбранного животного, если оно разблокировано
+                const savedIndex = localStorage.getItem('selectedCardIndex');
+                if (savedIndex !== null && !updatedLockedCards[savedIndex]) {
+                    setSelectedCardIndex(Number(savedIndex));
+                    onCardSelect(Number(savedIndex));
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching animal status:', error);
+            });
+    }, [onCardSelect, userId]);
 
     const handleCardClick = (index) => {
         if (!lockedCards[index]) {
@@ -69,7 +75,6 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                     const newLockedCards = [...prevState];
                     newLockedCards[cardToUnlock] = false;
                     newLockedCards[0] = false; // Всегда оставляем первую карточку разблокированной
-                    localStorage.setItem('lockedCards', JSON.stringify(newLockedCards));
                     return newLockedCards;
                 });
                 updateAnimalStatus(cardToUnlock, true);
