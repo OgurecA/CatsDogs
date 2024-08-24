@@ -8,7 +8,7 @@ function LoadScreen({ src }) {
       if (loadScreen) {
         loadScreen.classList.add('hidden');
       }
-    }, 5000);
+    }, 6000);
 
     return () => clearTimeout(timer); // Очистка таймера при размонтировании компонента
   }, []);
