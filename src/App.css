@@ -113,7 +113,7 @@ img:active, button:active, .image-container:active {
   background-size: cover; /* Изображение будет покрывать всю область */
   background-position: center; /* Центрировать изображение */
   background-repeat: no-repeat;
-  background-image: url("./Components/Photoes/2Zir.jpg");
+  background-image: url("./Components/Photoes/Zir3.jpeg");
   position: relative;
   border: 1px solid #4a4a4a;
   padding-top: 12px;
@@ -124,6 +124,7 @@ img:active, button:active, .image-container:active {
   text-align: center;
   width: 60vw;
   height: 50vh;
+  transform: translateY(-15%);
   display: flex;
   align-items: center;
   flex-direction: column; /* Размещаем элементы вертикально */
@@ -132,8 +133,8 @@ img:active, button:active, .image-container:active {
   animation: expand 0.3s ease-out;
 }
 @keyframes expand {
-  0% { transform: scale(0.8); opacity: 0.5; }
-  100% { transform: scale(1); opacity: 1; }
+  0% { transform: translateY(0%) scale(0.8); opacity: 0.5; }
+  100% { transform: translateY(-15%) scale(1); opacity: 1; }
 }
 .modal-content.add h2 {
   color: #e0e0e0;

@@ -21,7 +21,7 @@ import PromoIceBack from './Components/Photoes/PromoIce.png';
 import PromoLavaBack from './Components/Photoes/PromoFire.jpg';
 import FonTap1Dark from './Components/Photoes/FonTap1Dark.jpeg';
 import Lava1 from './Components/Photoes/Lava1.jpeg';
-import Zir from './Components/Photoes/2Zir.jpg';
+import Zir3 from './Components/Photoes/Zir3.jpeg';
 
 
 import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack, Snake, Gorilla, Tiger, Elephant, Croc, Rhino,
@@ -86,7 +86,7 @@ function App() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
-        const images = [PromoIceBack, PromoLavaBack, FonTap1Dark, Lava1, Zir];
+        const images = [PromoIceBack, PromoLavaBack, FonTap1Dark, Lava1, Zir3];
         images.forEach((src) => {
             const img = new Image();
             img.src = src;
