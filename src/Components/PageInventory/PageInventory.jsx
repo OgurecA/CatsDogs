@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './PageInventory.css';
 import { Snake, Gorilla, Croc, Elephant, Tiger, Rhino, Cage, Krisa, Bik } from '../Pictures/Pictures';
 
-const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoints, updateCounts, updateAnimalStatus, playersFavorite, updatedContribution }) => {
+const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoints, updateCounts, updateAnimalStatus, playersFavorite, updatedContribution, userId }) => {
     const items = [
         { title: 'Monke', image: Gorilla, price: 0, description: "ohotnik na mishej" }, // Змея открыта по умолчанию и бесплатна
         { title: 'Oliv', image: Krisa, price: 100, description: "monke" },
