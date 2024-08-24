@@ -19,7 +19,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
 
     useEffect(() => {
 
-        //localStorage.clear();
+        localStorage.clear();
 
         const savedLockedCards = JSON.parse(localStorage.getItem('lockedCards'));
         if (savedLockedCards) {

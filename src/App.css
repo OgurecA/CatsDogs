@@ -62,7 +62,7 @@ button {
       opacity: 1;
   }
   100% {
-      transform: translateY(-50px);
+      transform: translateY(-5%);
       opacity: 0;
   }
 }
@@ -124,7 +124,7 @@ img:active, button:active, .image-container:active {
   text-align: center;
   width: 60vw;
   height: 50vh;
-  transform: translateY(-10%);
+  transform: translateY(-5%);
   display: flex;
   align-items: center;
   flex-direction: column; /* Размещаем элементы вертикально */
