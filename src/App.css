@@ -62,7 +62,7 @@ button {
       opacity: 1;
   }
   100% {
-      transform: translateY(-5%);
+      transform: translateY(-50px);
       opacity: 0;
   }
 }
@@ -124,13 +124,17 @@ img:active, button:active, .image-container:active {
   text-align: center;
   width: 60vw;
   height: 50vh;
-  transform: translateY(-5%);
+  transform: translateY(-10%);
   display: flex;
   align-items: center;
   flex-direction: column; /* Размещаем элементы вертикально */
   justify-content: space-around;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Глубокая тень */
   animation: expand 0.3s ease-out;
+}
+@keyframes expand {
+  0% { transform: translateY(0%) scale(0.8); opacity: 0.5; }
+  100% { transform: translateY(-10%) scale(1); opacity: 1; }
 }
 .modal-content.add h2 {
   color: #e0e0e0;
