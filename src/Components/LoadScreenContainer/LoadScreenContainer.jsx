@@ -10,7 +10,7 @@ function LoadScreenContainer() {
           if (loadScreenContainer) {
             loadScreenContainer.classList.add('hidden');
           }
-        }, 5300);
+        }, 6300);
     
         return () => clearTimeout(timer); // Очистка таймера при размонтировании компонента
       }, []);
