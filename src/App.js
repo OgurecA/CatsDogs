@@ -57,6 +57,8 @@ function App() {
     const [personalDMG, setPersonalDMG] = useState(1);
     const [teamDMG, setTeamDMG] = useState(1);
 
+    const [lang, setLang] = useState("none")
+
     const [name, setName] = useState("");
     const [topPlayerUserName, setTopPlayerUserName] = useState("none");
     const [topPlayerName, setTopPlayerName] = useState("none");
@@ -289,6 +291,7 @@ function App() {
         if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
           setUserData(WebApp.initDataUnsafe.user);
           setUserId(WebApp.initDataUnsafe.user.id);
+          setLang(WebApp.initDataUnsafe.user.language_code);
           const data = {
             id: WebApp.initDataUnsafe.user.id,
             first_name: WebApp.initDataUnsafe.user.first_name,
@@ -706,7 +709,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} updateCheckedCount={setCheckedCount} />
             <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} playersFavorite={playersFavorite} updatedContribution={contribution} onCardSelect={handleCardSelect} personalPoints={personalCount} userId={userId} setPersonalPoints={updatePersonalPoints} updateCounts={updateCounts} updateAnimalStatus={updateAnimalStatus} />
             <PageExchange className={isExchangePageVisible ? 'page-exchange' : 'page-exchange hidden'} />
-            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} userId={userId} title={playersFavorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} contribution={contribution} updateCounts={updateCounts} setPersonalPoints={updatePersonalPoints} topPlayerName={topPlayerName} topPlayerUserName={topPlayerUserName} />
+            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} lang={lang} userId={userId} title={playersFavorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} contribution={contribution} updateCounts={updateCounts} setPersonalPoints={updatePersonalPoints} topPlayerName={topPlayerName} topPlayerUserName={topPlayerUserName} />
 
             <BGcontainer src={backgroundImage} />
             <PersonalCount 

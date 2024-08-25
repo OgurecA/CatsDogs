@@ -5,7 +5,7 @@ import WolfBackCold from '../Photoes/FonWolfCold1.png';
 import PromoIceBack from '../Photoes/PromoIce.png'
 import PromoLavaBack from '../Photoes/PromoFire.jpg'
 
-const PageShop = ({ className, title, votesA, votesB, personalCount, contribution, updateCounts, setPersonalPoints, userId, topPlayerName, topPlayerUserName }) => {
+const PageShop = ({ className, title, votesA, votesB, personalCount, contribution, updateCounts, setPersonalPoints, userId, topPlayerName, topPlayerUserName, lang }) => {
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
     const [displayedVotesOpponent, setDisplayedVotesOpponent] = useState("Who will be your enemy?");
     const [titleName, setTitleName] = useState("none");
@@ -17,6 +17,39 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     
     const displayedTopName = topPlayerUserName && topPlayerUserName.trim() !== "" ? topPlayerUserName : topPlayerName;
 
+    const translations = {
+        en: {
+            comrades: "Comrades",
+            enemy: "Enemy",
+            personal: "Personal",
+            contribution: "Contribution",
+            alphaPredator: "Alpha Predator",
+            giftCode: "Gift Code",
+            donate: "Donate",
+            giftCodeTitle: "GIFT CODE",
+            donateTitle: "DONATE",
+            promoCodeInputPlaceholder: "Enter promo code",
+            donateIdPlaceholder: "Receiver's ID",
+            donationAmountPlaceholder: "Donation amount",
+            submit: "Submit"
+        },
+        ru: {
+            comrades: "Соратники",
+            enemy: "Враги",
+            personal: "Личный",
+            contribution: "Вклад",
+            alphaPredator: "Альфа Хищник",
+            giftCode: "Подарочный Код",
+            donate: "Пожертвовать",
+            giftCodeTitle: "ПОДАРОЧНЫЙ КОД",
+            donateTitle: "ПОЖЕРТВОВАНИЕ",
+            promoCodeInputPlaceholder: "Введите промокод",
+            donateIdPlaceholder: "ID получателя",
+            donationAmountPlaceholder: "Сумма пожертвования",
+            submit: "Подтвердить"
+        }
+    };
+    
 
     const updatedContribution = contribution;
     const playersFavorite = title;
@@ -245,37 +278,37 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             </div>
             <ul className="shop-list">
                 <li className="list-item">
-                    Comrades: {displayedVotes}
+                    {translations[lang].comrades}: {displayedVotes}
                 </li>
                 <li className="list-item">
-                    Enemy: {displayedVotesOpponent}
+                    {translations[lang].enemy}: {displayedVotesOpponent}
                 </li>
                 <li className="list-item">
-                    Personal: {Math.abs(personalCount)}
+                    {translations[lang].personal}: {Math.abs(personalCount)}
                 </li>
                 <li className="list-item">
-                    Contribution: {contribution}
+                    {translations[lang].contribution}: {contribution}
                 </li>
                 <li className="list-item">
-                    Alpha Predator: {displayedTopName}
+                    {translations[lang].alphaPredator}: {displayedTopName}
                 </li>
             </ul>
             <div className="button-container">
-                <button className="promo-button" onClick={handlePromoClick}>Gift Code</button>
-                <button className="donate-button" onClick={handleDonateClick}>Donate</button>
+                <button className="promo-button" onClick={handlePromoClick}>{translations[lang].giftCode}</button>
+                <button className="donate-button" onClick={handleDonateClick}>{translations[lang].donate}</button>
             </div>
 
             {showPromoModal && (
                 <div className="modal-overlay promo" onClick={closePromoModal}>
                     <div className="modal-content promo" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${backgroundPromoImage})` }} >
-                        <h2>GIFT CODE</h2>
+                        <h2>{translations[lang].giftCodeTitle}</h2>
                         <input
                             type="text"
                             value={promoInput}
                             onChange={handlePromoInputChange}
                             className="modal-input"
                         />
-                        <button className={`modal-button promo ${isButtonShaking ? 'vibrate' : ''}`} onClick={handlePromoSubmit}>Submit</button>
+                        <button className={`modal-button promo ${isButtonShaking ? 'vibrate' : ''}`} onClick={handlePromoSubmit}>{translations[lang].submit}</button>
                     </div>
                 </div>
             )}
@@ -283,23 +316,23 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             {showDonateModal && (
                 <div className="modal-overlay donate" onClick={closeDonateModal}>
                     <div className="modal-content donate" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${backgroundPromoImage})` }} >
-                        <h2>DONATE</h2>
-                        <p>Your ID to recieve donations: {userId}</p>
+                        <h2>{translations[lang].donateTitle}</h2>
+                        <p>{translations[lang].donateIdPlaceholder}: {userId}</p>
                         <input
                             type="text"
                             value={donateInputId}
                             onChange={handleDonateInputChangeId}
                             className="modal-input"
-                            placeholder="Recievers ID"
+                            placeholder={translations[lang].donateIdPlaceholder}
                         />
                         <input
                             type="text"
                             value={donateInputAmount}
                             onChange={handleDonateInputChangeAmount}
                             className="modal-input"
-                            placeholder="Donation amount" 
+                            placeholder={translations[lang].donationAmountPlaceholder}
                         />
-                        <button className={`modal-button donate ${isButtonShaking ? 'vibrate' : ''}`} onClick={handleSubmitDonation}>Submit</button>
+                        <button className={`modal-button donate ${isButtonShaking ? 'vibrate' : ''}`} onClick={handleSubmitDonation}>{translations[lang].submit}</button>
                     </div>
                 </div>
             )}
