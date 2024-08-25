@@ -38,13 +38,13 @@ bot.on('callback_query', (callbackQuery) => {
 
   if (data === 'button1') {
     responseText = "Вы выбрали первый вариант!";
-    imagePath = './src/Components/Photoes/Image1.jpeg'; // Укажите путь к изображению для кнопки 1
+    imagePath = './src/Components/Photoes/2Zir.jpg'; // Укажите путь к изображению для кнопки 1
   } else if (data === 'button2') {
     responseText = "Вы выбрали второй вариант!";
-    imagePath = './src/Components/Photoes/Image2.jpeg'; // Укажите путь к изображению для кнопки 2
+    imagePath = './src/Components/Photoes/FonSkull.jpeg'; // Укажите путь к изображению для кнопки 2
   } else if (data === 'button3') {
     responseText = "Вы выбрали третий вариант!";
-    imagePath = './src/Components/Photoes/Image3.jpeg'; // Укажите путь к изображению для кнопки 3
+    imagePath = './src/Components/Photoes/Svin.png'; // Укажите путь к изображению для кнопки 3
   }
 
   const options = {
