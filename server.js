@@ -475,6 +475,15 @@ app.get('/check-promo', (req, res) => {
         if (row) {
             // Если промокод существует, отправляем его значение клиенту
             res.status(200).json({ exists: true, value: row.value });
+
+            // Удаляем промокод из базы данных после его использования
+            db.run(`DELETE FROM promocodes WHERE code = ?`, [promoCode], (deleteErr) => {
+                if (deleteErr) {
+                    console.error('Ошибка при удалении промокода:', deleteErr);
+                } else {
+                    console.log(`Промокод ${promoCode} был успешно удален.`);
+                }
+            });
         } else {
             // Если промокод не найден
             res.status(200).json({ exists: false });
