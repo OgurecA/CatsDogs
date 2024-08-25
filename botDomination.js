@@ -44,6 +44,7 @@ bot.on('callback_query', (callbackQuery) => {
   const msg = callbackQuery.message;
   const data = callbackQuery.data;
   const chatId = msg.chat.id;
+  const languageCode = callbackQuery.from.language_code;
 
   let responseText;
   let imagePath;
