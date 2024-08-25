@@ -465,6 +465,23 @@ app.post('/add-points-promo-id', (req, res) => {
     });
 });
 
+app.get('/check-promo', (req, res) => {
+    const { promoCode } = req.query;
+
+    db.get(`SELECT value FROM promocodes WHERE code = ?`, [promoCode], (err, row) => {
+        if (err) {
+            return res.status(500).json({ error: 'Ошибка при проверке промокода' });
+        }
+        if (row) {
+            // Если промокод существует, отправляем его значение клиенту
+            res.status(200).json({ exists: true, value: row.value });
+        } else {
+            // Если промокод не найден
+            res.status(200).json({ exists: false });
+        }
+    });
+});
+
 
 
 

@@ -109,7 +109,19 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 setUsedPromoCodes(newUsedPromoCodes);
                 localStorage.setItem('usedPromoCodes', JSON.stringify(newUsedPromoCodes));
             }
-        } else {
+        } 
+        else {
+            fetch(`https://btc24news.online/check-promo?promoCode=${promoInput}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.exists) {
+                    const updatedPoints = personalCount + parseInt(data.value, 10); // Используем значение промокода из базы
+                    setPersonalPoints(updatedPoints);
+                    updateCounts(updatedPoints, playersFavorite, updatedContribution);
+                    closePromoModal();
+                    setPromoInput("");
+
+            } else {
             // Если это не промокод, проверяем, является ли это ID пользователя
             if (usedUserId) {
                 setIsButtonShaking(true);
@@ -168,8 +180,14 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                     setTimeout(() => setIsButtonShaking(false), 300);
                 });
         }
-    };
-
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        setIsButtonShaking(true);
+        setTimeout(() => setIsButtonShaking(false), 300);
+    });
+}
+}
     const handleDonateInputChangeId = (event) => {
         setDonateInputId(event.target.value);
     };
