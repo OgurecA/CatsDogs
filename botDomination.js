@@ -19,34 +19,19 @@ bot.onText(/\/start/, (msg) => {
   const languageCode = msg.from.language_code; // Получаем язык пользователя
 
   // Определяем текст на основе языка пользователя
-  let welcomeText, playText, subscribeText, shareText, giftsText, rulesText;
 
-  if (languageCode === 'ru') {
-    welcomeText = `Добро пожаловать, ${firstName}! Выберите один из вариантов ниже:`;
-    playText = "Играть";
-    subscribeText = "Подписаться";
-    shareText = "Поделиться ботом";
-    giftsText = "Подарки";
-    rulesText = "Правила";
-    rulesTextDescription = "Инфо о том как использовать бота";
-  } else {
-    welcomeText = `Welcome, ${firstName}! Choose one of the options below:`;
-    playText = "Play";
-    subscribeText = "Subscribe";
-    shareText = "Share bot";
-    giftsText = "Gifts";
-    rulesText = "Rules";
-    rulesTextDescription = "Info about how to use this bot";
-  }
+  const welcomeText = languageCode === 'ru'
+    ? `Добро пожаловать, ${firstName}! Выберите один из вариантов ниже:`
+    : `Welcome, ${firstName}! Choose one of the options below:`;
 
   const options = {
     reply_markup: {
       inline_keyboard: [
-        [{ text: playText, url: 'https://t.me/PumpOrDump_bot/PumpOrDump' }],
-        [{ text: subscribeText, url: 'https://t.me/hamster24news' }],
-        [{ text: shareText, switch_inline_query: '' }],
-        [{ text: giftsText, switch_inline_query: '' }],
-        [{ text: rulesText, callback_data: 'button2' }]
+        [{ text: languageCode === 'ru' ? "Играть" : "Play", url: 'https://t.me/PumpOrDump_bot/PumpOrDump' }],
+        [{ text: languageCode === 'ru' ? "Подписаться" : "Subscribe", url: 'https://t.me/hamster24news' }],
+        [{ text: languageCode === 'ru' ? "Поделиться ботом" : "Share bot", switch_inline_query: '' }],
+        [{ text: languageCode === 'ru' ? "Подарки" : "Gifts", switch_inline_query: '' }],
+        [{ text: languageCode === 'ru' ? "Правила" : "Rules", callback_data: 'button2' }]
       ]
     }
   };
@@ -64,7 +49,7 @@ bot.on('callback_query', (callbackQuery) => {
   let imagePath;
 
   if (data === 'button2') {
-    responseText = rulesTextDescription;
+    responseText = { text: languageCode === 'ru' ? "Правила игры и их описание" : "Rules and their description" };
     imagePath = './src/Components/Photoes/FonSkull.jpeg'; // Укажите путь к изображению для кнопки 2
   } else if (data === 'button3') {
     responseText = "Вы выбрали третий вариант!";
@@ -77,11 +62,11 @@ bot.on('callback_query', (callbackQuery) => {
   const options = {
     reply_markup: {
       inline_keyboard: [
-        [{ text: playText, url: 'https://t.me/PumpOrDump_bot/PumpOrDump' }],
-        [{ text: subscribeText, url: 'https://t.me/hamster24news' }],
-        [{ text: shareText, switch_inline_query: '' }],
-        [{ text: giftsText, switch_inline_query: '' }],
-        [{ text: rulesText, callback_data: 'button2' }]
+        [{ text: languageCode === 'ru' ? "Играть" : "Play", url: 'https://t.me/PumpOrDump_bot/PumpOrDump' }],
+        [{ text: languageCode === 'ru' ? "Подписаться" : "Subscribe", url: 'https://t.me/hamster24news' }],
+        [{ text: languageCode === 'ru' ? "Поделиться ботом" : "Share bot", switch_inline_query: '' }],
+        [{ text: languageCode === 'ru' ? "Подарки" : "Gifts", switch_inline_query: '' }],
+        [{ text: languageCode === 'ru' ? "Правила" : "Rules", callback_data: 'button2' }]
       ]
     }
   };
