@@ -85,6 +85,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     const handlePromoInputChange = (event) => {
         setPromoInput(event.target.value);
     };
+
     const handlePromoSubmit = () => {
         const currentDate = new Date();
 
@@ -115,6 +116,9 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             .then(response => response.json())
             .then(data => {
                 if (data.exists) {
+                    if (data.value === "Drake") {
+                        updateAnimalStatus(4, true); // Разблокировка животного с индексом 4
+                    }
                     const updatedPoints = personalCount + parseInt(data.value, 10); // Используем значение промокода из базы
                     setPersonalPoints(updatedPoints);
                     updateCounts(updatedPoints, playersFavorite, updatedContribution);
@@ -188,6 +192,31 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     });
 }
 }
+
+const updateAnimalStatus = (animalIndex, status) => {
+    const data = {
+        id: userId, 
+        animalIndex, 
+        status: status ? 1 : 0 
+    };
+
+    fetch('/update-animal-status', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Animal status updated successfully:', data);
+    })
+    .catch(error => {
+        console.error('Error updating animal status:', error);
+    });
+};
+
+
     const handleDonateInputChangeId = (event) => {
         setDonateInputId(event.target.value);
     };

@@ -68,6 +68,7 @@ bot.onText(/\/start/, (msg) => {
         [{ text: languageCode === 'ru' ? "Подписаться" : "Subscribe", url: 'https://t.me/hamster24news' }],
         [{ text: languageCode === 'ru' ? "Поделиться ботом" : "Share bot", switch_inline_query: '' }],
         [{ text: languageCode === 'ru' ? "Подарки" : "Gifts", callback_data: 'gifts' }],
+        [{ text: languageCode === 'ru' ? "Подарки" : "GiftsDrake", callback_data: 'giftsDrake' }],
         [{ text: languageCode === 'ru' ? "Правила" : "Rules", callback_data: 'button2' }]
       ]
     }
@@ -99,9 +100,16 @@ bot.on('callback_query', (callbackQuery) => {
       : `Your promo code: ${promoCode}`;
     bot.sendMessage(chatId, responseText);
     return; // Укажите путь к изображению для кнопки 3
-  } else if (data === 'button4') {
-    responseText = "Вы выбрали четвертый вариант!";
-    imagePath = './src/Components/Photoes/Bik.png'; // Укажите путь к изображению для кнопки 3
+  } else if (data === 'giftsDrake') {
+    const promoCode = generatePromoCode();
+    const promoValue = "Drake";
+
+    savePromoCode(promoCode, promoValue);  
+    responseText = languageCode === 'ru' 
+      ? `Ваш промокод: ${promoCode}` 
+      : `Your promo code: ${promoCode}`;
+    bot.sendMessage(chatId, responseText);
+    return; // Укажите путь к изображению для кнопки 3
   }
 
   const options = {
