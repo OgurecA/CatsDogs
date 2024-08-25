@@ -27,7 +27,7 @@ bot.onText(/\/start/, (msg) => {
   const options = {
     reply_markup: {
       inline_keyboard: [
-        [{ text: languageCode === 'ru' ? "Играть" : "Play", url: 'https://t.me/PumpOrDump_bot/PumpOrDump' }],
+        [{ text: languageCode === 'ru' ? "Играц" : "Play", url: 'https://t.me/PumpOrDump_bot/PumpOrDump' }],
         [{ text: languageCode === 'ru' ? "Подписаться" : "Subscribe", url: 'https://t.me/hamster24news' }],
         [{ text: languageCode === 'ru' ? "Поделиться ботом" : "Share bot", switch_inline_query: '' }],
         [{ text: languageCode === 'ru' ? "Подарки" : "Gifts", switch_inline_query: '' }],
@@ -49,7 +49,7 @@ bot.on('callback_query', (callbackQuery) => {
   let imagePath;
 
   if (data === 'button2') {
-    responseText = { text: languageCode === 'ru' ? "Правила игры и их описание" : "Rules and their description" };
+    responseText = languageCode === 'ru' ? "Правила игры и их описание" : "Rules and their description";
     imagePath = './src/Components/Photoes/FonSkull.jpeg'; // Укажите путь к изображению для кнопки 2
   } else if (data === 'button3') {
     responseText = "Вы выбрали третий вариант!";
