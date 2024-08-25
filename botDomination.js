@@ -22,7 +22,7 @@ bot.onText(/\/start/, (msg) => {
     reply_markup: {
       inline_keyboard: [
         [{ text: "Играть", url: 'https://t.me/PumpOrDump_bot/PumpOrDump' }],
-        [{ text: "Подписаться", callback_data: 'button4' }],
+        [{ text: "Подписаться", url: 'https://t.me/hamster24news' }],
         [{ text: "Поделиться ботом", switch_inline_query: '' }],
         [{ text: "Правила", callback_data: 'button2' }]
       ]
@@ -56,7 +56,7 @@ bot.on('callback_query', (callbackQuery) => {
     reply_markup: {
       inline_keyboard: [
         [{ text: "Играть", url: 'https://t.me/PumpOrDump_bot/PumpOrDump' }],
-        [{ text: "Подписаться", callback_data: 'button4' }],
+        [{ text: "Подписаться", url: 'https://t.me/hamster24news' }],
         [{ text: "Поделиться ботом", switch_inline_query: '' }],
         [{ text: "Правила", callback_data: 'button2' }]
       ]
