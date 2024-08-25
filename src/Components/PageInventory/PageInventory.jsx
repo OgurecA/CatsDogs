@@ -130,7 +130,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                         <div className={`card no-select`}>
                             <img src={items[selectedCardIndex].image} alt={items[selectedCardIndex].title} className="card-image" />
                         </div>
-                        <p className="modal-description">Описание: {items[selectedCardIndex].description}</p>
+                        <p className="modal-description">{items[selectedCardIndex].description}</p>
                     </div>
                 </div>
             )}
