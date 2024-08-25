@@ -18,8 +18,9 @@ bot.onText(/\/start/, (msg) => {
     reply_markup: {
       inline_keyboard: [
         [{ text: "Играть", url: 'https://t.me/PumpOrDump_bot/PumpOrDump' }],
-        [{ text: "Кнопка 2", callback_data: 'button2' }],
-        [{ text: "Кнопка 3", callback_data: 'button3' }]
+        [{ text: "Правила", callback_data: 'button2' }],
+        [{ text: "Подписаться", callback_data: 'button4' }],
+        [{ text: "Поделиться", callback_data: 'button3' }]
       ]
     }
   };
@@ -42,14 +43,18 @@ bot.on('callback_query', (callbackQuery) => {
   } else if (data === 'button3') {
     responseText = "Вы выбрали третий вариант!";
     imagePath = './src/Components/Photoes/Svin.png'; // Укажите путь к изображению для кнопки 3
+  } else if (data === 'button4') {
+    responseText = "Вы выбрали четвертый вариант!";
+    imagePath = './src/Components/Photoes/Bik.png'; // Укажите путь к изображению для кнопки 3
   }
 
   const options = {
     reply_markup: {
       inline_keyboard: [
-        [{ text: "Кнопка 1", callback_data: 'button1' }],
-        [{ text: "Кнопка 2", callback_data: 'button2' }],
-        [{ text: "Кнопка 3", callback_data: 'button3' }]
+        [{ text: "Играть", url: 'https://t.me/PumpOrDump_bot/PumpOrDump' }],
+        [{ text: "Правила", callback_data: 'button2' }],
+        [{ text: "Подписаться", callback_data: 'button4' }],
+        [{ text: "Поделиться", callback_data: 'button3' }]
       ]
     }
   };
