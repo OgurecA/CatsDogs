@@ -100,13 +100,6 @@ db.serialize(() => {
     animal11 INTEGER DEFAULT 0
 )`);
 
-db.run(`
-    CREATE TABLE IF NOT EXISTS promocodes (
-        code TEXT NOT NULL,
-        value TEXT NOT NULL
-    )
-`);
-
   
 
 db.run(`

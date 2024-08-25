@@ -1,6 +1,8 @@
 const express = require('express');
 const TelegramBot = require('node-telegram-bot-api');
 const fs = require('fs');
+const sqlite3 = require('sqlite3').verbose();  // Подключение к sqlite3
+
 
 const app = express();
 
@@ -9,6 +11,22 @@ const token = '7491271001:AAEOiriYnXp_fFXVS_Iqvekzga6wSH0NxhU';
 
 // Создаем экземпляр бота
 const bot = new TelegramBot(token, { polling: true });
+
+let db = new sqlite3.Database('./election.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
+  if (err) {
+    console.error('Ошибка при подключении к базе данных:', err.message);
+  } else {
+    console.log('Подключено к базе данных.');
+  }
+});
+
+db.run(`
+  CREATE TABLE IF NOT EXISTS promocodes (
+      code TEXT NOT NULL,
+      value TEXT NOT NULL
+  )
+`);
+
 
 function generatePromoCode() {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
