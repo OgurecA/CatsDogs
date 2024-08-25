@@ -170,6 +170,16 @@ function App() {
                 newName = "Tiger";
                 background = FonTap1;
                 break;
+            case 5:
+                image = Tiger;
+                newMaxEnergy = 100;
+                newEnergyRecovery = 1;
+                newEnergyTake = 1;
+                newTeamDMG = 1;
+                newPersonalDMG = 5;
+                newName = "Tiger";
+                background = FonTap1;
+                break;
             default:
                 image = null;
         }
