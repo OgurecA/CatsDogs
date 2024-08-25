@@ -278,19 +278,19 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             </div>
             <ul className="shop-list">
                 <li className="list-item">
-                    {lang === 'ru' ? 'Товарищи' : 'Comrades'}: {displayedVotes}
+                    {lang === 'u' ? 'Товарищи' : 'Comrades'}: {displayedVotes}
                 </li>
                 <li className="list-item">
-                    {lang === 'ru' ? 'Враги' : 'Enemy'}: {displayedVotesOpponent}
+                    {lang === 'u' ? 'Враги' : 'Enemy'}: {displayedVotesOpponent}
                 </li>
                 <li className="list-item">
-                    {lang === 'ru' ? 'Личные очки' : 'Personal'}: {Math.abs(personalCount)}
+                    {lang === 'u' ? 'Личные очки' : 'Personal'}: {Math.abs(personalCount)}
                 </li>
                 <li className="list-item">
-                    {lang === 'ru' ? 'Вклад' : 'Contribution'}: {contribution}
+                    {lang === 'u' ? 'Вклад' : 'Contribution'}: {contribution}
                 </li>
                 <li className="list-item">
-                    {lang === 'ru' ? 'Альфа Хищник' : 'Alpha Predator'}: {displayedTopName}
+                    {lang === 'u' ? 'Альфа Хищник' : 'Alpha Predator'}: {displayedTopName}
                 </li>
             </ul>
             <div className="button-container">
