@@ -397,20 +397,18 @@ function App() {
         }
     }, [playersFavorite]);
 
-    useEffect(() => {
-        if (playersFavorite === 'none') {
-            // Проверяем, если ID четный, присваиваем "Wild Hearts", если нечетный — "Dire Warriors"
+      useEffect(() => {
+        if (isFavoriteSet && playersFavorite === 'none') {
+            console.log("Handling none case");
             if (userId % 2 === 0) {
-                console.log("Assigned to Wild Hearts based on user ID");
-                setPlayersFavorite('Wild Hearts');
-                setFavorite('Wild Hearts');
-            } else {
-                console.log("Assigned to Dire Warriors based on user ID");
                 setPlayersFavorite('Dire Warriors');
                 setFavorite('Dire Warriors');
+            } else {
+                setPlayersFavorite('Wild Hearts');
+                setFavorite('Wild Hearts');
             }
         }
-    }, [userId]);
+    }, [isFavoriteSet]);
 
     useEffect(() => {
         const timer = setTimeout(() => {
