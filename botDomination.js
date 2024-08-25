@@ -13,14 +13,18 @@ const bot = new TelegramBot(token, { polling: true });
 // Обработчик команды /start
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
-  const welcomeText = "Добро пожаловать! Выберите один из вариантов ниже:";
+  const firstName = msg.from.first_name;  // Имя пользователя
+  const lastName = msg.from.last_name;    // Фамилия пользователя
+  const username = msg.from.username; 
+
+  const welcomeText = `Добро пожаловать, ${firstName}! Выберите один из вариантов ниже:`;
   const options = {
     reply_markup: {
       inline_keyboard: [
         [{ text: "Играть", url: 'https://t.me/PumpOrDump_bot/PumpOrDump' }],
-        [{ text: "Правила", callback_data: 'button2' }],
         [{ text: "Подписаться", callback_data: 'button4' }],
-        [{ text: "Поделиться", callback_data: 'button3' }]
+        [{ text: "Поделиться ботом", switch_inline_query: '' }],
+        [{ text: "Правила", callback_data: 'button2' }]
       ]
     }
   };
@@ -52,9 +56,9 @@ bot.on('callback_query', (callbackQuery) => {
     reply_markup: {
       inline_keyboard: [
         [{ text: "Играть", url: 'https://t.me/PumpOrDump_bot/PumpOrDump' }],
-        [{ text: "Правила", callback_data: 'button2' }],
         [{ text: "Подписаться", callback_data: 'button4' }],
-        [{ text: "Поделиться", callback_data: 'button3' }]
+        [{ text: "Поделиться ботом", switch_inline_query: '' }],
+        [{ text: "Правила", callback_data: 'button2' }]
       ]
     }
   };
