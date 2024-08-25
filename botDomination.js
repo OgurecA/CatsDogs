@@ -68,7 +68,7 @@ bot.onText(/\/start/, (msg) => {
         [{ text: languageCode === 'ru' ? "Подписаться" : "Subscribe", url: 'https://t.me/hamster24news' }],
         [{ text: languageCode === 'ru' ? "Поделиться ботом" : "Share bot", switch_inline_query: '' }],
         [{ text: languageCode === 'ru' ? "Подарки" : "Gifts", callback_data: 'gifts' }],
-        [{ text: languageCode === 'ru' ? "Подарки" : "GiftsDrake", callback_data: 'giftsDrake' }],
+        [{ text: languageCode === 'ru' ? "ПодаркиДрейк" : "GiftsDrake", callback_data: 'giftsDrake' }],
         [{ text: languageCode === 'ru' ? "Правила" : "Rules", callback_data: 'button2' }]
       ]
     }
@@ -119,6 +119,7 @@ bot.on('callback_query', (callbackQuery) => {
         [{ text: languageCode === 'ru' ? "Подписаться" : "Subscribe", url: 'https://t.me/hamster24news' }],
         [{ text: languageCode === 'ru' ? "Поделиться ботом" : "Share bot", switch_inline_query: '' }],
         [{ text: languageCode === 'ru' ? "Подарки" : "Gifts", callback_data: 'gifts' }],
+        [{ text: languageCode === 'ru' ? "ПодаркиДрейк" : "GiftsDrake", callback_data: 'giftsDrake' }],
         [{ text: languageCode === 'ru' ? "Правила" : "Rules", callback_data: 'button2' }]
       ]
     }
