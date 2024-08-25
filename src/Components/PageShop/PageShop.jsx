@@ -278,37 +278,37 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             </div>
             <ul className="shop-list">
                 <li className="list-item">
-                    Comrades: {displayedVotes}
+                    {lang === 'ru' ? 'Товарищи' : 'Comrades'}: {displayedVotes}
                 </li>
                 <li className="list-item">
-                    Enemy: {displayedVotesOpponent}
+                    {lang === 'ru' ? 'Враги' : 'Enemy'}: {displayedVotesOpponent}
                 </li>
                 <li className="list-item">
-                    Personal: {Math.abs(personalCount)}
+                    {lang === 'ru' ? 'Личные очки' : 'Personal'}: {Math.abs(personalCount)}
                 </li>
                 <li className="list-item">
-                    Contribution: {contribution}
+                    {lang === 'ru' ? 'Вклад' : 'Contribution'}: {contribution}
                 </li>
                 <li className="list-item">
-                    Alpha Predator: {displayedTopName}
+                    {lang === 'ru' ? 'Альфа Хищник' : 'Alpha Predator'}: {displayedTopName}
                 </li>
             </ul>
             <div className="button-container">
-                <button className="promo-button" onClick={handlePromoClick}>Gift Code</button>
-                <button className="donate-button" onClick={handleDonateClick}>Donate</button>
+                <button className="promo-button" onClick={handlePromoClick}>{lang === 'ru' ? 'Промокод' : 'Gift Code'}</button>
+                <button className="donate-button" onClick={handleDonateClick}>{lang === 'ru' ? 'Пожертвовать' : 'Donate'}</button>
             </div>
 
             {showPromoModal && (
                 <div className="modal-overlay promo" onClick={closePromoModal}>
                     <div className="modal-content promo" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${backgroundPromoImage})` }} >
-                        <h2>GIFT CODE</h2>
+                        <h2>{lang === 'ru' ? 'Промокод' : 'GIFT CODE'}</h2>
                         <input
                             type="text"
                             value={promoInput}
                             onChange={handlePromoInputChange}
                             className="modal-input"
                         />
-                        <button className={`modal-button promo ${isButtonShaking ? 'vibrate' : ''}`} onClick={handlePromoSubmit}>Submit</button>
+                        <button className={`modal-button promo ${isButtonShaking ? 'vibrate' : ''}`} onClick={handlePromoSubmit}>{lang === 'ru' ? 'Подтвердить' : 'Submit'}</button>
                     </div>
                 </div>
             )}
@@ -316,21 +316,21 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             {showDonateModal && (
                 <div className="modal-overlay donate" onClick={closeDonateModal}>
                     <div className="modal-content donate" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${backgroundPromoImage})` }} >
-                        <h2>DONATE</h2>
-                        <p>Your ID to recieve donations: {userId}</p>
+                        <h2>{lang === 'ru' ? 'Пожертвование' : 'DONATE'}</h2>
+                        <p>{lang === 'ru' ? 'Ваш ID для получения пожертвований:' : 'Your ID to receive donations:'} {userId}</p>
                         <input
                             type="text"
                             value={donateInputId}
                             onChange={handleDonateInputChangeId}
                             className="modal-input"
-                            placeholder="Recievers ID"
+                            placeholder={lang === 'ru' ? 'ID получателя' : 'Receiver\'s ID'}
                         />
                         <input
                             type="text"
                             value={donateInputAmount}
                             onChange={handleDonateInputChangeAmount}
                             className="modal-input"
-                            placeholder="Donation amount" 
+                            placeholder={lang === 'ru' ? 'Сумма пожертвования' : 'Donation amount'}
                         />
                         <button className={`modal-button donate ${isButtonShaking ? 'vibrate' : ''}`} onClick={handleSubmitDonation}>{lang === 'ru' ? 'Подтвердить' : 'Submit'}</button>
                     </div>
