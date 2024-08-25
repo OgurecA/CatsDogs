@@ -101,6 +101,15 @@ db.serialize(() => {
 )`);
 
 db.run(`
+    CREATE TABLE IF NOT EXISTS promocodes (
+        code TEXT NOT NULL,
+        value TEXT NOT NULL
+    )
+`);
+
+  
+
+db.run(`
     CREATE TABLE IF NOT EXISTS donations (
         from_id TEXT NOT NULL,
         to_id TEXT NOT NULL,

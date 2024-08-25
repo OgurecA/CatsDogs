@@ -19,6 +19,16 @@ function generatePromoCode() {
   return promoCode;
 }
 
+function savePromoCode(code, value) {
+  db.run(`INSERT INTO promocodes (code, value) VALUES (?, ?)`, [code, value], function(err) {
+    if (err) {
+      return console.error('Ошибка при сохранении промокода:', err.message);
+    }
+    console.log(`Промокод сохранен: ${code} с значением: ${value}`);
+  });
+}
+
+
 // Обработчик команды /start
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
@@ -63,6 +73,9 @@ bot.on('callback_query', (callbackQuery) => {
     imagePath = './src/Components/Photoes/FonSkull.jpeg'; // Укажите путь к изображению для кнопки 2
   } else if (data === 'gifts') {
     const promoCode = generatePromoCode();
+    const promoValue = "1000";
+
+    savePromoCode(promoCode, promoValue);  
     responseText = languageCode === 'ru' 
       ? `Ваш промокод: ${promoCode}` 
       : `Your promo code: ${promoCode}`;
