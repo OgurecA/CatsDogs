@@ -17,7 +17,7 @@ bot.onText(/\/start/, (msg) => {
   const options = {
     reply_markup: {
       inline_keyboard: [
-        [{ text: "Кнопка 1", callback_data: 'button1' }],
+        [{ text: "Играть", url: 'https://t.me/PumpOrDump_bot/PumpOrDump' }],
         [{ text: "Кнопка 2", callback_data: 'button2' }],
         [{ text: "Кнопка 3", callback_data: 'button3' }]
       ]
@@ -36,10 +36,7 @@ bot.on('callback_query', (callbackQuery) => {
   let responseText;
   let imagePath;
 
-  if (data === 'button1') {
-    responseText = "Вы выбрали первый вариант!";
-    imagePath = './src/Components/Photoes/2Zir.jpg'; // Укажите путь к изображению для кнопки 1
-  } else if (data === 'button2') {
+  if (data === 'button2') {
     responseText = "Вы выбрали второй вариант!";
     imagePath = './src/Components/Photoes/FonSkull.jpeg'; // Укажите путь к изображению для кнопки 2
   } else if (data === 'button3') {
