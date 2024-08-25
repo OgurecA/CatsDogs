@@ -31,9 +31,34 @@ bot.onText(/\/start/, (msg) => {
 bot.on('callback_query', (callbackQuery) => {
   const msg = callbackQuery.message;
   const data = callbackQuery.data;
-  bot.sendMessage(msg.chat.id, `Вы нажали: ${data}`);
+  const chatId = msg.chat.id;
+
+  let responseText;
+  let imagePath;
+
+  if (data === 'button1') {
+    responseText = "Вы выбрали первый вариант!";
+    imagePath = './src/Components/Photoes/Image1.jpeg'; // Укажите путь к изображению для кнопки 1
+  } else if (data === 'button2') {
+    responseText = "Вы выбрали второй вариант!";
+    imagePath = './src/Components/Photoes/Image2.jpeg'; // Укажите путь к изображению для кнопки 2
+  } else if (data === 'button3') {
+    responseText = "Вы выбрали третий вариант!";
+    imagePath = './src/Components/Photoes/Image3.jpeg'; // Укажите путь к изображению для кнопки 3
+  }
+
+  const options = {
+    reply_markup: {
+      inline_keyboard: [
+        [{ text: "Кнопка 1", callback_data: 'button1' }],
+        [{ text: "Кнопка 2", callback_data: 'button2' }],
+        [{ text: "Кнопка 3", callback_data: 'button3' }]
+      ]
+    }
+  };
+
+  const photo = fs.readFileSync(imagePath);
+  bot.sendPhoto(chatId, photo, { caption: responseText, ...options });
 });
 
-
 console.log("Бот запущен...");
-
