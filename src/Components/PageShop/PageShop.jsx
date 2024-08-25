@@ -17,6 +17,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     
     const displayedTopName = topPlayerUserName && topPlayerUserName.trim() !== "" ? topPlayerUserName : topPlayerName;
 
+    const textSubmit = translations[lang]?.submit || 'Submit';
+
     const translations = {
         en: {
             comrades: "Comrades",
@@ -332,7 +334,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                             className="modal-input"
                             placeholder="Donation amount" 
                         />
-                        <button className={`modal-button donate ${isButtonShaking ? 'vibrate' : ''}`} onClick={handleSubmitDonation}>Submit</button>
+                        <button className={`modal-button donate ${isButtonShaking ? 'vibrate' : ''}`} onClick={handleSubmitDonation}>{textSubmit}</button>
                     </div>
                 </div>
             )}
