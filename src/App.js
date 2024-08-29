@@ -86,6 +86,7 @@ function App() {
     const [displayedImageB, setDisplayedImageB] = useState(Gorilla);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [AddImage, setAddImage] = useState(Gorilla);
 
 
     // Восстанавливаем данные из локального хранилища при загрузке приложения
@@ -184,6 +185,7 @@ function App() {
         setPersonalDMG(newPersonalDMG);
         setName(newName);
 
+        setAddImage(image);
         setBackgroundImage(background);
         setDisplayedImageA(image);
         setDisplayedImageB(image);
@@ -746,7 +748,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
             />
             {isModalOpen && (
                 <div className="modal-overlay add" onClick={closeModal}>
-                <div className="modal-content add" onClick={(e) => e.stopPropagation()}>
+                <div className="modal-content add" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${AddImage})` }}>
                     <h2>Your Energy Is Low!</h2>
                     <p>You don't have enough energy to perform this action.</p>
                     <button
