@@ -6,7 +6,7 @@ const fs = require('fs');
 const app = express();
 
 // Ваш токен
-const token = '7348990069:AAH6uQPFL9WuauLe7Nm-IjZ6ks6W4_F9b4A';
+const token = '6792138113:AAEDXdQf1WkJ5MtNB2SX3ZHnfSlYwJyL02E';
 
 // Создаем экземпляр бота
 const bot = new TelegramBot(token, { polling: true });
@@ -26,7 +26,7 @@ bot.onText(/\/start/, (msg) => {
   const options = {
     reply_markup: {
       inline_keyboard: [
-        [{ text: languageCode === 'ru' ? "Играц" : "Play", url: 'https://t.me/DireAnimal_bot/Domination' }],
+        [{ text: languageCode === 'ru' ? "Играц" : "Play", url: 'https://t.me/DireAnimals_bot/Domination' }],
         [
           { text: languageCode === 'ru' ? "Подарки" : "Gifts", url: 't.me/DominationMarketBot' },
           { text: languageCode === 'ru' ? "Правила" : "Rules", callback_data: 'button2' }
@@ -60,7 +60,7 @@ bot.on('callback_query', (callbackQuery) => {
   const options = {
     reply_markup: {
       inline_keyboard: [
-        [{ text: languageCode === 'ru' ? "Играц" : "Play", url: 'https://t.me/DireAnimal_bot/Domination' }],
+        [{ text: languageCode === 'ru' ? "Играц" : "Play", url: 'https://t.me/DireAnimals_bot/Domination' }],
         [
           { text: languageCode === 'ru' ? "Подарки" : "Gifts", url: 't.me/DominationMarketBot' },
           { text: languageCode === 'ru' ? "Правила" : "Rules", callback_data: 'button2' }
