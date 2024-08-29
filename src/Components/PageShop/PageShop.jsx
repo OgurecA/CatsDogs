@@ -317,7 +317,7 @@ const updateAnimalStatus = (animalIndex, status) => {
 
             {showPromoModal && (
                 <div className="modal-overlay promo" onClick={closePromoModal}>
-                    <div className="modal-content promo" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${backgroundPromoImage})` }} >
+                    <div className="modal-content promo" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${backgroundImage})` }} >
                         <h2>GIFT CODE</h2>
                         <input
                             type="text"
@@ -332,7 +332,7 @@ const updateAnimalStatus = (animalIndex, status) => {
 
             {showDonateModal && (
                 <div className="modal-overlay donate" onClick={closeDonateModal}>
-                    <div className="modal-content donate" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${backgroundPromoImage})` }} >
+                    <div className="modal-content donate" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${backgroundImage})` }} >
                         <h2>DONATE</h2>
                         <p>Your ID to recieve donations: {userId}</p>
                         <input

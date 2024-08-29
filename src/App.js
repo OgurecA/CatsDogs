@@ -87,13 +87,6 @@ function App() {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    useEffect(() => {
-        const images = [PromoIceBack, PromoLavaBack, FonTap1Dark, Lava1, Zir3];
-        images.forEach((src) => {
-            const img = new Image();
-            img.src = src;
-        });
-    }, []);
 
     // Восстанавливаем данные из локального хранилища при загрузке приложения
     useEffect(() => {
