@@ -26,7 +26,7 @@ bot.onText(/\/start/, (msg) => {
   const options = {
     reply_markup: {
       inline_keyboard: [
-        [{ text: languageCode === 'ru' ? "Играц" : "Play", url: 'https://t.me/DireAnimals_bot/Domination' }],
+        [{ text: languageCode === 'ru' ? "Играц" : "Play", url: 'https://t.me/DireAnimals_bot/DireAnimals' }],
         [
           { text: languageCode === 'ru' ? "Подарки" : "Gifts", url: 't.me/DominationMarketBot' },
           { text: languageCode === 'ru' ? "Правила" : "Rules", callback_data: 'button2' }
@@ -60,7 +60,7 @@ bot.on('callback_query', (callbackQuery) => {
   const options = {
     reply_markup: {
       inline_keyboard: [
-        [{ text: languageCode === 'ru' ? "Играц" : "Play", url: 'https://t.me/DireAnimals_bot/Domination' }],
+        [{ text: languageCode === 'ru' ? "Играц" : "Play", url: 'https://t.me/DireAnimals_bot/DireAnimals' }],
         [
           { text: languageCode === 'ru' ? "Подарки" : "Gifts", url: 't.me/DominationMarketBot' },
           { text: languageCode === 'ru' ? "Правила" : "Rules", callback_data: 'button2' }
