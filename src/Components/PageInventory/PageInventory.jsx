@@ -6,10 +6,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
     const items = [
         { title: 'Monke', image: Gorilla, price: 0, description: "ohotnik na mishej" }, // Змея открыта по умолчанию и бесплатна
         { title: 'Oliv', image: Krisa, price: 100, description: "monke" },
-        { title: 'Bernard', image: Bik, price: 40, description: "aligato jhfjfjnf jdjdbdijbdij ibdjijdijbdij ijjdbdr" },
-        { title: 'Drake', image: Gorilla, price: 110, description: "ohotnik na mishej" }, // Змея открыта по умолчанию и бесплатна
-        { title: 'Gendalf', image: Krisa, price: 100, description: "monke" },
-        { title: 'Sebastian', image: Bik, price: 40, description: "aligato jhfjfjnf jdjdbdijbdij ibdjijdijbdij ijjdbdr" }
+        { title: 'Bernard', image: Bik, price: 40, description: "aligato jhfjfjnf jdjdbdijbdij ibdjijdijbdij ijjdbdr" }
     ];
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);

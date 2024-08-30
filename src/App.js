@@ -147,36 +147,6 @@ function App() {
                 newName = "Bernard";
                 background = FonTap1;
                 break;
-            case 3:
-                image = Elephant;
-                newMaxEnergy = 100;
-                newEnergyRecovery = 1;
-                newEnergyTake = 1;
-                newTeamDMG = 1;
-                newPersonalDMG = 1;
-                newName = "Elephant";
-                background = FonTap1;
-                break;
-            case 4:
-                image = Tiger;
-                newMaxEnergy = 100;
-                newEnergyRecovery = 1;
-                newEnergyTake = 1;
-                newTeamDMG = 1;
-                newPersonalDMG = 5;
-                newName = "Tiger";
-                background = FonTap1;
-                break;
-            case 5:
-                image = Tiger;
-                newMaxEnergy = 100;
-                newEnergyRecovery = 1;
-                newEnergyTake = 1;
-                newTeamDMG = 1;
-                newPersonalDMG = 5;
-                newName = "Tiger";
-                background = FonTap1;
-                break;
             default:
                 image = null;
         }
