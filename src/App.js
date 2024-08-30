@@ -734,7 +734,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
                         {isButtonDisabled ? (
                             <div className="loader"></div>
                         ) : (
-                            'Get'
+                            'GET'
                         )}
                     </button>
                 </div>

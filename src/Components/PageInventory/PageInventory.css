@@ -119,7 +119,7 @@
     transform: translateY(-15%);
     display: flex;
     flex-direction: column; /* Размещаем элементы вертикально */
-    justify-content: space-evenly;
+    justify-content: space-around;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.9); /* Глубокая тень */
     animation: expand 0.5s ease-out, slightShake 3s infinite linear;
     animation-delay: 0s, 0.5s;
