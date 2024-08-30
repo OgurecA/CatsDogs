@@ -149,7 +149,7 @@ img:active, button:active, .image-container:active {
   cursor: pointer;
   font-size: 18px;
   height: 52px; /* Кнопка занимает 10% высоты модального окна */
-  width: 120px;
+  width: 100px;
   align-self: center; /* Центрируем кнопку по горизонтали */
   display: flex; /* Включаем Flexbox */
   justify-content: center; /* Центрируем содержимое по горизонтали */

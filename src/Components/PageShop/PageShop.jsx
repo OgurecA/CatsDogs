@@ -323,7 +323,7 @@ const updateAnimalStatus = (animalIndex, status) => {
                 <div className="modal-overlay promo" onClick={closePromoModal}>
                     <div className="modal-content promo" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${backgroundImage})` }} >
                         <h2>GIFT CODE</h2>
-                        <p>Follow us on social media and discover hidden gift codes to unlock rewards.</p>
+                        <p>Follow us and discover hidden gift codes to get rewards.</p>
                         <input
                             type="text"
                             value={promoInput}
