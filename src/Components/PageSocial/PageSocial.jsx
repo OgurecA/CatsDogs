@@ -77,7 +77,7 @@ const PageSocial = ({ className, updateCheckedCount }) => {
                 Telegram
             </a>
             <a
-                className={`social-item ${checkingLinks.includes(5) ? 'checking' : ''} ${checkedLinks.includes(1) ? 'checked' : ''}`}
+                className={`social-item ${checkingLinks.includes(1) ? 'checking' : ''} ${checkedLinks.includes(1) ? 'checked' : ''}`}
                 href="https://x.com/dominator24news?s=21"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -86,7 +86,7 @@ const PageSocial = ({ className, updateCheckedCount }) => {
                 X
             </a>
             <a
-                className={`social-item ${checkingLinks.includes(5) ? 'checking' : ''} ${checkedLinks.includes(2) ? 'checked' : ''}`}
+                className={`social-item ${checkingLinks.includes(2) ? 'checking' : ''} ${checkedLinks.includes(2) ? 'checked' : ''}`}
                 href="https://dominators.website"
                 target="_blank"
                 rel="noopener noreferrer"

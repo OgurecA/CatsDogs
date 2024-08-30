@@ -63,6 +63,9 @@ function App() {
     const [topPlayerUserName, setTopPlayerUserName] = useState("none");
     const [topPlayerName, setTopPlayerName] = useState("none");
 
+    const [playerUserName, setPlayerUserName] = useState("none");
+    const [playerName, setPlayerName] = useState("none");
+
     const [userData, setUserData] = useState(null);
 
     const [choice, setChoice] = useState(false);
@@ -297,6 +300,8 @@ function App() {
           setUserData(WebApp.initDataUnsafe.user);
           setUserId(WebApp.initDataUnsafe.user.id);
           setLang(WebApp.initDataUnsafe.user.language_code);
+          setPlayerName(WebApp.initDataUnsafe.user.first_name);
+          setPlayerUserName(WebApp.initDataUnsafe.user.username);
           const data = {
             id: WebApp.initDataUnsafe.user.id,
             first_name: WebApp.initDataUnsafe.user.first_name,
@@ -481,7 +486,7 @@ function App() {
         loadEnergy();
     
         const energyRecoveryInterval = setInterval(updateEnergy, 10000);
-        const saveEnergyInterval = setInterval(saveEnergyToLocalStorage, 1000); 
+        const saveEnergyInterval = setInterval(saveEnergyToLocalStorage, 500); 
     
         return () => {
             clearInterval(energyRecoveryInterval); // Очистка интервала обновления энергии
@@ -675,11 +680,9 @@ const getTopPlayer = (favorite) => {
 };
 
 const links = [
-    "https://www.youtube.com/watch?v=42bqsjVWwXg&list=RD42bqsjVWwXg&index=1",
-    "https://www.youtube.com/watch?v=r1rVlXi1fb0&list=RD42bqsjVWwXg&index=4",
-    "https://www.youtube.com/watch?v=NvnCJK-cJ7Y&list=RD42bqsjVWwXg&index=10",
-    "https://www.youtube.com/watch?v=-wpTY3LM5bc&list=RD42bqsjVWwXg&index=9",
-    "https://www.youtube.com/watch?v=Qxw5xNqATko&list=RD42bqsjVWwXg&index=8"
+    "https://t.me/direanimalsnews",
+    "https://x.com/dominator24news?s=21",
+    "https://dominators.website"
 ];
 
 const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -712,7 +715,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} updateCheckedCount={setCheckedCount} />
             <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} playersFavorite={playersFavorite} updatedContribution={contribution} onCardSelect={handleCardSelect} personalPoints={personalCount} userId={userId} setPersonalPoints={updatePersonalPoints} updateCounts={updateCounts} updateAnimalStatus={updateAnimalStatus} />
             <PageExchange className={isExchangePageVisible ? 'page-exchange' : 'page-exchange hidden'} />
-            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} lang={lang} userId={userId} title={playersFavorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} contribution={contribution} updateCounts={updateCounts} setPersonalPoints={updatePersonalPoints} topPlayerName={topPlayerName} topPlayerUserName={topPlayerUserName} />
+            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} lang={lang} userId={userId} title={playersFavorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} contribution={contribution} updateCounts={updateCounts} setPersonalPoints={updatePersonalPoints} topPlayerName={topPlayerName} topPlayerUserName={topPlayerUserName} playerName={playerName} playerUserName={playerUserName}/>
 
             <BGcontainer src={backgroundImage} />
             <PersonalCount 
