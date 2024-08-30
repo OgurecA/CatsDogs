@@ -353,7 +353,7 @@ const updateAnimalStatus = (animalIndex, status) => {
                             className="modal-input"
                             placeholder="Donation amount" 
                         />
-                        <button className={`modal-button donate ${isButtonShaking ? 'vibrate' : ''}`} onClick={handleSubmitDonation}>{lang === 'ru' ? 'Подтвердить' : 'Submit'}</button>
+                        <button className={`modal-button donate ${isButtonShaking ? 'vibrate' : ''}`} onClick={handleSubmitDonation}>Submit</button>
                     </div>
                 </div>
             )}
