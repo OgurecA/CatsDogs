@@ -69,7 +69,7 @@ const PageSocial = ({ className, updateCheckedCount }) => {
         <div className={`page-social ${className}`}>
             <a
                 className={`social-item ${checkingLinks.includes(0) ? 'checking' : ''} ${checkedLinks.includes(0) ? 'checked' : ''}`}
-                href="tg://resolve?domain=telegram"
+                href="https://t.me/direanimalsnews"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(0, e)}
@@ -78,12 +78,21 @@ const PageSocial = ({ className, updateCheckedCount }) => {
             </a>
             <a
                 className={`social-item ${checkingLinks.includes(5) ? 'checking' : ''} ${checkedLinks.includes(1) ? 'checked' : ''}`}
-                href="https://x.com"
+                href="https://x.com/dominator24news?s=21"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => handleLinkClick(5, e)}
+                onClick={(e) => handleLinkClick(1, e)}
             >
                 X
+            </a>
+            <a
+                className={`social-item ${checkingLinks.includes(5) ? 'checking' : ''} ${checkedLinks.includes(2) ? 'checked' : ''}`}
+                href="https://dominators.website"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => handleLinkClick(2, e)}
+            >
+                Web
             </a>
         </div>
     );

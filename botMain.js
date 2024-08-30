@@ -32,7 +32,7 @@ bot.onText(/\/start/, (msg) => {
           { text: languageCode === 'ru' ? "Правила" : "Rules", callback_data: 'button2' }
         ],
         [
-          { text: languageCode === 'ru' ? "Подписаться" : "Subscribe", url: 'https://t.me/hamster24news' },
+          { text: languageCode === 'ru' ? "Подписаться" : "Subscribe", url: 'https://t.me/direanimalsnews' },
           { text: languageCode === 'ru' ? "Поделиться" : "Share", switch_inline_query: '' }
         ]
       ]
@@ -66,7 +66,7 @@ bot.on('callback_query', (callbackQuery) => {
           { text: languageCode === 'ru' ? "Правила" : "Rules", callback_data: 'button2' }
         ],
         [
-          { text: languageCode === 'ru' ? "Подписаться" : "Subscribe", url: 'https://t.me/hamster24news' },
+          { text: languageCode === 'ru' ? "Подписаться" : "Subscribe", url: 'https://t.me/direanimalsnews' },
           { text: languageCode === 'ru' ? "Поделиться" : "Share", switch_inline_query: '' }
         ]        
       ]

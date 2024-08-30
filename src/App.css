@@ -136,11 +136,12 @@ img:active, button:active, .image-container:active {
 }
 .modal-content.add h2 {
   color: #e0e0e0;
-  margin-top: -20px;
+  margin-top: -25px;
   font-size: 22px;
   text-shadow: 1px 1px 5px #000;
 }
 .modal-content.add button {
+  margin-bottom: 15px;
   background-color: transparent;
   color: #fff;
   border: 1px solid #555;
