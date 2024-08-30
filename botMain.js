@@ -50,7 +50,9 @@ bot.on('callback_query', (callbackQuery) => {
   let imagePath;
 
   if (data === 'button2') {
-    responseText = languageCode === 'ru' ? "Правила игры и их описание" : "Rules and their description";
+    responseText = languageCode === 'ru' 
+    ? "Возникли проблемы?\n\nПопробуйте перезапустить приложение или очистить кэш браузера. Это часто решает многие технические трудности и помогает восстановить нормальную работу приложения.\n\nЕсли проблемы продолжаются, загляните в наш Telegram-канал для получения обновлений, поддержки и ответов на часто задаваемые вопросы." 
+    : "Having issues?\n\nTry restarting the app or clearing your browser cache. This often resolves many technical difficulties and restores normal operation.\n\nIf the problems persist, check out our Telegram channel for updates, support, and answers to frequently asked questions.";
     imagePath = './src/Components/Photoes/FonSkull.jpeg'; // Укажите путь к изображению для кнопки 2
   } 
   
