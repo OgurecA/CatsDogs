@@ -119,12 +119,12 @@ bot.on('callback_query', (callbackQuery) => {
 
 } else if (data === 'gift1') {
     const invoice = {
-      title: languageCode === 'ru' ? "Получите 1000 очков за 1 Telegram Star (~$0.99)" : "Get a 1000 points for 1 Telegram Star (~$0.99)",
+      title: languageCode === 'ru' ? "Получите 1000 очков за 50 Telegram Star (~$1.19)" : "Get a 1000 points for 1 Telegram Star (~$0.99)",
       description: languageCode === 'ru' ? "Покупка не подлежит возврату. Совершая покупку, вы соглашаетесь с условиями использования." : "Purchase is non-refundable. By making a purchase, you agree to the terms of service.",
       payload: "gift1_payload",
       provider_token: "", // Пустой токен для Telegram Stars
       currency: "XTR", // Валюта для Telegram Stars
-      prices: [{ label: languageCode === 'ru' ? "1000 очков" : "1000 points", amount: 1 }] // 100 единиц Telegram Stars
+      prices: [{ label: languageCode === 'ru' ? "1000 очков" : "1000 points", amount: 50 }] // 100 единиц Telegram Stars
     };
   
     // Отправляем инвойс
