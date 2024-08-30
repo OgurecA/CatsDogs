@@ -94,6 +94,15 @@ const PageSocial = ({ className, updateCheckedCount }) => {
             >
                 Web
             </a>
+            <a
+                className={`social-item ${checkingLinks.includes(3) ? 'checking' : ''} ${checkedLinks.includes(3) ? 'checked' : ''}`}
+                href="https://www.tiktok.com/en/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => handleLinkClick(3, e)}
+            >
+                TikTok
+            </a>
         </div>
     );
 };
