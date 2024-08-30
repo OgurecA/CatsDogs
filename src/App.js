@@ -749,8 +749,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
             {isModalOpen && (
                 <div className="modal-overlay add" onClick={closeModal}>
                 <div className="modal-content add" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${AddImage})` }}>
-                    <h2>Your Energy Is Low!</h2>
-                    <p>You don't have enough energy to perform this action.</p>
+                    <h2>Energy Is Low!</h2>
                     <button
                         onClick={handleClickAdd}
                         className="modal-button"

@@ -125,8 +125,6 @@ img:active, button:active, .image-container:active {
   transform: translateY(-10%);
   display: flex;
   align-items: center;
-  flex-direction: column; /* Размещаем элементы вертикально */
-  justify-content: space-around;
   filter: drop-shadow(2px 2px 20px rgba(255, 235, 80, 0.8)); /* Глубокая тень */
   animation: expand 0.3s ease-out;
 }
@@ -135,19 +133,16 @@ img:active, button:active, .image-container:active {
   100% { transform: scale(1); opacity: 1; }
 }
 .modal-content.add h2 {
+  position: absolute;
+  top: 0%;
   color: #e0e0e0;
   margin: 0; /* Убираем отступы сверху и снизу */
   font-size: 22px;
   text-shadow: 1px 1px 5px #000;
 }
-.modal-content.add p {
-  color: #e0e0e0; /* Цвет текста */
-  font-size: 16px; /* Размер шрифта */
-  text-align: center; /* Центрирование текста */
-  font-weight: 500; /* Полужирный шрифт */
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Теневой эффект */
-}
 .modal-content.add button {
+  position: absolute;
+  bottom: 0%;
   background-color: transparent;
   color: #fff;
   border: 1px solid #555;
