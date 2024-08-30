@@ -110,7 +110,7 @@ img:active, button:active, .image-container:active {
   z-index: 1000; /* Модальное окно поверх всего */
 }
 .modal-content.add {
-  background-size: cover; /* Изображение будет покрывать всю область */
+  background-size: contain; /* Изображение будет покрывать всю область */
   background-position: center; /* Центрировать изображение */
   background-repeat: no-repeat;
   position: relative;
@@ -121,9 +121,9 @@ img:active, button:active, .image-container:active {
   padding-bottom: 18px;
   border-radius: 10px;
   text-align: center;
-  width: 60vw;
-  height: 55vh;
-  transform: translateY(-15%);
+  width: 80vw;
+  height: 50vh;
+  transform: translateY(-10%);
   display: flex;
   align-items: center;
   flex-direction: column; /* Размещаем элементы вертикально */
@@ -133,7 +133,7 @@ img:active, button:active, .image-container:active {
 }
 @keyframes expand {
   0% { transform: translateY(0%) scale(0.8); opacity: 0.5; }
-  100% { transform: translateY(-15%) scale(1); opacity: 1; }
+  100% { transform: translateY(-10%) scale(1); opacity: 1; }
 }
 .modal-content.add h2 {
   color: #e0e0e0;
