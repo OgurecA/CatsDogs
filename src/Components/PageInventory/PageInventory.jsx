@@ -108,7 +108,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
             {showModal && (
                 <div className="modal-overlay locked no-select" onClick={closeModal}>
                 <div className="modal-content locked no-select" onClick={(e) => e.stopPropagation()}>
-                    <h2>{items[cardToUnlock].title} заперт</h2>
+                    <h2>{items[cardToUnlock].title} is imprisoned</h2>
                 <div className={`card locked no-select`}>
                     <img src={items[cardToUnlock].image} alt={items[cardToUnlock].title} className="card-image" />
                     <div className="lock-overlay">
@@ -116,9 +116,9 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                     </div>
                 </div>
                     <p className="modal-description">*{items[cardToUnlock].description}</p>
-                    <p className="modal-price">Цена свободы: {items[cardToUnlock].price}</p>
+                    <p className="modal-price">Rescue for: {items[cardToUnlock].price}</p>
                 <button onClick={unlockCard} className={isButtonShaking ? 'vibrate' : ''}>
-                    Освободить
+                    Set free
                 </button>
                 </div>
                 </div>
@@ -126,7 +126,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
             {showSelectedCardModal && (
                 <div className="modal-overlay selected no-select" onClick={closeSelectedCardModal}>
                     <div className="modal-content selected no-select" onClick={(e) => e.stopPropagation()}>
-                        <h2>Вы выбрали {items[selectedCardIndex].title}</h2>
+                        <h2>{items[selectedCardIndex].title}</h2>
                         <div className={`card no-select`}>
                             <img src={items[selectedCardIndex].image} alt={items[selectedCardIndex].title} className="card-image" />
                         </div>

@@ -296,7 +296,7 @@ const updateAnimalStatus = (animalIndex, status) => {
             </div>
             <ul className="shop-list">
                 <li className="list-item">
-                    Welcome back, {displayedName}!
+                    Welcome back, {displayedName}
                 </li>
                 <li className="list-item">
                     Comrades: {displayedVotes}
@@ -323,11 +323,13 @@ const updateAnimalStatus = (animalIndex, status) => {
                 <div className="modal-overlay promo" onClick={closePromoModal}>
                     <div className="modal-content promo" onClick={(e) => e.stopPropagation()} style={{ backgroundImage: `url(${backgroundImage})` }} >
                         <h2>GIFT CODE</h2>
+                        <p>Follow us on social media and discover hidden gift codes to unlock rewards.</p>
                         <input
                             type="text"
                             value={promoInput}
                             onChange={handlePromoInputChange}
                             className="modal-input"
+                            placeholder="Enter gift code"
                         />
                         <button className={`modal-button promo ${isButtonShaking ? 'vibrate' : ''}`} onClick={handlePromoSubmit}>Submit</button>
                     </div>
