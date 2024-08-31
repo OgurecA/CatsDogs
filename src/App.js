@@ -661,7 +661,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
         // Запускаем таймер на 30 секунд
         setTimeout(() => {
             setIsButtonDisabled(false);
-            setEnergy(energy + 50);
+            setEnergy(energy + 100);
             closeModal();
         }, 10000);
     };
