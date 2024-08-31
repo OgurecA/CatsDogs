@@ -19,13 +19,8 @@ import Bik from "../Photoes/Bik.png"
 import FonTap1 from "../Photoes/FonTap1Dark.jpeg"
 import FonTap2 from "../Photoes/FonTap2.jpeg"
 
-import TigerBack from "../Photoes/TigerBack.jpg";
-import SnakeBack from "../Photoes/SnakeBack.jpg";
-import CrocBack from "../Photoes/CrocBack.jpg";
-import ElephantBack from "../Photoes/ElephantBack.jpg";
-import GorillaBack from "../Photoes/GorillaBack.jpg";
 
 
 
 export { Cage, TrumpImg, TrumpBG, HarrisBG, HarrisImg, HarrisP, TrumpP, bybit, SkullFon, Rhino, Bik, Krisa,
-Gorilla, Tiger, Snake, Croc, Elephant, GorillaBack, TigerBack, SnakeBack, CrocBack, ElephantBack, FonTap1, FonTap2 };
+Gorilla, Tiger, Snake, Croc, Elephant, FonTap1, FonTap2 };

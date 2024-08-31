@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './PageShop.css';
 import DarkWolfBack from '../Photoes/FonWolfWarm1.png';
 import WolfBackCold from '../Photoes/FonWolfCold1.png';
-import PromoIceBack from '../Photoes/PromoIce.png'
-import PromoLavaBack from '../Photoes/PromoFire.jpg'
 
 const PageShop = ({ className, title, votesA, votesB, personalCount, contribution, updateCounts, setPersonalPoints, userId, topPlayerName, topPlayerUserName, lang, playerName, playerUserName }) => {
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
@@ -13,7 +11,6 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     const [donateInputId, setDonateInputId] = useState('');
     const [donateInputAmount, setDonateInputAmount] = useState('');
     const [backgroundImage, setBackgroundImage] = useState('');
-    const [backgroundPromoImage, setBackgroundPromoImage] = useState('');
     
     const displayedTopName = topPlayerUserName && topPlayerUserName.trim() !== "" ? topPlayerUserName : topPlayerName;
     const displayedName = playerUserName && playerUserName.trim() !== "" ? playerUserName : playerName;
@@ -72,13 +69,11 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             setDisplayedVotes(votesA);
             setDisplayedVotesOpponent(votesB);
             setBackgroundImage(WolfBackCold);
-            setBackgroundPromoImage(PromoIceBack);
         } else if (title === 'Wild Hearts') {
             setTitleName("WildHearts");
             setDisplayedVotes(votesB);
             setDisplayedVotesOpponent(votesA);
             setBackgroundImage(DarkWolfBack);
-            setBackgroundPromoImage(PromoLavaBack);
         }
     }, [title, votesA, votesB]); // Добавляем зависимости
 
