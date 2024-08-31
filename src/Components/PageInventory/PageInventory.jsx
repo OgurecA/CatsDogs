@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './PageInventory.css';
-import { Snake, Gorilla, Croc, Elephant, Tiger, Rhino, Cage, Krisa, Bik } from '../Pictures/Pictures';
+import { Gorilla, Cage, Krisa, Bik } from '../Pictures/Pictures';
 
 const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoints, updateCounts, updateAnimalStatus, playersFavorite, updatedContribution, userId }) => {
     const items = [
-        { title: 'Monke', image: Gorilla, price: 0, description: "ohotnik na mishej" }, // Змея открыта по умолчанию и бесплатна
-        { title: 'Oliv', image: Krisa, price: 100, description: "monke" },
+        { title: 'Anatoly', image: Gorilla, price: 0, description: "ohotnik na mishej" }, // Змея открыта по умолчанию и бесплатна
+        { title: 'Olev', image: Krisa, price: 100, description: "monke" },
         { title: 'Bernard', image: Bik, price: 40, description: "aligato jhfjfjnf jdjdbdijbdij ibdjijdijbdij ijjdbdr" }
     ];
 
@@ -118,7 +118,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                     <p className="modal-description">*{items[cardToUnlock].description}</p>
                     <p className="modal-price">Rescue for: {items[cardToUnlock].price}</p>
                 <button onClick={unlockCard} className={isButtonShaking ? 'vibrate' : ''}>
-                    Set free
+                    SET FREE
                 </button>
                 </div>
                 </div>

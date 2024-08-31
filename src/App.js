@@ -17,20 +17,11 @@ import PageShop from './Components/PageShop/PageShop';
 import PageInventory from './Components/PageInventory/PageInventory';
 import PageExchange from './Components/PageExchange/PageExchange';
 
-import PromoIceBack from './Components/Photoes/PromoIce.png';
-import PromoLavaBack from './Components/Photoes/PromoFire.jpg';
-import FonTap1Dark from './Components/Photoes/FonTap1Dark.jpeg';
-import Lava1 from './Components/Photoes/Lava1.jpeg';
-import Zir3 from './Components/Photoes/Zir3.jpeg';
 
-
-import { HarrisImg, TrumpImg, TrumpBG, HarrisBG, TrumpP, HarrisP, bybit, CatBack, Snake, Gorilla, Tiger, Elephant, Croc, Rhino,
-TigerBack, Bik, Krisa, FonTap1, FonTap2 } from './Components/Pictures/Pictures';
+import { TrumpP, HarrisP, bybit, Gorilla, Bik, Krisa, FonTap1, } from './Components/Pictures/Pictures';
 
 
 function App() {
-
-
 
 
     const [isFavoriteSet, setIsFavoriteSet] = useState(false);
@@ -51,7 +42,7 @@ function App() {
     const [votes, setVotes] = useState({ Trump: 0, Harris: 0 });
 
     const [energy, setEnergy] = useState(100);
-    const [maxEnergy, setMaxEnergy] = useState(100);
+    const [maxEnergy, setMaxEnergy] = useState(1000);
     const [energyRecovery, setEnergyRecovery] = useState(1);
     const [energyTake, setEnergyTake] = useState(1);
     const [personalDMG, setPersonalDMG] = useState(1);
@@ -119,31 +110,31 @@ function App() {
         switch (index) {
             case 0:
                 image = Gorilla;
-                newMaxEnergy = 100;
+                newMaxEnergy = 1000;
                 newEnergyRecovery = 1;
-                newEnergyTake = 1;
-                newTeamDMG = 1;
-                newPersonalDMG = 1;
+                newEnergyTake = 15;
+                newTeamDMG = 5;
+                newPersonalDMG = 5;
                 newName = "Monke";
                 background = FonTap1;
                 break;
             case 1:
                 image = Krisa;
-                newMaxEnergy = 100;
+                newMaxEnergy = 1000;
                 newEnergyRecovery = 1;
-                newEnergyTake = 1;
-                newTeamDMG = 5;
-                newPersonalDMG = 1;
+                newEnergyTake = 10;
+                newTeamDMG = -10;
+                newPersonalDMG = 10;
                 newName = "Oliv";
                 background = FonTap1;
                 break;
             case 2:
                 image = Bik;
-                newMaxEnergy = 100;
+                newMaxEnergy = 1000;
                 newEnergyRecovery = 1;
                 newEnergyTake = 10;
-                newTeamDMG = 1;
-                newPersonalDMG = 1;
+                newTeamDMG = 10;
+                newPersonalDMG = 0;
                 newName = "Bernard";
                 background = FonTap1;
                 break;
@@ -421,8 +412,8 @@ function App() {
     
                 // Рассчитываем новую энергию только если текущая энергия меньше максимальной
                 const currentEnergy = parseInt(savedEnergy, 10);
-                if (currentEnergy < 100) {
-                    const newEnergy = Math.min(currentEnergy + energyRecovered, 100);
+                if (currentEnergy < 1000) {
+                    const newEnergy = Math.min(currentEnergy + energyRecovered, 1000);
                     setEnergy(newEnergy);
                     console.log("New energy after recovery:", newEnergy);
                 } else {
@@ -437,7 +428,7 @@ function App() {
         const updateEnergy = () => {
             setEnergy(prevEnergy => {
                 if (prevEnergy < 100) {
-                    const newEnergy = Math.min(prevEnergy + 1, 100);
+                    const newEnergy = Math.min(prevEnergy + 1, 1000);
                     localStorage.setItem('lastActiveTime', Date.now()); // Сохранение времени последнего обновления энергии отдельно
                     return newEnergy;
                 }
