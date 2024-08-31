@@ -5,7 +5,7 @@ import SkullFon from "../Photoes/FonSkull.jpeg";
 import Gorilla from "../Photoes/Monke.png";
 import Cage from "../Photoes/Cage.png";
 import Krisa from "../Photoes/Krisa.png"
-import Bik from "../Photoes/Bik.png"
+import Bik from "../Photoes/BekPNG.png"
 
 import FonTap1 from "../Photoes/FonTap1Dark.jpeg"
 

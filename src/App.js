@@ -18,7 +18,7 @@ import PageInventory from './Components/PageInventory/PageInventory';
 import PageExchange from './Components/PageExchange/PageExchange';
 
 
-import { TrumpP, HarrisP, bybit, Gorilla, Bik, Krisa, FonTap1, } from './Components/Pictures/Pictures';
+import { TrumpP, HarrisP, bybit, Gorilla, Bik, Krisa, FonTap1 } from './Components/Pictures/Pictures';
 
 
 function App() {
@@ -353,9 +353,9 @@ function App() {
 
           const intervalId = setInterval(() => {
           getTopPlayer('Dire Warriors');
-          }, 5000); // Интервал в миллисекундах (5 секунд)
+          }, 3000); // Интервал в миллисекундах (5 секунд)
           return () => clearInterval(intervalId);
-          
+
         } else if (playersFavorite === 'Wild Hearts') {
           const updatedPoints = personalCount;
           const updatedContribution = contribution;
@@ -365,7 +365,7 @@ function App() {
 
           const intervalId = setInterval(() => {
           getTopPlayer('Wild Hearts');
-          }, 5000); // Интервал в миллисекундах (5 секунд)
+          }, 3000); // Интервал в миллисекундах (5 секунд)
           return () => clearInterval(intervalId);
         }
       }, [playersFavorite]);
