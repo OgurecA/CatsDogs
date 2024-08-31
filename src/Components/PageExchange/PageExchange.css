@@ -6,9 +6,8 @@
     justify-content: flex-start;
     height: 100vh;
     width: 100vw;
-    background-color: #e20000;
-    z-index: 100;
-    background-image: url('../Photoes/JGBack2.jpg'); /* Укажите путь к вашему изображению */
+    background-color: #242424;
+    z-index: 100;/* Укажите путь к вашему изображению */
     background-size: cover; /* Изображение будет покрывать всю область */
     background-position: center; /* Центрировать изображение */
     background-repeat: no-repeat;
