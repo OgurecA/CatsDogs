@@ -350,14 +350,23 @@ function App() {
           handleClickHarrisB();
           setChoice(true);
           updateCounts(updatedPoints, playersFavorite, updatedContribution);
+
+          const intervalId = setInterval(() => {
           getTopPlayer('Dire Warriors');
+          }, 5000); // Интервал в миллисекундах (5 секунд)
+          return () => clearInterval(intervalId);
+          
         } else if (playersFavorite === 'Wild Hearts') {
           const updatedPoints = personalCount;
           const updatedContribution = contribution;
           handleClickTrumpB();
           setChoice(true);
           updateCounts(updatedPoints, playersFavorite, updatedContribution);
+
+          const intervalId = setInterval(() => {
           getTopPlayer('Wild Hearts');
+          }, 5000); // Интервал в миллисекундах (5 секунд)
+          return () => clearInterval(intervalId);
         }
       }, [playersFavorite]);
 
