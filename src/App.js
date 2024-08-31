@@ -427,7 +427,7 @@ function App() {
     
         const updateEnergy = () => {
             setEnergy(prevEnergy => {
-                if (prevEnergy < 100) {
+                if (prevEnergy < 1000) {
                     const newEnergy = Math.min(prevEnergy + 1, 1000);
                     localStorage.setItem('lastActiveTime', Date.now()); // Сохранение времени последнего обновления энергии отдельно
                     return newEnergy;
