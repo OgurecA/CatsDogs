@@ -130,7 +130,6 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
                     <img src={Cage} alt="Locked" className="lock-icon" />
                     </div>
                 </div>
-                    <p className="modal-description">{items[cardToUnlock].description}</p>
                     <p className="modal-price">Rescue for: {items[cardToUnlock].price}</p>
                 <button onClick={unlockCard} className={isButtonShaking ? 'vibrate' : ''}>
                     SET FREE
