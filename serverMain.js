@@ -22,11 +22,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'build')));
 
 const corsOptions = {
-    origin: 'https://btc24news.online', // Укажите ваш источник
+    origin: 'https://btc24news.online', // Только ваш доверенный домен
+    methods: ['GET', 'POST'], // Ограничьте методы только необходимыми
+    allowedHeaders: ['Content-Type', 'Authorization'], // Разрешите только нужные заголовки
     optionsSuccessStatus: 200
-  };
-  
-  app.use(cors(corsOptions));
+};
+app.use('/api', cors(corsOptions), apiRoutes);
+
 
 
 
