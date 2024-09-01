@@ -180,4 +180,15 @@ img:active, button:active, .image-container:active {
       transform: rotate(360deg);
   }
 }
+@keyframes vibrate {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+.vibrate {
+  animation: vibrate 0.3s linear;
+}
+.button-text-transition {
+  transition: all 0.2s ease;
+}
 

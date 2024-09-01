@@ -56,6 +56,7 @@ function App() {
 
     const [playerUserName, setPlayerUserName] = useState("none");
     const [playerName, setPlayerName] = useState("none");
+    const [premium, setPremium] = useState("no");
 
     const [userData, setUserData] = useState(null);
 
@@ -263,6 +264,7 @@ function App() {
           setLang(WebApp.initDataUnsafe.user.language_code);
           setPlayerName(WebApp.initDataUnsafe.user.first_name);
           setPlayerUserName(WebApp.initDataUnsafe.user.username);
+          setPremium(WebApp.initDataUnsafe.user.is_premium ? 'Yes' : 'No');
           const data = {
             id: WebApp.initDataUnsafe.user.id,
             first_name: WebApp.initDataUnsafe.user.first_name,
@@ -656,21 +658,52 @@ const links = [
 ];
 
 const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+const [buttonText, setButtonText] = useState('GET'); // начальный текст кнопки
+
+
+useEffect(() => {
+    // Проверяем дату последнего посещения
+    const lastVisitDate = localStorage.getItem('lastVisitDate');
+    const currentDate = new Date().toDateString();
+
+    // Если последний визит был в другой день, очищаем список посещенных ссылок
+    if (lastVisitDate !== currentDate) {
+        localStorage.removeItem('visitedLinks');
+        localStorage.setItem('lastVisitDate', currentDate);
+    }
+}, []);
 
     const handleClickAdd = (event) => {
         // Отключаем кнопку
         event.preventDefault();
+        const addedEnergy = (premium ? 200 : 100);
 
-        const randomLink = links[Math.floor(Math.random() * links.length)];
+        let visitedLinks = JSON.parse(localStorage.getItem('visitedLinks')) || [];
+        const unvisitedLinks = links.filter(link => !visitedLinks.includes(link));
 
+        if (unvisitedLinks.length === 0) {
+            setIsButtonDisabled(true);
+            setButtonText("ENOUGH!");
+            setTimeout(() => {
+                setIsButtonDisabled(false);
+                setButtonText('GET'); // возвращаем текст через 1 секунду
+            }, 1500); // 1 секунда
+            return;
+        }
+
+
+        const randomLink = unvisitedLinks[Math.floor(Math.random() * unvisitedLinks.length)];
         window.open(randomLink, '_blank', 'noopener,noreferrer');
+
+        visitedLinks.push(randomLink);
+        localStorage.setItem('visitedLinks', JSON.stringify(visitedLinks));
 
 
         setIsButtonDisabled(true);
         // Запускаем таймер на 30 секунд
         setTimeout(() => {
             setIsButtonDisabled(false);
-            setEnergy(energy + 100);
+            setEnergy(energy + addedEnergy);
             closeModal();
         }, 10000);
     };
@@ -724,7 +757,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
                     <h2>Energy Is Low!</h2>
                     <button
                         onClick={handleClickAdd}
-                        className="modal-button"
+                        className={`modal-button ${isButtonDisabled ? 'vibrate' : ''} button-text-transition`}
                         disabled={isButtonDisabled}
                         style={{
                             position: 'relative', // Для центровки анимации
@@ -733,7 +766,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
                         {isButtonDisabled ? (
                             <div className="loader"></div>
                         ) : (
-                            'GET'
+                            {buttonText}
                         )}
                     </button>
                 </div>
