@@ -4,9 +4,24 @@ import { Gorilla, Cage, Krisa, Bik } from '../Pictures/Pictures';
 
 const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoints, updateCounts, updateAnimalStatus, playersFavorite, updatedContribution, userId }) => {
     const items = [
-        { title: 'Anatoly', image: Gorilla, price: 0, description: "ohotnik na mishej" }, // Змея открыта по умолчанию и бесплатна
-        { title: 'Olev', image: Krisa, price: 100, description: "monke" },
-        { title: 'Bernard', image: Bik, price: 40, description: "aligato jhfjfjnf jdjdbdijbdij ibdjijdijbdij ijjdbdr" }
+        { 
+            title: 'Anatoly', 
+            image: Gorilla, 
+            price: 0, 
+            description: lang === 'ru' ? "охотник на мышей" : "hunter on mice" 
+        },
+        { 
+            title: 'Olev', 
+            image: Krisa, 
+            price: 100, 
+            description: lang === 'ru' ? "крыс" : "rat" 
+        },
+        { 
+            title: 'Bernard', 
+            image: Bik, 
+            price: 40, 
+            description: lang === 'ru' ? "алигатор ..." : "alligator ..." 
+        }
     ];
 
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
