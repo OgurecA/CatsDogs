@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './PageInventory.css';
 import { Gorilla, Cage, Krisa, Bik } from '../Pictures/Pictures';
 
-const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoints, updateCounts, updateAnimalStatus, playersFavorite, updatedContribution, userId }) => {
+const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoints, updateCounts, updateAnimalStatus, playersFavorite, updatedContribution, userId, lang }) => {
     const items = [
         { 
             title: 'Anatoly', 

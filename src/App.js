@@ -683,7 +683,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
             <ButtonBar onShowSocialPage={handleSocialPage} onShowExchangePage={handleExchangePage} onShowInventoryPage={handleInventoryPage} onOpenShop={handleShopPage} isDisabled={!choice}/>
             
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} updateCheckedCount={setCheckedCount} />
-            <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} playersFavorite={playersFavorite} updatedContribution={contribution} onCardSelect={handleCardSelect} personalPoints={personalCount} userId={userId} setPersonalPoints={updatePersonalPoints} updateCounts={updateCounts} updateAnimalStatus={updateAnimalStatus} />
+            <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} playersFavorite={playersFavorite} updatedContribution={contribution} onCardSelect={handleCardSelect} personalPoints={personalCount} userId={userId} setPersonalPoints={updatePersonalPoints} updateCounts={updateCounts} updateAnimalStatus={updateAnimalStatus} lang={lang} />
             <PageExchange className={isExchangePageVisible ? 'page-exchange' : 'page-exchange hidden'} />
             <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} lang={lang} userId={userId} title={playersFavorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} contribution={contribution} updateCounts={updateCounts} setPersonalPoints={updatePersonalPoints} topPlayerName={topPlayerName} topPlayerUserName={topPlayerUserName} playerName={playerName} playerUserName={playerUserName}/>
 
