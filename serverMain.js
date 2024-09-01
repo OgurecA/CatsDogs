@@ -27,7 +27,7 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization'], // Разрешите только нужные заголовки
     optionsSuccessStatus: 200
 };
-app.use('/api', cors(corsOptions), apiRoutes);
+app.use(cors(corsOptions));
 
 
 
