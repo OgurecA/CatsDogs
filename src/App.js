@@ -663,13 +663,13 @@ const [buttonText, setButtonText] = useState('GET'); // начальный те�
 
 useEffect(() => {
     // Проверяем дату последнего посещения
-    const lastVisitDate = localStorage.getItem('lastVisitDate');
+    const lastVisitDate = localStorage.getItem('lastVisitDateLinks');
     const currentDate = new Date().toDateString();
 
     // Если последний визит был в другой день, очищаем список посещенных ссылок
     if (lastVisitDate !== currentDate) {
         localStorage.removeItem('visitedLinks');
-        localStorage.setItem('lastVisitDate', currentDate);
+        localStorage.setItem('lastVisitDateLinks', currentDate);
     }
 }, []);
 
