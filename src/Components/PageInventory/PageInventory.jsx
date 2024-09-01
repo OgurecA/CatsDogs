@@ -5,7 +5,7 @@ import { Gorilla, Cage, Krisa, Bik } from '../Pictures/Pictures';
 const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoints, updateCounts, updateAnimalStatus, playersFavorite, updatedContribution, userId, lang }) => {
     const items = [
         { 
-            title: 'A.N.A.T.O.L.Y', 
+            title: 'ANATOLY', 
             image: Gorilla, 
             price: 0, 
             description: lang === 'ru' ? "Придерживается правил: сначала поешь сам, потом накорми семью" : "He follows the rule: first, feed yourself, then take care of your family." 
