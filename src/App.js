@@ -758,7 +758,7 @@ useEffect(() => {
                     <h2>Energy Is Low!</h2>
                     <button
                         onClick={handleClickAdd}
-                        className={`modal-button ${isButtonDisabled ? 'vibrate' : ''} ${areLinksExhausted ? 'exhausted' : ''} button-text-transition`}
+                        className={`modal-button ${areLinksExhausted ? 'vibrate' : ''} button-text-transition`}
                         disabled={isButtonDisabled || areLinksExhausted}
                         style={{
                             position: 'relative', // Для центровки анимации
