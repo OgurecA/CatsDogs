@@ -13,13 +13,13 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
         { 
             title: 'Olev', 
             image: Krisa, 
-            price: 100, 
+            price: 25000, 
             description: lang === 'ru' ? "Пытался быть юристом, но его сущность взяла верх." : "Tried to be a lawyer, but his true nature took over." 
         },
         { 
-            title: 'Bernard', 
-            image: Bik, 
-            price: 40, 
+            title: 'Bernard',
+            image: Bik,
+            price: 15000,
             description: lang === 'ru' ? "Верит в труд и общее благо. Его мечта — единое стадо, где каждый пашет до изнеможения." : "Believes in hard work and the common good. His dream is a united herd where everyone works tirelessly to the point of exhaustion." 
         }
     ];

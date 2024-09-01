@@ -115,7 +115,7 @@ function App() {
                 newEnergyTake = 15;
                 newTeamDMG = 5;
                 newPersonalDMG = 5;
-                newName = "Monke";
+                newName = "Anatoly";
                 background = FonTap1;
                 break;
             case 1:
@@ -125,7 +125,7 @@ function App() {
                 newEnergyTake = 10;
                 newTeamDMG = -10;
                 newPersonalDMG = 10;
-                newName = "Oliv";
+                newName = "Olev";
                 background = FonTap1;
                 break;
             case 2:
@@ -415,7 +415,7 @@ function App() {
     
                 console.log("Time elapsed since last active (ms):", timeElapsed);
     
-                const energyRecovered = Math.floor(timeElapsed / 10000) * 1;
+                const energyRecovered = Math.floor(timeElapsed / 29000) * 1;
     
                 console.log("Energy recovered:", energyRecovered);
     
@@ -455,7 +455,7 @@ function App() {
     
         loadEnergy();
     
-        const energyRecoveryInterval = setInterval(updateEnergy, 10000);
+        const energyRecoveryInterval = setInterval(updateEnergy, 29000);
         const saveEnergyInterval = setInterval(saveEnergyToLocalStorage, 500); 
     
         return () => {
@@ -698,10 +698,9 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(false);
                     />
             <AddContainer
                 ads={[
-                  { src: TrumpP, link: 'https://www.youtube.com/watch?v=44pt8w67S8I' },
-                  { src: HarrisP, link: 'https://www.youtube.com/watch?v=KYhv9h8gAuM' },
-                  { src: bybit, link: 'https://www.bybit.com/en/sign-up?affiliate_id=GBWZXLN&group_id=143394&group_type=1&ref_code=GBWZXLN&gad_source=1&gclid=CjwKCAjwqf20BhBwEiwAt7dtdSGtqp0Q1eYrFcZGDAS5Zjo3iXFMyCcBln_mJ03yS3FYsuiTaoKsdhoC82wQAvD_BwE' },
-                  
+                  { src: TrumpP, link: "https://t.me/direanimalsnews" },
+                  { src: HarrisP, link: "https://x.com/dominator24news?s=21" },
+                  { src: TrumpP, link: 'https://dominators.website' },
                 ]}
                 className="add-container"
             />
