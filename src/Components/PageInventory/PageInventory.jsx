@@ -8,19 +8,19 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
             title: 'Anatoly', 
             image: Gorilla, 
             price: 0, 
-            description: lang === 'ru' ? "Anatoly придерживается правила: сначала поешь сам. Он знает свою меру и берет всё, что ему нужно, но при этом не забывает заботится о других." : "Anatoly follows the rule: feed yourself first. He knows his limits and takes only what he needs, while also remembering to care for others." 
+            description: lang === 'ru' ? "Придерживается правил: сначала поешь сам, потом накорми семью" : "He follows the rule: first, feed yourself, then take care of your family." 
         },
         { 
             title: 'Olev', 
             image: Krisa, 
             price: 100, 
-            description: lang === 'ru' ? "Олев пытался быть юристом, но его сущность не выдержала." : "Olev tried to be a lawyer, but his true nature couldn’t hold out." 
+            description: lang === 'ru' ? "Пытался быть юристом, но его сущность взяла верх." : "Tried to be a lawyer, but his true nature took over." 
         },
         { 
             title: 'Bernard', 
             image: Bik, 
             price: 40, 
-            description: lang === 'ru' ? "Бернард верит в труд и общее благо. Его мечта — загнать всех в единое стадо, где каждый пашет до изнеможения." : "Bernard believes in hard work and the common good. His dream is to drive everyone into a single herd where each one toils to exhaustion." 
+            description: lang === 'ru' ? "Верит в труд и общее благо. Его мечта — загнать всех в единое стадо, где каждый пашет до изнеможения." : "Believes in hard work and the common good. His dream is to drive everyone into a single herd where each one toils to exhaustion." 
         }
     ];
 
