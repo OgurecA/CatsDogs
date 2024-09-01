@@ -654,6 +654,7 @@ const getTopPlayer = (favorite) => {
 const links = [
     "https://t.me/direanimalsnews",
     "https://x.com/dominator24news?s=21",
+    "https://x.com/dominator24news?s=21",
     "https://dominators.website"
 ];
 
@@ -758,7 +759,7 @@ useEffect(() => {
                     <h2>Energy Is Low!</h2>
                     <button
                         onClick={handleClickAdd}
-                        className={`modal-button button-text-transition ${areLinksExhausted ? 'vibrate' : ''}`}
+                        className={`modal-button ${areLinksExhausted ? 'vibrate' : ''}`}
                         disabled={isButtonDisabled || areLinksExhausted}
                         style={{
                             position: 'relative', // Для центровки анимации

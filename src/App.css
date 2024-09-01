@@ -161,6 +161,7 @@ img:active, button:active, .image-container:active {
       4px 8px 12px rgba(0, 0, 0, 0.2),  /* Более размытая нижняя тень */
       -2px -4px 6px rgba(0, 0, 0, 0.4), /* Верхняя тень */
       -4px -8px 12px rgba(0, 0, 0, 0.2); 
+  transition: transform 0.8s ease;
 }
 .loader {
   border: 4px solid rgba(0, 0, 0, 0.1);
@@ -187,9 +188,5 @@ img:active, button:active, .image-container:active {
 }
 .vibrate {
   animation: vibrate 0.3s linear;
-}
-.button-text-transition {
-  transition: transform 0.8s ease;
-  display: inline-block;
 }
 
