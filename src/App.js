@@ -56,7 +56,7 @@ function App() {
 
     const [playerUserName, setPlayerUserName] = useState("none");
     const [playerName, setPlayerName] = useState("none");
-    const [premium, setPremium] = useState("no");
+    const [premium, setPremium] = useState(false);
 
     const [userData, setUserData] = useState(null);
 
@@ -264,7 +264,7 @@ function App() {
           setLang(WebApp.initDataUnsafe.user.language_code);
           setPlayerName(WebApp.initDataUnsafe.user.first_name);
           setPlayerUserName(WebApp.initDataUnsafe.user.username);
-          setPremium(WebApp.initDataUnsafe.user.is_premium ? 'Yes' : 'No');
+          setPremium(WebApp.initDataUnsafe.user.is_premium ? true : false);
           const data = {
             id: WebApp.initDataUnsafe.user.id,
             first_name: WebApp.initDataUnsafe.user.first_name,
