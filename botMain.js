@@ -35,7 +35,7 @@ bot.onText(/\/start/, (msg) => {
       ]
     }
   };
-  const photo = fs.readFileSync('./src/Components/Photoes/Zir3.jpeg');
+  const photo = fs.readFileSync('./src/Components/Photoes/Barsuk.jpg');
   bot.sendPhoto(chatId, photo, { caption: welcomeText, ...options });
 });
 
@@ -53,7 +53,7 @@ bot.on('callback_query', (callbackQuery) => {
     responseText = languageCode === 'ru' 
     ? "Возникли проблемы?\n\nПопробуйте перезапустить приложение или очистить кэш браузера. Это часто решает многие технические трудности и помогает восстановить нормальную работу приложения.\n\nЕсли проблемы продолжаются, загляните в наш Telegram-канал для получения обновлений, поддержки и ответов на часто задаваемые вопросы.\nt.me/direanimalsnews" 
     : "Having issues?\n\nTry restarting the app or clearing your browser cache. This often resolves many technical difficulties and restores normal operation.\n\nIf the problems persist, check out our Telegram channel for updates, support, and answers to frequently asked questions.\nt.me/direanimalsnews";
-    imagePath = './src/Components/Photoes/FonSkull.jpeg'; // Укажите путь к изображению для кнопки 2
+    imagePath = './src/Components/Photoes/BotTech.jpg'; // Укажите путь к изображению для кнопки 2
   } 
   
   const options = {

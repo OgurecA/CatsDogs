@@ -322,14 +322,14 @@ app.post('/api/save-fingerprint', (req, res) => {
 app.post('/vote/trump', (req, res) => {
   const { teamDMG } = req.body;
   incrementTrumpTotalVotes(teamDMG);
-  res.send({ message: 'Vote for Snake registered' });
+  res.send({ message: 'Vote for Wild Hearts registered' });
 });
 
 // Эндпоинт для увеличения голосов за Харрис
 app.post('/vote/harris', (req, res) => {
   const { teamDMG } = req.body;
   incrementHarrisTotalVotes(teamDMG);
-  res.send({ message: 'Vote for Owl registered' });
+  res.send({ message: 'Vote for Dire Warriors registered' });
 });
 
 app.get('/votes', (req, res) => {
