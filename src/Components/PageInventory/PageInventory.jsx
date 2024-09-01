@@ -20,7 +20,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
             title: 'Bernard', 
             image: Bik, 
             price: 40, 
-            description: lang === 'ru' ? "Верит в труд и общее благо. Его мечта — загнать всех в единое стадо, где каждый пашет до изнеможения." : "Believes in hard work and the common good. His dream is to drive everyone into a single herd where each one toils to exhaustion." 
+            description: lang === 'ru' ? "Верит в труд и общее благо. Его мечта — единое стадо, где каждый пашет до изнеможения." : "Believes in hard work and the common good. His dream is a united herd where everyone works tirelessly to the point of exhaustion." 
         }
     ];
 
