@@ -654,7 +654,6 @@ const getTopPlayer = (favorite) => {
 const links = [
     "https://t.me/direanimalsnews",
     "https://x.com/dominator24news?s=21",
-    "https://x.com/dominator24news?s=21",
     "https://dominators.website"
 ];
 

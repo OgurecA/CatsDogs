@@ -11,13 +11,13 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
             description: lang === 'ru' ? "Придерживается правил: сначала поешь сам, потом накорми семью" : "He follows the rule: first, feed yourself, then take care of your family." 
         },
         { 
-            title: 'Olev', 
+            title: 'olev', 
             image: Krisa, 
             price: 25000, 
             description: lang === 'ru' ? "Пытался быть юристом, но его сущность взяла верх." : "Tried to be a lawyer, but his true nature took over." 
         },
         { 
-            title: 'Bernard',
+            title: 'BERNARD',
             image: Bik,
             price: 15000,
             description: lang === 'ru' ? "Верит в труд и общее благо. Его мечта — единое стадо, где каждый пашет до изнеможения." : "Believes in hard work and the common good. His dream is a united herd where everyone works tirelessly to the point of exhaustion." 
