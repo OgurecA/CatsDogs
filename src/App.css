@@ -189,6 +189,7 @@ img:active, button:active, .image-container:active {
   animation: vibrate 0.3s linear;
 }
 .button-text-transition {
-  transition: all 0.8s ease;
+  transition: transform 0.8s ease;
+  display: inline-block;
 }
 
