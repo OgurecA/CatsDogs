@@ -658,6 +658,7 @@ const links = [
 ];
 
 const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+const [areLinksExhausted, setAreLinksExhausted] = useState(false);
 const [buttonText, setButtonText] = useState('GET'); // начальный текст кнопки
 
 
@@ -682,10 +683,10 @@ useEffect(() => {
         const unvisitedLinks = links.filter(link => !visitedLinks.includes(link));
 
         if (unvisitedLinks.length === 0) {
-            setIsButtonDisabled(true);
+            setAreLinksExhausted(true);
             setButtonText("ENOUGH!");
             setTimeout(() => {
-                setIsButtonDisabled(false);
+                setAreLinksExhausted(false);
                 setButtonText('GET'); // возвращаем текст через 1 секунду
             }, 1500); // 1 секунда
             return;
@@ -757,8 +758,8 @@ useEffect(() => {
                     <h2>Energy Is Low!</h2>
                     <button
                         onClick={handleClickAdd}
-                        className={`modal-button ${isButtonDisabled ? 'vibrate' : ''} button-text-transition`}
-                        disabled={isButtonDisabled}
+                        className={`modal-button ${isButtonDisabled ? 'vibrate' : ''} ${areLinksExhausted ? 'exhausted' : ''} button-text-transition`}
+                        disabled={isButtonDisabled || areLinksExhausted}
                         style={{
                             position: 'relative', // Для центровки анимации
                         }}
@@ -766,7 +767,7 @@ useEffect(() => {
                         {isButtonDisabled ? (
                             <div className="loader"></div>
                         ) : (
-                            "GET"
+                            buttonText
                         )}
                     </button>
                 </div>
