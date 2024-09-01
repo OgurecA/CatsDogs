@@ -766,7 +766,7 @@ useEffect(() => {
                         {isButtonDisabled ? (
                             <div className="loader"></div>
                         ) : (
-                            {buttonText}
+                            "GET"
                         )}
                     </button>
                 </div>
