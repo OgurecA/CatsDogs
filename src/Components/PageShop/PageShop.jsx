@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './PageShop.css';
 import DarkWolfBack from '../Photoes/FonWolfWarm1.png';
 import WolfBackCold from '../Photoes/FonWolfCold1.png';
+import xssFilters from 'xss-filters';
+
 
 const PageShop = ({ className, title, votesA, votesB, personalCount, contribution, updateCounts, setPersonalPoints, userId, topPlayerName, topPlayerUserName, lang, playerName, playerUserName }) => {
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
@@ -83,10 +85,12 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     };
 
     const handlePromoSubmit = () => {
+        const sanitizedPromoInput = xssFilters.inHTMLData(promoInput);
+
         const currentDate = new Date();
 
         const matchedPromo = promoCodes.find(promo => 
-            promo.code === promoInput && 
+            promo.code === sanitizedPromoInput && 
             promo.start <= currentDate && 
             promo.expiry >= currentDate
         );
@@ -108,7 +112,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             }
         } 
         else {
-            fetch(`https://btc24news.online/api/check-promo?promoCode=${promoInput}`)
+            fetch(`https://btc24news.online/api/check-promo?promoCode=${sanitizedPromoInput}`)
             .then(response => response.json())
             .then(data => {
                 if (data.exists) {
@@ -131,13 +135,13 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 setTimeout(() => setIsButtonShaking(false), 300);
                 return;
             }
-            if (String(promoInput) === String(userId)) {
+            if (String(sanitizedPromoInput) === String(userId)) {
                 setIsButtonShaking(true);
                 setTimeout(() => setIsButtonShaking(false), 300);
                 return;
             }
     
-            fetch(`https://btc24news.online/api/check-user?id=${promoInput}`)
+            fetch(`https://btc24news.online/api/check-user?id=${sanitizedPromoInput}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.exists) {
@@ -151,7 +155,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                                 'Content-Type': 'application/json'
                             },
                             body: JSON.stringify({
-                                id: promoInput,
+                                id: sanitizedPromoInput,
                                 points: 1000
                             })
                         })
@@ -163,8 +167,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                                 setPromoInput("");
         
                                 // Сохраняем использованный ID и обновляем состояние
-                                setUsedUserId(promoInput);
-                                localStorage.setItem('usedUserId', promoInput);
+                                setUsedUserId(sanitizedPromoInput);
+                                localStorage.setItem('usedUserId', sanitizedPromoInput);
                             } else {
                                 alert('Error during points update.');
                             }

@@ -5,11 +5,37 @@ const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
-const fetch = require('node-fetch');
+const rateLimit = require('express-rate-limit'); 
+const xssFilters = require('xss-filters');
 const apiRoutes = require('./apiRoutes');
 
+app.use((req, res, next) => {
+    for (let key in req.body) {
+        if (typeof req.body[key] === 'string') {
+            req.body[key] = xssFilters.inHTMLData(req.body[key]); // Экранируем входящие данные
+        }
+    }
+    next();
+});
 
 const PORT = process.env.PORT || 3000;
+
+const authLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 минут
+    max: 30, // Максимум 10 запросов с одного IP
+    message: 'Слишком много попыток входа, попробуйте позже.'
+});
+
+// Лимит для общего использования API
+const generalLimiter = rateLimit({
+    windowMs: 60 * 1000, // 1 минута
+    max: 500, // Максимум 100 запросов с одного IP
+    message: 'Слишком много запросов с этого IP, пожалуйста, попробуйте позже.'
+});
+
+// Применяем разные лимиты к маршрутам
+app.use('/api/login', authLimiter); // Лимит для маршрута логина
+app.use('/api/', generalLimiter);
 
 app.use(helmet());
 app.use(express.json());
