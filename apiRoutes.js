@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const sqlite3 = require('sqlite3').verbose();
 const fetch = require('node-fetch');
+require('dotenv').config();
 
-const IPINFO_API_TOKEN = '08cf3071fa85c1';
+const IPINFO_API_TOKEN = process.env.IPINFO_API_TOKEN;
 
 // Подключение базы данных
 let db = new sqlite3.Database('./election.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {

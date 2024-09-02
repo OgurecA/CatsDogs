@@ -133,8 +133,8 @@ function App() {
                 image = Bik;
                 newMaxEnergy = 1000;
                 newEnergyRecovery = 1;
-                newEnergyTake = 10;
-                newTeamDMG = 10;
+                newEnergyTake = 20;
+                newTeamDMG = 20;
                 newPersonalDMG = 0;
                 newName = "Bernard";
                 background = FonTap1;
