@@ -6,6 +6,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const fetch = require('node-fetch');
+const apiRoutes = require('./apiRoutes');
 
 
 const PORT = process.env.PORT || 3000;
