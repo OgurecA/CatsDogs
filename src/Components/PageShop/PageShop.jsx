@@ -108,7 +108,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             }
         } 
         else {
-            fetch(`https://btc24news.online/check-promo?promoCode=${promoInput}`)
+            fetch(`https://btc24news.online/api/check-promo?promoCode=${promoInput}`)
             .then(response => response.json())
             .then(data => {
                 if (data.exists) {
@@ -137,7 +137,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 return;
             }
     
-            fetch(`https://btc24news.online/check-user?id=${promoInput}`)
+            fetch(`https://btc24news.online/api/check-user?id=${promoInput}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.exists) {
@@ -145,7 +145,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                         setPersonalPoints(updatedPoints);
                         updateCounts(updatedPoints, playersFavorite, updatedContribution);
                         
-                        fetch('https://btc24news.online/add-points-promo-id', {
+                        fetch('https://btc24news.online/api/add-points-promo-id', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -239,7 +239,7 @@ const updateAnimalStatus = (animalIndex, status) => {
         return;
     }
 
-    fetch(`https://btc24news.online/check-user?id=${donateInputId}`)
+    fetch(`https://btc24news.online/api/check-user?id=${donateInputId}`)
         .then(response => response.json())
         .then(data => {
             if (data.exists) {

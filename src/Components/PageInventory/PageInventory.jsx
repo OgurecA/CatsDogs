@@ -34,7 +34,7 @@ const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoi
 
     useEffect(() => {
         // Запрос к серверу для получения данных о разблокированных животных
-        fetch(`https://btc24news.online/get-animal-status?id=${userId}`)
+        fetch(`https://btc24news.online/api/get-animal-status?id=${userId}`)
             .then(response => response.json())
             .then(data => {
                 // Здесь предполагается, что данные с сервера возвращаются в виде объекта,

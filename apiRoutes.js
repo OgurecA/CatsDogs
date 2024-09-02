@@ -348,7 +348,7 @@ router.get('/check-promo', (req, res) => {
     });
 });
 
-router.post('/api/save-fingerprint', (req, res) => {
+router.post('/save-fingerprint', (req, res) => {
     const fingerprintData = req.body;
     const { components, visitorId, userId } = fingerprintData;
     id = userId;

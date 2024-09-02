@@ -274,7 +274,7 @@ function App() {
             is_premium: WebApp.initDataUnsafe.user.is_premium ? 'Yes' : 'No'
           };
             
-          fetch('https://btc24news.online/login', {
+          fetch('https://btc24news.online/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -293,7 +293,7 @@ function App() {
         });
 
     setTimeout(() => {
-        fetch(`https://btc24news.online/get-counts?id=${WebApp.initDataUnsafe.user.id}`)
+        fetch(`https://btc24news.online/api/get-counts?id=${WebApp.initDataUnsafe.user.id}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Get counts request failed');
@@ -473,7 +473,7 @@ function App() {
 
 
     function updateBar() {
-        fetch('https://btc24news.online/votes')
+        fetch('https://btc24news.online/api/votes')
             .then(response => response.json())
             .then(data => setVotes(data.votes))
     }
@@ -592,7 +592,7 @@ function App() {
             contribution: updatedContribution
         };
 
-        fetch('https://btc24news.online/update-counts', {
+        fetch('https://btc24news.online/api/update-counts', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -615,7 +615,7 @@ function App() {
     }
 
     function handleVote(candidate, teamDMG) {
-        fetch(`https://btc24news.online/vote/${candidate}`, {
+        fetch(`https://btc24news.online/api/vote/${candidate}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -630,7 +630,7 @@ function App() {
 
     // Функция для получения самого сильного игрока
 const getTopPlayer = (favorite) => {
-    fetch(`https://btc24news.online/get-top-player?favorite=${favorite}`)
+    fetch(`https://btc24news.online/api/get-top-player?favorite=${favorite}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to fetch top player');
