@@ -229,10 +229,13 @@ const updateAnimalStatus = (animalIndex, status) => {
 
     const handleSubmitDonation = () => {
 
-    const donationAmount = parseInt(donateInputAmount, 10);
+    const sanitizedDonateInputId = xssFilters.inHTMLData(donateInputId.trim());
+    const sanitizedDonateInputAmount = xssFilters.inHTMLData(donateInputAmount.trim());
+
+    const donationAmount = parseInt(sanitizedDonateInputAmount, 10);
 
     // Проверяем, что сумма доната - это целое положительное число и оно не содержит букв
-    if (isNaN(donationAmount) || donationAmount <= 0 || donationAmount.toString() !== donateInputAmount.trim()) {
+    if (isNaN(donationAmount) || donationAmount <= 0 || donationAmount.toString() !== sanitizedDonateInputAmount.trim()) {
         setIsButtonShaking(true);
         setTimeout(() => setIsButtonShaking(false), 300);
         return;
@@ -243,7 +246,7 @@ const updateAnimalStatus = (animalIndex, status) => {
         return;
     }
 
-    fetch(`https://btc24news.online/api/check-user?id=${donateInputId}`)
+    fetch(`https://btc24news.online/api/check-user?id=${sanitizedDonateInputId}`)
         .then(response => response.json())
         .then(data => {
             if (data.exists) {
@@ -255,14 +258,14 @@ const updateAnimalStatus = (animalIndex, status) => {
                     },
                     body: JSON.stringify({
                         id_from: userId,
-                        id: donateInputId,
-                        amount: donateInputAmount
+                        id: sanitizedDonateInputId,
+                        amount: sanitizedDonateInputAmount
                     })
                 })
                 .then(response => response.json())
                 .then(data => {
                     if (data.message === 'Donation successful') {
-                        const updatedPoints = personalCount - donateInputAmount;
+                        const updatedPoints = personalCount - sanitizedDonateInputAmount;
                         setPersonalPoints(updatedPoints);
                         updateCounts(updatedPoints, playersFavorite, updatedContribution);
                         setDonateInputId("");
