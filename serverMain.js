@@ -9,6 +9,8 @@ const rateLimit = require('express-rate-limit');
 const xssFilters = require('xss-filters');
 const apiRoutes = require('./apiRoutes');
 
+app.set('trust proxy', 1);
+
 app.use((req, res, next) => {
     for (let key in req.body) {
         if (typeof req.body[key] === 'string') {
