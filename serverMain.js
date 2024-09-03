@@ -28,16 +28,9 @@ const authLimiter = rateLimit({
     message: 'Слишком много попыток входа, попробуйте позже.'
 });
 
-// Лимит для общего использования API
-const generalLimiter = rateLimit({
-    windowMs: 60 * 1000, // 1 минута
-    max: 500, // Максимум 100 запросов с одного IP
-    message: 'Слишком много запросов с этого IP, пожалуйста, попробуйте позже.'
-});
 
 // Применяем разные лимиты к маршрутам
-app.use('/api/login', authLimiter); // Лимит для маршрута логина
-app.use('/api/', generalLimiter);
+app.use('/api/login', authLimiter);
 
 app.use(helmet());
 app.use(express.json());
@@ -128,8 +121,6 @@ db.serialize(() => {
     animal11 INTEGER DEFAULT 0
 )`);
 
-  
-
 db.run(`
     CREATE TABLE IF NOT EXISTS donations (
         from_id TEXT NOT NULL,
@@ -139,8 +130,6 @@ db.run(`
     )`);
 
   });
-
-
 
 // Обработка любых маршрутов
 app.get('*', (req, res) => {

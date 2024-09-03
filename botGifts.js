@@ -167,6 +167,30 @@ bot.on('callback_query', (callbackQuery) => {
       console.log('Отправлен инвойс для Gift2.');
       return;
 
+    } else if (data === 'gift3') {
+      const invoice = {
+          title: languageCode === 'ru' ? "Получите Крысу за 250 Telegram Stars (~$4.99)" : "Get a Rat for 250 Telegram Star (~$4.99)",
+          description: languageCode === 'ru' ? "Покупка не подлежит возврату. Совершая покупку, вы соглашаетесь с условиями использования." : "Purchase is non-refundable. By making a purchase, you agree to the terms of service.",
+          payload: "gift3_payload",
+          provider_token: "", // Пустой токен для Telegram Stars
+          currency: "XTR", // Валюта для Telegram Stars
+          prices: [{ label: languageCode === 'ru' ? "Крыса" : "Rat", amount: 0 }] // 100 единиц Telegram Stars
+        };
+      
+        // Отправляем инвойс
+        bot.sendInvoice(
+          chatId, 
+          invoice.title, 
+          invoice.description, 
+          invoice.payload, 
+          invoice.provider_token, 
+          invoice.currency, 
+          invoice.prices
+        ).catch(err => console.error('Ошибка при отправке инвойса:', err.message));
+        
+        console.log('Отправлен инвойс для Gift3.');
+        return;
+
 
   } else if (data === 'gifts') {
     // Отправка сообщения с кнопками Gift1, Gift2, Gift3
@@ -175,7 +199,7 @@ bot.on('callback_query', (callbackQuery) => {
         inline_keyboard: [
           [{ text: languageCode === 'ru' ? "1000 очков" : "1000 points", callback_data: 'gift1' }],
           [{ text: languageCode === 'ru' ? "Дракон" : "Drake", callback_data: 'gift2' }],
-          [{ text: languageCode === 'ru' ? "Подарки" : "Gifts", callback_data: 'gift3' }],
+          [{ text: languageCode === 'ru' ? "Крыса" : "Krisa", callback_data: 'gift3' }],
           [{ text: languageCode === 'ru' ? "Назад" : "Back", callback_data: 'back_to_start' }]
         ]
       }
@@ -215,7 +239,17 @@ bot.on('successful_payment', (msg) => {
             ? `Ваш промокод для Дракона: ${promoCode}` 
             : `Your promo code for Drake: ${promoCode}`;
         bot.sendMessage(chatId, responseText);
-    }
+    } else if (msg.successful_payment.invoice_payload === 'gift3_payload') {
+      const promoCode = generatePromoCode();
+      const promoValue = "Rat";
+
+      savePromoCode(promoCode, promoValue);  
+      responseText = languageCode === 'ru' 
+          ? `Ваш промокод для Крысы: ${promoCode}` 
+          : `Your promo code for Rat: ${promoCode}`;
+      bot.sendMessage(chatId, responseText);
+  }
+    
   });
   
 
