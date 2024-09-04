@@ -153,7 +153,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 if (data.exists) {
                     
                     if (data.value === "Drake") {
-                        if (animalStatus.animal4 === true) {
+                        if (animalStatus.animal4 === 1) {
                             alert('Это животное уже разблокировано!');
                             return;
                         }
@@ -162,7 +162,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                         setPromoInput("");
                         return;
                     } else if (data.value === "Rat") {
-                        if (animalStatus.animal1 === true) {
+                        if (animalStatus.animal1 === 1) {
                             alert('Это животное уже разблокировано!');
                             return;
                         }
@@ -353,7 +353,7 @@ const updateAnimalStatus = (animalIndex, status) => {
                     Comrades: {displayedVotes}
                 </li>
                 <li className="list-item">
-                {animalStatus.animal7 === 1 ? 'Разблокировано' : 'Не разблокировано'}: {displayedVotesOpponent}
+                    Enemy: {displayedVotesOpponent}
                 </li>
                 <li className="list-item">
                     Personal: {Math.abs(personalCount)}
