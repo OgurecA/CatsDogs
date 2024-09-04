@@ -5,7 +5,7 @@ import WolfBackCold from '../Photoes/FonWolfCold1.png';
 import xssFilters from 'xss-filters';
 
 
-const PageShop = ({ className, title, votesA, votesB, personalCount, contribution, updateCounts, setPersonalPoints, userId, topPlayerName, topPlayerUserName, lang, playerName, playerUserName, handleRageChange, rage }) => {
+const PageShop = ({ className, title, votesA, votesB, personalCount, contribution, updateCounts, setPersonalPoints, userId, topPlayerName, topPlayerUserName, lang, playerName, playerUserName, handleRageChange }) => {
     const [displayedVotes, setDisplayedVotes] = useState("Choose Your Team!");
     const [displayedVotesOpponent, setDisplayedVotesOpponent] = useState("Who will be your enemy?");
     const [titleName, setTitleName] = useState("none");
