@@ -74,6 +74,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 setRage(1);
                 setEndTime(null);
                 localStorage.removeItem('endTime'); // Удалить конечное время из localStorage
+                localStorage.setItem('isVisible', JSON.stringify(false)); // Сохраняем видимость в localStorage
+                localStorage.setItem('Rage', JSON.stringify(1));
             } else {
                 const minutes = Math.floor(remainingTime / (60 * 1000));
                 const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
