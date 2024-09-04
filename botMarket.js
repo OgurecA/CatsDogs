@@ -7,7 +7,7 @@ const sqlite3 = require('sqlite3').verbose();  // Подключение к sqli
 const app = express();
 
 // Ваш токен
-const token = '7503392193:AAHNM1ftZlxpNSRpgGGCenVsax9WQl7kJoY';
+const token = process.env.BOT_MARKET_TOKEN;
 
 // Создаем экземпляр бота
 const bot = new TelegramBot(token, { polling: true });

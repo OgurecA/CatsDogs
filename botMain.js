@@ -33,6 +33,7 @@ bot.onText(/\/start/, (msg) => {
           { text: languageCode === 'ru' ? "Подписаться" : "Subscribe", url: 'https://t.me/direanimalsnews' },
           { text: languageCode === 'ru' ? "Поделиться" : "Share", switch_inline_query: '' }
         ],
+        [{ text: languageCode === 'ru' ? "Магазин" : "Market", url: 'https://t.me/DireAnimalsMarket_bot' }],
         [{ text: languageCode === 'ru' ? "Техподдержка" : "Tech Support", callback_data: 'button2' }]
       ]
     }
