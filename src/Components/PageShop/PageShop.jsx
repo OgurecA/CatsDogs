@@ -30,9 +30,13 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
       
 
     const [timer, setTimer] = useState('00:00'); // Таймер по умолчанию
-    const [isVisible, setIsVisible] = useState(true);
+    const [isVisible, setIsVisible] = useState(false);
     const [Rage, setRage] = useState(1);
-    const [endTime, setEndTime] = useState(null);
+    const [endTime, setEndTime] = useState(() => {
+        // Инициализируем endTime из localStorage
+        const savedEndTime = localStorage.getItem('endTime');
+        return savedEndTime ? parseInt(savedEndTime, 10) : null;
+    });
 
     const promoCodes = [
         { code: "PROMO2024", points: 1000, start: new Date('2024-01-01'), expiry: new Date('2024-12-31') },
@@ -53,37 +57,37 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         setUsedPromoCodes(storedUsedPromoCodes);
     }, []);
 
+    useEffect(() => {
+        if (!endTime) return; // Если нет конечного времени, ничего не делаем
+
+        const updateTimer = () => {
+            const remainingTime = endTime - Date.now();
+            if (remainingTime <= 0) {
+                setTimer('00:00');
+                setIsVisible(false);
+                setEndTime(null);
+                localStorage.removeItem('endTime'); // Удалить конечное время из localStorage
+            } else {
+                const minutes = Math.floor(remainingTime / (60 * 1000));
+                const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
+                setTimer(`${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
+            }
+        };
+
+        // Устанавливаем интервал для обновления таймера каждую секунду
+        const intervalId = setInterval(updateTimer, 1000);
+
+        // Очистка интервала при размонтировании компонента
+        return () => clearInterval(intervalId);
+    }, [endTime]);
+
     const startTimer = () => {
         const countdownMinutes = 2; // Устанавливаем время на 2 минуты
         const newEndTime = Date.now() + countdownMinutes * 60 * 1000;
         setEndTime(newEndTime);
         setIsVisible(true); // Делаем элемент видимым
         localStorage.setItem('endTime', newEndTime.toString()); // Сохраняем конечное время в localStorage
-      };
-    
-      useEffect(() => {
-        if (!endTime) return; // Если нет конечного времени, ничего не делаем
-    
-        const updateTimer = () => {
-          const remainingTime = endTime - Date.now();
-          if (remainingTime <= 0) {
-            setTimer('00:00');
-            setIsVisible(false);
-            setEndTime(null);
-            localStorage.removeItem('endTime'); // Удалить конечное время из localStorage
-          } else {
-            const minutes = Math.floor(remainingTime / (60 * 1000));
-            const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
-            setTimer(`${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
-          }
-        };
-    
-        // Устанавливаем интервал для обновления таймера каждую секунду
-        const intervalId = setInterval(updateTimer, 1000);
-    
-        // Очистка интервала при размонтировании компонента
-        return () => clearInterval(intervalId);
-      }, [endTime]);
+    };
 
     const handlePromoClick = () => {
         setShowPromoModal(true);
