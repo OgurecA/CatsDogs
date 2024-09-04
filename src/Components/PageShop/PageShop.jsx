@@ -149,17 +149,15 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             .then(response => response.json())
             .then(data => {
                 if (data.exists) {
-                    if (data.value === "Drake") {
-                        
+                    if (data.message === 'Животное уже разблокировано, промокод не удален') {
+                        alert(data.message);
+                        return;
+                    } else if (data.value === "Drake") {
                         updateAnimalStatus(userId, 4, true); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
                         return;
                     } else if (data.value === "Rat") {
-                        if (animalStatus.animal1 === 1) {
-                            alert('Это животное уже разблокировано!');
-                            return;
-                        }
                         updateAnimalStatus(userId, 1, true); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
