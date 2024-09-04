@@ -349,7 +349,7 @@ router.get('/check-promo', (req, res) => {
         return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
       }
       if (!userRow) {
-        console.log('Пользователь не найден');
+        console.log('Пользователь не найден' + userId);
         return res.status(404).json({ error: 'Пользователь не найден' });
       }
 

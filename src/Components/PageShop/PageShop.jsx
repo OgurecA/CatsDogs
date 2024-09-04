@@ -145,7 +145,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             }
         } 
         else {
-            fetch(`https://btc24news.online/api/check-promo?promoCode=${sanitizedPromoInput}`)
+            fetch(`https://btc24news.online/api/check-promo?promoCode=${sanitizedPromoInput}&userId=${userId}`)
             .then(response => response.json())
             .then(data => {
                 if (data.exists) {
