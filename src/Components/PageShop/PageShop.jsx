@@ -27,9 +27,6 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     const [isButtonShaking, setIsButtonShaking] = useState(false);
 
     const [usedUserId, setUsedUserId] = useState(null);
-
-    const [timer, setTimer] = useState('00:00'); // Таймер по умолчанию
-    const [isVisible, setIsVisible] = useState(false);
       
 
 
@@ -52,23 +49,6 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         setUsedPromoCodes(storedUsedPromoCodes);
     }, []);
 
-    useEffect(() => {
-        // Запрос к серверу для получения данных о разблокированных животных
-        fetch(`https://btc24news.online/api/get-animal-status?id=${userId}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Ошибка сети: ${response.status} - ${response.statusText}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Полученные данные о статусе животных:', data); // Лог для отладки
-                setAnimalStatus(data); // Сохранение данных в формате 1 и 0
-            })
-            .catch(error => console.error('Ошибка при получении статуса животных:', error));
-    }, [userId]);
-    
-    
 
     const handlePromoClick = () => {
         setShowPromoModal(true);
@@ -141,7 +121,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                         setIsButtonShaking(true);
                         setTimeout(() => setIsButtonShaking(false), 300);
                         return;
-                    } else if (data.value === "Drake") {    
+                    } else if (data.value === "Drake") {
                         updateAnimalStatus(userId, 4, true); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
