@@ -117,14 +117,15 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             .then(data => {
                 if (data.exists) {
                     if (data.value === "Drake") {
-                        updateAnimalStatus(4, true); // Разблокировка животного с индексом 4
+                        updateAnimalStatus(userId, 4, true); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
                         return;
                     } else if (data.value === "Rat") {
-                        updateAnimalStatus(1, true); // Разблокировка животного с индексом 4
+                        updateAnimalStatus(userId, 1, true); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
+                        alert('Krisa', {userId});
                         return;
                     } 
                     const updatedPoints = personalCount + parseInt(data.value, 10); // Используем значение промокода из базы
@@ -201,7 +202,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
 }
 }
 
-const updateAnimalStatus = (animalIndex, status) => {
+const updateAnimalStatus = (userId, animalIndex, status) => {
     const data = {
         id: userId, 
         animalIndex, 
