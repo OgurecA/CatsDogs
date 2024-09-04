@@ -28,6 +28,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
 
     const [usedUserId, setUsedUserId] = useState(null);
 
+    const [animalStatus, setAnimalStatus] = useState(null);
+
 
     const promoCodes = [
         { code: "PROMO2024", points: 1000, start: new Date('2024-01-01'), expiry: new Date('2024-12-31') },
@@ -46,7 +48,14 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     
         const storedUsedPromoCodes = JSON.parse(localStorage.getItem('usedPromoCodes')) || [];
         setUsedPromoCodes(storedUsedPromoCodes);
-    }, []);
+
+        fetch(`https://btc24news.online/api/get-animal-status?id=${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                setAnimalStatus(data); // Сохранение статуса животных в состоянии
+            })
+            .catch(error => console.error('Ошибка при получении статуса животных:', error));
+    }, [userId]);
     
 
     const handlePromoClick = () => {
@@ -116,12 +125,21 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             .then(response => response.json())
             .then(data => {
                 if (data.exists) {
+                    
                     if (data.value === "Drake") {
+                        if (animalStatus.animal4 === true) {
+                            alert('Это животное уже разблокировано!');
+                            return;
+                        }
                         updateAnimalStatus(4, true); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
                         return;
                     } else if (data.value === "Rat") {
+                        if (animalStatus.animal1 === true) {
+                            alert('Это животное уже разблокировано!');
+                            return;
+                        }
                         updateAnimalStatus(1, true); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
