@@ -402,7 +402,7 @@ const updateAnimalStatus = (userId, animalIndex, status) => {
                             className="modal-input"
                             placeholder="Enter gift code"
                         />
-                        <button className={`modal-button promo ${isButtonShaking ? 'vibrate' : ''}`} onClick={startTimer(2)}>Submit</button>
+                        <button className={`modal-button promo ${isButtonShaking ? 'vibrate' : ''}`} onClick={() => startTimer(2)}>Submit</button>
                     </div>
                 </div>
             )}
