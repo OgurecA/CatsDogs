@@ -28,7 +28,21 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
 
     const [usedUserId, setUsedUserId] = useState(null);
 
-    const [animalStatus, setAnimalStatus] = useState(null);
+    const [animalStatus, setAnimalStatus] = useState({
+        animal0: 0,
+        animal1: 0,
+        animal2: 0,
+        animal3: 0,
+        animal4: 0,
+        animal5: 0,
+        animal6: 0,
+        animal7: 0,
+        animal8: 0,
+        animal9: 0,
+        animal10: 0,
+        animal11: 0
+      });
+      
 
 
     const promoCodes = [
@@ -336,10 +350,10 @@ const updateAnimalStatus = (animalIndex, status) => {
                     Welcome back, {displayedName}
                 </li>
                 <li className="list-item">
-                {animalStatus.animal1 === 1 ? 'Разблокировано' : 'Не разблокировано'}:: {displayedVotes}
+                    Comrades: {displayedVotes}
                 </li>
                 <li className="list-item">
-                    Enemy: {displayedVotesOpponent}
+                {animalStatus && animalStatus.animal1 === 1 ? 'Разблокировано' : 'Не разблокировано'}: {displayedVotesOpponent}
                 </li>
                 <li className="list-item">
                     Personal: {Math.abs(personalCount)}
