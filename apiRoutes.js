@@ -324,56 +324,30 @@ router.post('/add-points-promo-id', (req, res) => {
 });
 
 router.get('/check-promo', (req, res) => {
-  const { promoCode, userId } = req.query;
+    const { promoCode, userId } = req.query;
 
-  // Сначала проверяем существование промокода
-  db.get(`SELECT value FROM promocodes WHERE code = ?`, [promoCode], (err, promoRow) => {
-      if (err) {
-          return res.status(500).json({ error: 'Ошибка при проверке промокода' });
-      }
-      if (!promoRow) {
-          // Если промокод не найден
-          return res.status(200).json({ exists: false });
-      }
+    db.get(`SELECT value FROM promocodes WHERE code = ?`, [promoCode], (err, row) => {
+        if (err) {
+            return res.status(500).json({ error: 'Ошибка при проверке промокода' });
+        }
+        if (row) {
+            // Если промокод существует, отправляем его значение клиенту
+            res.status(200).json({ exists: true, value: row.value });
 
-      // Если промокод существует, проверяем статус животного для данного пользователя
-      db.get(`SELECT animal4, animal1 FROM try15 WHERE id = ?`, [userId], (err, userRow) => {
-          if (err) {
-              return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
-          }
-          if (!userRow) {
-              return res.status(404).json({ error: 'Пользователь не найден' });
-          }
-
-          // Проверяем, разблокировано ли животное, соответствующее промокоду
-          if ((promoRow.value === 'Drake' && userRow.animal4 === 1) ||
-              (promoRow.value === 'Rat' && userRow.animal1 === 1)) {
-              // Если животное уже разблокировано, не удаляем промокод и отправляем ответ
-              return res.status(200).json({
-                  exists: true,
-                  value: promoRow.value,
-                  message: 'Животное уже разблокировано, промокод не удален'
-              });
-          }
-
-          // Если животное еще не разблокировано, продолжаем с удалением промокода
-          db.run(`DELETE FROM promocodes WHERE code = ?`, [promoCode], (deleteErr) => {
-              if (deleteErr) {
-                  console.error('Ошибка при удалении промокода:', deleteErr);
-                  return res.status(500).json({ error: 'Ошибка при удалении промокода' });
-              }
-
-              console.log(`Промокод ${promoCode} был успешно удален.`);
-              res.status(200).json({
-                  exists: true,
-                  value: promoRow.value,
-                  message: 'Промокод успешно использован и удален'
-              });
-          });
-      });
-  });
+            // Удаляем промокод из базы данных после его использования
+            db.run(`DELETE FROM promocodes WHERE code = ?`, [promoCode], (deleteErr) => {
+                if (deleteErr) {
+                    console.error('Ошибка при удалении промокода:', deleteErr);
+                } else {
+                    console.log(`Промокод ${promoCode} был успешно удален.`);
+                }
+            });
+        } else {
+            // Если промокод не найден
+            res.status(200).json({ exists: false });
+        }
+    });
 });
-
 
 router.post('/save-fingerprint', (req, res) => {
     const fingerprintData = req.body;
