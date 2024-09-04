@@ -32,6 +32,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     const [timer, setTimer] = useState('00:00'); // Таймер по умолчанию
     const [isVisible, setIsVisible] = useState(true);
     const [Rage, setRage] = useState(1);
+    const [endTime, setEndTime] = useState(null);
 
     const promoCodes = [
         { code: "PROMO2024", points: 1000, start: new Date('2024-01-01'), expiry: new Date('2024-12-31') },
@@ -52,26 +53,24 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         setUsedPromoCodes(storedUsedPromoCodes);
     }, []);
 
-    useEffect(() => {
-        // Определяем конечное время (например, 5 минут отсчета)
-        const countdownMinutes = 1; // Время обратного отсчета в минутах
-        const endTime = localStorage.getItem('endTime');
+    const startTimer = () => {
+        const countdownMinutes = 2; // Устанавливаем время на 2 минуты
+        const newEndTime = Date.now() + countdownMinutes * 60 * 1000;
+        setEndTime(newEndTime);
+        setIsVisible(true); // Делаем элемент видимым
+        localStorage.setItem('endTime', newEndTime.toString()); // Сохраняем конечное время в localStorage
+      };
     
-        let endTimeTimestamp;
-        if (endTime) {
-          endTimeTimestamp = parseInt(endTime, 10);
-        } else {
-          endTimeTimestamp = Date.now() + countdownMinutes * 60 * 1000;
-          localStorage.setItem('endTime', endTimeTimestamp.toString());
-        }
+      useEffect(() => {
+        if (!endTime) return; // Если нет конечного времени, ничего не делаем
     
-        // Функция для обновления таймера
         const updateTimer = () => {
-          const remainingTime = endTimeTimestamp - Date.now();
+          const remainingTime = endTime - Date.now();
           if (remainingTime <= 0) {
             setTimer('00:00');
             setIsVisible(false);
-            localStorage.removeItem('endTime'); // Удалить конечное время, если таймер истек
+            setEndTime(null);
+            localStorage.removeItem('endTime'); // Удалить конечное время из localStorage
           } else {
             const minutes = Math.floor(remainingTime / (60 * 1000));
             const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
@@ -82,10 +81,9 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         // Устанавливаем интервал для обновления таймера каждую секунду
         const intervalId = setInterval(updateTimer, 1000);
     
-        // Очищаем интервал при размонтировании компонента
+        // Очистка интервала при размонтировании компонента
         return () => clearInterval(intervalId);
-      }, []);
-
+      }, [endTime]);
 
     const handlePromoClick = () => {
         setShowPromoModal(true);
@@ -383,7 +381,7 @@ const updateAnimalStatus = (userId, animalIndex, status) => {
                             className="modal-input"
                             placeholder="Enter gift code"
                         />
-                        <button className={`modal-button promo ${isButtonShaking ? 'vibrate' : ''}`} onClick={handlePromoSubmit}>Submit</button>
+                        <button className={`modal-button promo ${isButtonShaking ? 'vibrate' : ''}`} onClick={startTimer}>Submit</button>
                     </div>
                 </div>
             )}
