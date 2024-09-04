@@ -28,20 +28,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
 
     const [usedUserId, setUsedUserId] = useState(null);
 
-    const [animalStatus, setAnimalStatus] = useState({
-        animal0: 0,
-        animal1: 0,
-        animal2: 0,
-        animal3: 0,
-        animal4: 0,
-        animal5: 0,
-        animal6: 0,
-        animal7: 0,
-        animal8: 0,
-        animal9: 0,
-        animal10: 0,
-        animal11: 0
-      });
+    const [timer, setTimer] = useState('00:00'); // Таймер по умолчанию
+    const [isVisible, setIsVisible] = useState(false);
       
 
 
@@ -150,10 +138,10 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             .then(data => {
                 if (data.exists) {
                     if (data.message === 'Животное уже разблокировано, промокод не удален') {
-                        alert(data.message);
+                        setIsButtonShaking(true);
+                        setTimeout(() => setIsButtonShaking(false), 300);
                         return;
-                    } else if (data.value === "Drake") {
-                        
+                    } else if (data.value === "Drake") {    
                         updateAnimalStatus(userId, 4, true); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
@@ -356,6 +344,9 @@ const updateAnimalStatus = (userId, animalIndex, status) => {
                 </li>
                 <li className="list-item">
                     Alpha Predator: {displayedTopName}
+                </li>
+                <li className={`list-item ${isVisible ? 'visible' : 'hidden'}`}>
+                    Rage {timer}
                 </li>
             </ul>
             <div className="button-container">
