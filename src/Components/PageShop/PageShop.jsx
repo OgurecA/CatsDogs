@@ -327,7 +327,7 @@ const updateAnimalStatus = (userId, animalIndex, status) => {
                 <li className="list-item">
                     Alpha Predator: {displayedTopName}
                 </li>
-                <li className={`list-item ${isVisible ? 'visible' : 'hidden'}`}>
+                <li className={`list-item ${isVisible ? '' : 'hidden'}`}>
                     Rage {timer}
                 </li>
             </ul>
