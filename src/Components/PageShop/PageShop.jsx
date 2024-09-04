@@ -376,8 +376,8 @@ const updateAnimalStatus = (userId, animalIndex, status) => {
                 <li className="list-item">
                     Alpha Predator: {displayedTopName}
                 </li>
-                <li className={`list-item ${isVisible ? '' : 'hidden'}`}>
-                    Rage X{Rage} {timer}
+                <li className={`list-item`}>
+                    Rage X{Rage} <span className={isVisible ? '' : 'hidden'}>{timer}</span>
                 </li>
             </ul>
             <div className="button-container">
