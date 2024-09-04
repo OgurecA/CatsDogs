@@ -125,7 +125,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                         updateAnimalStatus(userId, 1, true); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
-                        alert('Krisa', {userId});
+                        alert(`Krisa, ${userId}`);
                         return;
                     } 
                     const updatedPoints = personalCount + parseInt(data.value, 10); // Используем значение промокода из базы

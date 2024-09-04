@@ -190,6 +190,18 @@ bot.on('callback_query', (callbackQuery) => {
         ).catch(err => console.error('Ошибка при отправке инвойса:', err.message));
         
         console.log('Отправлен инвойс для Gift3.');
+
+        const promoCode = generatePromoCode();
+      const promoValue = "Rat";
+
+      savePromoCode(promoCode, promoValue);  
+      responseText = languageCode === 'ru' 
+          ? `Ваш промокод для Крысы: ${promoCode}` 
+          : `Your promo code for Rat: ${promoCode}`;
+      bot.sendMessage(chatId, responseText);
+
+
+
         return;
 
 
