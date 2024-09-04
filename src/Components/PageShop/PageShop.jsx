@@ -353,7 +353,7 @@ const updateAnimalStatus = (animalIndex, status) => {
                     Comrades: {displayedVotes}
                 </li>
                 <li className="list-item">
-                {animalStatus && animalStatus.animal1 === 1 ? 'Разблокировано' : 'Не разблокировано'}: {displayedVotesOpponent}
+                {animalStatus.animal1 === 1 ? 'Разблокировано' : 'Не разблокировано'}: {displayedVotesOpponent}
                 </li>
                 <li className="list-item">
                     Personal: {Math.abs(personalCount)}
