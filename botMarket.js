@@ -67,7 +67,7 @@ bot.onText(/\/start/, (msg) => {
       ]
     }
   };
-  const photo = fs.readFileSync('./src/Components/Photoes/Zir3.jpeg');
+  const photo = fs.readFileSync('./src/Components/Photoes/Barsuk.jpg');
   bot.sendPhoto(chatId, photo, { caption: welcomeText, ...options });
 });
 
@@ -91,7 +91,7 @@ bot.on('callback_query', (callbackQuery) => {
           ]
         }
     };
-    const photo = fs.readFileSync('./src/Components/Photoes/FonSkull.jpeg');
+    const photo = fs.readFileSync('./src/Components/Photoes/FonTech.jpg');
     bot.sendPhoto(chatId, photo, { caption: responseText, ...options });
     return;
 
