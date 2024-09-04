@@ -324,7 +324,7 @@ const updateAnimalStatus = (animalIndex, status) => {
                     Welcome back, {displayedName}
                 </li>
                 <li className="list-item">
-                    {animalStatus.animal1}: {displayedVotes}
+                    Comrades: {displayedVotes}
                 </li>
                 <li className="list-item">
                     Enemy: {displayedVotesOpponent}
