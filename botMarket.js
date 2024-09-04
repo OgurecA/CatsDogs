@@ -2,6 +2,7 @@ const express = require('express');
 const TelegramBot = require('node-telegram-bot-api');
 const fs = require('fs');
 const sqlite3 = require('sqlite3').verbose();  // Подключение к sqlite3
+require('dotenv').config();
 
 
 const app = express();
