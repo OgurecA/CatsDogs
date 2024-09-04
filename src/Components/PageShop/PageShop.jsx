@@ -209,7 +209,7 @@ const updateAnimalStatus = (userId, animalIndex, status) => {
         status: status ? 1 : 0 
     };
 
-    fetch('/update-animal-status', {
+    fetch('/api/update-animal-status', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
