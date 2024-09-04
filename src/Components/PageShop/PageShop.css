@@ -99,7 +99,13 @@
     opacity: 0; /* Делаем элемент невидимым */
     visibility: hidden;
   }
-
+  .timer-container {
+    display: flex; /* Включаем Flexbox для контейнера */
+    align-items: center; /* Центрируем элементы по вертикали */
+  }
+  .timer {
+    margin-left: 5px; /* Добавляем небольшой отступ для таймера */
+  }
 
 
 
