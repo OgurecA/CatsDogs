@@ -186,13 +186,13 @@ router.get('/get-top-player', (req, res) => {
 // Эндпоинт для голосования
 router.post('/vote/trump', (req, res) => {
   const { teamDMG, rage } = req.body;
-  incrementTrumpTotalVotes(teamDMG);
+  incrementTrumpTotalVotes(teamDMG, rage);
   res.send({ message: 'Vote for Trump registered' });
 });
 
 router.post('/vote/harris', (req, res) => {
   const { teamDMG, rage } = req.body;
-  incrementHarrisTotalVotes(teamDMG);
+  incrementHarrisTotalVotes(teamDMG, rage);
   res.send({ message: 'Vote for Harris registered' });
 });
 
