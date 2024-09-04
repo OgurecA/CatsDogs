@@ -30,7 +30,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
       
 
     const [timer, setTimer] = useState('00:00'); // Таймер по умолчанию
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
+    const [Rage, setRage] = useState(1);
 
     const promoCodes = [
         { code: "PROMO2024", points: 1000, start: new Date('2024-01-01'), expiry: new Date('2024-12-31') },
@@ -50,6 +51,40 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         const storedUsedPromoCodes = JSON.parse(localStorage.getItem('usedPromoCodes')) || [];
         setUsedPromoCodes(storedUsedPromoCodes);
     }, []);
+
+    useEffect(() => {
+        // Определяем конечное время (например, 5 минут отсчета)
+        const countdownMinutes = 1; // Время обратного отсчета в минутах
+        const endTime = localStorage.getItem('endTime');
+    
+        let endTimeTimestamp;
+        if (endTime) {
+          endTimeTimestamp = parseInt(endTime, 10);
+        } else {
+          endTimeTimestamp = Date.now() + countdownMinutes * 60 * 1000;
+          localStorage.setItem('endTime', endTimeTimestamp.toString());
+        }
+    
+        // Функция для обновления таймера
+        const updateTimer = () => {
+          const remainingTime = endTimeTimestamp - Date.now();
+          if (remainingTime <= 0) {
+            setTimer('00:00');
+            setIsVisible(false);
+            localStorage.removeItem('endTime'); // Удалить конечное время, если таймер истек
+          } else {
+            const minutes = Math.floor(remainingTime / (60 * 1000));
+            const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
+            setTimer(`${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
+          }
+        };
+    
+        // Устанавливаем интервал для обновления таймера каждую секунду
+        const intervalId = setInterval(updateTimer, 1000);
+    
+        // Очищаем интервал при размонтировании компонента
+        return () => clearInterval(intervalId);
+      }, []);
 
 
     const handlePromoClick = () => {
@@ -328,7 +363,7 @@ const updateAnimalStatus = (userId, animalIndex, status) => {
                     Alpha Predator: {displayedTopName}
                 </li>
                 <li className={`list-item ${isVisible ? '' : 'hidden'}`}>
-                    Rage {timer}
+                    Rage X{Rage} {timer}
                 </li>
             </ul>
             <div className="button-container">
