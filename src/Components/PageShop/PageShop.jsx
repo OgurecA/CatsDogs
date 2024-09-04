@@ -30,7 +30,10 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
       
 
     const [timer, setTimer] = useState('00:00'); // Таймер по умолчанию
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(() => {
+        const savedVisibility = localStorage.getItem('isVisible');
+        return savedVisibility ? JSON.parse(savedVisibility) : false;
+    });
     const [Rage, setRage] = useState(1);
     const [endTime, setEndTime] = useState(() => {
         // Инициализируем endTime из localStorage
@@ -87,6 +90,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         setEndTime(newEndTime);
         setIsVisible(true); // Делаем элемент видимым
         localStorage.setItem('endTime', newEndTime.toString()); // Сохраняем конечное время в localStorage
+        localStorage.setItem('isVisible', JSON.stringify(true));
     };
 
     const handlePromoClick = () => {
