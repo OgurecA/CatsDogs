@@ -81,6 +81,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 const minutes = Math.floor(remainingTime / (60 * 1000));
                 const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
                 setTimer(`${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
+                handleRageChange(rage);
             }
         };
 
