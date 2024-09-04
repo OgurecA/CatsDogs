@@ -95,8 +95,9 @@
     font-size: 1.2em;
     color: rgb(255, 255, 255);
 }
-.list-item.hidden {
-    opacity: 0; /* Элемент остается скрытым */
+.hidden {
+    opacity: 0; /* Делаем элемент невидимым */
+    visibility: hidden;
   }
 
 
