@@ -49,13 +49,29 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         const storedUsedPromoCodes = JSON.parse(localStorage.getItem('usedPromoCodes')) || [];
         setUsedPromoCodes(storedUsedPromoCodes);
 
+    }, []);
+    
+    useEffect(() => {
         fetch(`https://btc24news.online/api/get-animal-status?id=${userId}`)
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Ошибка сети: ${response.status} - ${response.statusText}`);
+                }
+                return response.json();
+            })
             .then(data => {
-                setAnimalStatus(data); // Сохранение статуса животных в состоянии
+                console.log('Полученные данные о статусе животных:', data); // Лог для отладки
+    
+                // Преобразование числовых значений в булевые
+                const transformedData = Object.fromEntries(
+                    Object.entries(data).map(([key, value]) => [key, Boolean(value)])
+                );
+    
+                setAnimalStatus(transformedData); // Сохранение преобразованных данных в состояние
             })
             .catch(error => console.error('Ошибка при получении статуса животных:', error));
     }, [userId]);
+    
     
 
     const handlePromoClick = () => {
@@ -324,7 +340,7 @@ const updateAnimalStatus = (animalIndex, status) => {
                     Welcome back, {displayedName}
                 </li>
                 <li className="list-item">
-                    Comrades: {displayedVotes}
+                    {animalStatus.animal1 ? 'Разблокировано' : 'Не разблокировано'}: {displayedVotes}
                 </li>
                 <li className="list-item">
                     Enemy: {displayedVotesOpponent}
