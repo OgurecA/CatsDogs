@@ -52,6 +52,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     }, []);
     
     useEffect(() => {
+        // Запрос к серверу для получения данных о разблокированных животных
         fetch(`https://btc24news.online/api/get-animal-status?id=${userId}`)
             .then(response => {
                 if (!response.ok) {
@@ -61,16 +62,11 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             })
             .then(data => {
                 console.log('Полученные данные о статусе животных:', data); // Лог для отладки
-    
-                // Преобразование числовых значений в булевые
-                const transformedData = Object.fromEntries(
-                    Object.entries(data).map(([key, value]) => [key, Boolean(value)])
-                );
-    
-                setAnimalStatus(transformedData); // Сохранение преобразованных данных в состояние
+                setAnimalStatus(data); // Сохранение данных в формате 1 и 0
             })
             .catch(error => console.error('Ошибка при получении статуса животных:', error));
     }, [userId]);
+    
     
     
 
@@ -340,7 +336,7 @@ const updateAnimalStatus = (animalIndex, status) => {
                     Welcome back, {displayedName}
                 </li>
                 <li className="list-item">
-                    {animalStatus.animal1 ? 'Разблокировано' : 'Не разблокировано'}: {displayedVotes}
+                {animalStatus.animal1 === 1 ? 'Разблокировано' : 'Не разблокировано'}:: {displayedVotes}
                 </li>
                 <li className="list-item">
                     Enemy: {displayedVotesOpponent}
