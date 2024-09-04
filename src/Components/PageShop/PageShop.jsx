@@ -185,6 +185,21 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                         closePromoModal();
                         setPromoInput("");
                         return;
+                    } else if (data.value === "X2") {
+                        startTimer(2); // Разблокировка животного с индексом 4
+                        closePromoModal();
+                        setPromoInput("");
+                        return;
+                    } else if (data.value === "X5") {
+                        startTimer(5); // Разблокировка животного с индексом 4
+                        closePromoModal();
+                        setPromoInput("");
+                        return;
+                    } else if (data.value === "X10") {
+                        startTimer(10); // Разблокировка животного с индексом 4
+                        closePromoModal();
+                        setPromoInput("");
+                        return;
                     } 
                     const updatedPoints = personalCount + parseInt(data.value, 10); // Используем значение промокода из базы
                     setPersonalPoints(updatedPoints);
@@ -402,7 +417,7 @@ const updateAnimalStatus = (userId, animalIndex, status) => {
                             className="modal-input"
                             placeholder="Enter gift code"
                         />
-                        <button className={`modal-button promo ${isButtonShaking ? 'vibrate' : ''}`} onClick={() => startTimer(2)}>Submit</button>
+                        <button className={`modal-button promo ${isButtonShaking ? 'vibrate' : ''}`} onClick={handlePromoSubmit}>Submit</button>
                     </div>
                 </div>
             )}
