@@ -70,7 +70,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             const remainingTime = endTime - Date.now();
             if (remainingTime <= 0) {
                 setTimer('00:00');
-                setIsVisible(true);
+                setIsVisible(false);
                 setRage(1);
                 setEndTime(null);
                 localStorage.removeItem('endTime'); // Удалить конечное время из localStorage
