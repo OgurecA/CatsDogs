@@ -34,7 +34,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         const savedVisibility = localStorage.getItem('isVisible');
         return savedVisibility ? JSON.parse(savedVisibility) : false;
     });
-    const [Rage, setRage] = useState(() => {
+    const [rage, setRage] = useState(() => {
         const savedRage = localStorage.getItem('Rage');
         return savedRage ? JSON.parse(savedRage) : 1; // По умолчанию 1
     });
@@ -76,6 +76,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 localStorage.removeItem('endTime'); // Удалить конечное время из localStorage
                 localStorage.setItem('isVisible', JSON.stringify(false)); // Сохраняем видимость в localStorage
                 localStorage.setItem('Rage', JSON.stringify(1));
+                handleRageChange(1);
             } else {
                 const minutes = Math.floor(remainingTime / (60 * 1000));
                 const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
@@ -90,15 +91,16 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         return () => clearInterval(intervalId);
     }, [endTime]);
 
-    const startTimer = () => {
+    const startTimer = (rageValue) => {
         const countdownMinutes = 1; // Устанавливаем время на 2 минуты
         const newEndTime = Date.now() + countdownMinutes * 60 * 1000;
         setEndTime(newEndTime);
-        setRage(2);
+        setRage(rageValue);
+        handleRageChange(rageValue);
         setIsVisible(true); // Делаем элемент видимым
         localStorage.setItem('endTime', newEndTime.toString()); // Сохраняем конечное время в localStorage
         localStorage.setItem('isVisible', JSON.stringify(true));
-        localStorage.setItem('Rage', JSON.stringify(2));
+        localStorage.setItem('Rage', JSON.stringify(rageValue));
     };
 
     const handlePromoClick = () => {
@@ -378,7 +380,7 @@ const updateAnimalStatus = (userId, animalIndex, status) => {
                 </li>
                 <li className="list-item">
                     <div className="timer-container">
-                        Rage X{Rage} <span className={`timer ${isVisible ? '' : 'hidden'}`}>{timer}</span>
+                        Rage X{rage} <span className={`timer ${isVisible ? '' : 'hidden'}`}>{timer}</span>
                     </div>
                 </li>
             </ul>
@@ -399,7 +401,7 @@ const updateAnimalStatus = (userId, animalIndex, status) => {
                             className="modal-input"
                             placeholder="Enter gift code"
                         />
-                        <button className={`modal-button promo ${isButtonShaking ? 'vibrate' : ''}`} onClick={startTimer}>Submit</button>
+                        <button className={`modal-button promo ${isButtonShaking ? 'vibrate' : ''}`} onClick={startTimer(2)}>Submit</button>
                     </div>
                 </div>
             )}

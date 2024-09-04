@@ -83,6 +83,12 @@ function App() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [AddImage, setAddImage] = useState(Gorilla);
 
+    const [rage, setRage] = useState(1); // Состояние для Rage в родительском компоненте
+
+    const handleRageChange = (newRage) => {
+        setRage(newRage); // Функция для обновления Rage
+    };
+
 
     // Восстанавливаем данные из локального хранилища при загрузке приложения
     useEffect(() => {
@@ -513,14 +519,14 @@ function App() {
 
                 setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
 
-                setPersonalTrumpCount(personalTrumpCount + personalDMG);
-                setContribution(contribution + teamDMG);
+                setPersonalTrumpCount(personalTrumpCount + (personalDMG * rage));
+                setContribution(contribution + (teamDMG * rage));
                 
-                setPersonalCount(personalCount + personalDMG);
-                const updatedPoints = (personalCount + personalDMG);
-                const updatedContribution = (contribution + teamDMG);
+                setPersonalCount(personalCount + (personalDMG * rage));
+                const updatedPoints = (personalCount + (personalDMG * rage));
+                const updatedContribution = (contribution + (teamDMG * rage));
 
-                handleVote('Trump', teamDMG);
+                handleVote('Trump', teamDMG, rage);
                 setEnergy(energy - energyTake);
                 updateCounts(updatedPoints, playersFavorite, updatedContribution);
             }
@@ -544,14 +550,14 @@ function App() {
 
                 setClicks([...clicks, { id: Date.now(), x: imgX + x, y: imgY + y }]);
             
-                setPersonalHarrisCount(personalHarrisCount + personalDMG);
-                setContribution(contribution + teamDMG);
+                setPersonalHarrisCount(personalHarrisCount + (personalDMG * rage));
+                setContribution(contribution + (teamDMG * rage));
 
-                setPersonalCount(personalCount + personalDMG);
+                setPersonalCount(personalCount + (personalDMG * rage));
                 const updatedPoints = (personalCount + personalDMG);
-                const updatedContribution = (contribution + teamDMG);
+                const updatedContribution = (contribution + (teamDMG * rage));
 
-                handleVote('Harris', teamDMG);
+                handleVote('Harris', teamDMG, rage);
                 setEnergy(energy - energyTake);
                 updateCounts(updatedPoints, playersFavorite, updatedContribution);
             }
@@ -614,13 +620,13 @@ function App() {
         setClicks((prevClicks) => prevClicks.filter(click => click.id !== id));
     }
 
-    function handleVote(candidate, teamDMG) {
+    function handleVote(candidate, teamDMG, rage) {
         fetch(`https://btc24news.online/api/vote/${candidate}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ teamDMG }) // Передаем значение teamDMG в запросе
+            body: JSON.stringify({ teamDMG, rage }) // Передаем значение teamDMG в запросе
         })
         .then(response => response.json())
         .then(data => console.log(data.message))
@@ -719,7 +725,7 @@ useEffect(() => {
             <PageSocial className={isSocialPageVisible ? 'page-social' : 'page-social hidden'} updateCheckedCount={setCheckedCount} />
             <PageInventory className={isInventoryPageVisible ? 'page-inventory' : 'page-inventory hidden'} playersFavorite={playersFavorite} updatedContribution={contribution} onCardSelect={handleCardSelect} personalPoints={personalCount} userId={userId} setPersonalPoints={updatePersonalPoints} updateCounts={updateCounts} updateAnimalStatus={updateAnimalStatus} lang={lang} />
             <PageExchange className={isExchangePageVisible ? 'page-exchange' : 'page-exchange hidden'} />
-            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} lang={lang} userId={userId} title={playersFavorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} contribution={contribution} updateCounts={updateCounts} setPersonalPoints={updatePersonalPoints} topPlayerName={topPlayerName} topPlayerUserName={topPlayerUserName} playerName={playerName} playerUserName={playerUserName}/>
+            <PageShop className={isShopPageVisible ? 'page-shop' : 'page-shop hidden'} lang={lang} userId={userId} title={playersFavorite} votesA={votes.Harris} votesB={votes.Trump} personalCount={personalCount} contribution={contribution} updateCounts={updateCounts} setPersonalPoints={updatePersonalPoints} topPlayerName={topPlayerName} topPlayerUserName={topPlayerUserName} playerName={playerName} playerUserName={playerUserName} handleRageChange={handleRageChange} rage={rage}/>
 
             <BGcontainer src={backgroundImage} />
             <PersonalCount 

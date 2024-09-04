@@ -16,11 +16,13 @@ let db = new sqlite3.Database('./election.db', sqlite3.OPEN_READWRITE | sqlite3.
 });
 
 // Функции для обработки голосов
-function incrementTrumpTotalVotes(teamDMG) {
+function incrementTrumpTotalVotes(teamDMG, rage) {
   const updateQuery = `UPDATE total_votes SET votes = votes + ? WHERE candidate = 'Trump';`;
   const selectQuery = `SELECT votes FROM total_votes WHERE candidate = 'Trump';`;
 
-  db.run(updateQuery, [teamDMG], function (updateErr) {
+  const totalIncrement = teamDMG * rage;
+
+  db.run(updateQuery, [totalIncrement], function (updateErr) {
     if (updateErr) {
       console.error('Error updating Trump votes', updateErr.message);
     } else {
@@ -35,11 +37,13 @@ function incrementTrumpTotalVotes(teamDMG) {
   });
 }
 
-function incrementHarrisTotalVotes(teamDMG) {
+function incrementHarrisTotalVotes(teamDMG, rage) {
   const updateQuery = `UPDATE total_votes SET votes = votes + ? WHERE candidate = 'Harris';`;
   const selectQuery = `SELECT votes FROM total_votes WHERE candidate = 'Harris';`;
 
-  db.run(updateQuery, [teamDMG], function (updateErr) {
+  const totalIncrement = teamDMG * rage;
+
+  db.run(updateQuery, [totalIncrement], function (updateErr) {
     if (updateErr) {
       console.error('Error updating Harris votes', updateErr.message);
     } else {
@@ -181,13 +185,13 @@ router.get('/get-top-player', (req, res) => {
 
 // Эндпоинт для голосования
 router.post('/vote/trump', (req, res) => {
-  const { teamDMG } = req.body;
+  const { teamDMG, rage } = req.body;
   incrementTrumpTotalVotes(teamDMG);
   res.send({ message: 'Vote for Trump registered' });
 });
 
 router.post('/vote/harris', (req, res) => {
-  const { teamDMG } = req.body;
+  const { teamDMG, rage } = req.body;
   incrementHarrisTotalVotes(teamDMG);
   res.send({ message: 'Vote for Harris registered' });
 });
