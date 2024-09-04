@@ -29,6 +29,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     const [usedUserId, setUsedUserId] = useState(null);
       
 
+    const [timer, setTimer] = useState('00:00'); // Таймер по умолчанию
+    const [isVisible, setIsVisible] = useState(false);
 
     const promoCodes = [
         { code: "PROMO2024", points: 1000, start: new Date('2024-01-01'), expiry: new Date('2024-12-31') },
