@@ -28,22 +28,6 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
 
     const [usedUserId, setUsedUserId] = useState(null);
 
-    const [animalStatus, setAnimalStatus] = useState({
-        animal0: 0,
-        animal1: 0,
-        animal2: 0,
-        animal3: 0,
-        animal4: 0,
-        animal5: 0,
-        animal6: 0,
-        animal7: 0,
-        animal8: 0,
-        animal9: 0,
-        animal10: 0,
-        animal11: 0
-      });
-      
-
 
     const promoCodes = [
         { code: "PROMO2024", points: 1000, start: new Date('2024-01-01'), expiry: new Date('2024-12-31') },
@@ -62,26 +46,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     
         const storedUsedPromoCodes = JSON.parse(localStorage.getItem('usedPromoCodes')) || [];
         setUsedPromoCodes(storedUsedPromoCodes);
-
     }, []);
-    
-    useEffect(() => {
-        // Запрос к серверу для получения данных о разблокированных животных
-        fetch(`https://btc24news.online/api/get-animal-status?id=${userId}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Ошибка сети: ${response.status} - ${response.statusText}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Полученные данные о статусе животных:', data); // Лог для отладки
-                setAnimalStatus(data); // Сохранение данных в формате 1 и 0
-            })
-            .catch(error => console.error('Ошибка при получении статуса животных:', error));
-    }, [userId]);
-    
-    
     
 
     const handlePromoClick = () => {
@@ -147,30 +112,21 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
             }
         } 
         else {
-            fetch(`https://btc24news.online/api/check-promo?promoCode=${sanitizedPromoInput}&userId=${userId}`)
+            fetch(`https://btc24news.online/api/check-promo?promoCode=${sanitizedPromoInput}`)
             .then(response => response.json())
             .then(data => {
                 if (data.exists) {
-                    
                     if (data.value === "Drake") {
-                        if (animalStatus.animal4 === 1) {
-                            alert('Это животное уже разблокировано!');
-                            return;
-                        }
                         updateAnimalStatus(4, true); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
                         return;
-                    } else if (data.value === "Rat") {
-                        if (animalStatus.animal1 === 1) {
-                            alert('Это животное уже разблокировано!');
-                            return;
-                        }
-                        updateAnimalStatus(1, true); // Разблокировка животного с индексом 4
+                    } else if (data.value === "Drake") {
+                        updateAnimalStatus(4, true); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
                         return;
-                    }
+                    } 
                     const updatedPoints = personalCount + parseInt(data.value, 10); // Используем значение промокода из базы
                     setPersonalPoints(updatedPoints);
                     updateCounts(updatedPoints, playersFavorite, updatedContribution);
