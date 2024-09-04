@@ -152,7 +152,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                     if (data.message === 'Животное уже разблокировано, промокод не удален') {
                         alert(data.message);
                         return;
-                    } else if (data.value === "Drake") {
+                    }else if (data.value === "Drake") {
+                        
                         updateAnimalStatus(userId, 4, true); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
