@@ -71,7 +71,7 @@ db.serialize(() => {
     // Добавление начальных данных
     db.run(`INSERT OR IGNORE INTO total_votes (candidate, votes) VALUES ('Trump', 0), ('Harris', 0)`);
   
-    db.run(`CREATE TABLE IF NOT EXISTS try16 (
+    db.run(`CREATE TABLE IF NOT EXISTS users (
         id INTEGER,
         first_name TEXT,
         last_name TEXT,
@@ -98,7 +98,7 @@ db.serialize(() => {
         animal10 BOOLEAN DEFAULT 0,
         animal11 BOOLEAN DEFAULT 0
   )`);
-  db.run(`CREATE TABLE IF NOT EXISTS user_details2 (
+  db.run(`CREATE TABLE IF NOT EXISTS user_details (
     id INTEGER,
     language_code TEXT,
     is_premium TEXT,

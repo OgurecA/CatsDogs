@@ -67,7 +67,7 @@ router.post('/login', async (req, res) => {
   const processedLastName = last_name || '';
   const processedUsername = username || '';
 
-  db.get(`SELECT * FROM try16 WHERE id = ?`, [id], (err, row) => {
+  db.get(`SELECT * FROM users WHERE id = ?`, [id], (err, row) => {
     if (err) {
       console.error('Error fetching data:', err.message); // Лог ошибки выборки
       return res.status(500).json({ error: 'Error fetching data' });
@@ -77,7 +77,7 @@ router.post('/login', async (req, res) => {
     if (row) {
       console.log(`User with id ${id} exists, updating...`); // Лог, когда пользователь существует
       db.run(
-        `UPDATE try16 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ? WHERE id = ?`,
+        `UPDATE users SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ? WHERE id = ?`,
         [first_name, processedLastName, processedUsername, language_code, is_premium, id],
         function (err) {
           if (err) {
@@ -91,7 +91,7 @@ router.post('/login', async (req, res) => {
     } else {
       console.log(`User with id ${id} does not exist, inserting...`); // Лог, когда пользователь не существует
       db.run(
-        `INSERT INTO try16 (id, first_name, last_name, username, language_code, is_premium, personal_count, personal_harris_count, personal_trump_count, best_summ, favorite, contribution, awaitingpoints, animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11)
+        `INSERT INTO users (id, first_name, last_name, username, language_code, is_premium, personal_count, personal_harris_count, personal_trump_count, best_summ, favorite, contribution, awaitingpoints, animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11)
         VALUES (?, ?, ?, ?, ?, ?, 0, 0, 0, 0, 'none', 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)`,
         [id, first_name, processedLastName, processedUsername, language_code, is_premium],
         function (err) {
@@ -103,7 +103,7 @@ router.post('/login', async (req, res) => {
   
           // Вставляем данные в таблицу user_details2
           db.run(
-            `INSERT INTO user_details2 (id, language_code, is_premium, ip)
+            `INSERT INTO user_details (id, language_code, is_premium, ip)
             VALUES (?, ?, ?, ?)`,
             [id, language_code, is_premium, ipAddress],
             function (err) {
@@ -130,7 +130,7 @@ router.post('/update-counts', (req, res) => {
   console.log('Получены данные для обновления:', { id, personal_count, personal_harris_count, personal_trump_count, favorite, contribution });
 
   db.run(
-    `UPDATE try16 SET personal_count = ?, personal_harris_count = ?, personal_trump_count = ?, favorite = ?, contribution = ? WHERE id = ?`,
+    `UPDATE users SET personal_count = ?, personal_harris_count = ?, personal_trump_count = ?, favorite = ?, contribution = ? WHERE id = ?`,
     [personal_count, personal_harris_count, personal_trump_count, favorite, contribution, id],
     function (err) {
       if (err) {
@@ -147,7 +147,7 @@ router.get('/get-counts', (req, res) => {
   const { id } = req.query;
   console.log('get-counts получил запрос');
   db.get(
-    `SELECT personal_harris_count, personal_trump_count, personal_count, favorite, contribution, awaitingpoints FROM try16 WHERE id = ?`,
+    `SELECT personal_harris_count, personal_trump_count, personal_count, favorite, contribution, awaitingpoints FROM users WHERE id = ?`,
     [id],
     (err, row) => {
       if (err) {
@@ -158,7 +158,7 @@ router.get('/get-counts', (req, res) => {
         const bestSumm = updatedPersonalCount + row.contribution;
 
         db.run(
-          `UPDATE try16 SET awaitingpoints = 0, personal_count = ?, best_summ = ? WHERE id = ?`,
+          `UPDATE users SET awaitingpoints = 0, personal_count = ?, best_summ = ? WHERE id = ?`,
           [updatedPersonalCount, bestSumm, id],
           function (err) {
             if (err) {
@@ -185,7 +185,7 @@ router.get('/get-counts', (req, res) => {
 router.get('/get-top-player', (req, res) => {
   const { favorite } = req.query;
 
-  db.get(`SELECT first_name, username, best_summ FROM try16 WHERE favorite = ? ORDER BY best_summ DESC LIMIT 1`, [favorite], (err, row) => {
+  db.get(`SELECT first_name, username, best_summ FROM users WHERE favorite = ? ORDER BY best_summ DESC LIMIT 1`, [favorite], (err, row) => {
     if (err) {
       return res.status(500).json({ error: 'Ошибка при получении данных' });
     }
@@ -232,7 +232,7 @@ router.get('/votes', (req, res) => {
   router.post('/update-animal-status', (req, res) => {
     const { id, animalIndex, status } = req.body;
     const columnName = `animal${animalIndex}`;
-    const userUpdateQuery = `UPDATE try16 SET ${columnName} = ? WHERE id = ?`;
+    const userUpdateQuery = `UPDATE users SET ${columnName} = ? WHERE id = ?`;
     const amountUpdateQuery = `UPDATE animalamount SET ${columnName} = ${columnName} + 1`;
   
     db.run(userUpdateQuery, [status, id], function (err) {
@@ -256,7 +256,7 @@ router.get('/votes', (req, res) => {
   router.get('/get-animal-status', (req, res) => {
     const { id } = req.query;
   
-    db.get(`SELECT animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11 FROM try16 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11 FROM users WHERE id = ?`, [id], (err, row) => {
       if (err) {
         return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
       }
@@ -271,7 +271,7 @@ router.get('/votes', (req, res) => {
   router.get('/check-user', (req, res) => {
     const { id } = req.query;
     
-    db.get(`SELECT id FROM try16 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT id FROM users WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return res.status(500).json({ error: 'Ошибка при проверке пользователя' });
         }
@@ -286,7 +286,7 @@ router.get('/votes', (req, res) => {
 router.post('/donate', (req, res) => {
     const { id_from, id, amount } = req.body;
 
-    db.get(`SELECT awaitingpoints FROM try16 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT awaitingpoints FROM users WHERE id = ?`, [id], (err, row) => {
         if (err) {
             console.error('Ошибка при получении данных пользователя:', err);
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
@@ -305,7 +305,7 @@ router.post('/donate', (req, res) => {
 
                     // Если транзакция успешно записана, обновляем awaitingpoints
                     console.log('Попытка обновления awaitingpoints для пользователя с id:', id);
-                    db.run(`UPDATE try16 SET awaitingpoints = ? WHERE id = ?`, [newAwaitingPoints, id], function(err) {
+                    db.run(`UPDATE users SET awaitingpoints = ? WHERE id = ?`, [newAwaitingPoints, id], function(err) {
                         if (err) {
                             console.error('Ошибка при обновлении данных пользователя:', err);
                             return res.status(500).json({ error: 'Ошибка при обновлении данных пользователя' });
@@ -326,14 +326,14 @@ router.post('/donate', (req, res) => {
 router.post('/add-points-promo-id', (req, res) => {
     const { id, points } = req.body;
 
-    db.get(`SELECT awaitingpoints FROM try16 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT awaitingpoints FROM users WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
         }
         if (row) {
             const newPersonalCount = row.awaitingpoints + parseInt(points);
 
-            db.run(`UPDATE try16 SET awaitingpoints = ? WHERE id = ?`, [newPersonalCount, id], function(err) {
+            db.run(`UPDATE users SET awaitingpoints = ? WHERE id = ?`, [newPersonalCount, id], function(err) {
                 if (err) {
                     return res.status(500).json({ error: 'Ошибка при обновлении данных пользователя' });
                 }
@@ -365,7 +365,7 @@ router.get('/check-promo', (req, res) => {
     console.log('Промокод найден, проверяем статус животного...');
 
     // Если промокод существует, проверяем статус животного для данного пользователя
-    db.get(`SELECT animal2, animal1 FROM try16 WHERE id = ?`, [userId], (err, userRow) => {
+    db.get(`SELECT animal2, animal1 FROM users WHERE id = ?`, [userId], (err, userRow) => {
       if (err) {
         console.error('Ошибка при получении данных пользователя:', err);
         return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
@@ -431,7 +431,7 @@ router.post('/save-fingerprint', (req, res) => {
 
   // Сохраняем полученные данные в базе данных
   db.run(
-      `UPDATE user_details2 SET visitor_id = ?, screen_resolution = ?, device = ?, raw_data = ?, timezone = ? WHERE id = ?`,
+      `UPDATE user_details SET visitor_id = ?, screen_resolution = ?, device = ?, raw_data = ?, timezone = ? WHERE id = ?`,
       [visitorId, screenResolution, device, rawData, timezone, id],
       function (err) {
           if (err) {
