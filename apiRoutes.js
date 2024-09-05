@@ -72,8 +72,6 @@ router.post('/login', async (req, res) => {
       console.error('Error fetching data:', err.message); // Лог ошибки выборки
       return res.status(500).json({ error: 'Error fetching data' });
     }
-    console.log('Fetched user:', row); // Лог получения данных о пользователе
-
     if (row) {
       console.log(`User with id ${id} exists, updating...`); // Лог, когда пользователь существует
       db.run(
