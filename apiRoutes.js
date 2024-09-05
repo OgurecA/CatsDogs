@@ -92,7 +92,7 @@ router.post('/login', async (req, res) => {
       console.log(`User with id ${id} does not exist, inserting...`); // Лог, когда пользователь не существует
       db.run(
         `INSERT INTO try16 (id, first_name, last_name, username, language_code, is_premium, personal_count, personal_harris_count, personal_trump_count, best_summ, favorite, contribution, awaitingpoints, animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11)
-        VALUES (?, ?, ?, ?, ?, ?, 0, 0, 0, 0, 'none', 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)`,
+        VALUES (?, ?, ?, ?, ?, ?, 0, 0, 0, 0, 'none', 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)`,
         [id, first_name, processedLastName, processedUsername, language_code, is_premium],
         function (err) {
           if (err) {
