@@ -175,7 +175,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                         setIsButtonShaking(true);
                         setTimeout(() => setIsButtonShaking(false), 300);
                         return;
-                    } else if (data.value === "BIk") {
+                    } else if (data.value === "Bik") {
                         updateAnimalStatus(userId, 2, true); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");

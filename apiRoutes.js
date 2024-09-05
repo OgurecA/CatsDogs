@@ -347,7 +347,7 @@ router.get('/check-promo', (req, res) => {
     console.log('Промокод найден, проверяем статус животного...');
 
     // Если промокод существует, проверяем статус животного для данного пользователя
-    db.get(`SELECT animal4, animal1 FROM try15 WHERE id = ?`, [userId], (err, userRow) => {
+    db.get(`SELECT animal2, animal1 FROM try15 WHERE id = ?`, [userId], (err, userRow) => {
       if (err) {
         console.error('Ошибка при получении данных пользователя:', err);
         return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
@@ -360,7 +360,7 @@ router.get('/check-promo', (req, res) => {
       console.log('Данные о пользователе получены:', userRow);
 
       // Проверяем, разблокировано ли животное, соответствующее промокоду
-      if ((promoRow.value === 'Drake' && userRow.animal4 === 1) ||
+      if ((promoRow.value === 'Bik' && userRow.animal2 === 1) ||
           (promoRow.value === 'Rat' && userRow.animal1 === 1)) {
         // Если животное уже разблокировано, не удаляем промокод и отправляем ответ
         console.log('Животное уже разблокировано, промокод не удален');
