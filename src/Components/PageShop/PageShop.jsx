@@ -175,8 +175,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                         setIsButtonShaking(true);
                         setTimeout(() => setIsButtonShaking(false), 300);
                         return;
-                    } else if (data.value === "Drake") {
-                        updateAnimalStatus(userId, 4, true); // Разблокировка животного с индексом 4
+                    } else if (data.value === "BIk") {
+                        updateAnimalStatus(userId, 2, true); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
                         return;

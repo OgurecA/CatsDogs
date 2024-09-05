@@ -88,6 +88,7 @@ bot.on('callback_query', (callbackQuery) => {
     const options = {
         reply_markup: {
           inline_keyboard: [
+            [{ text: languageCode === 'ru' ? "Магазин" : "Shop", callback_data: 'gifts' }],
             [{ text: languageCode === 'ru' ? "Назад" : "Back", callback_data: 'back_to_start' }]
           ]
         }
@@ -118,40 +119,15 @@ bot.on('callback_query', (callbackQuery) => {
 
 
 
-} else if (data === '1000') {
-    const invoice = {
-      title: languageCode === 'ru' ? "Получите 1000 очков за 50 Telegram Star (~$1.19)" : "Get a 1000 points for 50 Telegram Star (~$0.99)",
-      description: languageCode === 'ru' ? "Покупка не подлежит возврату. Совершая покупку, вы соглашаетесь с условиями использования." : "Purchase is non-refundable. By making a purchase, you agree to the terms of service.",
-      payload: "1000",
-      provider_token: "", // Пустой токен для Telegram Stars
-      currency: "XTR", // Валюта для Telegram Stars
-      prices: [{ label: languageCode === 'ru' ? "1000 очков" : "1000 points", amount: 50 }] // 100 единиц Telegram Stars
-    };
-  
-    // Отправляем инвойс
-    bot.sendInvoice(
-      chatId, 
-      invoice.title, 
-      invoice.description, 
-      invoice.payload, 
-      invoice.provider_token, 
-      invoice.currency, 
-      invoice.prices
-    ).catch(err => console.error('Ошибка при отправке инвойса:', err.message));
-    
-    console.log('Отправлен инвойс для 1000.');
-    return;
-    
 
-
-  } else if (data === 'Drake') {
+  } else if (data === 'Bik') {
     const invoice = {
         title: languageCode === 'ru' ? "Получите Дракона за 35000 Telegram Stars (~$749.99)" : "Get a Dragon for 1 Telegram Star (~$749.99)",
         description: languageCode === 'ru' ? "Покупка не подлежит возврату. Совершая покупку, вы соглашаетесь с условиями использования." : "Purchase is non-refundable. By making a purchase, you agree to the terms of service.",
-        payload: "Drake",
+        payload: "Bik",
         provider_token: "", // Пустой токен для Telegram Stars
         currency: "XTR", // Валюта для Telegram Stars
-        prices: [{ label: languageCode === 'ru' ? "Дракон" : "Drake", amount: 35000 }] // 100 единиц Telegram Stars
+        prices: [{ label: languageCode === 'ru' ? "BERNARD" : "BERNARD", amount: 1 }] // 100 единиц Telegram Stars
       };
     
       // Отправляем инвойс
@@ -270,9 +246,8 @@ bot.on('callback_query', (callbackQuery) => {
     const options = {
       reply_markup: {
         inline_keyboard: [
-          [{ text: languageCode === 'ru' ? "1000 очков" : "1000 points", callback_data: '1000' }],
-          [{ text: languageCode === 'ru' ? "Дракон" : "Drake", callback_data: 'Drake' }],
-          [{ text: languageCode === 'ru' ? "Крыса" : "Krisa", callback_data: 'Rat' }],
+          [{ text: languageCode === 'ru' ? "BERNARD" : "BERNARD", callback_data: 'Bik' }],
+          [{ text: languageCode === 'ru' ? "olev" : "olev", callback_data: 'Rat' }],
           [{ text: languageCode === 'ru' ? "X2" : "X2", callback_data: 'X2' }],
           [{ text: languageCode === 'ru' ? "X5" : "X5", callback_data: 'X5' }],
           [{ text: languageCode === 'ru' ? "X10" : "X10", callback_data: 'X10' }],
@@ -296,9 +271,9 @@ bot.on('successful_payment', (msg) => {
     const languageCode = msg.from.language_code;
   
     // Проверяем payload, чтобы узнать, за что была успешная оплата
-    if (msg.successful_payment.invoice_payload === '1000') {
+    if (msg.successful_payment.invoice_payload === 'Bik') {
       const promoCode = generatePromoCode();
-      const promoValue = "1000";
+      const promoValue = "Bik";
       savePromoCode(promoCode, promoValue);
   
       const responseText = languageCode === 'ru'
@@ -306,15 +281,7 @@ bot.on('successful_payment', (msg) => {
         : `Thank you for your purchase! Your promo code: ${promoCode}`;
   
       bot.sendMessage(chatId, responseText);
-    } else if (msg.successful_payment.invoice_payload === 'Drake') {
-        const promoCode = generatePromoCode();
-        const promoValue = "Drake";
 
-        savePromoCode(promoCode, promoValue);  
-        responseText = languageCode === 'ru' 
-            ? `Ваш промокод для Дракона: ${promoCode}` 
-            : `Your promo code for Drake: ${promoCode}`;
-        bot.sendMessage(chatId, responseText);
     } else if (msg.successful_payment.invoice_payload === 'Rat') {
       const promoCode = generatePromoCode();
       const promoValue = "Rat";
@@ -324,6 +291,7 @@ bot.on('successful_payment', (msg) => {
           ? `Ваш промокод для Крысы: ${promoCode}` 
           : `Your promo code for Rat: ${promoCode}`;
       bot.sendMessage(chatId, responseText);
+
     } else if (msg.successful_payment.invoice_payload === 'X2') {
       const promoCode = generatePromoCode();
       const promoValue = "X2";
@@ -333,6 +301,7 @@ bot.on('successful_payment', (msg) => {
           ? `Ваш промокод для X2: ${promoCode}` 
           : `Your promo code for X2: ${promoCode}`;
       bot.sendMessage(chatId, responseText);
+
     } else if (msg.successful_payment.invoice_payload === 'X5') {
       const promoCode = generatePromoCode();
       const promoValue = "X5";
@@ -342,6 +311,7 @@ bot.on('successful_payment', (msg) => {
           ? `Ваш промокод для X5: ${promoCode}` 
           : `Your promo code for X5: ${promoCode}`;
       bot.sendMessage(chatId, responseText);
+      
     } else if (msg.successful_payment.invoice_payload === 'X10') {
       const promoCode = generatePromoCode();
       const promoValue = "X10";
