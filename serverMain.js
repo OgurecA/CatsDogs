@@ -71,16 +71,13 @@ db.serialize(() => {
     // Добавление начальных данных
     db.run(`INSERT OR IGNORE INTO total_votes (candidate, votes) VALUES ('Trump', 0), ('Harris', 0)`);
   
-    db.run(`CREATE TABLE IF NOT EXISTS try15 (
+    db.run(`CREATE TABLE IF NOT EXISTS try16 (
         id INTEGER,
         first_name TEXT,
         last_name TEXT,
         username TEXT,
         language_code TEXT,
         is_premium TEXT,
-        city TEXT,
-        country TEXT,
-        ip TEXT,
         personal_count INTEGER DEFAULT 0,
         personal_harris_count INTEGER DEFAULT 0,
         personal_trump_count INTEGER DEFAULT 0,
@@ -88,10 +85,6 @@ db.serialize(() => {
         favorite TEXT DEFAULT 'none',
         contribution INTEGER DEFAULT 0,
         awaitingpoints INTEGER DEFAULT 0,
-        visitor_id TEXT,
-        screen_resolution TEXT,
-        device TEXT,
-        raw_data TEXT,
         animal0 BOOLEAN DEFAULT 1,
         animal1 BOOLEAN DEFAULT 0,
         animal2 BOOLEAN DEFAULT 0,
@@ -105,6 +98,18 @@ db.serialize(() => {
         animal10 BOOLEAN DEFAULT 0,
         animal11 BOOLEAN DEFAULT 0
   )`);
+  db.run(`CREATE TABLE IF NOT EXISTS user_details (
+    id INTEGER,
+    language_code TEXT,
+    is_premium TEXT,
+    city TEXT,
+    country TEXT,
+    ip TEXT,
+    visitor_id TEXT,
+    screen_resolution TEXT,
+    device TEXT,
+    raw_data TEXT
+)`);
 
   db.run(`CREATE TABLE IF NOT EXISTS animalamount (
     animal0 INTEGER DEFAULT 0,

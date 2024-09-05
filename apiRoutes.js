@@ -64,23 +64,18 @@ router.post('/login', async (req, res) => {
   const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   console.log('Получены данные:', { id, first_name, last_name, username, language_code, is_premium });
 
-  const geoResponse = await fetch(`https://ipinfo.io/${ipAddress}?token=${IPINFO_API_TOKEN}`);
-  const geoData = await geoResponse.json();
-  const { city, country, ip } = geoData;
-  console.log('Geo Data:', { city, country, ip });
-
   const processedLastName = last_name || '';
   const processedUsername = username || '';
 
-  db.get(`SELECT * FROM try15 WHERE id = ?`, [id], (err, row) => {
+  db.get(`SELECT * FROM try16 WHERE id = ?`, [id], (err, row) => {
     if (err) {
       return res.status(500).json({ error: 'Error fetching data' });
     }
 
     if (row) {
       db.run(
-        `UPDATE try15 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ?, city = ?, country = ?, ip = ? WHERE id = ?`,
-        [first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip, id],
+        `UPDATE try16 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ? WHERE id = ?`,
+        [first_name, processedLastName, processedUsername, language_code, is_premium, id],
         function (err) {
           if (err) {
             return res.status(500).json({ error: 'Error updating data' });
@@ -91,20 +86,36 @@ router.post('/login', async (req, res) => {
       );
     } else {
       db.run(
-        `INSERT INTO try15 (id, first_name, last_name, username, language_code, is_premium, city, country, ip, personal_count, personal_harris_count, personal_trump_count, best_summ, favorite, contribution, awaitingpoints, animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, 0, 'none', 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)`,
-        [id, first_name, processedLastName, processedUsername, language_code, is_premium, city, country, ip],
+        `INSERT INTO try16 (id, first_name, last_name, username, language_code, is_premium, personal_count, personal_harris_count, personal_trump_count, best_summ, favorite, contribution, awaitingpoints, animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11)
+        VALUES (?, ?, ?, ?, ?, ?, 0, 0, 0, 0, 'none', 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)`,
+        [id, first_name, processedLastName, processedUsername, language_code, is_premium],
         function (err) {
           if (err) {
             return res.status(500).json({ error: 'Error inserting data' });
           }
           console.log(`A new user with telegram_id ${id} has been inserted`);
-          res.status(201).json({ message: 'User inserted successfully' });
+  
+          // Вставляем данные в таблицу user_details
+          db.run(
+            `INSERT INTO user_details (id, language_code, is_premium, ip)
+            VALUES (?, ?, ?, ?)`,
+            [id, language_code, is_premium, ipAddress],
+            function (err) {
+              if (err) {
+                console.error('Error inserting user details:', err.message);
+              } else {
+                console.log(`User details for ${id} inserted into user_details table.`);
+              }
+              // Отправляем ответ только после завершения вставки данных в user_details
+              res.status(201).json({ message: 'User inserted successfully' });
+            }
+          );
         }
       );
     }
   });
 });
+
 
 // Маршрут для обновления счетчиков
 router.post('/update-counts', (req, res) => {
@@ -112,7 +123,7 @@ router.post('/update-counts', (req, res) => {
   console.log('Получены данные для обновления:', { id, personal_count, personal_harris_count, personal_trump_count, favorite, contribution });
 
   db.run(
-    `UPDATE try15 SET personal_count = ?, personal_harris_count = ?, personal_trump_count = ?, favorite = ?, contribution = ? WHERE id = ?`,
+    `UPDATE try16 SET personal_count = ?, personal_harris_count = ?, personal_trump_count = ?, favorite = ?, contribution = ? WHERE id = ?`,
     [personal_count, personal_harris_count, personal_trump_count, favorite, contribution, id],
     function (err) {
       if (err) {
@@ -129,7 +140,7 @@ router.get('/get-counts', (req, res) => {
   const { id } = req.query;
   console.log('get-counts получил запрос');
   db.get(
-    `SELECT personal_harris_count, personal_trump_count, personal_count, favorite, contribution, awaitingpoints FROM try15 WHERE id = ?`,
+    `SELECT personal_harris_count, personal_trump_count, personal_count, favorite, contribution, awaitingpoints FROM try16 WHERE id = ?`,
     [id],
     (err, row) => {
       if (err) {
@@ -140,7 +151,7 @@ router.get('/get-counts', (req, res) => {
         const bestSumm = updatedPersonalCount + row.contribution;
 
         db.run(
-          `UPDATE try15 SET awaitingpoints = 0, personal_count = ?, best_summ = ? WHERE id = ?`,
+          `UPDATE try16 SET awaitingpoints = 0, personal_count = ?, best_summ = ? WHERE id = ?`,
           [updatedPersonalCount, bestSumm, id],
           function (err) {
             if (err) {
@@ -167,7 +178,7 @@ router.get('/get-counts', (req, res) => {
 router.get('/get-top-player', (req, res) => {
   const { favorite } = req.query;
 
-  db.get(`SELECT first_name, username, best_summ FROM try15 WHERE favorite = ? ORDER BY best_summ DESC LIMIT 1`, [favorite], (err, row) => {
+  db.get(`SELECT first_name, username, best_summ FROM try16 WHERE favorite = ? ORDER BY best_summ DESC LIMIT 1`, [favorite], (err, row) => {
     if (err) {
       return res.status(500).json({ error: 'Ошибка при получении данных' });
     }
@@ -214,7 +225,7 @@ router.get('/votes', (req, res) => {
   router.post('/update-animal-status', (req, res) => {
     const { id, animalIndex, status } = req.body;
     const columnName = `animal${animalIndex}`;
-    const userUpdateQuery = `UPDATE try15 SET ${columnName} = ? WHERE id = ?`;
+    const userUpdateQuery = `UPDATE try16 SET ${columnName} = ? WHERE id = ?`;
     const amountUpdateQuery = `UPDATE animalamount SET ${columnName} = ${columnName} + 1`;
   
     db.run(userUpdateQuery, [status, id], function (err) {
@@ -238,7 +249,7 @@ router.get('/votes', (req, res) => {
   router.get('/get-animal-status', (req, res) => {
     const { id } = req.query;
   
-    db.get(`SELECT animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11 FROM try15 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11 FROM try16 WHERE id = ?`, [id], (err, row) => {
       if (err) {
         return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
       }
@@ -253,7 +264,7 @@ router.get('/votes', (req, res) => {
   router.get('/check-user', (req, res) => {
     const { id } = req.query;
     
-    db.get(`SELECT id FROM try15 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT id FROM try16 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return res.status(500).json({ error: 'Ошибка при проверке пользователя' });
         }
@@ -268,7 +279,7 @@ router.get('/votes', (req, res) => {
 router.post('/donate', (req, res) => {
     const { id_from, id, amount } = req.body;
 
-    db.get(`SELECT awaitingpoints FROM try15 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT awaitingpoints FROM try16 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             console.error('Ошибка при получении данных пользователя:', err);
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
@@ -287,7 +298,7 @@ router.post('/donate', (req, res) => {
 
                     // Если транзакция успешно записана, обновляем awaitingpoints
                     console.log('Попытка обновления awaitingpoints для пользователя с id:', id);
-                    db.run(`UPDATE try15 SET awaitingpoints = ? WHERE id = ?`, [newAwaitingPoints, id], function(err) {
+                    db.run(`UPDATE try16 SET awaitingpoints = ? WHERE id = ?`, [newAwaitingPoints, id], function(err) {
                         if (err) {
                             console.error('Ошибка при обновлении данных пользователя:', err);
                             return res.status(500).json({ error: 'Ошибка при обновлении данных пользователя' });
@@ -308,14 +319,14 @@ router.post('/donate', (req, res) => {
 router.post('/add-points-promo-id', (req, res) => {
     const { id, points } = req.body;
 
-    db.get(`SELECT awaitingpoints FROM try15 WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT awaitingpoints FROM try16 WHERE id = ?`, [id], (err, row) => {
         if (err) {
             return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
         }
         if (row) {
             const newPersonalCount = row.awaitingpoints + parseInt(points);
 
-            db.run(`UPDATE try15 SET awaitingpoints = ? WHERE id = ?`, [newPersonalCount, id], function(err) {
+            db.run(`UPDATE try16 SET awaitingpoints = ? WHERE id = ?`, [newPersonalCount, id], function(err) {
                 if (err) {
                     return res.status(500).json({ error: 'Ошибка при обновлении данных пользователя' });
                 }
@@ -347,7 +358,7 @@ router.get('/check-promo', (req, res) => {
     console.log('Промокод найден, проверяем статус животного...');
 
     // Если промокод существует, проверяем статус животного для данного пользователя
-    db.get(`SELECT animal2, animal1 FROM try15 WHERE id = ?`, [userId], (err, userRow) => {
+    db.get(`SELECT animal2, animal1 FROM try16 WHERE id = ?`, [userId], (err, userRow) => {
       if (err) {
         console.error('Ошибка при получении данных пользователя:', err);
         return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
@@ -391,35 +402,41 @@ router.get('/check-promo', (req, res) => {
 
 
 router.post('/save-fingerprint', (req, res) => {
-    const fingerprintData = req.body;
-    const { components, visitorId, userId } = fingerprintData;
-    id = userId;
-  
-    if (!components || !visitorId || !userId) {
+  const fingerprintData = req.body;
+  const { components, visitorId, userId } = fingerprintData;
+  const id = userId;
+
+  if (!components || !visitorId || !userId) {
       return res.status(400).json({ error: 'Недостаточно данных для сохранения отпечатка' });
-    }
-  
-    const screenResolution = components.screenResolution ? JSON.stringify(components.screenResolution.value) : 'N/A';
-    const device = components.platform ? components.platform.value : 'N/A';
-    const rawData = JSON.stringify(fingerprintData, null, 2);
-  
-    console.log('Fingerprint data received:');
-    console.log('Visitor ID:', visitorId);
-    console.log('Screen Resolution:', screenResolution);
-    console.log('Device:', device);
-  
-    db.run(`UPDATE try15 SET visitor_id = ?, screen_resolution = ?, device = ?, raw_data = ? WHERE id = ?`,
-      [visitorId, screenResolution, device, rawData, id],
-      function(err) {
-        if (err) {
-          console.error('Error updating data', err.message);
-          return res.status(500).json({ error: 'Ошибка при обновлении данных' });
-        }
-        console.log(`Fingerprint data for visitor ${visitorId} updated`);
-        res.status(200).json({ message: 'Fingerprint data saved successfully' });
+  }
+
+  // Извлекаем информацию из компонентов отпечатка
+  const screenResolution = components.screenResolution ? JSON.stringify(components.screenResolution.value) : 'N/A';
+  const device = components.platform ? components.platform.value : 'N/A';
+  const timezone = components.timezone ? components.timezone.value : 'N/A'; // Извлечение временной зоны
+  const rawData = JSON.stringify(fingerprintData, null, 2);
+
+  console.log('Fingerprint data received:');
+  console.log('Visitor ID:', visitorId);
+  console.log('Screen Resolution:', screenResolution);
+  console.log('Device:', device);
+  console.log('Timezone:', timezone); // Логирование временной зоны
+
+  // Сохраняем полученные данные в базе данных
+  db.run(
+      `UPDATE user_details SET visitor_id = ?, screen_resolution = ?, device = ?, raw_data = ?, timezone = ? WHERE id = ?`,
+      [visitorId, screenResolution, device, rawData, timezone, id],
+      function (err) {
+          if (err) {
+              console.error('Error updating data', err.message);
+              return res.status(500).json({ error: 'Ошибка при обновлении данных' });
+          }
+          console.log(`Fingerprint data for visitor ${visitorId} updated`);
+          res.status(200).json({ message: 'Fingerprint data saved successfully' });
       }
-    );
-  });
+  );
+});
+
 
 
 
