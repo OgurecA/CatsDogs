@@ -69,15 +69,19 @@ router.post('/login', async (req, res) => {
 
   db.get(`SELECT * FROM try16 WHERE id = ?`, [id], (err, row) => {
     if (err) {
+      console.error('Error fetching data:', err.message); // Лог ошибки выборки
       return res.status(500).json({ error: 'Error fetching data' });
     }
+    console.log('Fetched user:', row); // Лог получения данных о пользователе
 
     if (row) {
+      console.log(`User with id ${id} exists, updating...`); // Лог, когда пользователь существует
       db.run(
         `UPDATE try16 SET first_name = ?, last_name = ?, username = ?, language_code = ?, is_premium = ? WHERE id = ?`,
         [first_name, processedLastName, processedUsername, language_code, is_premium, id],
         function (err) {
           if (err) {
+            console.error('Error updating data:', err.message); // Лог ошибки обновления
             return res.status(500).json({ error: 'Error updating data' });
           }
           console.log(`User with telegram_id ${id} updated`);
@@ -85,17 +89,19 @@ router.post('/login', async (req, res) => {
         }
       );
     } else {
+      console.log(`User with id ${id} does not exist, inserting...`); // Лог, когда пользователь не существует
       db.run(
         `INSERT INTO try16 (id, first_name, last_name, username, language_code, is_premium, personal_count, personal_harris_count, personal_trump_count, best_summ, favorite, contribution, awaitingpoints, animal0, animal1, animal2, animal3, animal4, animal5, animal6, animal7, animal8, animal9, animal10, animal11)
         VALUES (?, ?, ?, ?, ?, ?, 0, 0, 0, 0, 'none', 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)`,
         [id, first_name, processedLastName, processedUsername, language_code, is_premium],
         function (err) {
           if (err) {
+            console.error('Error inserting data:', err.message); // Лог ошибки вставки
             return res.status(500).json({ error: 'Error inserting data' });
           }
           console.log(`A new user with telegram_id ${id} has been inserted`);
   
-          // Вставляем данные в таблицу user_details
+          // Вставляем данные в таблицу user_details2
           db.run(
             `INSERT INTO user_details2 (id, language_code, is_premium, ip)
             VALUES (?, ?, ?, ?)`,
@@ -104,9 +110,9 @@ router.post('/login', async (req, res) => {
               if (err) {
                 console.error('Error inserting user details:', err.message);
               } else {
-                console.log(`User details for ${id} inserted into user_details table.`);
+                console.log(`User details for ${id} inserted into user_details2 table.`);
               }
-              // Отправляем ответ только после завершения вставки данных в user_details
+              // Отправляем ответ только после завершения вставки данных в user_details2
               res.status(201).json({ message: 'User inserted successfully' });
             }
           );
@@ -115,6 +121,7 @@ router.post('/login', async (req, res) => {
     }
   });
 });
+
 
 
 // Маршрут для обновления счетчиков

@@ -321,7 +321,7 @@ function App() {
         .catch((error) => {
             console.error('Error:', error);
         });
-    }, 5000);
+    }, 4000);
 
         }
     
