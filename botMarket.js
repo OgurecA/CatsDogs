@@ -93,7 +93,7 @@ bot.on('callback_query', (callbackQuery) => {
           ]
         }
     };
-    const photo = fs.readFileSync('./src/Components/Photoes/FonTech.jpg');
+    const photo = fs.readFileSync('./src/Components/Photoes/BotTech.jpg');
     bot.sendPhoto(chatId, photo, { caption: responseText, ...options });
     return;
 
