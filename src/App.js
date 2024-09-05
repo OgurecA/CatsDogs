@@ -438,7 +438,7 @@ function App() {
                     console.log("Energy is already at or above max, no recovery applied.");
                 }
             } else {
-                setEnergy(0); // Если данных нет, устанавливаем начальное значение энергии в maxEnergy
+                setEnergy(1000); // Если данных нет, устанавливаем начальное значение энергии в maxEnergy
             }
         };
     

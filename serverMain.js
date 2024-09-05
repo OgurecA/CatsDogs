@@ -129,6 +129,16 @@ db.run(`
         date TEXT NOT NULL
     )`);
 
+    db.run(`
+        CREATE TABLE IF NOT EXISTS market (
+          user_id INTEGER,
+          amount INTEGER,
+          item TEXT,
+          date TEXT
+        )
+      `);
+      
+
   });
 
 // Обработка любых маршрутов

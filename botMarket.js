@@ -241,24 +241,34 @@ bot.on('callback_query', (callbackQuery) => {
         return;
 
 
-  } else if (data === 'gifts') {
-    // Отправка сообщения с кнопками Gift1, Gift2, Gift3
-    const options = {
-      reply_markup: {
-        inline_keyboard: [
-          [{ text: languageCode === 'ru' ? "BERNARD" : "BERNARD", callback_data: 'Bik' }],
-          [{ text: languageCode === 'ru' ? "olev" : "olev", callback_data: 'Rat' }],
-          [{ text: languageCode === 'ru' ? "X2" : "X2", callback_data: 'X2' }],
-          [{ text: languageCode === 'ru' ? "X5" : "X5", callback_data: 'X5' }],
-          [{ text: languageCode === 'ru' ? "X10" : "X10", callback_data: 'X10' }],
-          [{ text: languageCode === 'ru' ? "Назад" : "Back", callback_data: 'back_to_start' }]
-        ]
-      }
-    };
-    responseText = languageCode === 'ru' ? "Выберите подарок:" : "Choose a gift:";
-    bot.sendMessage(chatId, responseText, options);
-    return;
-  }
+      } else if (data === 'gifts') {
+        // Отправка сообщения с кнопками подарков
+        const options = {
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        { text: languageCode === 'ru' ? "BERNARD" : "BERNARD", callback_data: 'Bik' },
+                        { text: languageCode === 'ru' ? "olev" : "olev", callback_data: 'Rat' }
+                    ],
+                    [
+                        { text: languageCode === 'ru' ? "Ярость X2" : "Rage X2", callback_data: 'X2' },
+                        { text: languageCode === 'ru' ? "Ярость X5" : "Rage X5", callback_data: 'X5' }
+                    ],
+                    [
+                        { text: languageCode === 'ru' ? "Ярость X10" : "Rage X10", callback_data: 'X10' }
+                    ],
+                    [
+                        { text: languageCode === 'ru' ? "Назад" : "Back", callback_data: 'back_to_start' }
+                    ]
+                ]
+            }
+        };
+    
+        responseText = languageCode === 'ru' ? "Выберите подарок:" : "Choose a gift:";
+        bot.sendMessage(chatId, responseText, options);
+        return;
+    }
+    
 
 });
 
@@ -266,63 +276,69 @@ bot.on('pre_checkout_query', (query) => {
     bot.answerPreCheckoutQuery(query.id, true)  // Подтверждаем готовность принять оплату
       .catch(err => console.error('Ошибка при подтверждении предоплаты:', err.message));
   });
-bot.on('successful_payment', (msg) => {
+  bot.on('successful_payment', (msg) => {
     const chatId = msg.chat.id;
+    const userId = msg.from.id; // Получаем ID пользователя
     const languageCode = msg.from.language_code;
+    const amount = msg.successful_payment.total_amount; // Получаем количество потраченных звезд
+    const purchaseDate = new Date().toISOString(); // Текущая дата в формате ISO
   
-    // Проверяем payload, чтобы узнать, за что была успешная оплата
-    if (msg.successful_payment.invoice_payload === 'Bik') {
-      const promoCode = generatePromoCode();
-      const promoValue = "Bik";
-      savePromoCode(promoCode, promoValue);
+    let promoCode, promoValue, responseText;
   
-      const responseText = languageCode === 'ru'
-        ? `Спасибо за покупку! Ваш промокод: ${promoCode}`
-        : `Thank you for your purchase! Your promo code: ${promoCode}`;
-  
-      bot.sendMessage(chatId, responseText);
-
-    } else if (msg.successful_payment.invoice_payload === 'Rat') {
-      const promoCode = generatePromoCode();
-      const promoValue = "Rat";
-
-      savePromoCode(promoCode, promoValue);  
-      responseText = languageCode === 'ru' 
-          ? `Ваш промокод для Крысы: ${promoCode}` 
-          : `Your promo code for Rat: ${promoCode}`;
-      bot.sendMessage(chatId, responseText);
-
-    } else if (msg.successful_payment.invoice_payload === 'X2') {
-      const promoCode = generatePromoCode();
-      const promoValue = "X2";
-
-      savePromoCode(promoCode, promoValue);  
-      responseText = languageCode === 'ru' 
-          ? `Ваш промокод для X2: ${promoCode}` 
-          : `Your promo code for X2: ${promoCode}`;
-      bot.sendMessage(chatId, responseText);
-
-    } else if (msg.successful_payment.invoice_payload === 'X5') {
-      const promoCode = generatePromoCode();
-      const promoValue = "X5";
-
-      savePromoCode(promoCode, promoValue);  
-      responseText = languageCode === 'ru' 
-          ? `Ваш промокод для X5: ${promoCode}` 
-          : `Your promo code for X5: ${promoCode}`;
-      bot.sendMessage(chatId, responseText);
-      
-    } else if (msg.successful_payment.invoice_payload === 'X10') {
-      const promoCode = generatePromoCode();
-      const promoValue = "X10";
-
-      savePromoCode(promoCode, promoValue);  
-      responseText = languageCode === 'ru' 
-          ? `Ваш промокод для X10: ${promoCode}` 
-          : `Your promo code for X10: ${promoCode}`;
-      bot.sendMessage(chatId, responseText);
+    // Определяем товар в зависимости от payload
+    switch (msg.successful_payment.invoice_payload) {
+      case 'Bik':
+        promoCode = generatePromoCode();
+        promoValue = "Bik";
+        responseText = languageCode === 'ru'
+          ? `Ваш промокод для BERNARD: ${promoCode}`
+          : `Your promo code for BERNARD: ${promoCode}`;
+        break;
+      case 'Rat':
+        promoCode = generatePromoCode();
+        promoValue = "Rat";
+        responseText = languageCode === 'ru'
+          ? `Ваш промокод для olev: ${promoCode}`
+          : `Your promo code for olev: ${promoCode}`;
+        break;
+      case 'X2':
+        promoCode = generatePromoCode();
+        promoValue = "X2";
+        responseText = languageCode === 'ru'
+          ? `Ваш промокод для Ярости X2: ${promoCode}`
+          : `Your promo code for Rage X2: ${promoCode}`;
+        break;
+      case 'X5':
+        promoCode = generatePromoCode();
+        promoValue = "X5";
+        responseText = languageCode === 'ru'
+          ? `Ваш промокод для Ярости X5: ${promoCode}`
+          : `Your promo code for Rage X5: ${promoCode}`;
+        break;
+      case 'X10':
+        promoCode = generatePromoCode();
+        promoValue = "X10";
+        responseText = languageCode === 'ru'
+          ? `Ваш промокод для Ярости X10: ${promoCode}`
+          : `Your promo code for Rage X10: ${promoCode}`;
+        break;
     }
-    
+  
+    // Сохраняем промокод
+    savePromoCode(promoCode, promoValue);
+  
+    // Сохраняем информацию о покупке в базу данных
+    db.run(`INSERT INTO market (user_id, amount, item, date) VALUES (?, ?, ?, ?)`,
+      [userId, amount, promoValue, purchaseDate],
+      (err) => {
+        if (err) {
+          console.error('Ошибка при сохранении покупки:', err.message);
+        } else {
+          console.log('Покупка успешно сохранена.');
+          bot.sendMessage(chatId, responseText);
+        }
+      }
+    );
   });
   
 
