@@ -98,12 +98,11 @@ db.serialize(() => {
         animal10 BOOLEAN DEFAULT 0,
         animal11 BOOLEAN DEFAULT 0
   )`);
-  db.run(`CREATE TABLE IF NOT EXISTS user_details (
+  db.run(`CREATE TABLE IF NOT EXISTS user_details2 (
     id INTEGER,
     language_code TEXT,
     is_premium TEXT,
-    city TEXT,
-    country TEXT,
+    timezone TEXT,
     ip TEXT,
     visitor_id TEXT,
     screen_resolution TEXT,

@@ -97,7 +97,7 @@ router.post('/login', async (req, res) => {
   
           // Вставляем данные в таблицу user_details
           db.run(
-            `INSERT INTO user_details (id, language_code, is_premium, ip)
+            `INSERT INTO user_details2 (id, language_code, is_premium, ip)
             VALUES (?, ?, ?, ?)`,
             [id, language_code, is_premium, ipAddress],
             function (err) {
@@ -424,7 +424,7 @@ router.post('/save-fingerprint', (req, res) => {
 
   // Сохраняем полученные данные в базе данных
   db.run(
-      `UPDATE user_details SET visitor_id = ?, screen_resolution = ?, device = ?, raw_data = ?, timezone = ? WHERE id = ?`,
+      `UPDATE user_details2 SET visitor_id = ?, screen_resolution = ?, device = ?, raw_data = ?, timezone = ? WHERE id = ?`,
       [visitorId, screenResolution, device, rawData, timezone, id],
       function (err) {
           if (err) {
