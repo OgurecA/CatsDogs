@@ -122,7 +122,7 @@ function App() {
                 newEnergyTake = 15;
                 newTeamDMG = 5;
                 newPersonalDMG = 5;
-                newName = "Anatoly";
+                newName = "ANATOLY";
                 background = FonTap1;
                 break;
             case 1:
@@ -132,7 +132,7 @@ function App() {
                 newEnergyTake = 10;
                 newTeamDMG = -10;
                 newPersonalDMG = 10;
-                newName = "Olev";
+                newName = "olev";
                 background = FonTap1;
                 break;
             case 2:
@@ -142,11 +142,19 @@ function App() {
                 newEnergyTake = 20;
                 newTeamDMG = 20;
                 newPersonalDMG = 0;
-                newName = "Bernard";
+                newName = "BERNARD";
                 background = FonTap1;
                 break;
             default:
-                image = null;
+                image = Gorilla;
+                newMaxEnergy = 1000;
+                newEnergyRecovery = 1;
+                newEnergyTake = 15;
+                newTeamDMG = 5;
+                newPersonalDMG = 5;
+                newName = "ANATOLY";
+                background = FonTap1;
+                break;
         }
 
         setMaxEnergy(newMaxEnergy);
@@ -712,7 +720,7 @@ useEffect(() => {
             setIsButtonDisabled(false);
             setEnergy(energy + addedEnergy);
             closeModal();
-        }, 10000);
+        }, 30000);
     };
     
 

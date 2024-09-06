@@ -57,7 +57,7 @@ bot.onText(/\/start/, (msg) => {
   // Определяем текст на основе языка пользователя
 
   const welcomeText = languageCode === 'ru'
-    ? `Добро пожаловать, ${firstName}! Выберите один из вариантов ниже:`
+    ? `Приветствую тебя, ${firstName}! Выберите один из вариантов ниже:`
     : `Welcome, ${firstName}! Choose one of the options below:`;
 
   const options = {
@@ -84,12 +84,12 @@ bot.on('callback_query', (callbackQuery) => {
   let imagePath;
 
   if (data === 'button2') {
-    responseText = languageCode === 'ru' ? "Правила игры и их описание" : "Rules and their description";
+    responseText = languageCode === 'ru' ? "Все покупки виртуальных предметов в нашей игре являются окончательными и не подлежат возврату. Мы рекомендуем тщательно обдумать покупку перед его приобретением, так как обмен, возврат или компенсация средств за купленные виртуальные предметы невозможны.\n\nОплата виртуальных предметов в нашей игре принимается в Telegram Stars, стоимость которых определяется Telegram. Мы указываем только примерную цену. Для точной информации о текущей стоимости Telegram Stars, пожалуйста, обратитесь к магазину Telegram Stars.\n\nСовершая покупку, вы автоматически соглашаетесь с условиями, установленными разработчиками игры. Данные условия включают отказ от возврата средств и обмена приобретенных виртуальных предметов. Покупка считается подтверждением того, что вы ознакомлены с данной политикой и принимаете ее в полном объеме." : "All purchases of virtual items in our game are final and non-refundable. We encourage you to carefully consider your purchase before proceeding, as exchanges, refunds, or compensation for purchased virtual items are not possible.\n\nPayment for virtual items in our game is accepted in Telegram Stars, the value of which is determined by Telegram. We provide only an approximate price for the items. For accurate information on the current value of Telegram Stars, please refer to the Telegram Stars store.\n\nBy making a purchase, you automatically agree to the terms set by the game developers. These terms include a waiver of refunds and exchanges for purchased virtual items. Your purchase confirms that you have read, understood, and fully accept this policy.";
     const options = {
         reply_markup: {
           inline_keyboard: [
             [{ text: languageCode === 'ru' ? "Магазин" : "Shop", callback_data: 'gifts' }],
-            [{ text: languageCode === 'ru' ? "Назад" : "Back", callback_data: 'back_to_start' }]
+            [{ text: languageCode === 'ru' ? "Играть" : "Play", url: 'https://t.me/DireAnimals_bot' }]
           ]
         }
     };
@@ -97,33 +97,10 @@ bot.on('callback_query', (callbackQuery) => {
     bot.sendPhoto(chatId, photo, { caption: responseText, ...options });
     return;
 
-} else if (data === 'back_to_start') {
-    // Удаление текущего сообщения
-    bot.deleteMessage(chatId, messageId).then(() => {
-      const welcomeText = languageCode === 'ru'
-        ? `Добро пожаловать! Выберите один из вариантов ниже:`
-        : `Welcome! Choose one of the options below:`;
-
-      const options = {
-        reply_markup: {
-          inline_keyboard: [
-            [{ text: languageCode === 'ru' ? "Магазин" : "Shop", callback_data: 'gifts' }],
-            [{ text: languageCode === 'ru' ? "Условия" : "Terms", callback_data: 'button2' }]
-          ]
-        }
-      }
-      const photo = fs.readFileSync('./src/Components/Photoes/Zir3.jpeg');
-      bot.sendPhoto(chatId, photo, { caption: welcomeText, ...options });
-    });
-    return;
-
-
-
-
   } else if (data === 'Bik') {
     const invoice = {
-        title: languageCode === 'ru' ? "Получите Дракона за 35000 Telegram Stars (~$749.99)" : "Get a Dragon for 1 Telegram Star (~$749.99)",
-        description: languageCode === 'ru' ? "Покупка не подлежит возврату. Совершая покупку, вы соглашаетесь с условиями использования." : "Purchase is non-refundable. By making a purchase, you agree to the terms of service.",
+        title: languageCode === 'ru' ? "Получите BERNARD за 45 Telegram Stars (~$0.99)" : "Get BERNARD for 45 Telegram Star (~$0.99)",
+        description: languageCode === 'ru' ? "Совершая покупку, вы подтверждаете, что ознакомились и согласны с условиями использования." : "By making a purchase, you confirm that you have read and agree to the terms of use.",
         payload: "Bik",
         provider_token: "", // Пустой токен для Telegram Stars
         currency: "XTR", // Валюта для Telegram Stars
@@ -146,7 +123,7 @@ bot.on('callback_query', (callbackQuery) => {
 
     } else if (data === 'Rat') {
       const invoice = {
-          title: languageCode === 'ru' ? "Получите Крысу за 250 Telegram Stars (~$4.99)" : "Get a Rat for 250 Telegram Star (~$4.99)",
+          title: languageCode === 'ru' ? "Получите olev за 65 Telegram Stars (~$1.49)" : "Get olev for 65 Telegram Star (~$1.49)",
           description: languageCode === 'ru' ? "Покупка не подлежит возврату. Совершая покупку, вы соглашаетесь с условиями использования." : "Purchase is non-refundable. By making a purchase, you agree to the terms of service.",
           payload: "Rat",
           provider_token: "", // Пустой токен для Telegram Stars
@@ -170,7 +147,7 @@ bot.on('callback_query', (callbackQuery) => {
         
     } else if (data === 'X2') {
       const invoice = {
-          title: languageCode === 'ru' ? "Получите X2 за 50 Telegram Stars (~$0.99)" : "Get X2 for 50 Telegram Stars (~$0.99)",
+          title: languageCode === 'ru' ? "Получите X2 за 20 Telegram Stars (~$0.49)" : "Get X2 for 20 Telegram Stars (~$0.49)",
           description: languageCode === 'ru' ? "Покупка не подлежит возврату. Совершая покупку, вы соглашаетесь с условиями использования." : "Purchase is non-refundable. By making a purchase, you agree to the terms of service.",
           payload: "X2",
           provider_token: "", // Пустой токен для Telegram Stars
@@ -194,7 +171,7 @@ bot.on('callback_query', (callbackQuery) => {
 
     } else if (data === 'X5') {
       const invoice = {
-          title: languageCode === 'ru' ? "Получите X5 за 250 Telegram Stars (~$2.99)" : "Get X10 for 250 Telegram Star (~$2.99)",
+          title: languageCode === 'ru' ? "Получите X5 за 40 Telegram Stars (~$0.89)" : "Get X5 for 40 Telegram Star (~$0.89)",
           description: languageCode === 'ru' ? "Покупка не подлежит возврату. Совершая покупку, вы соглашаетесь с условиями использования." : "Purchase is non-refundable. By making a purchase, you agree to the terms of service.",
           payload: "X5",
           provider_token: "", // Пустой токен для Telegram Stars
@@ -253,9 +230,6 @@ bot.on('callback_query', (callbackQuery) => {
                     [
                         { text: languageCode === 'ru' ? "Ярость X2" : "Rage X2", callback_data: 'X2' },
                         { text: languageCode === 'ru' ? "Ярость X5" : "Rage X5", callback_data: 'X5' }
-                    ],
-                    [
-                        { text: languageCode === 'ru' ? "Ярость X10" : "Rage X10", callback_data: 'X10' }
                     ],
                     [
                         { text: languageCode === 'ru' ? "Назад" : "Back", callback_data: 'back_to_start' }

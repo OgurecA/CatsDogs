@@ -4,19 +4,19 @@ import { Gorilla, Cage, Krisa, Bik } from '../Pictures/Pictures';
 
 const PageInventory = ({ className, onCardSelect, personalPoints, setPersonalPoints, updateCounts, updateAnimalStatus, playersFavorite, updatedContribution, userId, lang }) => {
     const items = [
-        { 
-            title: 'ANATOLY', 
-            image: Gorilla, 
-            price: 0, 
+        {
+            title: 'ANATOLY',
+            image: Gorilla,
+            price: 0,
             description: lang === 'ru' ? "Придерживается правил: сначала поешь сам, потом накорми семью" : "He follows the rule: first, feed yourself, then take care of your family." 
         },
-        { 
-            title: 'olev', 
-            image: Krisa, 
-            price: 25000, 
+        {
+            title: 'olev',
+            image: Krisa,
+            price: 25000,
             description: lang === 'ru' ? "Пытался быть юристом, но его сущность взяла верх." : "Tried to be a lawyer, but his true nature took over." 
         },
-        { 
+        {
             title: 'BERNARD',
             image: Bik,
             price: 15000,
