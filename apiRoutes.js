@@ -341,7 +341,7 @@ router.post('/add-points-promo-id', (req, res) => {
 
               db.run(
                   `INSERT INTO invitations (inviter_id, invitee_id, invitation_date) VALUES (?, ?, ?)`,
-                  [userId, id, invitationDate],
+                  [id, userId, invitationDate],
                   function (err) {
                       if (err) {
                           console.error('Ошибка при добавлении приглашения:', err.message);
