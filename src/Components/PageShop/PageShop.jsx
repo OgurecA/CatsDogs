@@ -78,9 +78,9 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 localStorage.setItem('Rage', JSON.stringify(1));
                 handleRageChange(1);
             } else {
-                const minutes = Math.floor(remainingTime / (60 * 1000));
-                const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
-                setTimer(`${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
+                const hours = Math.floor(remainingTime / (60 * 60 * 1000));
+                const minutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
+                setTimer(`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`);
                 handleRageChange(rage);
             }
         };
@@ -93,7 +93,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     }, [endTime]);
 
     const startTimer = (rageValue) => {
-        const countdownMinutes = 1; // Устанавливаем время на 2 минуты
+        const countdownMinutes = 1440; // Устанавливаем время на 24 часа
         const newEndTime = Date.now() + countdownMinutes * 60 * 1000;
         setEndTime(newEndTime);
         setRage(rageValue);
