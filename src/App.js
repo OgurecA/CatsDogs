@@ -129,8 +129,8 @@ function App() {
                 image = Krisa;
                 newMaxEnergy = 1000;
                 newEnergyRecovery = 1;
-                newEnergyTake = 10;
-                newTeamDMG = -10;
+                newEnergyTake = 5;
+                newTeamDMG = -15;
                 newPersonalDMG = 10;
                 newName = "olev";
                 background = FonTap1;
