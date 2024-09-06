@@ -104,7 +104,7 @@ bot.on('callback_query', (callbackQuery) => {
         payload: "Bik",
         provider_token: "", // Пустой токен для Telegram Stars
         currency: "XTR", // Валюта для Telegram Stars
-        prices: [{ label: languageCode === 'ru' ? "BERNARD" : "BERNARD", amount: 1 }] // 100 единиц Telegram Stars
+        prices: [{ label: languageCode === 'ru' ? "BERNARD" : "BERNARD", amount: 45 }] // 100 единиц Telegram Stars
       };
     
       // Отправляем инвойс
@@ -128,7 +128,7 @@ bot.on('callback_query', (callbackQuery) => {
           payload: "Rat",
           provider_token: "", // Пустой токен для Telegram Stars
           currency: "XTR", // Валюта для Telegram Stars
-          prices: [{ label: languageCode === 'ru' ? "Крыса" : "Rat", amount: 1 }] // 100 единиц Telegram Stars
+          prices: [{ label: languageCode === 'ru' ? "Крыса" : "Rat", amount: 65 }] // 100 единиц Telegram Stars
         };
       
         // Отправляем инвойс
@@ -152,7 +152,7 @@ bot.on('callback_query', (callbackQuery) => {
           payload: "X2",
           provider_token: "", // Пустой токен для Telegram Stars
           currency: "XTR", // Валюта для Telegram Stars
-          prices: [{ label: languageCode === 'ru' ? "X2" : "X2", amount: 1 }] // 100 единиц Telegram Stars
+          prices: [{ label: languageCode === 'ru' ? "X2" : "X2", amount: 20 }] // 100 единиц Telegram Stars
         };
       
         // Отправляем инвойс
@@ -176,7 +176,7 @@ bot.on('callback_query', (callbackQuery) => {
           payload: "X5",
           provider_token: "", // Пустой токен для Telegram Stars
           currency: "XTR", // Валюта для Telegram Stars
-          prices: [{ label: languageCode === 'ru' ? "X5" : "X5", amount: 1 }] // 100 единиц Telegram Stars
+          prices: [{ label: languageCode === 'ru' ? "X5" : "X5", amount: 40 }] // 100 единиц Telegram Stars
         };
       
         // Отправляем инвойс
