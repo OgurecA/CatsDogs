@@ -322,26 +322,43 @@ router.post('/donate', (req, res) => {
 });
 
 router.post('/add-points-promo-id', (req, res) => {
-    const { id, points } = req.body;
+  const { userId, id, points } = req.body; // userId - кто пригласил, id - кого пригласили
 
-    db.get(`SELECT awaitingpoints FROM users WHERE id = ?`, [id], (err, row) => {
-        if (err) {
-            return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
-        }
-        if (row) {
-            const newPersonalCount = row.awaitingpoints + parseInt(points);
+  db.get(`SELECT awaitingpoints FROM users WHERE id = ?`, [id], (err, row) => {
+      if (err) {
+          return res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
+      }
+      if (row) {
+          const newPersonalCount = row.awaitingpoints + parseInt(points);
 
-            db.run(`UPDATE users SET awaitingpoints = ? WHERE id = ?`, [newPersonalCount, id], function(err) {
-                if (err) {
-                    return res.status(500).json({ error: 'Ошибка при обновлении данных пользователя' });
-                }
-                res.status(200).json({ message: 'Points added successfully', newPersonalCount });
-            });
-        } else {
-            res.status(404).json({ error: 'Пользователь не найден' });
-        }
-    });
+          db.run(`UPDATE users SET awaitingpoints = ? WHERE id = ?`, [newPersonalCount, id], function(err) {
+              if (err) {
+                  return res.status(500).json({ error: 'Ошибка при обновлении данных пользователя' });
+              }
+
+              // После успешного обновления очков добавляем данные в таблицу invitations
+              const invitationDate = new Date().toISOString(); // Текущая дата и время в формате ISO
+
+              db.run(
+                  `INSERT INTO invitations (inviter_id, invitee_id, invitation_date) VALUES (?, ?, ?)`,
+                  [userId, id, invitationDate],
+                  function (err) {
+                      if (err) {
+                          console.error('Ошибка при добавлении приглашения:', err.message);
+                          return res.status(500).json({ error: 'Ошибка при добавлении приглашения' });
+                      } else {
+                          console.log(`Приглашение добавлено: inviter_id=${userId}, invitee_id=${id}, date=${invitationDate}`);
+                          res.status(200).json({ message: 'Points added successfully', newPersonalCount });
+                      }
+                  }
+              );
+          });
+      } else {
+          res.status(404).json({ error: 'Пользователь не найден' });
+      }
+  });
 });
+
 
 router.get('/check-promo', (req, res) => {
   const { promoCode, userId } = req.query;

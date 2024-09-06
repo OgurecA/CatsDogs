@@ -224,7 +224,7 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 .then(response => response.json())
                 .then(data => {
                     if (data.exists) {
-                        const updatedPoints = personalCount + 1000; // Например, начисляем 1000 очков за использование ID
+                        const updatedPoints = personalCount + 2000; // Например, начисляем 1000 очков за использование ID
                         setPersonalPoints(updatedPoints);
                         updateCounts(updatedPoints, playersFavorite, updatedContribution);
                         
@@ -234,8 +234,9 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                                 'Content-Type': 'application/json'
                             },
                             body: JSON.stringify({
+                                userId: userId,
                                 id: sanitizedPromoInput,
-                                points: 1000
+                                points: 2000
                             })
                         })
                         .then(response => response.json())

@@ -141,6 +141,14 @@ db.run(`
           date TEXT
         )
       `);
+
+      db.run(`
+        CREATE TABLE IF NOT EXISTS invitations (
+            inviter_id INTEGER NOT NULL,
+            invitee_id INTEGER NOT NULL,
+            invitation_date TEXT NOT NULL
+        )
+    `);
       
 
   });
