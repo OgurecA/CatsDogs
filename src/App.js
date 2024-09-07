@@ -666,7 +666,7 @@ const getTopPlayer = (favorite) => {
 };
 
 const links = [
-    "https://t.me/direanimalsnews",
+    "https://t.me/boost/direanimalsnews",
     "https://x.com/dominator24news?s=21",
     "https://dominators.website"
 ];
@@ -746,7 +746,7 @@ useEffect(() => {
                     />
             <AddContainer
                 ads={[
-                  { src: TrumpP, link: "https://t.me/direanimalsnews" },
+                  { src: TrumpP, link: "https://t.me/boost/direanimalsnews" },
                   { src: HarrisP, link: "https://x.com/dominator24news?s=21" },
                   { src: TrumpP, link: 'https://dominators.website' },
                 ]}
