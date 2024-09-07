@@ -68,7 +68,7 @@ bot.onText(/\/start/, (msg) => {
       ]
     }
   };
-  const photo = fs.readFileSync('./src/Components/Photoes/Barsuk.jpg');
+  const photo = fs.readFileSync('./src/Components/Photoes/ZirMarket.jpg');
   bot.sendPhoto(chatId, photo, { caption: welcomeText, ...options });
 });
 
@@ -93,8 +93,7 @@ bot.on('callback_query', (callbackQuery) => {
           ]
         }
     };
-    const photo = fs.readFileSync('./src/Components/Photoes/BotTech.jpg');
-    bot.sendPhoto(chatId, photo, { caption: responseText, ...options });
+    bot.sendMessage(chatId, { caption: responseText, ...options });
     return;
 
   } else if (data === 'Bik') {
