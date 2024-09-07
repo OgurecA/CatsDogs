@@ -64,7 +64,7 @@ bot.onText(/\/start/, (msg) => {
     reply_markup: {
       inline_keyboard: [
         [{ text: languageCode === 'ru' ? "Магазин" : "Shop", callback_data: 'gifts' }],
-        [{ text: languageCode === 'ru' ? "Условия" : "Terms", callback_data: 'button2' }]
+        [{ text: languageCode === 'ru' ? "Назад" : "Go back", url: 'https://t.me/DireAnimals_bot' }]
       ]
     }
   };
@@ -199,7 +199,7 @@ bot.on('callback_query', (callbackQuery) => {
           payload: "X10",
           provider_token: "", // Пустой токен для Telegram Stars
           currency: "XTR", // Валюта для Telegram Stars
-          prices: [{ label: languageCode === 'ru' ? "X10" : "X10", amount: 1 }] // 100 единиц Telegram Stars
+          prices: [{ label: languageCode === 'ru' ? "X10" : "X10", amount: 100 }] // 100 единиц Telegram Stars
         };
       
         // Отправляем инвойс
@@ -229,15 +229,12 @@ bot.on('callback_query', (callbackQuery) => {
                     [
                         { text: languageCode === 'ru' ? "Ярость X2" : "Rage X2", callback_data: 'X2' },
                         { text: languageCode === 'ru' ? "Ярость X5" : "Rage X5", callback_data: 'X5' }
-                    ],
-                    [
-                        { text: languageCode === 'ru' ? "Назад" : "Back", callback_data: 'back_to_start' }
                     ]
                 ]
             }
         };
     
-        responseText = languageCode === 'ru' ? "Выберите подарок:" : "Choose a gift:";
+        responseText = languageCode === 'ru' ? "Все покупки виртуальных предметов в нашей игре являются окончательными и не подлежат возврату. Мы рекомендуем тщательно обдумать покупку предмета перед его приобретением, так как обмен, возврат или компенсация средств за купленные виртуальные предметы невозможны.\n\nОплата виртуальных предметов в нашей игре принимается в Telegram Stars, стоимость которых определяется Telegram. Мы указываем только примерную цену. Для точной информации о текущей стоимости Telegram Stars, пожалуйста, обратитесь к магазину Telegram Stars.\n\nДля получения купленного предмета вам необходимо выполнить следующие шаги:\nLair => Gif Code => Введите полученный промокод => Submit\n\nСовершая покупку, вы автоматически соглашаетесь с условиями, установленными разработчиками игры. Данные условия включают отказ от возврата средств и обмена приобретенных виртуальных предметов. Покупка считается подтверждением того, что вы ознакомлены с данной политикой и принимаете ее в полном объеме." : "All purchases of virtual items in our game are final and non-refundable. We encourage you to carefully consider your purchase before proceeding, as exchanges, refunds, or compensation for purchased virtual items are not possible.\n\nPayment for virtual items in our game is accepted in Telegram Stars, the value of which is determined by Telegram. We provide only an approximate price for the items. For accurate information on the current value of Telegram Stars, please refer to the Telegram Stars store.\n\nTo redeem your purchased item, please follow these steps:\nLair => Gift Code => Enter the received promo code => Submit\n\nBy making a purchase, you automatically agree to the terms set by the game developers. These terms include a waiver of refunds and exchanges for purchased virtual items. Your purchase confirms that you have read, understood, and fully accept this policy.";
         bot.sendMessage(chatId, responseText, options);
         return;
     }
