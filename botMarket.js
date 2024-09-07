@@ -93,7 +93,7 @@ bot.on('callback_query', (callbackQuery) => {
           ]
         }
     };
-    bot.sendMessage(chatId, { caption: responseText, ...options });
+    bot.sendMessage(chatId, responseText, options);
     return;
 
   } else if (data === 'Bik') {
