@@ -57,8 +57,8 @@ bot.onText(/\/start/, (msg) => {
   // Определяем текст на основе языка пользователя
 
   const welcomeText = languageCode === 'ru'
-    ? `Приветствую тебя, ${firstName}! Выберите один из вариантов ниже:`
-    : `Welcome, ${firstName}! Choose one of the options below:`;
+    ? `Приветствую тебя, ${firstName}! Меня зовут ELLIOT, я помогаю решать проблемы.`
+    : `Welcome, ${firstName}! My name is ELLIOT and I'm here to help you solve problems.`;
 
   const options = {
     reply_markup: {
@@ -167,18 +167,24 @@ bot.on('callback_query', (callbackQuery) => {
         };
       
         // Отправляем инвойс
-        bot.sendInvoice(
-          chatId, 
-          invoice.title, 
-          invoice.description, 
-          invoice.payload, 
-          invoice.provider_token, 
-          invoice.currency, 
-          invoice.prices
-        ).catch(err => console.error('Ошибка при отправке инвойса:', err.message));
-        
-        console.log('Отправлен инвойс для X2.');
-        return;
+        const photo = fs.readFileSync('./src/Components/Photoes/PotRed.png'); // Укажите путь к вашему изображению
+      bot.sendPhoto(chatId, photo)
+        .then(() => {
+          // Затем отправляем инвойс
+          bot.sendInvoice(
+            chatId, 
+            invoice.title, 
+            invoice.description, 
+            invoice.payload, 
+            invoice.provider_token, 
+            invoice.currency, 
+            invoice.prices
+          ).catch(err => console.error('Ошибка при отправке инвойса:', err.message));
+        })
+        .catch(err => console.error('Ошибка при отправке изображения:', err.message));
+  
+      console.log('Отправлен инвойс для X2.');
+      return;
 
     } else if (data === 'X5') {
       const invoice = {
@@ -191,18 +197,24 @@ bot.on('callback_query', (callbackQuery) => {
         };
       
         // Отправляем инвойс
-        bot.sendInvoice(
-          chatId, 
-          invoice.title, 
-          invoice.description, 
-          invoice.payload, 
-          invoice.provider_token, 
-          invoice.currency, 
-          invoice.prices
-        ).catch(err => console.error('Ошибка при отправке инвойса:', err.message));
-        
-        console.log('Отправлен инвойс для X5.');
-        return;
+        const photo = fs.readFileSync('./src/Components/Photoes/PotBlue.png'); // Укажите путь к вашему изображению
+      bot.sendPhoto(chatId, photo)
+        .then(() => {
+          // Затем отправляем инвойс
+          bot.sendInvoice(
+            chatId, 
+            invoice.title, 
+            invoice.description, 
+            invoice.payload, 
+            invoice.provider_token, 
+            invoice.currency, 
+            invoice.prices
+          ).catch(err => console.error('Ошибка при отправке инвойса:', err.message));
+        })
+        .catch(err => console.error('Ошибка при отправке изображения:', err.message));
+  
+      console.log('Отправлен инвойс для X5.');
+      return;
 
     } else if (data === 'X10') {
       const invoice = {
@@ -211,7 +223,7 @@ bot.on('callback_query', (callbackQuery) => {
           payload: "X10",
           provider_token: "", // Пустой токен для Telegram Stars
           currency: "XTR", // Валюта для Telegram Stars
-          prices: [{ label: languageCode === 'ru' ? "X10" : "X10", amount: 1 }] // 100 единиц Telegram Stars
+          prices: [{ label: languageCode === 'ru' ? "X10" : "X10", amount: 100 }] // 100 единиц Telegram Stars
         };
       
         // Отправляем инвойс
@@ -246,7 +258,7 @@ bot.on('callback_query', (callbackQuery) => {
             }
         };
     
-        responseText = languageCode === 'ru' ? "Все для свирепых — бери, что нужно!" : "Everything for the fierce — take what you need!";
+        responseText = languageCode === 'ru' ? "Что-нибудь приглянулось?" : "Did something catch your eye?";
         bot.sendMessage(chatId, responseText, options);
         return;
     }
