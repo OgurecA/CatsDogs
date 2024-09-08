@@ -462,18 +462,23 @@ function App() {
             });
         };
         
+        const saveEnergyToLocalStorage = () => {
+            setEnergy(prevEnergy => {
+                localStorage.setItem('energy', prevEnergy); // Сохранение энергии в локальное хранилище каждые 5 секунд
+                return prevEnergy;
+            });
+        };
+    
         loadEnergy();
     
         const energyRecoveryInterval = setInterval(updateEnergy, 29000);
+        const saveEnergyInterval = setInterval(saveEnergyToLocalStorage, 5000); 
     
         return () => {
-            clearInterval(energyRecoveryInterval);
+            clearInterval(energyRecoveryInterval); // Очистка интервала обновления энергии
+            clearInterval(saveEnergyInterval); // Очистка интервала сохранения энергии
         };
     }, []);
-
-    useEffect(() => {
-        localStorage.setItem('energy', energy); // Сохранение энергии в локальное хранилище при каждом изменении
-    }, [energy]);
     
 
     const totalVotes = votes.Trump + votes.Harris;
@@ -529,8 +534,13 @@ function App() {
                 const updatedPoints = (personalCount + (personalDMG * rage));
                 const updatedContribution = (contribution + (teamDMG * rage));
 
+                setEnergy(prevEnergy => {
+                    const newEnergy = prevEnergy - energyTake; // Уменьшение энергии на значение energyTake
+                    localStorage.setItem('energy', newEnergy); // Сохранение новой энергии в локальное хранилище
+                    return newEnergy; // Обновление состояния с новым значением энергии
+                });                
+
                 handleVote('Trump', teamDMG, rage);
-                setEnergy(energy - energyTake);
                 updateCounts(updatedPoints, playersFavorite, updatedContribution);
             }
             else {
@@ -560,8 +570,13 @@ function App() {
                 const updatedPoints = (personalCount + personalDMG);
                 const updatedContribution = (contribution + (teamDMG * rage));
 
+                setEnergy(prevEnergy => {
+                    const newEnergy = prevEnergy - energyTake; // Уменьшение энергии на значение energyTake
+                    localStorage.setItem('energy', newEnergy); // Сохранение новой энергии в локальное хранилище
+                    return newEnergy; // Обновление состояния с новым значением энергии
+                });
+
                 handleVote('Harris', teamDMG, rage);
-                setEnergy(energy - energyTake);
                 updateCounts(updatedPoints, playersFavorite, updatedContribution);
             }
             else {
