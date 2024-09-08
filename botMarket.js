@@ -107,7 +107,7 @@ bot.on('callback_query', (callbackQuery) => {
       };
 
       const photo = fs.readFileSync('./src/Components/Photoes/BekPNG.png'); // Укажите путь к вашему изображению
-      bot.sendPhoto(chatId, photo, { caption: invoice.title })
+      bot.sendPhoto(chatId, photo)
         .then(() => {
           // Затем отправляем инвойс
           bot.sendInvoice(
@@ -137,18 +137,24 @@ bot.on('callback_query', (callbackQuery) => {
         };
       
         // Отправляем инвойс
-        bot.sendInvoice(
-          chatId, 
-          invoice.title, 
-          invoice.description, 
-          invoice.payload, 
-          invoice.provider_token, 
-          invoice.currency, 
-          invoice.prices
-        ).catch(err => console.error('Ошибка при отправке инвойса:', err.message));
-        
-        console.log('Отправлен инвойс для Rat.');
-        return;
+        const photo = fs.readFileSync('./src/Components/Photoes/Krisa.png'); // Укажите путь к вашему изображению
+      bot.sendPhoto(chatId, photo)
+        .then(() => {
+          // Затем отправляем инвойс
+          bot.sendInvoice(
+            chatId, 
+            invoice.title, 
+            invoice.description, 
+            invoice.payload, 
+            invoice.provider_token, 
+            invoice.currency, 
+            invoice.prices
+          ).catch(err => console.error('Ошибка при отправке инвойса:', err.message));
+        })
+        .catch(err => console.error('Ошибка при отправке изображения:', err.message));
+  
+      console.log('Отправлен инвойс для olev.');
+      return;
         
     } else if (data === 'X2') {
       const invoice = {
