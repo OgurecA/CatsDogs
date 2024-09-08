@@ -729,7 +729,7 @@ useEffect(() => {
             setIsButtonDisabled(false);
             setEnergy(energy + addedEnergy);
             closeModal();
-        }, 30000);
+        }, 60000);
     };
     
 
