@@ -462,23 +462,18 @@ function App() {
             });
         };
         
-        const saveEnergyToLocalStorage = () => {
-            setEnergy(prevEnergy => {
-                localStorage.setItem('energy', prevEnergy); // Сохранение энергии в локальное хранилище каждые 5 секунд
-                return prevEnergy;
-            });
-        };
-    
         loadEnergy();
     
         const energyRecoveryInterval = setInterval(updateEnergy, 29000);
-        const saveEnergyInterval = setInterval(saveEnergyToLocalStorage, 500); 
     
         return () => {
-            clearInterval(energyRecoveryInterval); // Очистка интервала обновления энергии
-            clearInterval(saveEnergyInterval); // Очистка интервала сохранения энергии
+            clearInterval(energyRecoveryInterval);
         };
     }, []);
+
+    useEffect(() => {
+        localStorage.setItem('energy', energy); // Сохранение энергии в локальное хранилище при каждом изменении
+    }, [energy]);
     
 
     const totalVotes = votes.Trump + votes.Harris;
