@@ -258,7 +258,7 @@ bot.on('callback_query', (callbackQuery) => {
             }
         };
     
-        responseText = languageCode === 'ru' ? "Что-нибудь приглянулось?" : "Did something catch your eye?";
+        responseText = languageCode === 'ru' ? "Что-нибудь приглянулось?   " : "Did something catch your eye?";
         bot.sendMessage(chatId, responseText, options);
         return;
     }
