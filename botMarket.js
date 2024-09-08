@@ -129,7 +129,7 @@ bot.on('callback_query', (callbackQuery) => {
     } else if (data === 'Rat') {
       const invoice = {
           title: languageCode === 'ru' ? "Получите olev за 65 Telegram Stars (~$1.49)" : "Get olev for 65 Telegram Star (~$1.49)",
-          description: languageCode === 'ru' ? "Покупка не подлежит возврату. Совершая покупку, вы соглашаетесь с условиями использования." : "Purchase is non-refundable. By making a purchase, you agree to the terms of service.",
+          description: languageCode === 'ru' ? "Совершая покупку, вы подтверждаете, что ознакомились и согласны с условиями использования." : "By making a purchase, you confirm that you have read and agree to the terms of use.",
           payload: "Rat",
           provider_token: "", // Пустой токен для Telegram Stars
           currency: "XTR", // Валюта для Telegram Stars
@@ -159,7 +159,7 @@ bot.on('callback_query', (callbackQuery) => {
     } else if (data === 'X2') {
       const invoice = {
           title: languageCode === 'ru' ? "Получите X2 за 20 Telegram Stars (~$0.49)" : "Get X2 for 20 Telegram Stars (~$0.49)",
-          description: languageCode === 'ru' ? "Покупка не подлежит возврату. Совершая покупку, вы соглашаетесь с условиями использования." : "Purchase is non-refundable. By making a purchase, you agree to the terms of service.",
+          description: languageCode === 'ru' ? "Совершая покупку, вы подтверждаете, что ознакомились и согласны с условиями использования." : "By making a purchase, you confirm that you have read and agree to the terms of use.",
           payload: "X2",
           provider_token: "", // Пустой токен для Telegram Stars
           currency: "XTR", // Валюта для Telegram Stars
@@ -183,7 +183,7 @@ bot.on('callback_query', (callbackQuery) => {
     } else if (data === 'X5') {
       const invoice = {
           title: languageCode === 'ru' ? "Получите X5 за 40 Telegram Stars (~$0.89)" : "Get X5 for 40 Telegram Star (~$0.89)",
-          description: languageCode === 'ru' ? "Покупка не подлежит возврату. Совершая покупку, вы соглашаетесь с условиями использования." : "Purchase is non-refundable. By making a purchase, you agree to the terms of service.",
+          description: languageCode === 'ru' ? "Совершая покупку, вы подтверждаете, что ознакомились и согласны с условиями использования." : "By making a purchase, you confirm that you have read and agree to the terms of use.",
           payload: "X5",
           provider_token: "", // Пустой токен для Telegram Stars
           currency: "XTR", // Валюта для Telegram Stars
@@ -207,7 +207,7 @@ bot.on('callback_query', (callbackQuery) => {
     } else if (data === 'X10') {
       const invoice = {
           title: languageCode === 'ru' ? "Получите X10 за 250 Telegram Stars (~$4.99)" : "Get X10 for 250 Telegram Star (~$4.99)",
-          description: languageCode === 'ru' ? "Покупка не подлежит возврату. Совершая покупку, вы соглашаетесь с условиями использования." : "Purchase is non-refundable. By making a purchase, you agree to the terms of service.",
+          description: languageCode === 'ru' ? "Совершая покупку, вы подтверждаете, что ознакомились и согласны с условиями использования." : "By making a purchase, you confirm that you have read and agree to the terms of use.",
           payload: "X10",
           provider_token: "", // Пустой токен для Telegram Stars
           currency: "XTR", // Валюта для Telegram Stars
