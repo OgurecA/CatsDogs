@@ -431,22 +431,30 @@ function App() {
     
                 console.log("Time elapsed since last active (ms):", timeElapsed);
     
-                const energyRecovered = Math.floor(timeElapsed / 29000) * 1;
+                const energyRecovered = Math.floor(timeElapsed / 29000);
     
                 console.log("Energy recovered:", energyRecovered);
     
                 // Рассчитываем новую энергию только если текущая энергия меньше максимальной
                 const currentEnergy = parseInt(savedEnergy, 10);
+                let newEnergy;
+
                 if (currentEnergy < 1000) {
-                    const newEnergy = Math.min(currentEnergy + energyRecovered, 1000);
+                    newEnergy = Math.min(currentEnergy + energyRecovered, 1000);
                     setEnergy(newEnergy);
                     console.log("New energy after recovery:", newEnergy);
                 } else {
+                    newEnergy = currentEnergy;
                     setEnergy(currentEnergy); // Оставляем текущую энергию как есть
                     console.log("Energy is already at or above max, no recovery applied.");
                 }
+                // Сохраняем обновленные данные в localStorage
+                localStorage.setItem('energy', newEnergy);
+                localStorage.setItem('lastActiveTime', currentTime);
             } else {
                 setEnergy(1000); // Если данных нет, устанавливаем начальное значение энергии в maxEnergy
+                localStorage.setItem('energy', 1000);
+                localStorage.setItem('lastActiveTime', Date.now());
             }
         };
     
