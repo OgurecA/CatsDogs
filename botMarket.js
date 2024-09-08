@@ -105,20 +105,26 @@ bot.on('callback_query', (callbackQuery) => {
         currency: "XTR", // Валюта для Telegram Stars
         prices: [{ label: languageCode === 'ru' ? "BERNARD" : "BERNARD", amount: 45 }] // 100 единиц Telegram Stars
       };
-    
-      // Отправляем инвойс
-      bot.sendInvoice(
-        chatId, 
-        invoice.title, 
-        invoice.description, 
-        invoice.payload, 
-        invoice.provider_token, 
-        invoice.currency, 
-        invoice.prices
-      ).catch(err => console.error('Ошибка при отправке инвойса:', err.message));
-      
-      console.log('Отправлен инвойс для Drake.');
+
+      const photo = fs.readFileSync('./src/Components/Photoes/BekPNG.png'); // Укажите путь к вашему изображению
+      bot.sendPhoto(chatId, photo, { caption: invoice.title })
+        .then(() => {
+          // Затем отправляем инвойс
+          bot.sendInvoice(
+            chatId, 
+            invoice.title, 
+            invoice.description, 
+            invoice.payload, 
+            invoice.provider_token, 
+            invoice.currency, 
+            invoice.prices
+          ).catch(err => console.error('Ошибка при отправке инвойса:', err.message));
+        })
+        .catch(err => console.error('Ошибка при отправке изображения:', err.message));
+  
+      console.log('Отправлен инвойс для Bernard.');
       return;
+
 
     } else if (data === 'Rat') {
       const invoice = {
@@ -229,9 +235,6 @@ bot.on('callback_query', (callbackQuery) => {
                     [
                         { text: languageCode === 'ru' ? "Ярость X2" : "Rage X2", callback_data: 'X2' },
                         { text: languageCode === 'ru' ? "Ярость X5" : "Rage X5", callback_data: 'X5' }
-                    ],
-                    [
-                        { text: languageCode === 'ru' ? "Назад" : "Back", callback_data: 'back_to_start' }
                     ]
                 ]
             }
