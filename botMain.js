@@ -32,7 +32,7 @@ bot.onText(/\/start/, (msg) => {
         [{ text: languageCode === 'ru' ? "Играть" : "Play", url: 'https://t.me/DireAnimals_bot/DireAnimals' }],
         [
           { text: languageCode === 'ru' ? "Подписаться" : "Subscribe", url: 'https://t.me/direanimalsnews' },
-          { text: languageCode === 'ru' ? "Поделиться" : "Share", url: `https://t.me/share/url?url=https://t.me/DireAnimals_bot&text=${encodeURIComponent(languageCode === 'ru' ? `Заходи, введи мой код ${userId} и забери свою награду!` : `Join in, enter my code ${userId}, and claim your reward!`)}`}
+          { text: languageCode === 'ru' ? "Поделиться" : "Share", switch_inline_query: languageCode === 'ru' ? `\nЗаходи, введи мой код ${userId} и забери свою награду!\nhttps://t.me/DireAnimals_bot/DireAnimals` : `Join in, enter my code ${userId}, and claim your reward!` }
         ],
         [{ text: languageCode === 'ru' ? "Магазин" : "Market", url: 'https://t.me/DireAnimalsMarket_bot' }],
         [{ text: languageCode === 'ru' ? "Техподдержка" : "Tech Support", callback_data: 'button2' }]
