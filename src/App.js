@@ -446,7 +446,7 @@ function App() {
                     console.log("Energy is already at or above max, no recovery applied.");
                 }
             } else {
-                setEnergy(0); // Если данных нет, устанавливаем начальное значение энергии в maxEnergy
+                setEnergy(1000); // Если данных нет, устанавливаем начальное значение энергии в maxEnergy
             }
         };
     
@@ -472,7 +472,7 @@ function App() {
         loadEnergy();
     
         const energyRecoveryInterval = setInterval(updateEnergy, 29000);
-        const saveEnergyInterval = setInterval(saveEnergyToLocalStorage, 5000); 
+        const saveEnergyInterval = setInterval(saveEnergyToLocalStorage, 500); 
     
         return () => {
             clearInterval(energyRecoveryInterval); // Очистка интервала обновления энергии
@@ -534,13 +534,8 @@ function App() {
                 const updatedPoints = (personalCount + (personalDMG * rage));
                 const updatedContribution = (contribution + (teamDMG * rage));
 
-                setEnergy(prevEnergy => {
-                    const newEnergy = prevEnergy - energyTake; // Уменьшение энергии на значение energyTake
-                    localStorage.setItem('energy', newEnergy); // Сохранение новой энергии в локальное хранилище
-                    return newEnergy; // Обновление состояния с новым значением энергии
-                });                
-
                 handleVote('Trump', teamDMG, rage);
+                setEnergy(energy - energyTake);
                 updateCounts(updatedPoints, playersFavorite, updatedContribution);
             }
             else {
@@ -570,13 +565,8 @@ function App() {
                 const updatedPoints = (personalCount + personalDMG);
                 const updatedContribution = (contribution + (teamDMG * rage));
 
-                setEnergy(prevEnergy => {
-                    const newEnergy = prevEnergy - energyTake; // Уменьшение энергии на значение energyTake
-                    localStorage.setItem('energy', newEnergy); // Сохранение новой энергии в локальное хранилище
-                    return newEnergy; // Обновление состояния с новым значением энергии
-                });
-
                 handleVote('Harris', teamDMG, rage);
+                setEnergy(energy - energyTake);
                 updateCounts(updatedPoints, playersFavorite, updatedContribution);
             }
             else {
