@@ -18,6 +18,7 @@ bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
   const firstName = msg.from.first_name;  
   const languageCode = msg.from.language_code; // Получаем язык пользователя
+  const userId = msg.from.id;
 
   // Определяем текст на основе языка пользователя
 
@@ -31,7 +32,7 @@ bot.onText(/\/start/, (msg) => {
         [{ text: languageCode === 'ru' ? "Играть" : "Play", url: 'https://t.me/DireAnimals_bot/DireAnimals' }],
         [
           { text: languageCode === 'ru' ? "Подписаться" : "Subscribe", url: 'https://t.me/direanimalsnews' },
-          { text: languageCode === 'ru' ? "Поделиться" : "Share", switch_inline_query: '' }
+          { text: languageCode === 'ru' ? "Поделиться" : "Share", switch_inline_query: languageCode === 'ru' ? `Заходи, введи мой код ${userId} и забери свою награду!` : `Join in, enter my code ${userId}, and claim your reward!` }
         ],
         [{ text: languageCode === 'ru' ? "Магазин" : "Market", url: 'https://t.me/DireAnimalsMarket_bot' }],
         [{ text: languageCode === 'ru' ? "Техподдержка" : "Tech Support", callback_data: 'button2' }]
