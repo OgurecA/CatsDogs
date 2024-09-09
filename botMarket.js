@@ -259,7 +259,8 @@ bot.on('callback_query', (callbackQuery) => {
         };
     
         responseText = languageCode === 'ru' ? "У меня есть все, что тебе нужно. Не раздумывай долго — хватай, пока есть в наличии." : "I've got everything you need. Don't think too long — grab it while it's still available.";
-        bot.sendMessage(chatId, responseText, options);
+        const photo = fs.readFileSync('./src/Components/Photoes/Cargo.jpg');
+        bot.sendPhoto(chatId, photo, { caption: responseText, ...options });
         return;
     }
     
