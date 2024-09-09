@@ -16,7 +16,7 @@ const bot = new TelegramBot(token, { polling: true });
 // Обработчик команды /start
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
-  const firstName = msg.from.first_name;  
+  const firstName = msg.from.first_name;
   const languageCode = msg.from.language_code; // Получаем язык пользователя
   const userId = msg.from.id;
 

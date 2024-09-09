@@ -96,7 +96,7 @@ const PageSocial = ({ className, updateCheckedCount }) => {
             </a>
             <a
                 className={`social-item ${checkingLinks.includes(3) ? 'checking' : ''} ${checkedLinks.includes(3) ? 'checked' : ''}`}
-                href="https://www.tiktok.com/en/"
+                href="https://www.tiktok.com/@dire.animals"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => handleLinkClick(3, e)}

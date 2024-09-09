@@ -677,7 +677,8 @@ const getTopPlayer = (favorite) => {
 const links = [
     "https://t.me/boost/direanimalsnews",
     "https://x.com/dominator24news?s=21",
-    "https://dominators.website"
+    "https://dominators.website",
+    "https://www.tiktok.com/@dire.animals"
 ];
 
 const [isButtonDisabled, setIsButtonDisabled] = useState(false);
