@@ -24,7 +24,7 @@ bot.onText(/\/start/, (msg) => {
 
   const welcomeText = languageCode === 'ru'
     ? `${firstName}, отлично, ты тут! Я — Vince, и нам как раз нужна свежая кровь. Давай, погнали!`
-    : `Oi, ${firstName}, where you've been, mate? Name’s Vince, and we could use some fresh blood around here! Let’s get moving!`;
+    : `Oi, ${firstName}, where you’ve been, mate? I’m Vince, and we could use some fresh blood around here! Let’s get moving!`;
 
   const options = {
     reply_markup: {
