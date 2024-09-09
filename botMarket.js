@@ -30,7 +30,7 @@ db.run(`
 
 
 function generatePromoCode() {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const characters = 'ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789';
   let promoCode = '';
   for (let i = 0; i < 8; i++) {
     promoCode += characters.charAt(Math.floor(Math.random() * characters.length));
@@ -98,7 +98,7 @@ bot.on('callback_query', (callbackQuery) => {
 
   } else if (data === 'Bik') {
     const invoice = {
-        title: languageCode === 'ru' ? "Получите BERNARD за 45 Telegram Stars (~$0.99)" : "Get BERNARD for 45 Telegram Star (~$0.99)",
+        title: languageCode === 'ru' ? "Выкупить BERNARD за 45 Telegram Stars (~$0.99)" : "Buy out BERNARD for 45 Telegram Star (~$0.99)",
         description: languageCode === 'ru' ? "Совершая покупку, вы подтверждаете, что ознакомились и согласны с условиями использования." : "By making a purchase, you confirm that you have read and agree to the terms of use.",
         payload: "Bik",
         provider_token: "", // Пустой токен для Telegram Stars
@@ -128,12 +128,12 @@ bot.on('callback_query', (callbackQuery) => {
 
     } else if (data === 'Rat') {
       const invoice = {
-          title: languageCode === 'ru' ? "Получите olev за 65 Telegram Stars (~$1.49)" : "Get olev for 65 Telegram Star (~$1.49)",
+          title: languageCode === 'ru' ? "Выкупить olev за 65 Telegram Stars (~$1.49)" : "Buy out olev for 65 Telegram Star (~$1.49)",
           description: languageCode === 'ru' ? "Совершая покупку, вы подтверждаете, что ознакомились и согласны с условиями использования." : "By making a purchase, you confirm that you have read and agree to the terms of use.",
           payload: "Rat",
           provider_token: "", // Пустой токен для Telegram Stars
           currency: "XTR", // Валюта для Telegram Stars
-          prices: [{ label: languageCode === 'ru' ? "Крыса" : "Rat", amount: 1 }] // 100 единиц Telegram Stars
+          prices: [{ label: languageCode === 'ru' ? "Крыса" : "Rat", amount: 65 }] // 100 единиц Telegram Stars
         };
       
         // Отправляем инвойс
@@ -158,7 +158,7 @@ bot.on('callback_query', (callbackQuery) => {
         
     } else if (data === 'X2') {
       const invoice = {
-          title: languageCode === 'ru' ? "Получите X2 за 20 Telegram Stars (~$0.49)" : "Get X2 for 20 Telegram Stars (~$0.49)",
+          title: languageCode === 'ru' ? "Ярость X2 за 20 Telegram Stars (~$0.49)" : "Rage X2 for 20 Telegram Stars (~$0.49)",
           description: languageCode === 'ru' ? "Совершая покупку, вы подтверждаете, что ознакомились и согласны с условиями использования." : "By making a purchase, you confirm that you have read and agree to the terms of use.",
           payload: "X2",
           provider_token: "", // Пустой токен для Telegram Stars
@@ -188,12 +188,12 @@ bot.on('callback_query', (callbackQuery) => {
 
     } else if (data === 'X5') {
       const invoice = {
-          title: languageCode === 'ru' ? "Получите X5 за 40 Telegram Stars (~$0.89)" : "Get X5 for 40 Telegram Star (~$0.89)",
+          title: languageCode === 'ru' ? "Ярость X5 за 40 Telegram Stars (~$0.89)" : "Rage X5 for 40 Telegram Star (~$0.89)",
           description: languageCode === 'ru' ? "Совершая покупку, вы подтверждаете, что ознакомились и согласны с условиями использования." : "By making a purchase, you confirm that you have read and agree to the terms of use.",
           payload: "X5",
           provider_token: "", // Пустой токен для Telegram Stars
           currency: "XTR", // Валюта для Telegram Stars
-          prices: [{ label: languageCode === 'ru' ? "X5" : "X5", amount: 1 }] // 100 единиц Telegram Stars
+          prices: [{ label: languageCode === 'ru' ? "X5" : "X5", amount: 40 }] // 100 единиц Telegram Stars
         };
       
         // Отправляем инвойс
