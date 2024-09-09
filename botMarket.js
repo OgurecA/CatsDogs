@@ -57,8 +57,8 @@ bot.onText(/\/start/, (msg) => {
   // Определяем текст на основе языка пользователя
 
   const welcomeText = languageCode === 'ru'
-    ? `Эй, ${firstName}, рад встрече! Меня зовут Эллиот. Если надо что-то устроить, ты по адресу.`
-    : `Hey, ${firstName}, good to see you! Name's Elliot. If you need something sorted out, you've come to the right place.`;
+    ? `Ты же ${firstName}? Рад встрече. Меня зовут Эллиот. Если надо что-то устроить, ты по адресу.`
+    : `You must be ${firstName}, right? Good to meet you. Name's Elliot. If you need something sorted out, you've come to the right place.`;
 
   const options = {
     reply_markup: {

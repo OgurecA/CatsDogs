@@ -23,8 +23,8 @@ bot.onText(/\/start/, (msg) => {
   // Определяем текст на основе языка пользователя
 
   const welcomeText = languageCode === 'ru'
-    ? `Добро пожаловать, ${firstName}! Выберите один из вариантов ниже:`
-    : `Welcome, ${firstName}! Choose one of the options below:`;
+    ? `${firstName}, ну наконец-то ты тут! Я — Vince, и нам как раз нужна свежая кровь. Давай, погнали!`
+    : `Oi, ${firstName}, where you been, mate? Name’s Vince, and we could use some fresh blood around here! Let’s get moving!`;
 
   const options = {
     reply_markup: {
@@ -32,7 +32,7 @@ bot.onText(/\/start/, (msg) => {
         [{ text: languageCode === 'ru' ? "Играть" : "Play", url: 'https://t.me/DireAnimals_bot/DireAnimals' }],
         [
           { text: languageCode === 'ru' ? "Подписаться" : "Subscribe", url: 'https://t.me/direanimalsnews' },
-          { text: languageCode === 'ru' ? "Поделиться" : "Share", switch_inline_query: languageCode === 'ru' ? `\nЗаходи, введи мой код ${userId} и забери свою награду!` : `Join in, enter my code ${userId}, and claim your reward!` }
+          { text: languageCode === 'ru' ? "Поделиться" : "Share", switch_inline_query: languageCode === 'ru' ? `\nЗаходи, введи мой код ${userId} и забери свою награду!` : `\nJoin, enter my code ${userId}, and claim your reward!` }
         ],
         [{ text: languageCode === 'ru' ? "Магазин" : "Market", url: 'https://t.me/DireAnimalsMarket_bot' }],
         [{ text: languageCode === 'ru' ? "Техподдержка" : "Tech Support", callback_data: 'button2' }]
