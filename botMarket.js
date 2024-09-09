@@ -167,7 +167,7 @@ bot.on('callback_query', (callbackQuery) => {
         };
       
         // Отправляем инвойс
-        const photo = fs.readFileSync('./src/Components/Photoes/PotRed.png'); // Укажите путь к вашему изображению
+        const photo = fs.readFileSync('./src/Components/Photoes/Red.png'); // Укажите путь к вашему изображению
       bot.sendPhoto(chatId, photo)
         .then(() => {
           // Затем отправляем инвойс
@@ -197,7 +197,7 @@ bot.on('callback_query', (callbackQuery) => {
         };
       
         // Отправляем инвойс
-        const photo = fs.readFileSync('./src/Components/Photoes/PotBlue.png'); // Укажите путь к вашему изображению
+        const photo = fs.readFileSync('./src/Components/Photoes/Blue.png'); // Укажите путь к вашему изображению
       bot.sendPhoto(chatId, photo)
         .then(() => {
           // Затем отправляем инвойс
