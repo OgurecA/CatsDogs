@@ -39,7 +39,7 @@ bot.onText(/\/start/, (msg) => {
       ]
     }
   };
-  const photo = fs.readFileSync('./src/Components/Photoes/Barsuk.jpg');
+  const photo = fs.readFileSync('./src/Components/Photoes/BarsukNew.jpg');
   bot.sendPhoto(chatId, photo, { caption: welcomeText, ...options });
 });
 

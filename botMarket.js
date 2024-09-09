@@ -57,8 +57,8 @@ bot.onText(/\/start/, (msg) => {
   // Определяем текст на основе языка пользователя
 
   const welcomeText = languageCode === 'ru'
-    ? `Приветствую тебя, ${firstName}! Меня зовут ELLIOT, я помогаю решать проблемы.`
-    : `Welcome, ${firstName}! My name is ELLIOT and I'm here to help you solve problems.`;
+    ? `Эй, ${firstName}, рад встрече! Меня зовут Эллиот. Если надо что-то устроить, ты по адресу.`
+    : `Hey, ${firstName}, good to see you! Name's Elliot. If you need something sorted out, you've come to the right place.`;
 
   const options = {
     reply_markup: {
@@ -258,7 +258,7 @@ bot.on('callback_query', (callbackQuery) => {
             }
         };
     
-        responseText = languageCode === 'ru' ? "Что-нибудь приглянулось?   " : "Did something catch your eye?";
+        responseText = languageCode === 'ru' ? "У меня есть все, что тебе нужно. Не раздумывай долго — хватай, пока есть в наличии." : "I've got everything you need. Don't think too long — grab it while it's still available.";
         bot.sendMessage(chatId, responseText, options);
         return;
     }
