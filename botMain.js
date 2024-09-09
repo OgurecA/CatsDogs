@@ -23,7 +23,7 @@ bot.onText(/\/start/, (msg) => {
   // Определяем текст на основе языка пользователя
 
   const welcomeText = languageCode === 'ru'
-    ? `А, ${firstName}, отлично, ты тут! Я — Vince, и нам как раз нужна свежая кровь. Давай, погнали!`
+    ? `${firstName}, отлично, ты тут! Я — Vince, и нам как раз нужна свежая кровь. Давай, погнали!`
     : `Oi, ${firstName}, where you've been, mate? Name’s Vince, and we could use some fresh blood around here! Let’s get moving!`;
 
   const options = {
