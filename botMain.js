@@ -35,7 +35,7 @@ bot.onText(/\/start/, (msg) => {
           { text: languageCode === 'ru' ? "Поделиться" : "Share", switch_inline_query: languageCode === 'ru' ? `\nЗаходи, введи мой код ${userId} и забери свою награду!` : `\nJoin, enter my code ${userId}, and claim your reward!` }
         ],
         [{ text: languageCode === 'ru' ? "Магазин" : "Market", url: 'https://t.me/DireAnimalsMarket_bot' }],
-        [{ text: languageCode === 'ru' ? "Техподдержка" : "Tech Support", callback_data: 'button2' }]
+        [{ text: languageCode === 'ru' ? "Академия" : "Academy", callback_data: 'button2' }]
       ]
     }
   };
@@ -67,8 +67,7 @@ bot.on('callback_query', (callbackQuery) => {
           { text: languageCode === 'ru' ? "Подписаться" : "Subscribe", url: 'https://t.me/direanimalsnews' },
           { text: languageCode === 'ru' ? "Поделиться" : "Share", switch_inline_query: '' }
         ],
-        [{ text: languageCode === 'ru' ? "Магазин" : "Market", url: 'https://t.me/DireAnimalsMarket_bot' }],
-        [{ text: languageCode === 'ru' ? "Академия" : "Academy", callback_data: 'button2' }]      
+        [{ text: languageCode === 'ru' ? "Магазин" : "Market", url: 'https://t.me/DireAnimalsMarket_bot' }]   
       ]
     }
   };
