@@ -343,7 +343,7 @@ function App() {
             status: status ? 1 : 0 // Передаем статус
         };
     
-        fetch('/update-animal-status', {
+        fetch('/api/update-animal-status', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
