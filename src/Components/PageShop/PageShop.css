@@ -154,7 +154,7 @@
     transform: translateY(3px); /* Сдвиг при нажатии для эффекта нажатия */
 }
 
-.modal-overlay.promo, .modal-overlay.donate, .modal-button.reward {
+.modal-overlay.promo, .modal-overlay.donate, .modal-overlay.reward {
     position: fixed;
     top: 0;
     left: 0;
@@ -189,7 +189,7 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Глубокая тень */
     animation: expand 0.5s ease-out;
 }
-.modal-content.donate, .modal-content.promo p {
+.modal-content.donate, .modal-content.promo, .modal-content.reward p {
     color: #e0e0e0; /* Цвет текста */
     font-size: 16px; /* Размер шрифта */
     text-align: center; /* Центрирование текста */
@@ -319,6 +319,6 @@
     align-items: center;
     flex-direction: column; /* Размещаем элементы вертикально */
     justify-content: space-around;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Глубокая тень */
+    box-shadow: 0 0 20px rgba(155, 155, 155, 0.8); /* Глубокая тень */
     animation: expand 0.5s ease-out;
 }
