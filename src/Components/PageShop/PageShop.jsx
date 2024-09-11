@@ -15,7 +15,6 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
     const [backgroundImage, setBackgroundImage] = useState('');
 
     const [showRewardModal, setShowRewardModal] = useState(false);
-    const [rewardName, setRewardName] = useState('');
 
     
     const displayedTopName = topPlayerUserName && topPlayerUserName.trim() !== "" ? topPlayerUserName : topPlayerName;
@@ -52,6 +51,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
         { code: "PROMO2024", points: 1000, start: new Date('2024-01-01'), expiry: new Date('2024-12-31') },
         { code: "SEPGIFT", points: 1000, start: new Date('2024-09-10'), expiry: new Date('2024-09-14') },
         { code: "SET", points: 1000, start: new Date('2024-09-10'), expiry: new Date('2024-09-14') },
+        { code: "new", points: 1000, start: new Date('2024-09-10'), expiry: new Date('2024-09-14') },
+        { code: "new1", points: 1000, start: new Date('2024-09-10'), expiry: new Date('2024-09-14') },
         // Добавьте больше промокодов по необходимости
     ];
     const [usedPromoCodes, setUsedPromoCodes] = useState([]);
@@ -169,9 +170,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                 setUsedPromoCodes(newUsedPromoCodes);
                 localStorage.setItem('usedPromoCodes', JSON.stringify(newUsedPromoCodes));
 
-                setRewardName("1000 Points"); // Example reward name
                 setShowRewardModal(true);
-                setTimeout(() => setShowRewardModal(false), 3000);
+                setTimeout(() => setShowRewardModal(false), 2000);
             }
         } 
         else {
@@ -187,41 +187,36 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                         updateAnimalStatus(userId, 2, true); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
-                        setRewardName("BERNARD"); // Example reward name
                         setShowRewardModal(true);
-                        setTimeout(() => setShowRewardModal(false), 3000);
+                        setTimeout(() => setShowRewardModal(false), 2000);
                         return;
                     } else if (data.value === "Rat") {
                         updateAnimalStatus(userId, 1, true); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
-                        setRewardName("olev"); // Example reward name
                         setShowRewardModal(true);
-                        setTimeout(() => setShowRewardModal(false), 3000);
+                        setTimeout(() => setShowRewardModal(false), 2000);
                         return;
                     } else if (data.value === "X2") {
                         startTimer(2); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
-                        setRewardName("Rage X2"); // Example reward name
                         setShowRewardModal(true);
-                        setTimeout(() => setShowRewardModal(false), 3000);
+                        setTimeout(() => setShowRewardModal(false), 2000);
                         return;
                     } else if (data.value === "X5") {
                         startTimer(5); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
-                        setRewardName("Rage X5"); // Example reward name
                         setShowRewardModal(true);
-                        setTimeout(() => setShowRewardModal(false), 3000);
+                        setTimeout(() => setShowRewardModal(false), 2000);
                         return;
                     } else if (data.value === "X10") {
                         startTimer(10); // Разблокировка животного с индексом 4
                         closePromoModal();
                         setPromoInput("");
-                        setRewardName("Rage X10"); // Example reward name
                         setShowRewardModal(true);
-                        setTimeout(() => setShowRewardModal(false), 3000);
+                        setTimeout(() => setShowRewardModal(false), 2000);
                         return;
                     } 
                     const updatedPoints = personalCount + parseInt(data.value, 10); // Используем значение промокода из базы
@@ -250,9 +245,8 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
                         const updatedPoints = personalCount + 2000; // Например, начисляем 1000 очков за использование ID
                         setPersonalPoints(updatedPoints);
                         updateCounts(updatedPoints, playersFavorite, updatedContribution);
-                        setRewardName("2000"); // Example reward name
                         setShowRewardModal(true);
-                        setTimeout(() => setShowRewardModal(false), 3000);
+                        setTimeout(() => setShowRewardModal(false), 2000);
                         
                         fetch('https://btc24news.online/api/add-points-promo-id', {
                             method: 'POST',
@@ -476,7 +470,6 @@ const updateAnimalStatus = (userId, animalIndex, status) => {
                 <div className="modal-overlay reward" onClick={() => setShowRewardModal(false)}>
                     <div className="modal-content reward" onClick={(e) => e.stopPropagation()} >
                         <h2>Reward Received!</h2>
-                        <p>{rewardName}</p>
                     </div>
                 </div>
             )}
