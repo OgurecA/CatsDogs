@@ -154,7 +154,7 @@
     transform: translateY(3px); /* Сдвиг при нажатии для эффекта нажатия */
 }
 
-.modal-overlay.promo, .modal-overlay.donate {
+.modal-overlay.promo, .modal-overlay.donate, .modal-button.reward {
     position: fixed;
     top: 0;
     left: 0;
@@ -219,6 +219,7 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Глубокая тень */
     animation: expand 0.5s ease-out;
 }
+
 
 @keyframes expand {
     0% { transform: translateY(0%) scale(0.8); opacity: 0.5; }
@@ -299,4 +300,25 @@
         4px 8px 12px rgba(0, 0, 0, 0.2),  /* Более размытая нижняя тень */
         -2px -4px 6px rgba(0, 0, 0, 0.4), /* Верхняя тень */
         -4px -8px 12px rgba(0, 0, 0, 0.2); 
+}
+
+.modal-content.reward {
+    background-color: #4a4a4a;
+    position: relative;
+    border: 1px solid #4a4a4a;
+    padding-top: 12px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 18px;
+    border-radius: 10px;
+    text-align: center;
+    width: 200px;
+    height: 150px;
+    transform: translateY(-15%);
+    display: flex;
+    align-items: center;
+    flex-direction: column; /* Размещаем элементы вертикально */
+    justify-content: space-around;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Глубокая тень */
+    animation: expand 0.5s ease-out;
 }
