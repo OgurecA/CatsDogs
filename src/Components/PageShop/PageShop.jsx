@@ -49,9 +49,9 @@ const PageShop = ({ className, title, votesA, votesB, personalCount, contributio
 
     const promoCodes = [
         { code: "PROMO2024", points: 1000, start: new Date('2024-01-01'), expiry: new Date('2024-12-31') },
-        { code: "SEPGIFT", points: 1000, start: new Date('2024-09-10'), expiry: new Date('2024-09-14') },
-        { code: "WELCOME", points: 500, start: new Date('2024-09-10'), expiry: new Date('2024-11-01') },
-        { code: "AUTUMN2024", points: 1000, start: new Date('2024-09-10'), expiry: new Date('2024-12-01') },
+        { code: "SepGift", points: 1000, start: new Date('2024-09-10'), expiry: new Date('2024-09-14') },
+        { code: "Welcome", points: 500, start: new Date('2024-09-10'), expiry: new Date('2024-11-01') },
+        { code: "Autumn2024", points: 1000, start: new Date('2024-09-10'), expiry: new Date('2024-12-01') },
         // Добавьте больше промокодов по необходимости
     ];
     const [usedPromoCodes, setUsedPromoCodes] = useState([]);
